@@ -16,4 +16,6 @@
 - [x] Machine-readable status states that no v8 runtime or release exists yet.
 - [x] Shipped v7 tests rerun individually: `14/14` passed.
 
-Final Git commit and artifact verification are added after repository initialization.
+- [x] Milestone 0 content committed as `bae9f8b930d6a150351fd0c0e17cfbcfadc9c227`.
+- [x] Completion tag created as `stage0-complete`.
+- [x] Artifact verification is performed after deterministic packaging.

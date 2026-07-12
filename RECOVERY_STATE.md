@@ -27,3 +27,9 @@ The repository can be reconstructed from the preserved v7 archive, the design-in
 ## Next legal engineering milestone
 
 Milestone 1: create the separate LAOS v7.0.1 emergency correctness branch and executable regressions for canonical fingerprinting, strict schema validation, pre-claim drift, safe paths, symlink escapes, and command execution.
+
+## Git baseline
+
+- Milestone 0 content commit: `bae9f8b930d6a150351fd0c0e17cfbcfadc9c227`
+- Completion tag: `stage0-complete`
+- Resolve the completion commit with `git rev-parse stage0-complete`.

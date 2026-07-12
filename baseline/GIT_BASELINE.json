@@ -1,0 +1,7 @@
+{
+  "completion_tag": "stage0-complete",
+  "content_commit_sha": "bae9f8b930d6a150351fd0c0e17cfbcfadc9c227",
+  "meaning": "This commit contains the complete Milestone 0 content before the self-referential Git metadata record was added.",
+  "record_version": "1.0.0",
+  "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d"
+}
