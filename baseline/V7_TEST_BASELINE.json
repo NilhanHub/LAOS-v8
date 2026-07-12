@@ -1,0 +1,208 @@
+{
+  "combined_runner_observation": {
+    "detail": "The all-in-one validation command exceeded the available long-running command window in this session. Every shipped unittest was therefore rerun and recorded separately. This observation is retained rather than hidden.",
+    "status": "NOT_USED_AS_A_PASS_CLAIM"
+  },
+  "environment": {
+    "platform": "linux",
+    "python_version": "3.13.5 (main, May  5 2026, 21:05:52) [GCC 14.2.0]"
+  },
+  "execution_method": "Each shipped unittest was executed in a fresh subprocess with a 90-second per-test timeout from a clean, safely extracted v7 archive.",
+  "independent_static_scan": {
+    "exact_duplicate_groups": [
+      {
+        "bytes": 1985,
+        "paths": [
+          "FOR_NILHAN.md",
+          "START_HERE_FOR_NILHAN.md"
+        ],
+        "sha256": "446fac724c1db18f77860e4205e6c74fdf280eef6c398519d110dc4d89d711a1"
+      }
+    ],
+    "extension_counts": {
+      ".docx": 4,
+      ".json": 38,
+      ".md": 97,
+      ".py": 11,
+      ".pyc": 10,
+      ".txt": 5
+    },
+    "file_count": 165,
+    "json_errors": [],
+    "json_file_count": 38,
+    "python_compile_errors": [],
+    "python_file_count": 11,
+    "release_integrity_failures": [],
+    "release_integrity_manifest_entry_count": 154,
+    "root": "/mnt/data/LAOS_v8_stage0_temp/v7_extracted/LAOS_v7"
+  },
+  "record_version": "1.0.0",
+  "recorded_at_utc": "2026-07-12T16:10:01+00:00",
+  "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+  "static_master_validation": {
+    "capture_smoke": {
+      "compiler_exit": 0,
+      "runtime": true,
+      "start_file": true
+    },
+    "invalid_json": [],
+    "missing": [],
+    "new_build_smoke": {
+      "audit_status": "PASS",
+      "compiler_exit": 0,
+      "doctor_exit": 0
+    },
+    "python_compile_errors": [],
+    "root": "/mnt/data/LAOS_v8_stage0_temp/v7_extracted/LAOS_v7",
+    "self_tests": null,
+    "status": "PASS"
+  },
+  "summary": {
+    "discovered_tests": 14,
+    "failed": 0,
+    "passed": 14,
+    "timed_out": 0
+  },
+  "tests": [
+    {
+      "duration_seconds": 12.199,
+      "name": "tests.test_laos_v7.LaosV7CaptureTests.test_capture_finalize_validate_and_continuation",
+      "output_sha256": "8f8e2cce636eef67900218a81d03241d7a8842638d7b2eb3fa75ae194ef3327d",
+      "returncode": 0,
+      "started_epoch": 1783872189.192204,
+      "status": "PASS",
+      "stderr": "test_capture_finalize_validate_and_continuation (tests.test_laos_v7.LaosV7CaptureTests.test_capture_finalize_validate_and_continuation) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 10.762s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 2.944,
+      "name": "tests.test_laos_v7.LaosV7CompilerAuditTests.test_rejects_dependency_cycle",
+      "output_sha256": "be4ff08c30e31f2cf8a6c2314a5907a68dd44f22d2d243955ed8363d6fb3720b",
+      "returncode": 0,
+      "started_epoch": 1783872213.0641334,
+      "status": "PASS",
+      "stderr": "test_rejects_dependency_cycle (tests.test_laos_v7.LaosV7CompilerAuditTests.test_rejects_dependency_cycle) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 1.513s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 2.607,
+      "name": "tests.test_laos_v7.LaosV7CompilerAuditTests.test_rejects_uncovered_must_requirement",
+      "output_sha256": "90752489b2270a27b407494994ccc7a4b1cf268eb5a0232edd6a03f8bf52fb30",
+      "returncode": 0,
+      "started_epoch": 1783872208.844495,
+      "status": "PASS",
+      "stderr": "test_rejects_uncovered_must_requirement (tests.test_laos_v7.LaosV7CompilerAuditTests.test_rejects_uncovered_must_requirement) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 1.405s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 3.008,
+      "name": "tests.test_laos_v7.LaosV7CompilerAuditTests.test_rejects_unresolved_implementation_marker",
+      "output_sha256": "5f007126b8dc7c82f7016b8ab8787943a13b05cbc6e0c74482d1545f9df14b53",
+      "returncode": 0,
+      "started_epoch": 1783872217.5016625,
+      "status": "PASS",
+      "stderr": "test_rejects_unresolved_implementation_marker (tests.test_laos_v7.LaosV7CompilerAuditTests.test_rejects_unresolved_implementation_marker) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 1.554s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 3.667,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_artifact_lock_detects_mutation",
+      "output_sha256": "9f07044ced935b66aca6069671fa3dc643990997332ea8019be80fe43c2c766e",
+      "returncode": 0,
+      "started_epoch": 1783872184.0518138,
+      "status": "PASS",
+      "stderr": "test_artifact_lock_detects_mutation (tests.test_laos_v7.LaosV7RuntimeTests.test_artifact_lock_detects_mutation) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 2.149s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 4.664,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_check_becomes_stale_after_source_change",
+      "output_sha256": "02ac6cbd2c40f73489ff077e37ff17e8ee8f1a947a1b35b61dc4fbf91527f2c5",
+      "returncode": 0,
+      "started_epoch": 1783872125.8869379,
+      "status": "PASS",
+      "stderr": "test_check_becomes_stale_after_source_change (tests.test_laos_v7.LaosV7RuntimeTests.test_check_becomes_stale_after_source_change) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 3.473s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 6.136,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_checkpoint_and_recovery",
+      "output_sha256": "0b5a10902630571be785fdb1f0443e0843e193f61514172cbc7c20f5727a5770",
+      "returncode": 0,
+      "started_epoch": 1783872159.6171026,
+      "status": "PASS",
+      "stderr": "test_checkpoint_and_recovery (tests.test_laos_v7.LaosV7RuntimeTests.test_checkpoint_and_recovery) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 4.325s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 2.865,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_compile_and_doctor",
+      "output_sha256": "a79200c1d6d07a10ec53ad16bc89e11905588fa3189ea2e7d1091eac1c7e0600",
+      "returncode": 0,
+      "started_epoch": 1783872113.69518,
+      "status": "PASS",
+      "stderr": "test_compile_and_doctor (tests.test_laos_v7.LaosV7RuntimeTests.test_compile_and_doctor) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 1.673s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 2.952,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_event_chain_detects_tamper",
+      "output_sha256": "b498983a81a5af5e26321080e259fe99081c68e547fad97dd81805ac62e2fa67",
+      "returncode": 0,
+      "started_epoch": 1783872179.8744876,
+      "status": "PASS",
+      "stderr": "test_event_chain_detects_tamper (tests.test_laos_v7.LaosV7RuntimeTests.test_event_chain_detects_tamper) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 1.739s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 6.894,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_evidence_mutation_detected",
+      "output_sha256": "02f20dbd0a09b8e1c0bffcdc80dfe3adaf78f17281508b0082e4a4096e773145",
+      "returncode": 0,
+      "started_epoch": 1783872131.9168015,
+      "status": "PASS",
+      "stderr": "test_evidence_mutation_detected (tests.test_laos_v7.LaosV7RuntimeTests.test_evidence_mutation_detected) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 5.442s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 7.101,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_full_lifecycle_and_finalize",
+      "output_sha256": "9627df476b1ec5cb8d76d9bc451753e8713d81995d83633b2b1de927fb762a9f",
+      "returncode": 0,
+      "started_epoch": 1783872117.714078,
+      "status": "PASS",
+      "stderr": "test_full_lifecycle_and_finalize (tests.test_laos_v7.LaosV7RuntimeTests.test_full_lifecycle_and_finalize) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 5.948s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 4.271,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_idempotency_key_unique",
+      "output_sha256": "0a96b3190397e9d68d1e4fa92a82a23508f2f130aa4e9a4a1cdb03123bea979b",
+      "returncode": 0,
+      "started_epoch": 1783872167.3773868,
+      "status": "PASS",
+      "stderr": "test_idempotency_key_unique (tests.test_laos_v7.LaosV7RuntimeTests.test_idempotency_key_unique) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 2.570s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 5.181,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_reviewer_must_be_independent",
+      "output_sha256": "7be37ee90a77307b63598812b3a828a132eed4f57ed780e9f3b7efb624d6f59f",
+      "returncode": 0,
+      "started_epoch": 1783872146.7510998,
+      "status": "PASS",
+      "stderr": "test_reviewer_must_be_independent (tests.test_laos_v7.LaosV7RuntimeTests.test_reviewer_must_be_independent) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 3.633s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "duration_seconds": 4.558,
+      "name": "tests.test_laos_v7.LaosV7RuntimeTests.test_test_file_change_blocked",
+      "output_sha256": "a977eafbc620c8eaa0aca2d0cf66b7717f1855a97a8ce18f2eb8853824c4f0e1",
+      "returncode": 0,
+      "started_epoch": 1783872153.5163832,
+      "status": "PASS",
+      "stderr": "test_test_file_change_blocked (tests.test_laos_v7.LaosV7RuntimeTests.test_test_file_change_blocked) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 3.065s\n\nOK\n",
+      "stdout": ""
+    }
+  ]
+}

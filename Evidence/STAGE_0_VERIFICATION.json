@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "BASELINE_MANIFEST.json"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "RECOVERY_STATE.md"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "REQUIREMENTS_LEDGER.json"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "KNOWN_DEFECTS.md"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "THREAT_MODEL_DRAFT.md"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "LIMITATIONS_REGISTER.md"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "IMPLEMENTATION_STATUS.json"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "Evidence/README.md"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "docs/adr/0001-trust-zone-separation.md"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "policies/RELEASE_POLICY.md"
+    },
+    {
+      "check": "required_file",
+      "ok": true,
+      "path": "issues/REGRESSION_CATALOG.json"
+    }
+  ],
+  "issues": [],
+  "regression_count": 40,
+  "requirement_count": 210,
+  "root": "/mnt/data/LAOS_v8_rebuild/LAOS_v8",
+  "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+  "status": "PASS"
+}

@@ -1,0 +1,30 @@
+{
+  "good_archive_member_issues": [],
+  "malicious_archive_cases": [
+    {
+      "case": "traversal",
+      "rejected": true,
+      "returncode": 1,
+      "stderr_tail": "_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 67, in main\n    safe_extract(args.source_zip, args.destination)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 35, in safe_extract\n    p = validate_name(info.filename)\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 20, in validate_name\n    raise ValueError(f\"Unsafe ZIP member path: {raw!r}\")\nValueError: Unsafe ZIP member path: '../escape.txt'\n"
+    },
+    {
+      "case": "backslash",
+      "rejected": true,
+      "returncode": 1,
+      "stderr_tail": "v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 67, in main\n    safe_extract(args.source_zip, args.destination)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 35, in safe_extract\n    p = validate_name(info.filename)\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 17, in validate_name\n    raise ValueError(f\"Unsafe ZIP member name: {raw!r}\")\nValueError: Unsafe ZIP member name: '..\\\\escape.txt'\n"
+    },
+    {
+      "case": "symlink",
+      "rejected": true,
+      "returncode": 1,
+      "stderr_tail": "ripts/safe_extract.py\", line 71, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 67, in main\n    safe_extract(args.source_zip, args.destination)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 41, in safe_extract\n    raise ValueError(f\"Symlink member is forbidden: {info.filename}\")\nValueError: Symlink member is forbidden: link\n"
+    },
+    {
+      "case": "duplicate",
+      "rejected": true,
+      "returncode": 1,
+      "stderr_tail": "LAOS_v8/scripts/safe_extract.py\", line 71, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 67, in main\n    safe_extract(args.source_zip, args.destination)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/LAOS_v8_rebuild/LAOS_v8/scripts/safe_extract.py\", line 37, in safe_extract\n    raise ValueError(f\"Duplicate ZIP member: {info.filename}\")\nValueError: Duplicate ZIP member: same.txt\n"
+    }
+  ],
+  "status": "PASS"
+}

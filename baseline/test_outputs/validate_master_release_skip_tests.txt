@@ -1,0 +1,18 @@
+{
+  "root": "/mnt/data/LAOS_v8_stage0_temp/v7_extracted/LAOS_v7",
+  "missing": [],
+  "invalid_json": [],
+  "python_compile_errors": [],
+  "new_build_smoke": {
+    "compiler_exit": 0,
+    "doctor_exit": 0,
+    "audit_status": "PASS"
+  },
+  "capture_smoke": {
+    "compiler_exit": 0,
+    "start_file": true,
+    "runtime": true
+  },
+  "self_tests": null,
+  "status": "PASS"
+}

@@ -1,0 +1,598 @@
+{
+  "catalog_version": "1.0.0",
+  "count": 40,
+  "created_at_utc": "2026-07-12T16:10:01+00:00",
+  "items": [
+    {
+      "affected_component": "capture_runtime.py; laos_runtime.py",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "The unchanged repository passes using one versioned canonical algorithm.",
+      "id": "REG-001",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Capture an unchanged repository with v7.",
+        "Compile a continuation pack from the validated return.",
+        "Install the pack in the unchanged repository.",
+        "Run repository baseline verification."
+      ],
+      "severity": "P0",
+      "target_milestone": 1,
+      "title": "Capture/runtime repository fingerprint algorithms disagree"
+    },
+    {
+      "affected_component": "capture_runtime.py; laos_runtime.py",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "All workflows import the same manifest implementation and exclusions.",
+      "id": "REG-002",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Choose files covered differently by the two ignore implementations.",
+        "Capture the repository.",
+        "Calculate the implementation-runtime fingerprint.",
+        "Compare the results."
+      ],
+      "severity": "P0",
+      "target_milestone": 1,
+      "title": "Capture and runtime fingerprint ignore rules are not shared"
+    },
+    {
+      "affected_component": "capture_runtime.py; validate_return_pack.py",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Strict Draft 2020-12 validation fails with precise schema diagnostics.",
+      "id": "REG-003",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Create required JSON files containing syntactically valid but structurally invalid values.",
+        "Set the completion flags expected by heuristic validation.",
+        "Run capture validation and return-pack validation."
+      ],
+      "severity": "P0",
+      "target_milestone": 1,
+      "title": "App Intelligence JSON Schemas are shipped but not enforced"
+    },
+    {
+      "affected_component": "laos_runtime.py claim_task/save_task_baseline",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Claim is denied because workspace state differs from the Architect-approved seal.",
+      "id": "REG-004",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Modify a forbidden or unrelated tracked file before claiming a READY task.",
+        "Claim the task.",
+        "Complete an allowed edit.",
+        "Run changed-file validation."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Pre-claim forbidden changes can become the task baseline"
+    },
+    {
+      "affected_component": "project_manifest and path handling",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "The path broker rejects the resolved external target before any write occurs.",
+      "id": "REG-005",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Create a symlink within an allowed directory pointing outside the repository.",
+        "Write through the symlink.",
+        "Run repository delta and scope validation."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Symlink writes can escape repository observation"
+    },
+    {
+      "affected_component": "laos_runtime.py project_manifest",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Manifests represent the link itself without following its target, or reject it by policy.",
+      "id": "REG-006",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Add a symlink inside the repository.",
+        "Generate a project manifest.",
+        "Observe that no link record is present."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Project manifests silently skip symlink entries"
+    },
+    {
+      "affected_component": "laos_runtime.py claim_task",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "A transactional uniqueness constraint permits exactly one claim.",
+      "id": "REG-007",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Start two claim processes at the same time for one READY task.",
+        "Force both processes past the existence check.",
+        "Inspect lock, state, and event records."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Task lock creation is check-then-write rather than exclusive"
+    },
+    {
+      "affected_component": "laos_runtime.py mutable JSON state",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "SQLite transactions preserve both valid operations or reject one deterministically.",
+      "id": "REG-008",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Run two state-changing operations concurrently.",
+        "Allow both to read the same old state.",
+        "Observe one writer overwriting the other."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "JSON state updates are non-transactional and vulnerable to lost updates"
+    },
+    {
+      "affected_component": "laos_runtime.py append_event",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Events are ordered and linked inside one transaction.",
+      "id": "REG-009",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Append events concurrently.",
+        "Have both processes read the same previous hash.",
+        "Inspect the resulting chain."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Event append is not transactionally serialized"
+    },
+    {
+      "affected_component": "laos_runtime.py atomic_write",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Transactional storage or unique durable temporary files eliminate collisions.",
+      "id": "REG-010",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Invoke two writes to the same JSON path concurrently.",
+        "Observe both use the same .tmp path.",
+        "Inspect errors or lost state."
+      ],
+      "severity": "P1",
+      "target_milestone": 3,
+      "title": "Atomic writes use predictable fixed temporary names"
+    },
+    {
+      "affected_component": "record_review and actor fields",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Authenticated capabilities prevent the builder identity from reviewing its own work.",
+      "id": "REG-011",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Implement as actor builder-a.",
+        "Submit review as actor reviewer-b from the same identity and process.",
+        "Observe the string comparison accepts apparent separation."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Reviewer independence relies on self-declared strings"
+    },
+    {
+      "affected_component": "side_effect_transition",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Only capabilities authorised for each transition may advance it.",
+      "id": "REG-012",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Claim as a builder.",
+        "Advance an operation through EXTERNALLY_VERIFIED and COMMITTED as the builder.",
+        "Observe no role authorization denial."
+      ],
+      "severity": "P0",
+      "target_milestone": 12,
+      "title": "Side-effect lifecycle has no role-based authorization"
+    },
+    {
+      "affected_component": "laos_runtime.py run_check",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Commands execute as frozen argv arrays; shell use requires exceptional policy.",
+      "id": "REG-013",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Create a blueprint check containing shell metacharacters.",
+        "Run the check.",
+        "Observe shell interpretation."
+      ],
+      "severity": "P0",
+      "target_milestone": 9,
+      "title": "Contracted commands execute with shell=True"
+    },
+    {
+      "affected_component": "locks, baselines, checkpoints, evidence paths",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Typed identifier and safe-path validation rejects the input before filesystem use.",
+      "id": "REG-014",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Supply identifiers or paths containing traversal or separator characters.",
+        "Reach the filesystem construction path.",
+        "Observe insufficient early rejection."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Identifier-to-path conversion lacks strict identifier contracts"
+    },
+    {
+      "affected_component": "compile_project_pack.py --force",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Dangerous roots, ancestors, source paths, and protected directories are always rejected.",
+      "id": "REG-015",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Invoke compilation with --force and a dangerous existing output target such as a source root or important parent.",
+        "Observe destructive removal is not guarded by a comprehensive safety policy."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Compiler force deletion lacks robust dangerous-target protection"
+    },
+    {
+      "affected_component": "artifact/checkpoint collection",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Collection uses lstat-style policy and never follows an external target.",
+      "id": "REG-016",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Place links in an authorised collection path.",
+        "Build an artifact or checkpoint.",
+        "Inspect whether external or unexpected content can be captured."
+      ],
+      "severity": "P0",
+      "target_milestone": 3,
+      "title": "Artifact and checkpoint collection can encounter unsafe link semantics"
+    },
+    {
+      "affected_component": "continuation documentation/compiler output",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Guidance and generated executable workflow always agree.",
+      "id": "REG-017",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Compile a continuation pack with repository drift guidance.",
+        "Inspect generated tasks.",
+        "Compare the recommended TASK-000/setup procedure with tasks actually present."
+      ],
+      "severity": "P1",
+      "target_milestone": 8,
+      "title": "Continuation guidance references a reconciliation path not guaranteed in the generated pack"
+    },
+    {
+      "affected_component": "v7 task lifecycle",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Each criterion has independent current proof and review before task closure.",
+      "id": "REG-018",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Create a task with several acceptance criteria.",
+        "Satisfy checks/evidence for only a subset.",
+        "Use broad task-level gates to advance."
+      ],
+      "severity": "P0",
+      "target_milestone": 10,
+      "title": "Task-level state can mask partially completed acceptance criteria"
+    },
+    {
+      "affected_component": "v7 evidence records",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Behavioural proof is runtime-generated or independently verified at the required maturity.",
+      "id": "REG-019",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Write vague evidence over the minimum byte threshold.",
+        "Register its hash.",
+        "Attempt to pass the evidence gate."
+      ],
+      "severity": "P0",
+      "target_milestone": 10,
+      "title": "Manual evidence can be structurally present but semantically weak"
+    },
+    {
+      "affected_component": "v7 task packets and entry instructions",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Only one signed legal Action Capsule is issued at a time.",
+      "id": "REG-020",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Give the complete multi-step task packet to a weak executor.",
+        "Observe it move directly to implementation or completion without all intermediate obligations."
+      ],
+      "severity": "P0",
+      "target_milestone": 6,
+      "title": "A weaker agent receives too much process at once and can skip steps"
+    },
+    {
+      "affected_component": "v7 workflow",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "No edit authority exists until structured understanding passes.",
+      "id": "REG-021",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Let an agent claim and start a task without restating objective, invariants, non-goals, uncertainty, or verification.",
+        "Observe implementation is permitted."
+      ],
+      "severity": "P0",
+      "target_milestone": 6,
+      "title": "No mandatory machine-checked understanding gate exists"
+    },
+    {
+      "affected_component": "v7 workflow",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Implementation is locked until a validated plan covers every criterion.",
+      "id": "REG-022",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Start implementation without mapping each acceptance criterion to files, checks, failure paths, and evidence.",
+        "Observe the runtime allows it."
+      ],
+      "severity": "P0",
+      "target_milestone": 6,
+      "title": "No mandatory criterion-mapped planning gate exists"
+    },
+    {
+      "affected_component": "v7 packaging model",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Execution packs are separately built and leak-scanned.",
+      "id": "REG-023",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Inspect generated materials available to the weaker agent.",
+        "Look for broad project strategy, future tasks, or master framework content."
+      ],
+      "severity": "P0",
+      "target_milestone": 5,
+      "title": "Master and weaker-agent trust zones are not physically enforced"
+    },
+    {
+      "affected_component": "v7 runtime",
+      "classification": "KNOWN_LIMITATION",
+      "expected_v8_behavior": "High-risk execution fails closed unless a tested sandbox provider supplies the required isolation.",
+      "id": "REG-024",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Run the agent process with ordinary host filesystem/network permissions.",
+        "Access resources outside the intended repository."
+      ],
+      "severity": "P0",
+      "target_milestone": 9,
+      "title": "No real operating-system sandbox is enforced by LAOS itself"
+    },
+    {
+      "affected_component": "event chain and anchor",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "Important ledger tips and attestations are signed or anchored outside builder authority.",
+      "id": "REG-025",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Modify historical events.",
+        "Recompute later hashes and the local anchor using repository write access.",
+        "Observe local consistency can be restored."
+      ],
+      "severity": "P1",
+      "target_milestone": 13,
+      "title": "Local event hash chain is not externally authenticated"
+    },
+    {
+      "affected_component": "v7 LaosError",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "AuthorizationDenied and other stable typed errors are returned consistently.",
+      "id": "REG-026",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Trigger distinct authorization, validation, state, and integrity failures.",
+        "Observe they share a generic error type without stable machine code."
+      ],
+      "severity": "P0",
+      "target_milestone": 2,
+      "title": "No stable typed security error hierarchy exists"
+    },
+    {
+      "affected_component": "lost prior v8 implementation",
+      "classification": "PRIOR_V8_REPORTED",
+      "expected_v8_behavior": "Only migrations and initialization code ship; mutable databases remain project-local and outside static manifests.",
+      "id": "REG-027",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Initialize a project runtime database inside the release tree.",
+        "Generate the static release manifest.",
+        "Modify runtime state.",
+        "Verify the static pack."
+      ],
+      "severity": "P0",
+      "target_milestone": 13,
+      "title": "Immutable release verification previously included a mutable SQLite database"
+    },
+    {
+      "affected_component": "lost prior v8 implementation",
+      "classification": "PRIOR_V8_REPORTED",
+      "expected_v8_behavior": "AuthorizationDenied is raised; denial is audited; no external action or transition occurs.",
+      "id": "REG-028",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Use a builder capability to request EXTERNALLY_VERIFIED.",
+        "Inspect exception type, error code, audit event, external call count, and state."
+      ],
+      "severity": "P0",
+      "target_milestone": 12,
+      "title": "Unauthorized side-effect verification previously raised the wrong exception category"
+    },
+    {
+      "affected_component": "prior lost v8 work",
+      "classification": "PROCESS_FAILURE",
+      "expected_v8_behavior": "Any relevant change invalidates prior test evidence and requires complete rerun.",
+      "id": "REG-029",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Change evidence-manifest validation.",
+        "Publish a completion claim without rerunning the complete suite.",
+        "Observe verification gap."
+      ],
+      "severity": "P0",
+      "target_milestone": 16,
+      "title": "Evidence-manifest hardening was not followed by a final complete test run"
+    },
+    {
+      "affected_component": "prior session artifact loss",
+      "classification": "PROCESS_FAILURE",
+      "expected_v8_behavior": "Durability, existence, stat, hash, extraction, retest, and reopen checks are hard release gates.",
+      "id": "REG-030",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Create or claim a release artifact in temporary storage.",
+        "Allow runtime cleanup/reset.",
+        "Attempt to retrieve the artifact.",
+        "Observe no durable verified copy."
+      ],
+      "severity": "P0",
+      "target_milestone": 16,
+      "title": "Previously claimed v8 release artifacts were not durably preserved or reopened"
+    },
+    {
+      "affected_component": "prior v8 report",
+      "classification": "PROCESS_FAILURE",
+      "expected_v8_behavior": "The extracted artifact independently passes the complete suite.",
+      "id": "REG-031",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Build a release archive.",
+        "Do not extract to a clean location and rerun all verification.",
+        "Observe source-tree results are incorrectly treated as release proof."
+      ],
+      "severity": "P0",
+      "target_milestone": 16,
+      "title": "No extracted-release full-suite retest was completed for prior v8 work"
+    },
+    {
+      "affected_component": "prior v8 report",
+      "classification": "PRIOR_V8_REPORTED",
+      "expected_v8_behavior": "The action blocks; release requires at least one real tested provider.",
+      "id": "REG-032",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Configure a high-risk action requiring isolation.",
+        "Run where no validated provider is available."
+      ],
+      "severity": "P0",
+      "target_milestone": 9,
+      "title": "No real sandbox provider was tested in prior v8 work"
+    },
+    {
+      "affected_component": "release evidence and prior reports",
+      "classification": "CONFIRMED_GAP",
+      "expected_v8_behavior": "A reproducible real-agent evaluation report supports any performance claim.",
+      "id": "REG-033",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Inspect release evidence for repeated real-agent baseline, v7, and v8 trials.",
+        "Observe normal software tests but no behavioural comparison matrix."
+      ],
+      "severity": "P1",
+      "target_milestone": 14,
+      "title": "No real comparative weaker-model evaluation was completed"
+    },
+    {
+      "affected_component": "v7 documentation and prior v8 claims",
+      "classification": "CONFIRMED_GAP",
+      "expected_v8_behavior": "Documentation is generated/reviewed against verified capability and explicit limitations.",
+      "id": "REG-034",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Compare stated guarantees with implemented boundaries and test evidence.",
+        "Identify procedural controls described as technical guarantees."
+      ],
+      "severity": "P1",
+      "target_milestone": 15,
+      "title": "Documentation can overstate enforcement and completeness"
+    },
+    {
+      "affected_component": "FOR_NILHAN.md and START_HERE_FOR_NILHAN.md",
+      "classification": "CONFIRMED_V7",
+      "expected_v8_behavior": "One canonical role entry point exists; archived aliases are clearly non-authoritative.",
+      "id": "REG-035",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Hash both files.",
+        "Observe identical content with separate authoritative-looking names."
+      ],
+      "severity": "P2",
+      "target_milestone": 15,
+      "title": "Duplicate entry documents increase ambiguity and cognitive load"
+    },
+    {
+      "affected_component": "agent context handling",
+      "classification": "THREAT_GAP",
+      "expected_v8_behavior": "Context provenance and policy prevent untrusted content from increasing authority.",
+      "id": "REG-036",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Place instructions in repository documentation asking the agent to ignore Architect policy or exfiltrate data.",
+        "Present them during investigation or implementation."
+      ],
+      "severity": "P0",
+      "target_milestone": 4,
+      "title": "Repository content can contain prompt-injection-like instructions"
+    },
+    {
+      "affected_component": "v7 runtime",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Action and project budgets block runaway retries and denial-of-wallet behaviour.",
+      "id": "REG-037",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Cause repeated commands or failed approaches.",
+        "Observe no global attempt, cost, or resource budget enforcement."
+      ],
+      "severity": "P1",
+      "target_milestone": 7,
+      "title": "No resource or cost circuit breaker is enforced"
+    },
+    {
+      "affected_component": "v7 runtime",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Outstanding capsules become invalid and cannot be replayed.",
+      "id": "REG-038",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Issue work authority.",
+        "Change repository seal, policy, model profile, or authorised skills.",
+        "Attempt to reuse old authority."
+      ],
+      "severity": "P0",
+      "target_milestone": 5,
+      "title": "No capability revocation or policy/model/skill drift guard exists"
+    },
+    {
+      "affected_component": "capture and handoff workflow",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Unknowns have explicit state, provenance, owner, resolution, and acceptance.",
+      "id": "REG-039",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Record an unknown in prose.",
+        "Allow a later prompt or plan to treat it as fact without resolution evidence."
+      ],
+      "severity": "P1",
+      "target_milestone": 6,
+      "title": "No formal uncertainty ledger prevents guesses becoming project truth"
+    },
+    {
+      "affected_component": "release/runtime layout",
+      "classification": "DESIGN_GAP",
+      "expected_v8_behavior": "Separate immutable release, static harness, runtime state, evidence, and artifact manifests.",
+      "id": "REG-040",
+      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "reproduction_steps": [
+        "Mix generated runtime records with harness or artifact integrity inputs.",
+        "Change runtime state.",
+        "Observe static integrity becomes unstable or ambiguous."
+      ],
+      "severity": "P0",
+      "target_milestone": 13,
+      "title": "Static and mutable manifests are not formally separated in v7"
+    }
+  ],
+  "source_baseline_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d"
+}

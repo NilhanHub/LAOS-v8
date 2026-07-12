@@ -1,0 +1,28 @@
+{
+  "exact_duplicate_groups": [
+    {
+      "bytes": 1985,
+      "paths": [
+        "FOR_NILHAN.md",
+        "START_HERE_FOR_NILHAN.md"
+      ],
+      "sha256": "446fac724c1db18f77860e4205e6c74fdf280eef6c398519d110dc4d89d711a1"
+    }
+  ],
+  "extension_counts": {
+    ".docx": 4,
+    ".json": 38,
+    ".md": 97,
+    ".py": 11,
+    ".pyc": 10,
+    ".txt": 5
+  },
+  "file_count": 165,
+  "json_errors": [],
+  "json_file_count": 38,
+  "python_compile_errors": [],
+  "python_file_count": 11,
+  "release_integrity_failures": [],
+  "release_integrity_manifest_entry_count": 154,
+  "root": "/mnt/data/LAOS_v8_stage0_temp/v7_extracted/LAOS_v7"
+}

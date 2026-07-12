@@ -1,0 +1,823 @@
+{
+  "plan_version": "1.0",
+  "target_release": "8.0.0",
+  "source_baseline": "/mnt/data/LAOS_v7.0_Complete_System(1).zip",
+  "status": "planned_not_implemented",
+  "principle": "Architect sees the whole project; weaker agent sees one authorised action; runtime decides completion.",
+  "phases": [
+    {
+      "phase_id": "P0",
+      "name": "Baseline and recovery",
+      "tasks": [
+        {
+          "task_id": "P0-001",
+          "title": "Preserve and hash the original v7 ZIP",
+          "depends_on": [],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P0-002",
+          "title": "Extract v7 into a clean source repository",
+          "depends_on": [
+            "P0-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P0-003",
+          "title": "Import surviving v8 design documents",
+          "depends_on": [
+            "P0-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P0-004",
+          "title": "Create root Evidence folder and evidence policy",
+          "depends_on": [
+            "P0-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P0-005",
+          "title": "Run and record all v7 tests",
+          "depends_on": [
+            "P0-002",
+            "P0-004"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P0-006",
+          "title": "Convert known v7 defects into failing regression tests",
+          "depends_on": [
+            "P0-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P0-007",
+          "title": "Create v7-to-v8 feature map",
+          "depends_on": [
+            "P0-003",
+            "P0-005"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P1",
+      "name": "Formal contracts",
+      "tasks": [
+        {
+          "task_id": "P1-001",
+          "title": "Define typed domain model",
+          "depends_on": [
+            "P0-007"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P1-002",
+          "title": "Define state machines and safety invariants",
+          "depends_on": [
+            "P1-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P1-003",
+          "title": "Define error taxonomy and stable error codes",
+          "depends_on": [
+            "P1-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P1-004",
+          "title": "Define risk and policy matrix",
+          "depends_on": [
+            "P1-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P1-005",
+          "title": "Approve architecture decision records",
+          "depends_on": [
+            "P1-002",
+            "P1-003",
+            "P1-004"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P2",
+      "name": "Correctness and filesystem foundation",
+      "tasks": [
+        {
+          "task_id": "P2-001",
+          "title": "Implement strict Draft 2020-12 schema validation",
+          "depends_on": [
+            "P1-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P2-002",
+          "title": "Implement semantic reference validation",
+          "depends_on": [
+            "P2-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P2-003",
+          "title": "Implement safe path containment",
+          "depends_on": [
+            "P1-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P2-004",
+          "title": "Implement safe archive inspection and extraction",
+          "depends_on": [
+            "P2-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P2-005",
+          "title": "Implement canonical repository manifest",
+          "depends_on": [
+            "P1-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P2-006",
+          "title": "Implement canonical fingerprint algorithm",
+          "depends_on": [
+            "P2-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P2-007",
+          "title": "Implement workspace seals and drift checks",
+          "depends_on": [
+            "P2-006"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P2-008",
+          "title": "Pass schema, fingerprint, pre-claim, path and symlink regressions",
+          "depends_on": [
+            "P2-002",
+            "P2-004",
+            "P2-007"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P3",
+      "name": "Transactional control plane",
+      "tasks": [
+        {
+          "task_id": "P3-001",
+          "title": "Implement SQLite schema and migrations",
+          "depends_on": [
+            "P1-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P3-002",
+          "title": "Implement transactional repositories and optimistic versions",
+          "depends_on": [
+            "P3-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P3-003",
+          "title": "Implement claims, leases and heartbeats",
+          "depends_on": [
+            "P3-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P3-004",
+          "title": "Implement transactional hash-chained events",
+          "depends_on": [
+            "P3-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P3-005",
+          "title": "Separate immutable, static harness, runtime-state, evidence and release manifests",
+          "depends_on": [
+            "P3-001",
+            "P2-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P3-006",
+          "title": "Implement safe SQLite state snapshot and restore",
+          "depends_on": [
+            "P3-001",
+            "P3-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P3-007",
+          "title": "Pass concurrency, crash, backup and mutable-manifest tests",
+          "depends_on": [
+            "P3-003",
+            "P3-004",
+            "P3-006"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P4",
+      "name": "Identity and policy",
+      "tasks": [
+        {
+          "task_id": "P4-001",
+          "title": "Implement actor and role model",
+          "depends_on": [
+            "P1-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P4-002",
+          "title": "Implement sessions, capabilities, expiry and replay prevention",
+          "depends_on": [
+            "P4-001",
+            "P3-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P4-003",
+          "title": "Implement Action Capsule signatures",
+          "depends_on": [
+            "P4-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P4-004",
+          "title": "Implement explainable policy engine",
+          "depends_on": [
+            "P1-004",
+            "P4-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P4-005",
+          "title": "Standardize AuthorizationDenied as LAOS-2000",
+          "depends_on": [
+            "P1-003",
+            "P4-004"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P4-006",
+          "title": "Pass identity spoofing, replay, self-review and exact exception tests",
+          "depends_on": [
+            "P4-003",
+            "P4-005"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P5",
+      "name": "Pack separation and Anti-Skip",
+      "tasks": [
+        {
+          "task_id": "P5-001",
+          "title": "Implement Architect Control Pack",
+          "depends_on": [
+            "P2-002",
+            "P4-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-002",
+          "title": "Implement Agent Execution Pack",
+          "depends_on": [
+            "P5-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-003",
+          "title": "Implement Capture and Review Packs",
+          "depends_on": [
+            "P5-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-004",
+          "title": "Implement deterministic leak scanner",
+          "depends_on": [
+            "P5-002",
+            "P5-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-005",
+          "title": "Implement Action Capsule compiler and verifier",
+          "depends_on": [
+            "P4-003",
+            "P5-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-006",
+          "title": "Implement UNDERSTAND gate",
+          "depends_on": [
+            "P5-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-007",
+          "title": "Implement PLAN gate",
+          "depends_on": [
+            "P5-006"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-008",
+          "title": "Implement one-action sequencing",
+          "depends_on": [
+            "P3-003",
+            "P5-007"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-009",
+          "title": "Implement criterion lifecycle and closure ledger",
+          "depends_on": [
+            "P5-008"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P5-010",
+          "title": "Pass skip, leak, expiry, stale-seal and manual-advance tests",
+          "depends_on": [
+            "P5-004",
+            "P5-009"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P6",
+      "name": "Prompt and model adaptation",
+      "tasks": [
+        {
+          "task_id": "P6-001",
+          "title": "Implement model profile registry",
+          "depends_on": [
+            "P5-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P6-002",
+          "title": "Implement real calibration runner",
+          "depends_on": [
+            "P6-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P6-003",
+          "title": "Implement prompt compiler and linter",
+          "depends_on": [
+            "P6-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P6-004",
+          "title": "Implement minimal context and handoff packs",
+          "depends_on": [
+            "P6-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P6-005",
+          "title": "Implement signed skills and adapters",
+          "depends_on": [
+            "P4-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P6-006",
+          "title": "Pass oversized prompt, stale profile and unsigned-skill tests",
+          "depends_on": [
+            "P6-002",
+            "P6-003",
+            "P6-005"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P7",
+      "name": "Capture and continuation",
+      "tasks": [
+        {
+          "task_id": "P7-001",
+          "title": "Implement capture request and read-only action sequence",
+          "depends_on": [
+            "P5-009",
+            "P6-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P7-002",
+          "title": "Implement App Intelligence Return validator",
+          "depends_on": [
+            "P2-002",
+            "P7-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P7-003",
+          "title": "Implement Capture Acceptance Record",
+          "depends_on": [
+            "P4-003",
+            "P7-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P7-004",
+          "title": "Implement continuation compiler and preservation contract",
+          "depends_on": [
+            "P7-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P7-005",
+          "title": "Implement delta recapture",
+          "depends_on": [
+            "P7-004"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P7-006",
+          "title": "Pass unchanged round trip and stale/malformed capture tests",
+          "depends_on": [
+            "P7-005"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P8",
+      "name": "Execution, sandbox and evidence",
+      "tasks": [
+        {
+          "task_id": "P8-001",
+          "title": "Implement argv-based command broker",
+          "depends_on": [
+            "P4-004"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-002",
+          "title": "Implement dangerous-command and environment policy",
+          "depends_on": [
+            "P8-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-003",
+          "title": "Implement sandbox provider interface",
+          "depends_on": [
+            "P8-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-004",
+          "title": "Implement and test real Docker provider",
+          "depends_on": [
+            "P8-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-005",
+          "title": "Implement evidence CAS and collectors",
+          "depends_on": [
+            "P5-009",
+            "P8-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-006",
+          "title": "Implement evidence freshness and maturity",
+          "depends_on": [
+            "P8-005",
+            "P2-007"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-007",
+          "title": "Implement complete evidence manifest validation",
+          "depends_on": [
+            "P8-006"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-008",
+          "title": "Run complete test suite after evidence merge",
+          "depends_on": [
+            "P8-007"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P8-009",
+          "title": "Pass sandbox, command, secret and evidence tamper tests",
+          "depends_on": [
+            "P8-004",
+            "P8-008"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P9",
+      "name": "Review, side effects and recovery",
+      "tasks": [
+        {
+          "task_id": "P9-001",
+          "title": "Implement independent Review Capsule workflow",
+          "depends_on": [
+            "P5-009",
+            "P8-007"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P9-002",
+          "title": "Implement Architect adjudication and bounded repair",
+          "depends_on": [
+            "P9-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P9-003",
+          "title": "Implement side-effect lifecycle and idempotency",
+          "depends_on": [
+            "P4-005",
+            "P3-002"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P9-004",
+          "title": "Implement approvals, external receipts and compensation",
+          "depends_on": [
+            "P9-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P9-005",
+          "title": "Implement checkpoints and authorised restore",
+          "depends_on": [
+            "P3-006"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P9-006",
+          "title": "Implement amendments and anti-thrashing",
+          "depends_on": [
+            "P9-005",
+            "P5-008"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P9-007",
+          "title": "Pass review independence, side-effect replay, compensation and recovery tests",
+          "depends_on": [
+            "P9-002",
+            "P9-004",
+            "P9-006"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P10",
+      "name": "Artifacts, provenance and operator UX",
+      "tasks": [
+        {
+          "task_id": "P10-001",
+          "title": "Implement deterministic staging and ZIP build",
+          "depends_on": [
+            "P3-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P10-002",
+          "title": "Implement immutable manifest verification",
+          "depends_on": [
+            "P10-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P10-003",
+          "title": "Implement SBOM and provenance generation",
+          "depends_on": [
+            "P10-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P10-004",
+          "title": "Implement release signing and verification",
+          "depends_on": [
+            "P4-003",
+            "P10-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P10-005",
+          "title": "Implement CLI and machine-readable diagnostics",
+          "depends_on": [
+            "P1-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P10-006",
+          "title": "Implement v7 importer and migration reports",
+          "depends_on": [
+            "P7-004"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P10-007",
+          "title": "Complete role docs, security docs and compatibility matrix",
+          "depends_on": [
+            "P10-005",
+            "P10-006"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P10-008",
+          "title": "Pass extracted artifact, mutation, SBOM, provenance and durable-storage tests",
+          "depends_on": [
+            "P10-002",
+            "P10-004",
+            "P10-007"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    },
+    {
+      "phase_id": "P11",
+      "name": "Evaluation and release",
+      "tasks": [
+        {
+          "task_id": "P11-001",
+          "title": "Run full cross-platform automated suite",
+          "depends_on": [
+            "P10-008",
+            "P9-007",
+            "P8-009"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-002",
+          "title": "Run independent adversarial red team",
+          "depends_on": [
+            "P11-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-003",
+          "title": "Run real-agent baseline, v7 and v8 comparisons",
+          "depends_on": [
+            "P6-002",
+            "P11-001"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-004",
+          "title": "Resolve all P0/P1 defects and document residual risk",
+          "depends_on": [
+            "P11-002",
+            "P11-003"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-005",
+          "title": "Build release candidate from clean checkout",
+          "depends_on": [
+            "P11-004"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-006",
+          "title": "Extract and retest release candidate",
+          "depends_on": [
+            "P11-005"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-007",
+          "title": "Verify signatures, checksums, manifests and attestations independently",
+          "depends_on": [
+            "P11-006"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-008",
+          "title": "Copy deliverables to durable storage and reopen every file",
+          "depends_on": [
+            "P11-007"
+          ],
+          "status": "NOT_STARTED"
+        },
+        {
+          "task_id": "P11-009",
+          "title": "Generate final truth report and independent acceptance verdict",
+          "depends_on": [
+            "P11-008"
+          ],
+          "status": "NOT_STARTED"
+        }
+      ]
+    }
+  ]
+}

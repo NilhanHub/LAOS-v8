@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# Mutable LAOS project runtime — never part of immutable release
+.laos/
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.db-wal
+*.db-shm
+runtime_state/
+
+# Generated local evidence; tracked baseline evidence is committed explicitly
+Evidence/generated/
+
+# Local OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,79 @@
+{
+  "imported_at_utc": "2026-07-12T16:10:01+00:00",
+  "items": [
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 70886,
+      "implementation_proof": false,
+      "kind": "plan",
+      "original_path_at_import": "/mnt/data/LAOS_v8_COLOSSAL_UPGRADE_MASTER_PLAN.md",
+      "relative_path": "design_inputs/LAOS_v8_COLOSSAL_UPGRADE_MASTER_PLAN.md",
+      "sha256": "fe0685d53384554325a78158f3c8b9fdca65451768b2ffa4e2bbba4c0be3cfee"
+    },
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 58456,
+      "implementation_proof": false,
+      "kind": "plan",
+      "original_path_at_import": "/mnt/data/LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
+      "relative_path": "design_inputs/LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
+      "sha256": "1b0517c1e85332bd393d4173c0000966eb5f7382f3bef58e2efbfccec7937779"
+    },
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 57675,
+      "implementation_proof": false,
+      "kind": "plan",
+      "original_path_at_import": "/mnt/data/LAOS_v8_RECONSTRUCTION_COMPLETION_RELEASE_PLAN.md",
+      "relative_path": "design_inputs/LAOS_v8_RECONSTRUCTION_COMPLETION_RELEASE_PLAN.md",
+      "sha256": "8717355f483dc13c8bf954fa7707a683450b550d31c5d2d98617ea631f8049f3"
+    },
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 21224,
+      "implementation_proof": false,
+      "kind": "backlog",
+      "original_path_at_import": "/mnt/data/LAOS_v8_IMPLEMENTATION_BACKLOG.json",
+      "relative_path": "design_inputs/LAOS_v8_IMPLEMENTATION_BACKLOG.json",
+      "sha256": "b9822e5e4c3d45874e316a750a4f4460c282ab39537c23f9df7318034caf62d0"
+    },
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 3965,
+      "implementation_proof": false,
+      "kind": "prior_documentation",
+      "original_path_at_import": "/mnt/data/LAOS_v8_build_work/LAOS_v8.0/README.md",
+      "relative_path": "design_inputs/surviving_v8_docs/README.md",
+      "sha256": "221480cb2a708ef0d4d4156da7f68a9145ce3f698a3dafe2da82a54820b7d277"
+    },
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 2363,
+      "implementation_proof": false,
+      "kind": "prior_documentation",
+      "original_path_at_import": "/mnt/data/LAOS_v8_build_work/LAOS_v8.0/START_HERE_FOR_NILHAN.md",
+      "relative_path": "design_inputs/surviving_v8_docs/START_HERE_FOR_NILHAN.md",
+      "sha256": "eddbcb27ef29720b03c05ae74b90810df524d6e40cce76408af0b2ae9ebd4342"
+    },
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 2230,
+      "implementation_proof": false,
+      "kind": "prior_documentation",
+      "original_path_at_import": "/mnt/data/LAOS_v8_build_work/LAOS_v8.0/START_HERE_FOR_ARCHITECT_AI.md",
+      "relative_path": "design_inputs/surviving_v8_docs/START_HERE_FOR_ARCHITECT_AI.md",
+      "sha256": "a8dc4edeed43cb1d8df86e67b2622883db7509e9f8a5d2a18c81e7f6d42a4ef8"
+    },
+    {
+      "authority": "DESIGN_INPUT_ONLY",
+      "bytes": 8375,
+      "implementation_proof": false,
+      "kind": "prior_documentation",
+      "original_path_at_import": "/mnt/data/LAOS_v8_build_work/LAOS_v8.0/docs/MASTER_V8_GUIDE.md",
+      "relative_path": "design_inputs/surviving_v8_docs/MASTER_V8_GUIDE.md",
+      "sha256": "2a3c5ed970b91229012c6b90bbd1d78d3f033bdbfafff1c196ea300944a4e007"
+    }
+  ],
+  "manifest_version": "1.0.0",
+  "rule": "These files inform the rebuild. They do not prove that any v8 runtime, test, or release artifact exists."
+}
