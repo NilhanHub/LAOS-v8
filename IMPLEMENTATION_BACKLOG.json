@@ -7,22 +7,22 @@
       "stage": 1,
       "name": "Recovery and program truth",
       "depends_on": [],
-      "status": "REVIEW_CANDIDATE",
+      "status": "COMPLETED",
       "tasks": [
         {
           "id": "S1-CONTRACT",
           "title": "Satisfy the stage contract in the ten-stage plan",
-          "status": "REVIEW_CANDIDATE"
+          "status": "COMPLETED"
         },
         {
           "id": "S1-EVIDENCE",
           "title": "Capture evidence and rerun affected earlier gates",
-          "status": "OPEN"
+          "status": "COMPLETED"
         },
         {
           "id": "S1-REVIEW",
           "title": "Obtain required independent review",
-          "status": "OPEN"
+          "status": "COMPLETED"
         }
       ]
     },

@@ -6,7 +6,7 @@
 - Revision 1.1 was imported at the repository root without changing the historical Stage 0 design input.
 - The v7 path is fixture-only. No v7.0.1 release or correctness claim is made.
 - The active ledger contains 241 requirements: 210 historical Stage 0 entries plus 31 explicit Revision 1.1 additions. It also records 17 original milestones mapped into ten stages, 25 open release blockers, 50 open threats, and eight v7 regression fixtures.
-- Stage 1 remains `AWAITING_NILHAN_REVIEW`; the v8 runtime and release remain unimplemented.
+- Nilhan approved the Stage 1 evidence on 2026-07-13 and authorized progression to Stage 2. The v8 runtime and release remain unimplemented.
 
 Recorded: `2026-07-12T16:10:01+00:00`
 

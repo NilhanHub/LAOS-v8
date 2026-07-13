@@ -46,7 +46,7 @@ REVISION_REQUIREMENT_MILESTONES = [
 ]
 
 STAGES = [
-    (1, "Recovery and program truth", [], "REVIEW_CANDIDATE"),
+    (1, "Recovery and program truth", [], "COMPLETED"),
     (2, "Typed kernel and platform contracts", [1], "PLANNED"),
     (3, "Mandatory Security Spine", [2], "PLANNED"),
     (4, "Alpha Vertical Trust Slice", [3], "PLANNED"),
@@ -276,13 +276,17 @@ def create_migration_matrix() -> None:
 def create_backlog() -> None:
     rows = []
     for number, name, depends_on, status in STAGES:
+        stage_tasks = [
+            {"id": f"S{number}-CONTRACT", "title": "Satisfy the stage contract in the ten-stage plan", "status": status},
+            {"id": f"S{number}-EVIDENCE", "title": "Capture evidence and rerun affected earlier gates", "status": "OPEN"},
+            {"id": f"S{number}-REVIEW", "title": "Obtain required independent review", "status": "OPEN"},
+        ]
+        if number == 1 and status == "COMPLETED":
+            for task in stage_tasks:
+                task["status"] = "COMPLETED"
         rows.append({
             "stage": number, "name": name, "depends_on": depends_on, "status": status,
-            "tasks": [
-                {"id": f"S{number}-CONTRACT", "title": "Satisfy the stage contract in the ten-stage plan", "status": status},
-                {"id": f"S{number}-EVIDENCE", "title": "Capture evidence and rerun affected earlier gates", "status": "OPEN"},
-                {"id": f"S{number}-REVIEW", "title": "Obtain required independent review", "status": "OPEN"},
-            ],
+            "tasks": stage_tasks,
         })
     write_json(ROOT / "IMPLEMENTATION_BACKLOG.json", {
         "backlog_version": "1.1.0", "authority_sha256": PLAN_SHA256,

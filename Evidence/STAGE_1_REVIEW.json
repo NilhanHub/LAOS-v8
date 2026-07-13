@@ -1,0 +1,12 @@
+{
+  "record_version": "1.0.0",
+  "assurance": "BOOTSTRAP_NAMED_HUMAN_REVIEW",
+  "status": "APPROVED",
+  "reviewer": "Nilhan",
+  "reviewed_candidate_commit": "c97393db8fe0d1d6a3589a4d7117697315842e50",
+  "reviewed_candidate_tag": "stage1-review-candidate",
+  "approval_date": "2026-07-13",
+  "approval_statement": "Good, please proceed with the next stage of development.",
+  "scope": "Stage 1 recovery, program-truth reconciliation, fixture-only decision, Bootstrap evidence, and clean reconstruction.",
+  "truth_boundary": "This approval closes Stage 1 only. It does not approve a v7.0.1 release, claim a working v8 runtime, close release blockers, or approve a v8 release."
+}

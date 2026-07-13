@@ -6,7 +6,7 @@
       "stage": 1,
       "name": "Recovery and program truth",
       "depends_on": [],
-      "status": "REVIEW_CANDIDATE",
+      "status": "COMPLETED",
       "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
       "owner": "Codex",
       "independent_reviewer": "Nilhan",

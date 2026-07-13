@@ -86,7 +86,10 @@ def verify() -> dict[str, object]:
 
     status = load("IMPLEMENTATION_STATUS.json")
     require(status["v8_runtime_exists"] is False and status["v8_release_exists"] is False, "False v8 implementation/release claim")
-    require(status["stage_1_status"] == "AWAITING_NILHAN_REVIEW", "Stage 1 must remain a review candidate")
+    require(status["stage_1_status"] in {"AWAITING_NILHAN_REVIEW", "COMPLETE"}, "Invalid Stage 1 status")
+    if status["stage_1_status"] == "COMPLETE":
+        review = load("Evidence/STAGE_1_REVIEW.json")
+        require(review["status"] == "APPROVED" and review["reviewer"] == "Nilhan", "Stage 1 completion lacks Nilhan approval")
     checks.append("honest_implementation_status")
 
     decision = (ROOT / "decisions" / "V7_MAINTENANCE_DECISION.md").read_text(encoding="utf-8")
