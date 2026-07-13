@@ -126,6 +126,7 @@ class CommandBroker:
         policy_digest: str,
         result_seal: str,
         criterion_id: str,
+        criterion_digest: str | None = None,
     ) -> BrokeredCommand:
         stopped, _, _ = self.state.control_status()
         request = PermissionRequest(
@@ -171,6 +172,7 @@ class CommandBroker:
                 "network": result.network,
                 "root_filesystem": result.root_filesystem,
                 "policy_rules": verdict.rule_ids,
+                "criterion_digest": criterion_digest,
             },
             sort_keys=True,
         ).encode("utf-8")

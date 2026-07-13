@@ -1,0 +1,88 @@
+{
+  "assurance": "IMMUTABLE_STAGE_4_BOOTSTRAP_EXPORT_NOT_LIVE_STATE",
+  "audit_events": [
+    {
+      "actor_id": "system:identity",
+      "aggregate_id": "builder:alpha",
+      "detail_digest": "sha256:00cf5d8026db3f181ba03c13c5c3d561e4b72a1a8c3ee9a8f95b17f005b86a77",
+      "error_code": null,
+      "event_code": "ACTOR_REGISTERED",
+      "occurred_at": "2026-07-13T14:44:01.915Z",
+      "outcome": "allowed"
+    },
+    {
+      "actor_id": "system:identity",
+      "aggregate_id": "verifier:alpha",
+      "detail_digest": "sha256:c4e26ba7a7bf0effeaa3dc1280cfb7ac5b50df77f2515c568aecbbe1d5da33ca",
+      "error_code": null,
+      "event_code": "ACTOR_REGISTERED",
+      "occurred_at": "2026-07-13T14:44:01.929Z",
+      "outcome": "allowed"
+    },
+    {
+      "actor_id": "system:identity",
+      "aggregate_id": "reviewer:alpha",
+      "detail_digest": "sha256:18a68ab97f96680e595f213f0b02573fb4a96c963faaa1e1daf11931338652a4",
+      "error_code": null,
+      "event_code": "ACTOR_REGISTERED",
+      "occurred_at": "2026-07-13T14:44:01.943Z",
+      "outcome": "allowed"
+    },
+    {
+      "actor_id": "builder:alpha",
+      "aggregate_id": "capsule:b2f187e8db17c14eea4c1b9466ea9c46",
+      "detail_digest": "sha256:4f6861a3a5b16e28230867f14050b5848924b01108d658d7f2c34a01209732de",
+      "error_code": null,
+      "event_code": "CAPSULE_REDEEMED",
+      "occurred_at": "2026-07-13T14:44:01.982Z",
+      "outcome": "allowed"
+    },
+    {
+      "actor_id": "builder:alpha",
+      "aggregate_id": "capsule:b2f187e8db17c14eea4c1b9466ea9c46",
+      "detail_digest": "sha256:e51f6892eadb3a0619f871ef3dce8a571925f23906737642cc1b1f208f06343b",
+      "error_code": "CAPSULE_REPLAY_DENIED",
+      "event_code": "CAPSULE_REPLAY_DENIED",
+      "occurred_at": "2026-07-13T14:44:01.994Z",
+      "outcome": "denied"
+    },
+    {
+      "actor_id": "builder:alpha",
+      "aggregate_id": null,
+      "detail_digest": "sha256:cd7d28312b5acfa6423af8c5104d9a3c20977b6828c47959d893f9c463505be0",
+      "error_code": null,
+      "event_code": "WORKSPACE_WRITE",
+      "occurred_at": "2026-07-13T14:44:09.091Z",
+      "outcome": "allowed"
+    },
+    {
+      "actor_id": "verifier:alpha",
+      "aggregate_id": "criterion:alpha-addition",
+      "detail_digest": "sha256:9e99693bcccf2ba970f36d6957bc030e040da9c11dd5acbb6f3c246b4253f069",
+      "error_code": null,
+      "event_code": "EVIDENCE_CAPTURED",
+      "occurred_at": "2026-07-13T14:44:16.433Z",
+      "outcome": "allowed"
+    }
+  ],
+  "capsule_redemptions": [
+    {
+      "actor_id": "builder:alpha",
+      "attempt_sequence": 1,
+      "capsule_id": "capsule:b2f187e8db17c14eea4c1b9466ea9c46",
+      "redeemed_at": "2026-07-13T14:44:01.980Z",
+      "token_hash": "469b966717540190e5c93454e793d18df297d5e87f5fa5d82aef6d1fd00fd9bd"
+    }
+  ],
+  "evidence_objects": [
+    {
+      "bytes": 654,
+      "classification": "internal",
+      "collector": "docker-linux-amd64-stage3-v1",
+      "criterion_id": "criterion:alpha-addition",
+      "digest": "sha256:ae4b2599fbd074f16870ed9795f1cc1e39742343dc80f9088a76e0239e753b07",
+      "relative_path": "objects/ae/ae4b2599fbd074f16870ed9795f1cc1e39742343dc80f9088a76e0239e753b07",
+      "result_seal": "sha256:241035e257e6c97fb1a02315b4b29f41bcb4f90c91345748e0144a4818fafbcc"
+    }
+  ]
+}

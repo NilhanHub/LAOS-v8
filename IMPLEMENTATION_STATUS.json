@@ -7,7 +7,7 @@
   "stage0_historical_requirement_count": 210,
   "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
   "stage_1_status": "COMPLETE",
-  "status": "STAGE_3_COMPLETE_LOCAL_SECURITY_SPINE_ACCEPTED_STAGE_4_AUTHORIZED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+  "status": "STAGE_4_ALPHA_REVIEW_CANDIDATE_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
   "target_release": "8.0.0",
   "v7_0_1_release_exists": false,
   "v7_track": "FIXTURE_ONLY",
@@ -18,5 +18,8 @@
   "stage_3_status": "COMPLETE",
   "security_spine_exists": true,
   "security_spine_assurance": "LOCAL_TEST_PROFILE_NAMED_HUMAN_REVIEW",
-  "real_weaker_agent_executed": false
+  "real_weaker_agent_executed": true,
+  "stage_4_status": "AWAITING_NILHAN_AND_INDEPENDENT_REVIEWER_GO_NO_GO",
+  "alpha_vertical_slice_exists": true,
+  "alpha_assurance": "LOCAL_DEVELOPMENT_ALPHA_PROOF_NOT_FINAL_EFFICACY_OR_RELEASE"
 }

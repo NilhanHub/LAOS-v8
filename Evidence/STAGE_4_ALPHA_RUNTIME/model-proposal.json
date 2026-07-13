@@ -1,0 +1,4 @@
+{
+  "relative_path": "src/calculator.py",
+  "replacement": "def add(a: int, b: int) -> int:\n    return a + b\n"
+}

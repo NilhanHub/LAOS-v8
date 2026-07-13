@@ -73,7 +73,10 @@ def verify_governance(checks: list[str]) -> None:
             "Stage 3 completion lacks Nilhan approval",
         )
     require(status["security_spine_exists"] is True, "Security Spine status missing")
-    require(status["real_weaker_agent_executed"] is False, "Stage 3 improperly claims real agent execution")
+    if "stage_4_status" in status:
+        require(status["real_weaker_agent_executed"] is True, "Stage 4 real-agent execution is not recorded")
+    else:
+        require(status["real_weaker_agent_executed"] is False, "Stage 3 improperly claims real agent execution")
     require(status["v8_runtime_exists"] is False and status["v8_release_exists"] is False, "Runtime/release overclaim")
     stage3 = next(row for row in load("PROGRAM_STAGE_LEDGER.json")["stages"] if row["stage"] == 3)
     require(stage3["status"] in {"REVIEW_CANDIDATE", "COMPLETED"}, "Stage 3 review state is invalid")

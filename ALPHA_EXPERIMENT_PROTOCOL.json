@@ -1,0 +1,34 @@
+{
+  "authority": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md Revision 1.1 section 9.0.3",
+  "claim_boundary": "ALPHA_PROOF_ONLY_NOT_FINAL_EFFICACY_OR_RELEASE",
+  "criterion_id": "criterion:alpha-addition",
+  "development_only": true,
+  "fixture_id": "fixture:alpha-calculator-defect",
+  "model": {
+    "blob_sha256": "29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104",
+    "calibration": {
+      "qwen2.5-coder:0.5b": "rejected after two protected-criterion failures; no promotion",
+      "rejected_blob_sha256": "20693aeb02c63304e263a72453b6ab89e1c700a87c6948cac523ac1e6f7cade0"
+    },
+    "ollama_id": "d7372fd82851",
+    "tag": "qwen2.5-coder:1.5b",
+    "tools": [],
+    "transport": "fixed-loopback-only"
+  },
+  "pilot": {
+    "assignment": "fixed-seed randomized blocked development set",
+    "conditions": [
+      "broad_prompt",
+      "resource_matched_structured_prompt",
+      "v7_prompt",
+      "alpha_trust_slice"
+    ],
+    "seed": 80401
+  },
+  "protected_criterion_withheld_from_builder": true,
+  "record_version": "1.0.0",
+  "task_id": "task:alpha-addition",
+  "writable_paths": [
+    "src/calculator.py"
+  ]
+}

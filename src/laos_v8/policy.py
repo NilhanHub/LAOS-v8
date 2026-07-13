@@ -172,3 +172,26 @@ def minimal_stage3_policy() -> PolicyProfile:
         command_prefixes=(("python", "-m", "pytest"), ("python", "-m", "compileall")),
         budget=ResourceBudget(),
     )
+
+
+def minimal_stage4_alpha_policy() -> PolicyProfile:
+    """Narrow Alpha profile: one source edit and deterministic stdlib test execution."""
+    capabilities = ("WORKSPACE_READ", "WORKSPACE_WRITE", "SANDBOX_CHECK", "EVIDENCE_READ")
+    return PolicyProfile(
+        version=2,
+        allowed_capabilities=capabilities,
+        role_capabilities={
+            Role.BUILDER.value: ("WORKSPACE_READ", "WORKSPACE_WRITE"),
+            Role.VERIFIER.value: ("WORKSPACE_READ", "SANDBOX_CHECK", "EVIDENCE_READ"),
+            Role.REVIEWER.value: ("WORKSPACE_READ", "EVIDENCE_READ"),
+        },
+        writable_prefixes=("src",),
+        command_prefixes=(("python", "-m", "unittest"),),
+        budget=ResourceBudget(
+            timeout_seconds=60,
+            memory_bytes=268_435_456,
+            processes=32,
+            output_bytes=1_048_576,
+            retries=1,
+        ),
+    )

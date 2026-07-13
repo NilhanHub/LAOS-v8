@@ -51,10 +51,10 @@
       "depends_on": [
         3
       ],
-      "status": "PLANNED",
+      "status": "REVIEW_CANDIDATE",
       "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
-      "owner": "stage-4-implementation-owner",
-      "independent_reviewer": "stage-4-independent-reviewer",
+      "owner": "Codex",
+      "independent_reviewer": "Nilhan plus a second reviewer required by Revision 1.1 section 9.0.4",
       "entry_gate": "Stage 3 exit gate passed",
       "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
       "evidence_policy": "BOOTSTRAP",

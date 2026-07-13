@@ -1,0 +1,20 @@
+{
+  "assurance": "ALPHA_PROOF_ONLY",
+  "authority": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md Revision 1.1 sections 9.0.3 and 9.0.4",
+  "coverage": [
+    {"id": "A4-01", "requirement": "Disposable Git fixture with known defect", "evidence": "tests/fixtures/stage4_alpha and runtime base commit", "status": "PASS"},
+    {"id": "A4-02", "requirement": "Task and independently testable protected criterion", "evidence": "docs/STAGE_4_ALPHA_CONTRACT.md and protected unittest", "status": "PASS"},
+    {"id": "A4-03", "requirement": "Typed signed expiring capsule to authenticated session", "evidence": "Evidence/STAGE_4_ALPHA_RUNTIME/state.sqlite3", "status": "PASS_BOOTSTRAP_SIGNER"},
+    {"id": "A4-04", "requirement": "One-use redemption and isolated candidate Git control data", "evidence": "runtime report plus Stage 4 tests", "status": "PASS"},
+    {"id": "A4-05", "requirement": "One bounded edit; deny path, network, secrets, and future actions", "evidence": "minimal_stage4_alpha_policy and Stage 4 adversarial tests", "status": "PASS"},
+    {"id": "A4-06", "requirement": "Deterministic check in qualifying sandbox", "evidence": "runtime broker evidence bound to digest-pinned Docker result", "status": "PASS"},
+    {"id": "A4-07", "requirement": "Clean base plus patch reconstruction", "evidence": "runtime result seal and Stage 4 reconstruction test", "status": "PASS"},
+    {"id": "A4-08", "requirement": "Broker-owned evidence bound to result seal", "evidence": "runtime run.json and content-addressed evidence object", "status": "PASS"},
+    {"id": "A4-09", "requirement": "Distinct authenticated reviewer verdict and CAS promotion", "evidence": "runtime reviewer and promotion fields", "status": "PASS_LOCAL_ALPHA"},
+    {"id": "A4-10", "requirement": "Replay, self-review, stale base, evidence mutation, path, and command denials", "evidence": "Stage 4 adversarial tests and runtime replay denial", "status": "PASS"},
+    {"id": "A4-11", "requirement": "Crash boundaries reconcile safely", "evidence": "spent capsule, clean reconstruction, repeatable evidence binding, retry-safe/already-promoted/conflict classification", "status": "PASS_LOCAL_ALPHA"},
+    {"id": "A4-12", "requirement": "Randomized four-condition development pilot", "evidence": "Evidence/STAGE_4_ALPHA_PILOT.json", "status": "PASS_NO_EFFICACY_CLAIM"},
+    {"id": "A4-13", "requirement": "Nilhan and independent reviewer go/no-go and scope freeze", "evidence": "STAGE_4_GO_NO_GO_AND_SCOPE_FREEZE_CANDIDATE.md", "status": "AWAITING_REVIEW"}
+  ],
+  "record_version": "1.0.0"
+}

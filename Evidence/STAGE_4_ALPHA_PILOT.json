@@ -1,0 +1,114 @@
+{
+  "assignment": "blocked by task then fixed-seed randomized execution order",
+  "assurance": "DEVELOPMENT_PILOT_ONLY_NOT_FINAL_EFFICACY",
+  "model_blob_sha256": "29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104",
+  "records": [
+    {
+      "condition": "v7_prompt",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3389.208,
+      "error_code": null,
+      "model_request_digest": "sha256:a777eb4ec32aa7af49ef84bb3a6651d1243dc7f0771e4083f4c34be51f9d3c12",
+      "output_bytes": 115,
+      "task_id": "parity",
+      "trial_order": 0
+    },
+    {
+      "condition": "v7_prompt",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3668.854,
+      "error_code": null,
+      "model_request_digest": "sha256:82fe801f0bdb55a78825b2e10f9a63b50b2c09d3a29ea00d649d3f67e53af7d8",
+      "output_bytes": 107,
+      "task_id": "addition",
+      "trial_order": 1
+    },
+    {
+      "condition": "broad_prompt",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3327.478,
+      "error_code": null,
+      "model_request_digest": "sha256:1da5335bca20bdd3d6855a1df0f473278431fde99dc073ace69836239568d92e",
+      "output_bytes": 107,
+      "task_id": "addition",
+      "trial_order": 2
+    },
+    {
+      "condition": "resource_matched_structured_prompt",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3622.906,
+      "error_code": null,
+      "model_request_digest": "sha256:a34afa8a3d202015e3561e03014a7966634378c26f4be2a6acb1e8559e177d28",
+      "output_bytes": 115,
+      "task_id": "parity",
+      "trial_order": 3
+    },
+    {
+      "condition": "alpha_trust_slice",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3318.842,
+      "error_code": null,
+      "model_request_digest": "sha256:5af628b8e3ce030db94081f800c0a10d08194b146ef9db45c39e47fc46ad2461",
+      "output_bytes": 105,
+      "task_id": "addition",
+      "trial_order": 4
+    },
+    {
+      "condition": "alpha_trust_slice",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3567.752,
+      "error_code": null,
+      "model_request_digest": "sha256:b01ef80646fb877bfbaf3c9daff470205eaacded3229d5bc19b8547e577a2d03",
+      "output_bytes": 115,
+      "task_id": "parity",
+      "trial_order": 5
+    },
+    {
+      "condition": "broad_prompt",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3148.648,
+      "error_code": null,
+      "model_request_digest": "sha256:062add57fb57802f2660397db1d82ca119b0ebac57fa71ffe5b459990d07dfec",
+      "output_bytes": 115,
+      "task_id": "parity",
+      "trial_order": 6
+    },
+    {
+      "condition": "resource_matched_structured_prompt",
+      "contract_valid": true,
+      "criterion_pass": true,
+      "elapsed_ms": 3801.462,
+      "error_code": null,
+      "model_request_digest": "sha256:a2a3088e6c6483f9296867fdab2b06be30ad9c3785ef9fea359529db1e2e813b",
+      "output_bytes": 107,
+      "task_id": "addition",
+      "trial_order": 7
+    }
+  ],
+  "seed": 80401,
+  "summary": {
+    "alpha_trust_slice": {
+      "criterion_passes": 2,
+      "trials": 2
+    },
+    "broad_prompt": {
+      "criterion_passes": 2,
+      "trials": 2
+    },
+    "resource_matched_structured_prompt": {
+      "criterion_passes": 2,
+      "trials": 2
+    },
+    "v7_prompt": {
+      "criterion_passes": 2,
+      "trials": 2
+    }
+  }
+}

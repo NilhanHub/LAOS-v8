@@ -1,0 +1,35 @@
+{
+  "assurance": "OPERATOR_OBSERVED_DEVELOPMENT_CALIBRATION_NOT_FINAL_EFFICACY",
+  "attempts": [
+    {
+      "model": "qwen2.5-coder:0.5b",
+      "blob_sha256": "20693aeb02c63304e263a72453b6ab89e1c700a87c6948cac523ac1e6f7cade0",
+      "observation": "copied the replacement schema placeholder instead of source",
+      "protected_criterion": "FAIL",
+      "promotion": "DENIED"
+    },
+    {
+      "model": "qwen2.5-coder:0.5b",
+      "blob_sha256": "20693aeb02c63304e263a72453b6ab89e1c700a87c6948cac523ac1e6f7cade0",
+      "observation": "returned a malformed nested code object retaining the defective subtraction",
+      "protected_criterion": "FAIL",
+      "promotion": "DENIED"
+    },
+    {
+      "model": "qwen2.5-coder:1.5b",
+      "blob_sha256": "29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104",
+      "observation": "corrected addition but stripped quotes from an irrelevant fixture docstring",
+      "protected_criterion": "FAIL",
+      "promotion": "DENIED"
+    },
+    {
+      "model": "qwen2.5-coder:1.5b",
+      "blob_sha256": "29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104",
+      "observation": "after pruning irrelevant docstring complexity, returned a complete valid bounded replacement",
+      "protected_criterion": "PASS",
+      "promotion": "PROMOTED_IN_DISPOSABLE_ALPHA_FIXTURE"
+    }
+  ],
+  "decision": "Retain 1.5B as the minimum local reference row; keep all semantic checks and promotion gates.",
+  "record_version": "1.0.0"
+}
