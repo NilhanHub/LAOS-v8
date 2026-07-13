@@ -7,7 +7,7 @@
   "stage0_historical_requirement_count": 210,
   "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
   "stage_1_status": "COMPLETE",
-  "status": "STAGE_3_REVIEW_CANDIDATE_LOCAL_SECURITY_SPINE_IMPLEMENTED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+  "status": "STAGE_3_COMPLETE_LOCAL_SECURITY_SPINE_ACCEPTED_STAGE_4_AUTHORIZED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
   "target_release": "8.0.0",
   "v7_0_1_release_exists": false,
   "v7_track": "FIXTURE_ONLY",
@@ -15,8 +15,8 @@
   "v8_runtime_exists": false,
   "stage_2_status": "COMPLETE",
   "typed_kernel_exists": true,
-  "stage_3_status": "AWAITING_NILHAN_REVIEW",
+  "stage_3_status": "COMPLETE",
   "security_spine_exists": true,
-  "security_spine_assurance": "LOCAL_TEST_PROFILE_AWAITING_INDEPENDENT_REVIEW",
+  "security_spine_assurance": "LOCAL_TEST_PROFILE_NAMED_HUMAN_REVIEW",
   "real_weaker_agent_executed": false
 }

@@ -36,7 +36,7 @@
       "depends_on": [
         2
       ],
-      "status": "REVIEW_CANDIDATE",
+      "status": "COMPLETED",
       "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
       "owner": "Codex",
       "independent_reviewer": "Nilhan",

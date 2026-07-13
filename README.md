@@ -1,6 +1,6 @@
 # LAOS v8 rebuild repository
 
-**Current state: Stage 2 complete; Stage 3 Mandatory Security Spine is a review candidate awaiting Nilhan; the full
+**Current state: Stage 3 Mandatory Security Spine complete; Stage 4 Alpha Vertical Trust Slice authorized; the full
 LAOS v8 runtime is not implemented.**
 
 The repository contains the Stage 1 recovery/governance baseline, the accepted Stage 2 typed kernel, and a Stage 3

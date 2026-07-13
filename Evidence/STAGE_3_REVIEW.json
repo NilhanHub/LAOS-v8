@@ -1,0 +1,12 @@
+{
+  "record_version": "1.0.0",
+  "assurance": "BOOTSTRAP_NAMED_HUMAN_REVIEW",
+  "status": "APPROVED",
+  "reviewer": "Nilhan",
+  "reviewed_candidate_commit": "356b9be97ec778068b7acca244310eabc8012472",
+  "reviewed_candidate_tag": "stage3-review-candidate",
+  "approval_date": "2026-07-13",
+  "approval_statement": "yes, looks good, let's proceed to stage 4",
+  "scope": "Stage 3 Mandatory Security Spine local test profile, adversarial controls, minimal pre-Alpha operator paths, Bootstrap evidence, clean reconstruction, and review-candidate bundle.",
+  "truth_boundary": "This approval closes Stage 3 and authorizes the low-risk Stage 4 Alpha Vertical Trust Slice. It does not close a release blocker, approve High or Critical execution, approve production signing or evidence custody, complete the full v8 runtime, or approve a v8 release."
+}

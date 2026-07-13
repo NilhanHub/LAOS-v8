@@ -26,8 +26,8 @@ No prior v8 runtime source tree, executable test suite, SQLite schema, pack comp
 
 ## Current repository status
 
-Stages 1 and 2 are complete. Stage 3 is a review candidate containing the local Mandatory Security Spine and
-Bootstrap evidence. Transactional state, seals, path controls, identity, policy, minimum capsules, brokers, the
+Stages 1, 2, and 3 are complete. Nilhan accepted the Stage 3 local Mandatory Security Spine and Bootstrap evidence
+on 2026-07-13. Transactional state, seals, path controls, identity, policy, minimum capsules, brokers, the
 qualifying Docker test profile, local-only model mediation, emergency stop, and minimal operator recovery paths are
 implemented for this narrow profile. Production key custody, mature evidence custody, a complete privileged
 executor, later workflows, and the release pipeline remain unimplemented. No complete LAOS v8 runtime or release is
@@ -39,8 +39,8 @@ The repository can be reconstructed from the preserved v7 archive, the design-in
 
 ## Next legal engineering milestone
 
-Nilhan must independently review and accept the Stage 3 candidate before Stage 4 may run the first real bounded
-weaker-agent Alpha trust slice against untrusted repository content.
+Stage 4 is authorized to run the first low-risk, bounded weaker-agent Alpha trust slice against a disposable fixture.
+The Stage 3 support limits and every later release gate remain binding.
 
 ## Git baseline
 

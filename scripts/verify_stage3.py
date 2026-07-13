@@ -62,12 +62,21 @@ def verify_governance(checks: list[str]) -> None:
     require(review["status"] == "APPROVED" and review["reviewer"] == "Nilhan", "Stage 2 approval missing")
     status = load("IMPLEMENTATION_STATUS.json")
     require(status["stage_2_status"] == "COMPLETE", "Stage 2 is not complete")
-    require(status["stage_3_status"] == "AWAITING_NILHAN_REVIEW", "Stage 3 review status is dishonest")
+    require(status["stage_3_status"] in {"AWAITING_NILHAN_REVIEW", "COMPLETE"}, "Stage 3 review status is dishonest")
+    if status["stage_3_status"] == "COMPLETE":
+        review = load("Evidence/STAGE_3_REVIEW.json")
+        require(
+            review["status"] == "APPROVED"
+            and review["reviewer"] == "Nilhan"
+            and review["reviewed_candidate_commit"] == "356b9be97ec778068b7acca244310eabc8012472"
+            and review["reviewed_candidate_tag"] == "stage3-review-candidate",
+            "Stage 3 completion lacks Nilhan approval",
+        )
     require(status["security_spine_exists"] is True, "Security Spine status missing")
     require(status["real_weaker_agent_executed"] is False, "Stage 3 improperly claims real agent execution")
     require(status["v8_runtime_exists"] is False and status["v8_release_exists"] is False, "Runtime/release overclaim")
     stage3 = next(row for row in load("PROGRAM_STAGE_LEDGER.json")["stages"] if row["stage"] == 3)
-    require(stage3["status"] == "REVIEW_CANDIDATE", "Stage 3 is not a review candidate")
+    require(stage3["status"] in {"REVIEW_CANDIDATE", "COMPLETED"}, "Stage 3 review state is invalid")
     require(stage3["owner"] == "Codex" and stage3["independent_reviewer"] == "Nilhan", "Stage 3 roles changed")
     checks.append("stage2_approval_and_stage3_truth")
 
