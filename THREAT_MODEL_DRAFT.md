@@ -83,4 +83,10 @@ Milestone 0 contains no execution runtime and therefore does not claim these con
 
 - Any change to trust zones, state stores, identity, signing, sandbox providers, command execution, evidence custody, side-effect authority, or release construction.
 - Any new executor model, tool adapter, external service, or deployment environment.
+
+## Revision 1.1 reconciliation
+
+`THREAT_REGISTER.json` is the machine-readable Stage 1 register. It preserves TM-001 through TM-040 and adds TM-041 through TM-050 for repository promotion, model-provider transfer, Windows path TOCTOU/aliases, indeterminate side effects, audit anchoring, cryptographic context confusion, privileged offline denial, holdout contamination, evidence privacy, and trust-compromise recovery.
+
+All 50 threats remain `OPEN`. Creating a fixture, ADR, or plan entry does not close a threat. Closure requires the owning implementation stage, current evidence, and required independent review.
 - Any incident, evaluation failure, bypass, or material change to the repository threat surface.

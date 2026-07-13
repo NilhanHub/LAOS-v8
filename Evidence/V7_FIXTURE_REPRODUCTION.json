@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "assurance": "BOOTSTRAP_STATIC_SOURCE_OBSERVATION",
+  "archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+  "executed_v7_code": false,
+  "fixture_count": 8,
+  "observations": [
+    {
+      "fixture_id": "FX-V7-001",
+      "observed": true,
+      "observation": "capture and runtime serialize fingerprint fields in different orders"
+    },
+    {
+      "fixture_id": "FX-V7-002",
+      "observed": true,
+      "observation": "claim-time baseline logic is source-visible and requires v8 pre-authority sealing"
+    },
+    {
+      "fixture_id": "FX-V7-003",
+      "observed": true,
+      "observation": "capture validation does not invoke the shipped Draft 2020-12 schemas through jsonschema"
+    },
+    {
+      "fixture_id": "FX-V7-004",
+      "observed": true,
+      "observation": "task baseline is captured during claim rather than bound to prior Architect authority"
+    },
+    {
+      "fixture_id": "FX-V7-005",
+      "observed": true,
+      "observation": "project manifest explicitly skips symlink entries"
+    },
+    {
+      "fixture_id": "FX-V7-006",
+      "observed": true,
+      "observation": "archive inspection has no expansion-ratio or total-size quota"
+    },
+    {
+      "fixture_id": "FX-V7-007",
+      "observed": true,
+      "observation": "contracted command execution uses shell=True"
+    },
+    {
+      "fixture_id": "FX-V7-008",
+      "observed": true,
+      "observation": "capture and continuation/runtime identity use incompatible source-visible contracts"
+    }
+  ],
+  "truth_boundary": "These observations bind fixture specifications to v7 source. They do not prove v8 repairs or close any regression."
+}

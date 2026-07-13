@@ -1,0 +1,154 @@
+{
+  "ledger_version": "1.0.0",
+  "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Recovery and program truth",
+      "depends_on": [],
+      "status": "REVIEW_CANDIDATE",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "Codex",
+      "independent_reviewer": "Nilhan",
+      "entry_gate": "Stage 0 verified",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "BOOTSTRAP",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 2,
+      "name": "Typed kernel and platform contracts",
+      "depends_on": [
+        1
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-2-implementation-owner",
+      "independent_reviewer": "stage-2-independent-reviewer",
+      "entry_gate": "Stage 1 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "BOOTSTRAP",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 3,
+      "name": "Mandatory Security Spine",
+      "depends_on": [
+        2
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-3-implementation-owner",
+      "independent_reviewer": "stage-3-independent-reviewer",
+      "entry_gate": "Stage 2 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "BOOTSTRAP",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 4,
+      "name": "Alpha Vertical Trust Slice",
+      "depends_on": [
+        3
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-4-implementation-owner",
+      "independent_reviewer": "stage-4-independent-reviewer",
+      "entry_gate": "Stage 3 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "BOOTSTRAP",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 5,
+      "name": "Core product workflows",
+      "depends_on": [
+        4
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-5-implementation-owner",
+      "independent_reviewer": "stage-5-independent-reviewer",
+      "entry_gate": "Stage 4 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "BOOTSTRAP",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 6,
+      "name": "Execution assurance",
+      "depends_on": [
+        5
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-6-implementation-owner",
+      "independent_reviewer": "stage-6-independent-reviewer",
+      "entry_gate": "Stage 5 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "V8_PROTECTED_EVIDENCE_PATH",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 7,
+      "name": "Side effects and recovery",
+      "depends_on": [
+        6
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-7-implementation-owner",
+      "independent_reviewer": "stage-7-independent-reviewer",
+      "entry_gate": "Stage 6 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "V8_PROTECTED_EVIDENCE_PATH",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 8,
+      "name": "Release engineering and operator readiness",
+      "depends_on": [
+        7
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-8-implementation-owner",
+      "independent_reviewer": "stage-8-independent-reviewer",
+      "entry_gate": "Stage 7 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "V8_PROTECTED_EVIDENCE_PATH",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 9,
+      "name": "Candidate red team and sealed evaluation",
+      "depends_on": [
+        8
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-9-implementation-owner",
+      "independent_reviewer": "stage-9-independent-reviewer",
+      "entry_gate": "Stage 8 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "V8_PROTECTED_EVIDENCE_PATH",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    },
+    {
+      "stage": 10,
+      "name": "Evaluated-revision publication",
+      "depends_on": [
+        9
+      ],
+      "status": "PLANNED",
+      "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
+      "owner": "stage-10-implementation-owner",
+      "independent_reviewer": "stage-10-independent-reviewer",
+      "entry_gate": "Stage 9 exit gate passed",
+      "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+      "evidence_policy": "V8_PROTECTED_EVIDENCE_PATH",
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+    }
+  ]
+}

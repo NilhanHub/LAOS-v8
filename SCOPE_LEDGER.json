@@ -1,0 +1,61 @@
+{
+  "ledger_version": "1.0.0",
+  "status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
+  "equivalent_scope_rule": true,
+  "capabilities": [
+    {
+      "capability": "new_build_compiler",
+      "classification": "MUST_V8_0",
+      "owner_stage": 5,
+      "status": "OPEN"
+    },
+    {
+      "capability": "existing_application_capture_continuation",
+      "classification": "MUST_V8_0",
+      "owner_stage": 5,
+      "status": "OPEN"
+    },
+    {
+      "capability": "action_evidence_review_promotion",
+      "classification": "MUST_V8_0",
+      "owner_stage": 6,
+      "status": "OPEN"
+    },
+    {
+      "capability": "recovery_and_migration",
+      "classification": "MUST_V8_0",
+      "owner_stage": 8,
+      "status": "OPEN"
+    },
+    {
+      "capability": "side_effect_deny_all_protocol",
+      "classification": "MUST_V8_0",
+      "owner_stage": 7,
+      "status": "OPEN"
+    },
+    {
+      "capability": "production_side_effect_adapters",
+      "classification": "DEFER_V8_X_UNLESS_ALPHA_RETAINS",
+      "owner_stage": 7,
+      "status": "OPEN"
+    },
+    {
+      "capability": "offline_privileged_operation",
+      "classification": "DEFER_V8_X",
+      "owner_stage": null,
+      "status": "DEFERRED"
+    },
+    {
+      "capability": "non_git_authoritative_mutation",
+      "classification": "DEFER_V8_X",
+      "owner_stage": null,
+      "status": "DEFERRED"
+    },
+    {
+      "capability": "distributed_canonical_state",
+      "classification": "DEFER_V8_X",
+      "owner_stage": null,
+      "status": "DEFERRED"
+    }
+  ]
+}

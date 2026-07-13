@@ -1,0 +1,72 @@
+{
+  "ledger_version": "0.1.0",
+  "status": "DEFINITIONS_REQUIRED_BEFORE_ALPHA",
+  "metrics": [
+    {
+      "id": "manifest_time_memory",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "pack_size_latency",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "state_contention",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "sandbox_startup",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "evidence_growth",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "full_suite_duration",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "flake_rate",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "tokens",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "cost",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "retries",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    },
+    {
+      "id": "human_minutes",
+      "budget": null,
+      "measurement": "OPEN",
+      "owner_stage": 2
+    }
+  ]
+}

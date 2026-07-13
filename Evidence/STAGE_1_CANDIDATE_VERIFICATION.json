@@ -1,0 +1,170 @@
+{
+  "record_version": "1.0.0",
+  "created_at_utc": "2026-07-13T07:03:50.441201+00:00",
+  "assurance": "BOOTSTRAP",
+  "status": "PASS_AWAITING_NILHAN_REVIEW",
+  "implementer": "Codex",
+  "independent_reviewer": "Nilhan",
+  "independent_review_status": "PENDING",
+  "fixture_only_track": true,
+  "v7_0_1_release_claim": false,
+  "v8_runtime_implemented": false,
+  "v8_release_published": false,
+  "stage0_tag_target": "9a98570803b78e29dada15ae7ee9f84feaf05284",
+  "verified_content_tree": "72a54a660bb87374b606d7849178f16f518fb298",
+  "candidate_file_count": 44,
+  "candidate_files": [
+    "ADR_REGISTER.json",
+    "Evidence/V7_FIXTURE_REPRODUCTION.json",
+    "IMPLEMENTATION_BACKLOG.json",
+    "IMPLEMENTATION_STATUS.json",
+    "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
+    "LAOS_v8_PLAN_REVIEW_2026-07-12.md",
+    "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
+    "MIGRATION_MATRIX.json",
+    "MILESTONE_LEDGER.json",
+    "PERFORMANCE_LEDGER.json",
+    "PROGRAM_STAGE_LEDGER.json",
+    "README.md",
+    "RECOVERY_STATE.md",
+    "RELEASE_BLOCKERS.json",
+    "REQUIREMENTS_LEDGER.json",
+    "SCOPE_LEDGER.json",
+    "SUPPORTED_ENVIRONMENTS.json",
+    "THREAT_MODEL_DRAFT.md",
+    "THREAT_REGISTER.json",
+    "decisions/V7_MAINTENANCE_DECISION.md",
+    "docs/PLAN_AUTHORITY.md",
+    "docs/SOURCE_OF_TRUTH_ORDER.md",
+    "docs/adr/0008-deployment-enforcement-contract.md",
+    "docs/adr/0009-base-result-promotion.md",
+    "docs/adr/0010-typed-signing-envelope.md",
+    "docs/adr/0011-evaluation-holdout-custody.md",
+    "docs/adr/0012-offline-verification-only.md",
+    "docs/adr/0013-indeterminate-side-effects.md",
+    "docs/adr/0014-evidence-custody-and-anchoring.md",
+    "docs/adr/README.md",
+    "issues/REGRESSION_CATALOG.json",
+    "scripts/build_stage1_candidate_evidence.py",
+    "scripts/reconcile_stage1.py",
+    "scripts/reproduce_v7_fixtures.py",
+    "scripts/verify_stage1.py",
+    "tests/fixtures/v7_regressions/fx-v7-001_canonical_fingerprint_consistency.json",
+    "tests/fixtures/v7_regressions/fx-v7-002_one_byte_repository_drift.json",
+    "tests/fixtures/v7_regressions/fx-v7-003_malformed_app_intelligence.json",
+    "tests/fixtures/v7_regressions/fx-v7-004_pre_claim_mutation.json",
+    "tests/fixtures/v7_regressions/fx-v7-005_path_and_link_escape.json",
+    "tests/fixtures/v7_regressions/fx-v7-006_unsafe_archive.json",
+    "tests/fixtures/v7_regressions/fx-v7-007_shell_command_hazard.json",
+    "tests/fixtures/v7_regressions/fx-v7-008_continuation_freshness.json",
+    "tests/test_stage1_governance.py"
+  ],
+  "artifact_hashes": {
+    "original_v7_zip": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+    "stage0_complete_package": "bce00ccdc2d0acbe1bc4ceee8d5036ad7f37f48e1528e2fc4d56afc38c0a9240",
+    "revision_1_1_plan": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+    "plan_review": "3f5ff1c1103eee6136d55eebaed6f89f6cd78199e244f678717cc9a8cff8ef7f",
+    "embedded_v7_zip": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d"
+  },
+  "stage0_internal_checksums": [
+    {
+      "path": "README_FIRST.md",
+      "declared_sha256": "a5dc5bd5e10d54bc750de25d877e261dbb95138befb80508d509546a1dbe7dca",
+      "actual_sha256": "a5dc5bd5e10d54bc750de25d877e261dbb95138befb80508d509546a1dbe7dca",
+      "pass": true
+    },
+    {
+      "path": "LAOS_v8_STAGE_0_BASELINE.zip",
+      "declared_sha256": "46df2a89c5052f19688010d61dc2f58a1689df3ddab51ece2c6e8784a758b81c",
+      "actual_sha256": "46df2a89c5052f19688010d61dc2f58a1689df3ddab51ece2c6e8784a758b81c",
+      "pass": true
+    },
+    {
+      "path": "LAOS_v8_STAGE_0_BASELINE.git.bundle",
+      "declared_sha256": "747e009073b95dcfd1888ec22a96093f3d677768169f94d38b864ce8884ed33a",
+      "actual_sha256": "747e009073b95dcfd1888ec22a96093f3d677768169f94d38b864ce8884ed33a",
+      "pass": true
+    },
+    {
+      "path": "LAOS_v8_STAGE_0_BUILD_REPORT.md",
+      "declared_sha256": "8f2361058dc0e6ea3b12b64749aa8f27e39b9b0e7e5558c82ef8a92b6082e8f3",
+      "actual_sha256": "8f2361058dc0e6ea3b12b64749aa8f27e39b9b0e7e5558c82ef8a92b6082e8f3",
+      "pass": true
+    },
+    {
+      "path": "LAOS_v8_STAGE_0_BASELINE_MANIFEST.json",
+      "declared_sha256": "f6a6e4942204695ad5e0c0cabd1a6172ff04177b29290dfade472095d7376411",
+      "actual_sha256": "f6a6e4942204695ad5e0c0cabd1a6172ff04177b29290dfade472095d7376411",
+      "pass": true
+    },
+    {
+      "path": "LAOS_v8_STAGE_0_COMPLETION.json",
+      "declared_sha256": "599daf271e6dd20ea56f03f7333a817fbba434c8b3e29e3e379951e57b9399e1",
+      "actual_sha256": "599daf271e6dd20ea56f03f7333a817fbba434c8b3e29e3e379951e57b9399e1",
+      "pass": true
+    },
+    {
+      "path": "LAOS_v8_STAGE_0_CHECKSUMS.sha256",
+      "declared_sha256": "8290567b9070f0e795065094094dd1497fb7d166ecb7fd4fa8c5caaa4e1a2058",
+      "actual_sha256": "8290567b9070f0e795065094094dd1497fb7d166ecb7fd4fa8c5caaa4e1a2058",
+      "pass": true
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Nilhan.dev\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "scripts/reproduce_v7_fixtures.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"assurance\": \"BOOTSTRAP_STATIC_SOURCE_OBSERVATION\",\n  \"archive_sha256\": \"661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d\",\n  \"executed_v7_code\": false,\n  \"fixture_count\": 8,\n  \"observations\": [\n    {\n      \"fixture_id\": \"FX-V7-001\",\n      \"observed\": true,\n      \"observation\": \"capture and runtime serialize fingerprint fields in different orders\"\n    },\n    {\n      \"fixture_id\": \"FX-V7-002\",\n      \"observed\": true,\n      \"observation\": \"claim-time baseline logic is source-visible and requires v8 pre-authority sealing\"\n    },\n    {\n      \"fixture_id\": \"FX-V7-003\",\n      \"observed\": true,\n      \"observation\": \"capture validation does not invoke the shipped Draft 2020-12 schemas through jsonschema\"\n    },\n    {\n      \"fixture_id\": \"FX-V7-004\",\n      \"observed\": true,\n      \"observation\": \"task baseline is captured during claim rather than bound to prior Architect authority\"\n    },\n    {\n      \"fixture_id\": \"FX-V7-005\",\n      \"observed\": true,\n      \"observation\": \"project manifest explicitly skips symlink entries\"\n    },\n    {\n      \"fixture_id\": \"FX-V7-006\",\n      \"observed\": true,\n      \"observation\": \"archive inspection has no expansion-ratio or total-size quota\"\n    },\n    {\n      \"fixture_id\": \"FX-V7-007\",\n      \"observed\": true,\n      \"observation\": \"contracted command execution uses shell=True\"\n    },\n    {\n      \"fixture_id\": \"FX-V7-008\",\n      \"observed\": true,\n      \"observation\": \"capture and continuation/runtime identity use incompatible source-visible contracts\"\n    }\n  ],\n  \"truth_boundary\": \"These observations bind fixture specifications to v7 source. They do not prove v8 repairs or close any regression.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Nilhan.dev\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "scripts/verify_stage1.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks\": [\n    \"stage0_tag_target\",\n    \"authoritative_plan_digest\",\n    \"ten_stage_plan_subordinate\",\n    \"embedded_v7_digest\",\n    \"requirements_241_reconciled\",\n    \"ten_stage_ledger\",\n    \"milestones_0_to_16\",\n    \"release_blockers_open\",\n    \"threats_50_open\",\n    \"eight_fixture_specs\",\n    \"v7_fixture_source_observations\",\n    \"honest_implementation_status\",\n    \"fixture_only_decision\",\n    \"auxiliary_ledgers_parse\"\n  ],\n  \"check_count\": 14\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Nilhan.dev\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/test_stage1_governance.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "....                                                                     [100%]\n4 passed in 0.08s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Nilhan.dev\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+        "-m",
+        "compileall",
+        "-q",
+        "scripts",
+        "tests"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "counts": {
+    "requirements": 241,
+    "historical_stage0_requirements": 210,
+    "revision_1_1_requirements": 31,
+    "regressions": 40,
+    "fixture_specs": 8,
+    "threats": 50,
+    "release_blockers_open": 25,
+    "implementation_stages": 10,
+    "original_milestones": 17
+  },
+  "truth_boundary": "This record verifies a Stage 1 review candidate. It is not production v8 signing, a v7.0.1 release, a working v8 runtime, or a v8 release."
+}

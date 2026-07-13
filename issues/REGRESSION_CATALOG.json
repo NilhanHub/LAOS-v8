@@ -1,5 +1,5 @@
 {
-  "catalog_version": "1.0.0",
+  "catalog_version": "1.1.0",
   "count": 40,
   "created_at_utc": "2026-07-12T16:10:01+00:00",
   "items": [
@@ -8,7 +8,7 @@
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "The unchanged repository passes using one versioned canonical algorithm.",
       "id": "REG-001",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Capture an unchanged repository with v7.",
         "Compile a continuation pack from the validated return.",
@@ -17,14 +17,19 @@
       ],
       "severity": "P0",
       "target_milestone": 1,
-      "title": "Capture/runtime repository fingerprint algorithms disagree"
+      "title": "Capture/runtime repository fingerprint algorithms disagree",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-001_canonical_fingerprint_consistency.json",
+        "tests/fixtures/v7_regressions/fx-v7-008_continuation_freshness.json"
+      ],
+      "implementation_stage": 1
     },
     {
       "affected_component": "capture_runtime.py; laos_runtime.py",
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "All workflows import the same manifest implementation and exclusions.",
       "id": "REG-002",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Choose files covered differently by the two ignore implementations.",
         "Capture the repository.",
@@ -33,14 +38,19 @@
       ],
       "severity": "P0",
       "target_milestone": 1,
-      "title": "Capture and runtime fingerprint ignore rules are not shared"
+      "title": "Capture and runtime fingerprint ignore rules are not shared",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-001_canonical_fingerprint_consistency.json",
+        "tests/fixtures/v7_regressions/fx-v7-008_continuation_freshness.json"
+      ],
+      "implementation_stage": 1
     },
     {
       "affected_component": "capture_runtime.py; validate_return_pack.py",
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "Strict Draft 2020-12 validation fails with precise schema diagnostics.",
       "id": "REG-003",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Create required JSON files containing syntactically valid but structurally invalid values.",
         "Set the completion flags expected by heuristic validation.",
@@ -48,14 +58,18 @@
       ],
       "severity": "P0",
       "target_milestone": 1,
-      "title": "App Intelligence JSON Schemas are shipped but not enforced"
+      "title": "App Intelligence JSON Schemas are shipped but not enforced",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-003_malformed_app_intelligence.json"
+      ],
+      "implementation_stage": 1
     },
     {
       "affected_component": "laos_runtime.py claim_task/save_task_baseline",
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "Claim is denied because workspace state differs from the Architect-approved seal.",
       "id": "REG-004",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Modify a forbidden or unrelated tracked file before claiming a READY task.",
         "Claim the task.",
@@ -64,14 +78,20 @@
       ],
       "severity": "P0",
       "target_milestone": 3,
-      "title": "Pre-claim forbidden changes can become the task baseline"
+      "title": "Pre-claim forbidden changes can become the task baseline",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-002_one_byte_repository_drift.json",
+        "tests/fixtures/v7_regressions/fx-v7-004_pre_claim_mutation.json",
+        "tests/fixtures/v7_regressions/fx-v7-008_continuation_freshness.json"
+      ],
+      "implementation_stage": 3
     },
     {
       "affected_component": "project_manifest and path handling",
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "The path broker rejects the resolved external target before any write occurs.",
       "id": "REG-005",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Create a symlink within an allowed directory pointing outside the repository.",
         "Write through the symlink.",
@@ -79,14 +99,18 @@
       ],
       "severity": "P0",
       "target_milestone": 3,
-      "title": "Symlink writes can escape repository observation"
+      "title": "Symlink writes can escape repository observation",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-005_path_and_link_escape.json"
+      ],
+      "implementation_stage": 3
     },
     {
       "affected_component": "laos_runtime.py project_manifest",
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "Manifests represent the link itself without following its target, or reject it by policy.",
       "id": "REG-006",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Add a symlink inside the repository.",
         "Generate a project manifest.",
@@ -94,7 +118,11 @@
       ],
       "severity": "P0",
       "target_milestone": 3,
-      "title": "Project manifests silently skip symlink entries"
+      "title": "Project manifests silently skip symlink entries",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-005_path_and_link_escape.json"
+      ],
+      "implementation_stage": 3
     },
     {
       "affected_component": "laos_runtime.py claim_task",
@@ -191,7 +219,7 @@
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "Commands execute as frozen argv arrays; shell use requires exceptional policy.",
       "id": "REG-013",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Create a blueprint check containing shell metacharacters.",
         "Run the check.",
@@ -199,14 +227,18 @@
       ],
       "severity": "P0",
       "target_milestone": 9,
-      "title": "Contracted commands execute with shell=True"
+      "title": "Contracted commands execute with shell=True",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-007_shell_command_hazard.json"
+      ],
+      "implementation_stage": 6
     },
     {
       "affected_component": "locks, baselines, checkpoints, evidence paths",
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "Typed identifier and safe-path validation rejects the input before filesystem use.",
       "id": "REG-014",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Supply identifiers or paths containing traversal or separator characters.",
         "Reach the filesystem construction path.",
@@ -214,7 +246,11 @@
       ],
       "severity": "P0",
       "target_milestone": 3,
-      "title": "Identifier-to-path conversion lacks strict identifier contracts"
+      "title": "Identifier-to-path conversion lacks strict identifier contracts",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-005_path_and_link_escape.json"
+      ],
+      "implementation_stage": 3
     },
     {
       "affected_component": "compile_project_pack.py --force",
@@ -235,7 +271,7 @@
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "Collection uses lstat-style policy and never follows an external target.",
       "id": "REG-016",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Place links in an authorised collection path.",
         "Build an artifact or checkpoint.",
@@ -243,14 +279,19 @@
       ],
       "severity": "P0",
       "target_milestone": 3,
-      "title": "Artifact and checkpoint collection can encounter unsafe link semantics"
+      "title": "Artifact and checkpoint collection can encounter unsafe link semantics",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-005_path_and_link_escape.json",
+        "tests/fixtures/v7_regressions/fx-v7-006_unsafe_archive.json"
+      ],
+      "implementation_stage": 3
     },
     {
       "affected_component": "continuation documentation/compiler output",
       "classification": "CONFIRMED_V7",
       "expected_v8_behavior": "Guidance and generated executable workflow always agree.",
       "id": "REG-017",
-      "regression_test_status": "SPECIFIED_NOT_IMPLEMENTED",
+      "regression_test_status": "FIXTURE_SPECIFIED_IMPLEMENTATION_OPEN",
       "reproduction_steps": [
         "Compile a continuation pack with repository drift guidance.",
         "Inspect generated tasks.",
@@ -258,7 +299,11 @@
       ],
       "severity": "P1",
       "target_milestone": 8,
-      "title": "Continuation guidance references a reconciliation path not guaranteed in the generated pack"
+      "title": "Continuation guidance references a reconciliation path not guaranteed in the generated pack",
+      "fixture_paths": [
+        "tests/fixtures/v7_regressions/fx-v7-008_continuation_freshness.json"
+      ],
+      "implementation_stage": 5
     },
     {
       "affected_component": "v7 task lifecycle",
@@ -594,5 +639,7 @@
       "title": "Static and mutable manifests are not formally separated in v7"
     }
   ],
-  "source_baseline_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d"
+  "source_baseline_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+  "reconciled_on": "2026-07-13",
+  "fixture_only_track": true
 }

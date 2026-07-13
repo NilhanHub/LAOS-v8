@@ -1,0 +1,64 @@
+{
+  "matrix_version": "0.1.0",
+  "source": "LAOS v7.0 immutable archive",
+  "policy": {
+    "copy_on_write": true,
+    "dry_run": true,
+    "deterministic_mapping_report": true,
+    "unknown_field_quarantine": true,
+    "idempotent_rerun": true,
+    "rollback": true,
+    "coexistence_rules_required": true
+  },
+  "rows": [
+    {
+      "feature": "project_blueprints",
+      "v7_source": "v7 JSON blueprint",
+      "v8_target": "v8 versioned typed model",
+      "owner_stage": 5,
+      "status": "OPEN"
+    },
+    {
+      "feature": "capture_app_intelligence",
+      "v7_source": "v7 capture return",
+      "v8_target": "strict validated capture aggregate",
+      "owner_stage": 5,
+      "status": "OPEN"
+    },
+    {
+      "feature": "continuation_fingerprint",
+      "v7_source": "v7 inconsistent digest",
+      "v8_target": "versioned source/base seal",
+      "owner_stage": 3,
+      "status": "OPEN"
+    },
+    {
+      "feature": "task_state",
+      "v7_source": "mutable v7 JSON",
+      "v8_target": "transactional v8 state",
+      "owner_stage": 3,
+      "status": "OPEN"
+    },
+    {
+      "feature": "evidence",
+      "v7_source": "project-writable files",
+      "v8_target": "broker-controlled CAS plus signed index",
+      "owner_stage": 6,
+      "status": "OPEN"
+    },
+    {
+      "feature": "side_effect_records",
+      "v7_source": "v7 journal",
+      "v8_target": "outbox plus indeterminate outcome lifecycle",
+      "owner_stage": 7,
+      "status": "OPEN"
+    },
+    {
+      "feature": "release_integrity",
+      "v7_source": "static/mutable ambiguity",
+      "v8_target": "clean static artifacts and runtime initialization",
+      "owner_stage": 8,
+      "status": "OPEN"
+    }
+  ]
+}

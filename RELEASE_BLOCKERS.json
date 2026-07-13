@@ -1,0 +1,283 @@
+{
+  "ledger_version": "1.0.0",
+  "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+  "canonicality": "Bootstrap view; protected transactional state becomes canonical when implemented.",
+  "count": 25,
+  "blockers": [
+    {
+      "id": "RB-001",
+      "title": "Unsupported trust boundary",
+      "criterion": "the deployment/enforcement contract, trusted computing base, or support matrix is missing or contradicted by implementation.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-002",
+      "title": "Bypassable mediation",
+      "criterion": "a claimed filesystem, command, network, browser, secret, signing, evidence, review, publication, or side-effect permission can bypass its enforcement point.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-003",
+      "title": "Architect direct authority",
+      "criterion": "a model process can directly access signing keys, privileged state transitions, non-waivable overrides, or release authority.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-004",
+      "title": "Private-pack leakage",
+      "criterion": "seeded master LAOS, future actions, hidden tests, private evaluator answers, Architect notes, secrets, or personal data appear in an execution deliverable, or pack construction is not an allowlisted projection.",
+      "owner_stage": 5,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-005",
+      "title": "Early or replayed authority",
+      "criterion": "in a connected privileged support row, a weaker agent can obtain the next action early, redeem a capsule twice, use authority outside the measured revocation bound or after expiry, or use it under the wrong actor, audience, project, base seal, state, policy, profile, or key purpose; or offline v8.0 permits any privileged redemption/dispatch.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-006",
+      "title": "Malformed canonical state",
+      "criterion": "a malformed, duplicate-key, oversized, unknown-version, semantically invalid, or unauthenticated trusted record can enter canonical state.",
+      "owner_stage": 2,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-007",
+      "title": "Repository identity ambiguity",
+      "criterion": "capture/continuation fingerprints disagree, pre-claim drift can be hidden, cross-platform golden vectors disagree, or base/result lineage is incomplete.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-008",
+      "title": "Unsafe promotion",
+      "criterion": "the builder can mutate the authoritative checkout directly, stale-base promotion succeeds, or filesystem/database crashes can leave an accepted result ambiguous.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-009",
+      "title": "Filesystem/archive escape",
+      "criterion": "a supported-platform path, archive, symlink, junction, reparse, hard-link, alias, or concurrent-swap escape remains possible.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-010",
+      "title": "State race or fork",
+      "criterion": "two workers can claim/advance the same action, state and audit event can diverge, or rollback/fork/clock anomalies can silently change authority.",
+      "owner_stage": 3,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-011",
+      "title": "False independence",
+      "criterion": "typed actor names or shared principals, credentials, contexts, workspaces, or controlling authority can impersonate independent roles or quorum.",
+      "owner_stage": 6,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-012",
+      "title": "Unsupported closure",
+      "criterion": "a mandatory criterion can close without current result-seal-bound evidence and required independent review, or the builder can alter protected/hidden tests.",
+      "owner_stage": 6,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-013",
+      "title": "Unsafe execution",
+      "criterion": "arbitrary repository code or a dangerous command can run through unrestricted host access, or high-risk work silently proceeds without a conformance-tested sandbox.",
+      "owner_stage": 6,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-014",
+      "title": "Unsafe egress, model transfer, or secrets",
+      "criterion": "network/browser/model-provider policy can be bypassed, cloud metadata or disallowed targets are reachable, built-in provider tools escape mediation, or credentials/private data leak through prompts, provider retention, processes, evidence, artifacts, or allowed channels.",
+      "owner_stage": 6,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-015",
+      "title": "Unsafe side effects",
+      "criterion": "external effects can bypass approval, idempotency, reconciliation, or independent verification; an indeterminate irreversible operation can retry automatically; or unauthorized verification raises the wrong error or advances state.",
+      "owner_stage": 7,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-016",
+      "title": "Mutable release contamination",
+      "criterion": "SQLite, WAL/SHM, locks, logs, leases, caches, current indexes, secrets, or other live runtime state appears in an immutable release or static content manifest.",
+      "owner_stage": 8,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-017",
+      "title": "Evidence/audit weakness",
+      "criterion": "evidence mutation passes, canonical evidence is builder-writable, critical audit truncation/fork/rollback passes, or required external anchoring is absent.",
+      "owner_stage": 8,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-018",
+      "title": "Artifact/provenance failure",
+      "criterion": "ZIP/wheel extraction, installation, full retest, SBOM, provenance, signature identity/predicate verification, reproducibility claim, consumer policy, rollback protection, or durable retrieval fails.",
+      "owner_stage": 8,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-019",
+      "title": "Broken operator contract",
+      "criterion": "required documentation points to nonexistent files, a supported clean install cannot complete operator journeys, or capability claims exceed the support matrix.",
+      "owner_stage": 8,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-020",
+      "title": "Migration failure",
+      "criterion": "supported v7 import, dry run, mapping report, idempotent rerun, rollback/coexistence, or migration rehearsal fails.",
+      "owner_stage": 8,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-021",
+      "title": "Unrecoverable trust compromise",
+      "criterion": "kill switch, revocation, quarantine, key/secret rotation, external recovery point, revalidation, and re-attestation drills do not recover safely.",
+      "owner_stage": 7,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-022",
+      "title": "Critical or uncontrolled High security finding",
+      "criterion": "a Critical finding is open, or a High finding lacks independent security review plus release-authority and human-quorum acceptance. Critical is non-waivable. An unaccepted High disables every affected support row. Any accepted High or lower-severity risk is signed and bound to exact code/environment/evidence digests, with named ownership, scope, compensating controls, expiry, and revalidation trigger.",
+      "owner_stage": 9,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "CONDITIONAL_HIGH_ONLY",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-023",
+      "title": "Invalid or missing evaluation",
+      "criterion": "the preregistered sealed evaluation has not completed, has unresolved protocol violations, or its materials/results cannot be independently audited without exposing active hidden content.",
+      "owner_stage": 9,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-024",
+      "title": "v8.0 efficacy/safety floor not met",
+      "criterion": "the predefined v8.0 minimum efficacy, safety, non-inferiority, and resource thresholds are not met. An inconclusive or negative system may remain a technical preview but cannot be declared v8.0 GA or claim improved weaker-agent performance.",
+      "owner_stage": 9,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    },
+    {
+      "id": "RB-025",
+      "title": "Missing final artifacts",
+      "criterion": "a claimed final deliverable is absent from durable storage or has not been retrieved, reopened, hashed, safely extracted where applicable, and independently verified after final transfer.",
+      "owner_stage": 10,
+      "status": "OPEN",
+      "builder_write_authority": false,
+      "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
+      "evidence_digests": [],
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+    }
+  ]
+}

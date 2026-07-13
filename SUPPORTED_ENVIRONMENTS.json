@@ -1,0 +1,54 @@
+{
+  "matrix_version": "0.1.0",
+  "claim_status": "NO_RUNTIME_SUPPORT_CLAIM",
+  "rows": [
+    {
+      "id": "connected-windows-local-git",
+      "status": "PLANNED",
+      "privileged_connected_mode": true,
+      "evidence": []
+    },
+    {
+      "id": "connected-linux-local-git",
+      "status": "PLANNED",
+      "privileged_connected_mode": true,
+      "evidence": []
+    },
+    {
+      "id": "offline-verification-read-only",
+      "status": "PLANNED",
+      "privileged_connected_mode": false,
+      "evidence": []
+    },
+    {
+      "id": "offline-privileged-authority",
+      "status": "UNSUPPORTED_V8_0",
+      "privileged_connected_mode": false,
+      "evidence": []
+    },
+    {
+      "id": "direct-host-unmediated",
+      "status": "UNSUPPORTED",
+      "privileged_connected_mode": false,
+      "evidence": []
+    },
+    {
+      "id": "non-git-authoritative-mutation",
+      "status": "UNSUPPORTED_V8_0",
+      "privileged_connected_mode": false,
+      "evidence": []
+    },
+    {
+      "id": "network-filesystem-sqlite",
+      "status": "UNSUPPORTED",
+      "privileged_connected_mode": false,
+      "evidence": []
+    },
+    {
+      "id": "distributed-canonical-state",
+      "status": "DEFER_V8_X",
+      "privileged_connected_mode": false,
+      "evidence": []
+    }
+  ]
+}

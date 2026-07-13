@@ -1,0 +1,351 @@
+{
+  "ledger_version": "1.0.0",
+  "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+  "discipline": "Pulled-forward slices satisfy Security Spine/Alpha only and do not close full later milestones.",
+  "milestones": [
+    {
+      "milestone": 0,
+      "title": "Recovery, baseline, and governance",
+      "implementation_stages": [
+        1
+      ],
+      "depends_on_stage": [],
+      "scope_classification": "MUST_V8_0",
+      "owner": "Codex",
+      "independent_reviewer": "Nilhan",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 0; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 0 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": false
+    },
+    {
+      "milestone": 1,
+      "title": "v7.0.1 emergency correctness branch",
+      "implementation_stages": [
+        1
+      ],
+      "depends_on_stage": [],
+      "scope_classification": "MUST_V8_0",
+      "owner": "Codex",
+      "independent_reviewer": "Nilhan",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 1; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 1 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": false
+    },
+    {
+      "milestone": 2,
+      "title": "Typed v8 kernel and strict validation",
+      "implementation_stages": [
+        2
+      ],
+      "depends_on_stage": [
+        1
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-2-implementation-owner",
+      "independent_reviewer": "milestone-2-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 2; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 2 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 3,
+      "title": "Repository truth, safe paths, identity, and transactional state",
+      "implementation_stages": [
+        3
+      ],
+      "depends_on_stage": [
+        2
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-3-implementation-owner",
+      "independent_reviewer": "milestone-3-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 3; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 3 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 4,
+      "title": "Policy engine and risk classification",
+      "implementation_stages": [
+        3
+      ],
+      "depends_on_stage": [
+        2
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-4-implementation-owner",
+      "independent_reviewer": "milestone-4-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 4; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 4 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 5,
+      "title": "Pack separation, signing, and leak prevention",
+      "implementation_stages": [
+        3,
+        5
+      ],
+      "depends_on_stage": [
+        2
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-5-implementation-owner",
+      "independent_reviewer": "milestone-5-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 5; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 5 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 6,
+      "title": "Anti-Skip Action Engine",
+      "implementation_stages": [
+        4,
+        5
+      ],
+      "depends_on_stage": [
+        3
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-6-implementation-owner",
+      "independent_reviewer": "milestone-6-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 6; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 6 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 7,
+      "title": "Model profiles, prompt compiler, and context control",
+      "implementation_stages": [
+        5
+      ],
+      "depends_on_stage": [
+        4
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-7-implementation-owner",
+      "independent_reviewer": "milestone-7-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 7; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 7 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 8,
+      "title": "New-build compiler and existing-application capture/continuation",
+      "implementation_stages": [
+        5
+      ],
+      "depends_on_stage": [
+        4
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-8-implementation-owner",
+      "independent_reviewer": "milestone-8-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 8; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 8 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 9,
+      "title": "Command broker, sandbox, and clean verifier",
+      "implementation_stages": [
+        3,
+        6
+      ],
+      "depends_on_stage": [
+        2
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-9-implementation-owner",
+      "independent_reviewer": "milestone-9-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 9; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 9 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 10,
+      "title": "Evidence engine and criterion-level closure",
+      "implementation_stages": [
+        4,
+        6
+      ],
+      "depends_on_stage": [
+        3
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-10-implementation-owner",
+      "independent_reviewer": "milestone-10-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 10; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 10 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 11,
+      "title": "Verification depth and independent review",
+      "implementation_stages": [
+        4,
+        6
+      ],
+      "depends_on_stage": [
+        3
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-11-implementation-owner",
+      "independent_reviewer": "milestone-11-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 11; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 11 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 12,
+      "title": "Side effects, approvals, recovery, and anti-thrashing",
+      "implementation_stages": [
+        3,
+        7
+      ],
+      "depends_on_stage": [
+        2
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-12-implementation-owner",
+      "independent_reviewer": "milestone-12-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 12; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 12 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 13,
+      "title": "Tamper-evident events, artifacts, provenance, and release truth",
+      "implementation_stages": [
+        8
+      ],
+      "depends_on_stage": [
+        7
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-13-implementation-owner",
+      "independent_reviewer": "milestone-13-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 13; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 13 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 14,
+      "title": "Real weaker-agent evaluation laboratory",
+      "implementation_stages": [
+        9
+      ],
+      "depends_on_stage": [
+        8
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-14-implementation-owner",
+      "independent_reviewer": "milestone-14-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 14; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 14 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 15,
+      "title": "Documentation, migration, and operator experience",
+      "implementation_stages": [
+        2,
+        8
+      ],
+      "depends_on_stage": [
+        1
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-15-implementation-owner",
+      "independent_reviewer": "milestone-15-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 15; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 15 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    },
+    {
+      "milestone": 16,
+      "title": "Pre-evaluation red team and post-evaluation durable publication",
+      "implementation_stages": [
+        9,
+        10
+      ],
+      "depends_on_stage": [
+        8
+      ],
+      "scope_classification": "MUST_V8_0",
+      "owner": "milestone-16-implementation-owner",
+      "independent_reviewer": "milestone-16-independent-reviewer",
+      "external_dependencies": [],
+      "estimate_range": "To be calibrated before entry; no calendar promise is made at Stage 1.",
+      "deliverables_and_non_goals": "Normative in Revision 1.1 Milestone 16; unlisted integration claims remain OPEN.",
+      "acceptance_criteria": "Revision 1.1 Milestone 16 exit gate plus affected stable release blockers.",
+      "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
+      "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
+      "open_cross_subsystem_requirements": true
+    }
+  ]
+}

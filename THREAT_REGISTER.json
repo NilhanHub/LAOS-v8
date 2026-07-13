@@ -1,0 +1,457 @@
+{
+  "register_version": "1.1.0",
+  "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+  "count": 50,
+  "threats": [
+    {
+      "id": "TM-001",
+      "threat": "Master-plan leakage",
+      "attack_path": "Architect-only strategy or hidden tests enter an execution pack",
+      "impact": "Weak agent can game checks or act outside intended scope",
+      "required_controls": "Separate packs, leak scan, allowlist packaging",
+      "mandatory_test": "Pack leakage adversarial suite",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-002",
+      "threat": "Instruction hierarchy confusion",
+      "attack_path": "Repository text impersonates Architect instructions",
+      "impact": "Agent follows untrusted prompt injection",
+      "required_controls": "Signed authority envelope and provenance labels",
+      "mandatory_test": "Injected README cannot expand authority",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-003",
+      "threat": "Action skipping",
+      "attack_path": "Weak agent jumps directly to implementation or completion",
+      "impact": "Incomplete or unsafe work",
+      "required_controls": "One active capsule and transition guards",
+      "mandatory_test": "Out-of-order transition denial",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-004",
+      "threat": "Capsule replay",
+      "attack_path": "Old authorised action is reused after completion or drift",
+      "impact": "Duplicate or stale actions",
+      "required_controls": "Nonce, expiry, revocation, one-time redemption",
+      "mandatory_test": "Replay test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-005",
+      "threat": "Policy drift",
+      "attack_path": "Policy changes while old capsule remains valid",
+      "impact": "Work proceeds under obsolete controls",
+      "required_controls": "Policy hash binding and invalidation",
+      "mandatory_test": "Policy-change revocation test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-006",
+      "threat": "Model/skill drift",
+      "attack_path": "Executor or skills change after calibration",
+      "impact": "Unsafe prompt size or tool authority",
+      "required_controls": "Profile and skill hash binding",
+      "mandatory_test": "Drift invalidation test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-007",
+      "threat": "Pre-claim mutation",
+      "attack_path": "Builder changes files before baseline capture",
+      "impact": "Forbidden changes become invisible",
+      "required_controls": "Architect workspace seal before authority",
+      "mandatory_test": "Pre-claim edit regression",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-008",
+      "threat": "Path traversal",
+      "attack_path": "Malicious identifiers or paths escape root",
+      "impact": "External file read/write/delete",
+      "required_controls": "Resolved containment and strict identifiers",
+      "mandatory_test": "Traversal corpus",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-009",
+      "threat": "Symlink/junction escape",
+      "attack_path": "Allowed path resolves outside repository",
+      "impact": "Host data modification or exfiltration",
+      "required_controls": "No-follow path broker and sandbox mounts",
+      "mandatory_test": "Symlink escape regression",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-010",
+      "threat": "Archive traversal or bombs",
+      "attack_path": "Unsafe ZIP members or extreme expansion",
+      "impact": "Overwrite, denial of service, resource exhaustion",
+      "required_controls": "Safe archive inspector, quotas, no links",
+      "mandatory_test": "Malicious archive corpus",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-011",
+      "threat": "Concurrent double claim",
+      "attack_path": "Two workers acquire one action",
+      "impact": "Conflicting edits and state",
+      "required_controls": "Transactional unique claim/lease",
+      "mandatory_test": "Concurrency race test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-012",
+      "threat": "Lost state update",
+      "attack_path": "Concurrent JSON writes overwrite changes",
+      "impact": "Corrupt workflow truth",
+      "required_controls": "SQLite transaction boundaries",
+      "mandatory_test": "Parallel state update test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-013",
+      "threat": "Event-chain fork",
+      "attack_path": "Concurrent event appends share previous hash",
+      "impact": "Ambiguous audit history",
+      "required_controls": "Serialized transaction and external anchor",
+      "mandatory_test": "Concurrent append test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-014",
+      "threat": "Identity spoofing",
+      "attack_path": "Builder types a reviewer name",
+      "impact": "Self-review presented as independent",
+      "required_controls": "Authenticated identities and capabilities",
+      "mandatory_test": "Builder self-review denial",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-015",
+      "threat": "Capability theft",
+      "attack_path": "Token or key is copied from workspace",
+      "impact": "Unauthorized action",
+      "required_controls": "Secrets outside repo, scoped expiry, revocation",
+      "mandatory_test": "Stolen expired/revoked token test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-016",
+      "threat": "Command injection",
+      "attack_path": "Shell metacharacters interpreted in contracted command",
+      "impact": "Arbitrary execution",
+      "required_controls": "argv command broker, shell default-deny",
+      "mandatory_test": "Injection corpus",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-017",
+      "threat": "Dangerous command misuse",
+      "attack_path": "Agent runs destructive Git, filesystem, or privilege commands",
+      "impact": "Data loss or compromise",
+      "required_controls": "Policy denylist/allowlist and approvals",
+      "mandatory_test": "Dangerous command tests",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-018",
+      "threat": "Network exfiltration",
+      "attack_path": "Agent sends source or secrets externally",
+      "impact": "Confidentiality loss",
+      "required_controls": "Network default-deny and destination allowlist",
+      "mandatory_test": "Blocked egress test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-019",
+      "threat": "Secret persistence",
+      "attack_path": "Credentials enter prompts, logs, evidence, or artifacts",
+      "impact": "Credential compromise",
+      "required_controls": "Ephemeral injection, redaction, secret scan",
+      "mandatory_test": "Canary secret test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-020",
+      "threat": "Evidence fabrication",
+      "attack_path": "Agent writes convincing but false proof",
+      "impact": "False completion",
+      "required_controls": "Broker-generated evidence and independent rerun",
+      "mandatory_test": "Vague/fabricated evidence rejection",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-021",
+      "threat": "Evidence staleness",
+      "attack_path": "Source changes after successful check",
+      "impact": "Old proof accepted",
+      "required_controls": "Seal/check/evidence freshness binding",
+      "mandatory_test": "Post-check edit invalidation",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-022",
+      "threat": "Evidence tampering",
+      "attack_path": "Builder edits transcript or screenshot",
+      "impact": "False proof",
+      "required_controls": "CAS hash, external escrow, verifier",
+      "mandatory_test": "Mutation regression",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-023",
+      "threat": "Test weakening",
+      "attack_path": "Builder edits tests to make work pass",
+      "impact": "Regression hidden",
+      "required_controls": "Protected tests and independent hidden checks",
+      "mandatory_test": "Test weakening detection",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-024",
+      "threat": "Hidden-test leakage",
+      "attack_path": "Hidden checks included in builder pack",
+      "impact": "Agent overfits validation",
+      "required_controls": "Separate verifier trust zone",
+      "mandatory_test": "Leak scan and package inventory",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-025",
+      "threat": "Criterion omission",
+      "attack_path": "Broad task pass hides unimplemented requirement",
+      "impact": "Partial feature accepted",
+      "required_controls": "Criterion ledger and closure rules",
+      "mandatory_test": "Missing criterion denial",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-026",
+      "threat": "Reviewer persuasion bias",
+      "attack_path": "Reviewer receives builder narrative as primary truth",
+      "impact": "Weak independent challenge",
+      "required_controls": "Review Capsule centered on contract and repository",
+      "mandatory_test": "Adversarial review protocol test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-027",
+      "threat": "Side-effect replay",
+      "attack_path": "External operation executed more than once",
+      "impact": "Duplicate payment/deploy/email",
+      "required_controls": "Idempotency and receipt verification",
+      "mandatory_test": "Replay test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-028",
+      "threat": "Unauthorized side-effect verification",
+      "attack_path": "Builder marks its own external action verified",
+      "impact": "False external truth",
+      "required_controls": "Capability-gated transitions",
+      "mandatory_test": "AuthorizationDenied regression",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-029",
+      "threat": "Partial external failure",
+      "attack_path": "Operation succeeds partly then runtime crashes",
+      "impact": "Unknown or inconsistent external state",
+      "required_controls": "Prepared/executed receipts, recovery and compensation",
+      "mandatory_test": "Crash-point tests",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-030",
+      "threat": "Checkpoint poisoning",
+      "attack_path": "Checkpoint contains unsafe or stale content",
+      "impact": "Bad recovery state",
+      "required_controls": "Content-addressed snapshot and safe extraction",
+      "mandatory_test": "Tampered checkpoint test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-031",
+      "threat": "Recovery over-delete",
+      "attack_path": "Restore removes unrelated files",
+      "impact": "Data loss",
+      "required_controls": "Dry run and explicit delete-extra authority",
+      "mandatory_test": "Recovery deletion test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-032",
+      "threat": "Release state contamination",
+      "attack_path": "Mutable database included in static manifest",
+      "impact": "Integrity failures after normal use",
+      "required_controls": "Static/runtime physical separation",
+      "mandatory_test": "Mutable DB exclusion regression",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-033",
+      "threat": "Artifact post-verification mutation",
+      "attack_path": "ZIP changes after checksum generation",
+      "impact": "Untrusted deliverable",
+      "required_controls": "Freeze, final-location reopen and rehash",
+      "mandatory_test": "Mutation test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-034",
+      "threat": "Non-durable artifact",
+      "attack_path": "Temporary cleanup removes deliverable",
+      "impact": "Release loss",
+      "required_controls": "Durability gate and external location verification",
+      "mandatory_test": "Cleanup/retrieval drill",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-035",
+      "threat": "Supply-chain compromise",
+      "attack_path": "Dependency, build tool, or skill is malicious",
+      "impact": "Code execution or tainted release",
+      "required_controls": "Pinned hashes, SBOM, provenance, review",
+      "mandatory_test": "Dependency integrity test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-036",
+      "threat": "Denial of wallet/resources",
+      "attack_path": "Agent loops or launches excessive work",
+      "impact": "Cost and availability impact",
+      "required_controls": "Attempt, time, CPU, memory and cost budgets",
+      "mandatory_test": "Circuit-breaker test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-037",
+      "threat": "Unknown-to-fact drift",
+      "attack_path": "Unresolved assumption becomes accepted truth",
+      "impact": "Wrong architecture or behaviour",
+      "required_controls": "Uncertainty Ledger and provenance",
+      "mandatory_test": "Unknown promotion denial",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-038",
+      "threat": "Evaluation gaming",
+      "attack_path": "System optimized to public benchmark only",
+      "impact": "Misleading performance claims",
+      "required_controls": "Hidden tasks, repeated trials, independent grading",
+      "mandatory_test": "Holdout benchmark",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-039",
+      "threat": "Documentation overclaim",
+      "attack_path": "Docs say enforced when control is procedural",
+      "impact": "Unsafe operator trust",
+      "required_controls": "Capability-to-doc traceability and limitations",
+      "mandatory_test": "Documentation audit",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-040",
+      "threat": "Architect compromise",
+      "attack_path": "Highest-authority actor is malicious or mistaken",
+      "impact": "System-wide unsafe delegation",
+      "required_controls": "Approvals, critical quorum, signed audit, least privilege",
+      "mandatory_test": "Critical-operation quorum test",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-041",
+      "threat": "Unsafe repository promotion",
+      "attack_path": "Builder mutates authority or promotes against a stale base",
+      "impact": "Accepted source diverges",
+      "required_controls": "Isolated clone, broker delta, clean reconstruction, PromotionIntent and Git CAS",
+      "mandatory_test": "Stale-base and crash-point promotion suite",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-042",
+      "threat": "Model-provider boundary bypass",
+      "attack_path": "Prompts, tools, retention or provider region bypass local policy",
+      "impact": "Data loss or hidden authority",
+      "required_controls": "Mediated model-call broker, minimization, provider row and tool denial",
+      "mandatory_test": "Transmission-canary and built-in-tool denial suite",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-043",
+      "threat": "Path TOCTOU and Windows alias escape",
+      "attack_path": "Reparse, short-name, ADS, hard-link or concurrent swap defeats string validation",
+      "impact": "External host access",
+      "required_controls": "Final-handle containment and supported-platform fail-closed policy",
+      "mandatory_test": "Windows reparse and concurrent-swap corpus",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-044",
+      "threat": "Indeterminate external outcome replay",
+      "attack_path": "Receipt is lost after irreversible provider acceptance",
+      "impact": "Duplicate consequential action",
+      "required_controls": "OUTCOME_UNKNOWN, reconciliation and no automatic irreversible retry",
+      "mandatory_test": "Crash after dispatch before receipt persistence",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-045",
+      "threat": "Local audit truncation or fork",
+      "attack_path": "Compromised host rewrites or forks local event history",
+      "impact": "False audit narrative",
+      "required_controls": "Same-transaction events plus independent external anchors",
+      "mandatory_test": "Gap, fork, rollback and stale-anchor suite",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-046",
+      "threat": "Cryptographic context confusion",
+      "attack_path": "Valid signature is reused across object, key purpose, issuer or audience",
+      "impact": "Unauthorized authority",
+      "required_controls": "Typed domain separation, key purposes, rotation and revocation",
+      "mandatory_test": "Cross-object and wrong-purpose signature suite",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-047",
+      "threat": "Privileged offline authority",
+      "attack_path": "Offline verifier is treated as an issuer or dispatcher",
+      "impact": "Unrevocable privileged action",
+      "required_controls": "Offline v8.0 verification/read-only support row",
+      "mandatory_test": "Offline issuance and redemption denial",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-048",
+      "threat": "Holdout contamination or selective stopping",
+      "attack_path": "Final tasks influence tuning or repeated evaluation",
+      "impact": "Invalid efficacy claim",
+      "required_controls": "Preregistration, sealed custody, fixed stopping and new holdout after behavior change",
+      "mandatory_test": "Holdout access and rerun audit",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-049",
+      "threat": "Sensitive evidence retention",
+      "attack_path": "Raw prompts, screenshots or API data persist beyond policy",
+      "impact": "Privacy, secret or contractual breach",
+      "required_controls": "Pre-persistence classification, minimization, encryption, purge and holds",
+      "mandatory_test": "Retention, purge and backup-deletion suite",
+      "status": "OPEN"
+    },
+    {
+      "id": "TM-050",
+      "threat": "Trust-root compromise without recovery",
+      "attack_path": "Signer, control host, identity or evidence broker is compromised",
+      "impact": "System-wide false authority",
+      "required_controls": "Kill switch, mass revocation, quarantine, rotation, recovery point and re-attestation",
+      "mandatory_test": "Executable compromise recovery drill",
+      "status": "OPEN"
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "backlog_version": "1.1.0",
+  "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+  "historical_backlog": "design_inputs/LAOS_v8_IMPLEMENTATION_BACKLOG.json",
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Recovery and program truth",
+      "depends_on": [],
+      "status": "REVIEW_CANDIDATE",
+      "tasks": [
+        {
+          "id": "S1-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "REVIEW_CANDIDATE"
+        },
+        {
+          "id": "S1-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S1-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "Typed kernel and platform contracts",
+      "depends_on": [
+        1
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S2-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S2-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S2-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "Mandatory Security Spine",
+      "depends_on": [
+        2
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S3-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S3-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S3-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "name": "Alpha Vertical Trust Slice",
+      "depends_on": [
+        3
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S4-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S4-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S4-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 5,
+      "name": "Core product workflows",
+      "depends_on": [
+        4
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S5-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S5-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S5-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "name": "Execution assurance",
+      "depends_on": [
+        5
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S6-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S6-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S6-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 7,
+      "name": "Side effects and recovery",
+      "depends_on": [
+        6
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S7-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S7-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S7-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 8,
+      "name": "Release engineering and operator readiness",
+      "depends_on": [
+        7
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S8-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S8-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S8-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "name": "Candidate red team and sealed evaluation",
+      "depends_on": [
+        8
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S9-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S9-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S9-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    },
+    {
+      "stage": 10,
+      "name": "Evaluated-revision publication",
+      "depends_on": [
+        9
+      ],
+      "status": "PLANNED",
+      "tasks": [
+        {
+          "id": "S10-CONTRACT",
+          "title": "Satisfy the stage contract in the ten-stage plan",
+          "status": "PLANNED"
+        },
+        {
+          "id": "S10-EVIDENCE",
+          "title": "Capture evidence and rerun affected earlier gates",
+          "status": "OPEN"
+        },
+        {
+          "id": "S10-REVIEW",
+          "title": "Obtain required independent review",
+          "status": "OPEN"
+        }
+      ]
+    }
+  ]
+}

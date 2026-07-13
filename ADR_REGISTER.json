@@ -1,0 +1,89 @@
+{
+  "register_version": "1.1.0",
+  "adrs": [
+    {
+      "id": "ADR-0001",
+      "title": "Trust-zone separation",
+      "status": "ACCEPTED",
+      "owner_stage": 5
+    },
+    {
+      "id": "ADR-0002",
+      "title": "Runtime-state separation",
+      "status": "ACCEPTED",
+      "owner_stage": 3
+    },
+    {
+      "id": "ADR-0003",
+      "title": "SQLite and migrations",
+      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_2",
+      "owner_stage": 3
+    },
+    {
+      "id": "ADR-0004",
+      "title": "Schema/model source of truth",
+      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_2",
+      "owner_stage": 2
+    },
+    {
+      "id": "ADR-0005",
+      "title": "Signing, identity and capabilities",
+      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_2",
+      "owner_stage": 5
+    },
+    {
+      "id": "ADR-0006",
+      "title": "Sandbox provider interface",
+      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_3",
+      "owner_stage": 6
+    },
+    {
+      "id": "ADR-0007",
+      "title": "Release and provenance",
+      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_8",
+      "owner_stage": 8
+    },
+    {
+      "id": "ADR-0008",
+      "title": "Deployment and enforcement contract",
+      "status": "PROPOSED",
+      "owner_stage": 3
+    },
+    {
+      "id": "ADR-0009",
+      "title": "Base/result seals and CAS promotion",
+      "status": "PROPOSED",
+      "owner_stage": 3
+    },
+    {
+      "id": "ADR-0010",
+      "title": "Typed signing envelope and key lifecycle",
+      "status": "PROPOSED",
+      "owner_stage": 3
+    },
+    {
+      "id": "ADR-0011",
+      "title": "Evaluation and holdout custody",
+      "status": "PROPOSED",
+      "owner_stage": 8
+    },
+    {
+      "id": "ADR-0012",
+      "title": "Offline verification-only support profile",
+      "status": "PROPOSED",
+      "owner_stage": 3
+    },
+    {
+      "id": "ADR-0013",
+      "title": "Indeterminate side-effect outcomes",
+      "status": "PROPOSED",
+      "owner_stage": 7
+    },
+    {
+      "id": "ADR-0014",
+      "title": "Evidence custody and external anchoring",
+      "status": "PROPOSED",
+      "owner_stage": 6
+    }
+  ]
+}
