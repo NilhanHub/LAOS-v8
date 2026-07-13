@@ -5,7 +5,7 @@
   "independent_reviewer": null,
   "independent_reviewer_decision": null,
   "reviewed_candidate_commit": null,
-  "reviewed_candidate_tag": "stage4-review-candidate",
+  "reviewed_candidate_tag": "stage4-review-candidate-v2",
   "go_no_go": null,
   "scope_frozen": false,
   "assurance": "BOOTSTRAP_NOT_PRODUCTION_SIGNING"
