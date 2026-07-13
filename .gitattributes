@@ -1,0 +1,3 @@
+# Preserve reviewed plan artifacts byte-for-byte across Windows/Linux checkouts.
+LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md -text
+LAOS_v8_PLAN_REVIEW_2026-07-12.md -text
