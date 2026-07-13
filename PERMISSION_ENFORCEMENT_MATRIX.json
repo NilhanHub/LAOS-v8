@@ -1,0 +1,84 @@
+{
+  "matrix_version": "1.0.0",
+  "profile": "stage3-local-security-spine-test",
+  "claim_boundary": "Every listed enforcement point is exercised locally; production and distributed assurance remain unclaimed.",
+  "rows": [
+    {
+      "capability": "canonical_state_write",
+      "owner": "host CanonicalState service",
+      "enforcement_point": "transactional SQLite API",
+      "executor_direct_access": false,
+      "status": "ENFORCED_LOCAL_TEST_PROFILE"
+    },
+    {
+      "capability": "sign_capsule",
+      "owner": "host protected test signer",
+      "enforcement_point": "typed signing request after policy",
+      "executor_direct_access": false,
+      "status": "TEST_ONLY_PRODUCTION_CUSTODY_OPEN"
+    },
+    {
+      "capability": "candidate_write",
+      "owner": "WorkspaceBroker",
+      "enforcement_point": "SafeRoot plus policy-scoped atomic write",
+      "executor_direct_access": false,
+      "status": "ENFORCED_LOCAL_TEST_PROFILE"
+    },
+    {
+      "capability": "command_execution",
+      "owner": "CommandBroker",
+      "enforcement_point": "digest-pinned Docker sandbox",
+      "executor_direct_access": false,
+      "status": "ENFORCED_LOCAL_TEST_PROFILE"
+    },
+    {
+      "capability": "network",
+      "owner": "Docker network namespace",
+      "enforcement_point": "--network none",
+      "executor_direct_access": false,
+      "status": "DENIED"
+    },
+    {
+      "capability": "secrets",
+      "owner": "future credential broker",
+      "enforcement_point": "no mount or injection in Stage 3",
+      "executor_direct_access": false,
+      "status": "DENIED_UNIMPLEMENTED"
+    },
+    {
+      "capability": "model_call",
+      "owner": "LocalOnlyModelBroker",
+      "enforcement_point": "local deterministic adapter with labeled context and tool denial",
+      "executor_direct_access": false,
+      "status": "LOCAL_ONLY_EXTERNAL_DENIED"
+    },
+    {
+      "capability": "evidence_write",
+      "owner": "EvidenceBroker",
+      "enforcement_point": "host content-addressed custody plus SQLite binding",
+      "executor_direct_access": false,
+      "status": "ENFORCED_LOCAL_TEST_PROFILE"
+    },
+    {
+      "capability": "independent_review",
+      "owner": "separate verifier principal",
+      "enforcement_point": "identity, session, workspace and role independence checks",
+      "executor_direct_access": false,
+      "status": "ENFORCED_LOCAL_TEST_PROFILE"
+    },
+    {
+      "capability": "authoritative_promotion",
+      "owner": "host promotion service",
+      "enforcement_point": "clean reconstruction plus Git update-ref compare-and-swap",
+      "executor_direct_access": false,
+      "status": "ENFORCED_LOCAL_TEST_PROFILE"
+    },
+    {
+      "capability": "production_side_effect",
+      "owner": "future side-effect broker",
+      "enforcement_point": "none retained for Stage 3",
+      "executor_direct_access": false,
+      "status": "DENIED_UNIMPLEMENTED"
+    }
+  ]
+}

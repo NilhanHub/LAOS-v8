@@ -1,0 +1,68 @@
+{
+  "assurance": "LOCAL_SECURITY_SPINE_TEST_PROFILE",
+  "dependencies": {
+    "cryptography": "49.0.0",
+    "hypothesis": "6.156.6",
+    "jsonschema": "4.26.0",
+    "pydantic": "2.13.4",
+    "rfc8785": "0.1.4"
+  },
+  "docker": {
+    "image": "docker.io/library/python:3.14.3-alpine3.23@sha256:581c14606911610c6b61e569714e92a726c1ef2437dd034824f644f6d9df6e9d",
+    "image_repo_digests": [
+      "python@sha256:581c14606911610c6b61e569714e92a726c1ef2437dd034824f644f6d9df6e9d"
+    ],
+    "probe": {
+      "cap_eff": "0000000000000000",
+      "network_connect_result": 101,
+      "no_new_privs": "1",
+      "uid": 65534,
+      "write_denied": [
+        "/workspace/.laos-write-probe",
+        "/etc/.laos-write-probe"
+      ]
+    },
+    "provider": "docker-linux-amd64-stage3-v1",
+    "server_version": "29.5.3",
+    "status": "PASS",
+    "stderr": ""
+  },
+  "external_model_transmission": false,
+  "operator_paths": {
+    "backup_restore_digest_match": true,
+    "denial_explanation_known": true,
+    "evidence_export_verified": true,
+    "evidence_purge_tombstoned": true,
+    "production_evidence_custody_claimed": false,
+    "status": "PASS",
+    "trust_epoch_after_recovery": 2
+  },
+  "production_side_effect_executed": false,
+  "real_weaker_agent_executed": false,
+  "record_version": "1.0.0",
+  "signing": {
+    "algorithm": "Ed25519",
+    "capsule_id_format_verified": true,
+    "key_id_format_verified": true,
+    "key_purpose": "capsule",
+    "production_key_custody_claimed": false,
+    "single_use_redemption_verified": true,
+    "status": "PASS",
+    "trust_assurance": "STAGE_3_TEST_ONLY_NOT_PRODUCTION"
+  },
+  "stage": 3,
+  "state": {
+    "audit_events": 2,
+    "duplicate_claim_denied": true,
+    "foreign_keys": 1,
+    "integrity_check": "ok",
+    "journal_mode": "delete",
+    "schema_version": 2,
+    "sqlite_version": "3.50.4",
+    "status": "PASS",
+    "synchronous": 2
+  },
+  "status": "PASS",
+  "uv_lock_sha256": "3f0cc1751cbee98763cba58a6e0f6211fb49bd2772562a95bf6016224fd537ed",
+  "v8_release_claimed": false
+}

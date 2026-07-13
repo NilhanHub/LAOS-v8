@@ -26,9 +26,12 @@ No prior v8 runtime source tree, executable test suite, SQLite schema, pack comp
 
 ## Current repository status
 
-Stage 1 is complete. Stage 2 is a review candidate containing the strict typed kernel and its bootstrap evidence.
-The Security Spine, transactional canonical state, privileged executor, production evidence custody, and release
-pipeline remain unimplemented. No working privileged LAOS v8 runtime or release is claimed.
+Stages 1 and 2 are complete. Stage 3 is a review candidate containing the local Mandatory Security Spine and
+Bootstrap evidence. Transactional state, seals, path controls, identity, policy, minimum capsules, brokers, the
+qualifying Docker test profile, local-only model mediation, emergency stop, and minimal operator recovery paths are
+implemented for this narrow profile. Production key custody, mature evidence custody, a complete privileged
+executor, later workflows, and the release pipeline remain unimplemented. No complete LAOS v8 runtime or release is
+claimed.
 
 ## Rebuild source
 
@@ -36,8 +39,8 @@ The repository can be reconstructed from the preserved v7 archive, the design-in
 
 ## Next legal engineering milestone
 
-After Nilhan independently accepts Stage 2, Stage 3 may implement the Mandatory Security Spine. Until that review,
-Stage 2 remains `AWAITING_NILHAN_REVIEW` and Stage 3 has not begun.
+Nilhan must independently review and accept the Stage 3 candidate before Stage 4 may run the first real bounded
+weaker-agent Alpha trust slice against untrusted repository content.
 
 ## Git baseline
 

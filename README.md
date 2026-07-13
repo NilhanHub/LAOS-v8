@@ -1,11 +1,14 @@
 # LAOS v8 rebuild repository
 
-**Current state: Stage 2 complete; Stage 3 authorized; LAOS v8 privileged runtime not implemented.**
+**Current state: Stage 2 complete; Stage 3 Mandatory Security Spine is a review candidate awaiting Nilhan; the full
+LAOS v8 runtime is not implemented.**
 
-This repository now contains the Stage 1 recovery/governance baseline and the Stage 2 strict typed kernel: canonical
-models, Draft 2020-12 schemas, fail-closed parsing, stable errors, transition tables, canonical hashing, platform
-diagnostics, dependency locks, migration discovery, tests, and bootstrap evidence. It does not contain the Security
-Spine, a privileged working LAOS v8 runtime, or a v8 release.
+The repository contains the Stage 1 recovery/governance baseline, the accepted Stage 2 typed kernel, and a Stage 3
+local Security Spine review candidate. Stage 3 implements transactional local SQLite state, repository seals,
+safe paths and archives, authenticated capability bindings, default-deny policy, a minimum signed Action Capsule,
+workspace and command brokers, a digest-pinned network-denied Docker sandbox, broker-owned evidence, a local-only
+model path, emergency stop, and minimal pre-Alpha operator recovery paths. These are local test-profile controls,
+not production signing, complete evidence custody, a complete privileged runtime, or a release.
 
 The active plan is root `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1. `LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md` is a subordinate execution index. Earlier documents under `design_inputs/` are historical Stage 0 inputs.
 
@@ -23,5 +26,7 @@ Start with:
 6. `RELEASE_BLOCKERS.json`
 7. `THREAT_REGISTER.json`
 
-The `laos` Stage 2 CLI exposes diagnostics, status, schema export, and read-only migration discovery only. Do not
-describe it as an execution runtime or release. The exact status is machine-readable in `IMPLEMENTATION_STATUS.json`.
+The `laos` CLI exposes diagnostics, status, schema export, read-only migration discovery, denial explanation, state
+backup/restore, evidence export/purge reconciliation, and epoch-bound trust recovery. See
+`docs/STAGE_3_OPERATOR_PATHS.md`. Do not describe these paths as a complete execution runtime or production release.
+The exact status is machine-readable in `IMPLEMENTATION_STATUS.json`.

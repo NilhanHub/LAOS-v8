@@ -1,6 +1,6 @@
 {
-  "matrix_version": "1.0.0",
-  "claim_status": "TYPED_KERNEL_LOCAL_VERIFIED_PRIVILEGED_RUNTIME_UNCLAIMED",
+  "matrix_version": "1.1.0",
+  "claim_status": "STAGE_3_LOCAL_SECURITY_SPINE_REVIEW_CANDIDATE_PRODUCTION_UNCLAIMED",
   "supported_python": ">=3.11,<3.15",
   "kernel_ci_matrix": [
     {
@@ -65,19 +65,23 @@
     },
     {
       "id": "connected-windows-local-git",
-      "status": "PRIVILEGED_RUNTIME_NOT_IMPLEMENTED",
+      "status": "LOCAL_STAGE_3_TEST_PROFILE_VERIFIED_AWAITING_REVIEW",
       "privileged_connected_mode": true,
-      "evidence": []
+      "evidence": [
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json",
+        "SANDBOX_PROFILE.json",
+        "docs/STAGE_3_ENFORCEMENT_CONTRACT.md"
+      ]
     },
     {
       "id": "connected-linux-local-git",
-      "status": "PRIVILEGED_RUNTIME_NOT_IMPLEMENTED",
+      "status": "CI_CONFIGURED_NOT_EXECUTED_REMOTELY",
       "privileged_connected_mode": true,
       "evidence": []
     },
     {
       "id": "offline-verification-read-only",
-      "status": "PLANNED",
+      "status": "LOCAL_CONTRACT_TESTED_PACK_INTEGRATION_OPEN",
       "privileged_connected_mode": false,
       "evidence": []
     },
@@ -112,6 +116,26 @@
       "status": "DEFER_V8_X",
       "privileged_connected_mode": false,
       "evidence": []
+    },
+    {
+      "id": "docker-desktop-linux-amd64-stage3",
+      "status": "LOCAL_PROVIDER_EXERCISED_AWAITING_REVIEW",
+      "privileged_connected_mode": true,
+      "evidence": [
+        "SANDBOX_PROFILE.json",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     }
-  ]
+  ],
+  "security_spine_profile": {
+    "host_os": "Windows 11",
+    "filesystem": "local NTFS",
+    "git": "2.53.0.windows.2",
+    "python": "3.14.3 local evidence; 3.11-3.14 contract",
+    "sqlite": "3.50.4 rollback-journal DELETE",
+    "sandbox": "Docker Desktop 29.5.3 Linux x86_64",
+    "image": "python 3.14.3 alpine3.23 linux/amd64 digest 581c1460...",
+    "model_path": "local deterministic adapter only",
+    "production_side_effects": "unsupported"
+  }
 }

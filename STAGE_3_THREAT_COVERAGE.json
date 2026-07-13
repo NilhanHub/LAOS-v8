@@ -1,0 +1,258 @@
+{
+  "coverage_version": "1.0.0",
+  "control_exercised_count": 26,
+  "threat_count": 50,
+  "release_threats_closed": 0,
+  "rows": [
+    {
+      "id": "TM-001",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-002",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-003",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-004",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-005",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-006",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-007",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-008",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-009",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-010",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-011",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-012",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-013",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-014",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-015",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-016",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-017",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-018",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-019",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-020",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-021",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-022",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-023",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-024",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-025",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-026",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-027",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-028",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-029",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-030",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-031",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-032",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-033",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-034",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-035",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-036",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-037",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-038",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-039",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-040",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-041",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-042",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-043",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-044",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-045",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-046",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-047",
+      "status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-048",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-049",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    },
+    {
+      "id": "TM-050",
+      "status": "OPEN_LATER_STAGE",
+      "release_status": "OPEN"
+    }
+  ]
+}

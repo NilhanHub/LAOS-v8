@@ -4,6 +4,7 @@ Reviewed: 2026-07-13
 
 ## Selected
 
+- cryptography 49.0.0 — Ed25519 for the protected Stage 3 test signer; Apache-2.0 OR BSD-3-Clause. Production key custody remains unimplemented.
 - Pydantic 2.13.4 — strict typed models and Draft 2020-12 schema generation; MIT.
 - jsonschema 4.26.0 — independent Draft 2020-12 validation and format checking; MIT.
 - rfc8785 0.1.4 — RFC 8785 canonical bytes; Apache-2.0. It is beta and therefore isolated behind `laos_v8.canonical`, covered by golden vectors, and replaceable without changing the profile.

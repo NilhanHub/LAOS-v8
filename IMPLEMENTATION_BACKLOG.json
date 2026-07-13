@@ -57,22 +57,22 @@
       "depends_on": [
         2
       ],
-      "status": "PLANNED",
+      "status": "REVIEW_CANDIDATE",
       "tasks": [
         {
           "id": "S3-CONTRACT",
           "title": "Satisfy the stage contract in the ten-stage plan",
-          "status": "PLANNED"
+          "status": "COMPLETED"
         },
         {
           "id": "S3-EVIDENCE",
           "title": "Capture evidence and rerun affected earlier gates",
-          "status": "OPEN"
+          "status": "COMPLETED"
         },
         {
           "id": "S3-REVIEW",
           "title": "Obtain required independent review",
-          "status": "OPEN"
+          "status": "AWAITING_NILHAN_REVIEW"
         }
       ]
     },

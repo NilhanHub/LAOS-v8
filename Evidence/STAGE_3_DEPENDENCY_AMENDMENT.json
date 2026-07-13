@@ -1,0 +1,21 @@
+{
+  "record_version": "1.0.0",
+  "stage": 3,
+  "status": "REVIEWED_AND_LOCKED",
+  "reason": "Stage 3 requires Ed25519 for its explicitly test-only protected signer.",
+  "prior_uv_lock_sha256": "d9212276c842f7555a9da1df44249246d2b881424c35656efb4d9ec529d213ed",
+  "current_uv_lock_sha256": "3f0cc1751cbee98763cba58a6e0f6211fb49bd2772562a95bf6016224fd537ed",
+  "added_direct_dependency": {
+    "name": "cryptography",
+    "version": "49.0.0",
+    "license": "Apache-2.0 OR BSD-3-Clause",
+    "purpose": "Ed25519 Stage 3 test signer",
+    "source": "https://pypi.org/project/cryptography/",
+    "production_key_custody_claimed": false
+  },
+  "resolved_transitive_additions": [
+    "cffi==2.1.0",
+    "pycparser==3.0"
+  ],
+  "required_regression": "Stage 2 and Stage 3 complete gates rerun after the lock amendment."
+}

@@ -13,7 +13,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-002",
@@ -24,7 +25,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-003",
@@ -35,7 +37,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-004",
@@ -57,7 +60,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-006",
@@ -80,7 +84,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-008",
@@ -91,7 +96,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-009",
@@ -102,7 +108,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-010",
@@ -113,7 +120,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
     },
     {
       "id": "RB-011",

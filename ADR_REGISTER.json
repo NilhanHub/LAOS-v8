@@ -10,13 +10,13 @@
     {
       "id": "ADR-0002",
       "title": "Runtime-state separation",
-      "status": "ACCEPTED",
+      "status": "ACCEPTED_STAGE_3_LOCAL_PROFILE",
       "owner_stage": 3
     },
     {
       "id": "ADR-0003",
       "title": "SQLite and migrations",
-      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_2",
+      "status": "PARTIAL_LOCAL_STATE_MIGRATION_LIFECYCLE_OPEN",
       "owner_stage": 3
     },
     {
@@ -28,13 +28,13 @@
     {
       "id": "ADR-0005",
       "title": "Signing, identity and capabilities",
-      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_2",
+      "status": "PARTIAL_TEST_SIGNER_PRODUCTION_CUSTODY_OPEN",
       "owner_stage": 5
     },
     {
       "id": "ADR-0006",
       "title": "Sandbox provider interface",
-      "status": "ACCEPTED_REVIEW_REQUIRED_STAGE_3",
+      "status": "ACCEPTED_DOCKER_PROFILE_EXERCISED",
       "owner_stage": 6
     },
     {
@@ -46,19 +46,19 @@
     {
       "id": "ADR-0008",
       "title": "Deployment and enforcement contract",
-      "status": "PROPOSED",
+      "status": "ACCEPTED_STAGE_3_LOCAL_PROFILE",
       "owner_stage": 3
     },
     {
       "id": "ADR-0009",
       "title": "Base/result seals and CAS promotion",
-      "status": "PROPOSED",
+      "status": "PARTIAL_GIT_CAS_FOUNDATION_ALPHA_INTEGRATION_OPEN",
       "owner_stage": 3
     },
     {
       "id": "ADR-0010",
       "title": "Typed signing envelope and key lifecycle",
-      "status": "PROPOSED",
+      "status": "ACCEPTED_TEST_ROOT_PRODUCTION_LIFECYCLE_OPEN",
       "owner_stage": 3
     },
     {
@@ -70,7 +70,7 @@
     {
       "id": "ADR-0012",
       "title": "Offline verification-only support profile",
-      "status": "PROPOSED",
+      "status": "ACCEPTED_V8_0",
       "owner_stage": 3
     },
     {

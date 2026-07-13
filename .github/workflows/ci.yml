@@ -24,10 +24,13 @@ jobs:
       - run: uv python install ${{ matrix.python }}
       - run: uv sync --frozen --python ${{ matrix.python }}
       - run: >-
-          uv run --frozen ruff check src tests/stage2
+          uv run --frozen ruff check src tests/stage2 tests/stage3
           scripts/generate_stage2_contracts.py scripts/generate_stage2_evidence.py
           scripts/reconcile_stage2_records.py scripts/verify_stage2.py
+          scripts/generate_stage3_evidence.py scripts/reconcile_stage3_records.py scripts/verify_stage3.py
+          scripts/build_stage3_candidate_evidence.py
       - run: uv run --frozen mypy
       - run: uv run --frozen pytest -q
       - run: uv run --frozen python scripts/verify_stage1.py
       - run: uv run --frozen python scripts/verify_stage2.py
+      - run: uv run --frozen python scripts/verify_stage3.py

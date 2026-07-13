@@ -10,7 +10,8 @@
       "impact": "Weak agent can game checks or act outside intended scope",
       "required_controls": "Separate packs, leak scan, allowlist packaging",
       "mandatory_test": "Pack leakage adversarial suite",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-002",
@@ -19,7 +20,12 @@
       "impact": "Agent follows untrusted prompt injection",
       "required_controls": "Signed authority envelope and provenance labels",
       "mandatory_test": "Injected README cannot expand authority",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-003",
@@ -28,7 +34,8 @@
       "impact": "Incomplete or unsafe work",
       "required_controls": "One active capsule and transition guards",
       "mandatory_test": "Out-of-order transition denial",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-004",
@@ -37,7 +44,12 @@
       "impact": "Duplicate or stale actions",
       "required_controls": "Nonce, expiry, revocation, one-time redemption",
       "mandatory_test": "Replay test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-005",
@@ -46,7 +58,12 @@
       "impact": "Work proceeds under obsolete controls",
       "required_controls": "Policy hash binding and invalidation",
       "mandatory_test": "Policy-change revocation test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-006",
@@ -55,7 +72,12 @@
       "impact": "Unsafe prompt size or tool authority",
       "required_controls": "Profile and skill hash binding",
       "mandatory_test": "Drift invalidation test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-007",
@@ -64,7 +86,12 @@
       "impact": "Forbidden changes become invisible",
       "required_controls": "Architect workspace seal before authority",
       "mandatory_test": "Pre-claim edit regression",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-008",
@@ -73,7 +100,12 @@
       "impact": "External file read/write/delete",
       "required_controls": "Resolved containment and strict identifiers",
       "mandatory_test": "Traversal corpus",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-009",
@@ -82,7 +114,12 @@
       "impact": "Host data modification or exfiltration",
       "required_controls": "No-follow path broker and sandbox mounts",
       "mandatory_test": "Symlink escape regression",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-010",
@@ -91,7 +128,12 @@
       "impact": "Overwrite, denial of service, resource exhaustion",
       "required_controls": "Safe archive inspector, quotas, no links",
       "mandatory_test": "Malicious archive corpus",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-011",
@@ -100,7 +142,12 @@
       "impact": "Conflicting edits and state",
       "required_controls": "Transactional unique claim/lease",
       "mandatory_test": "Concurrency race test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-012",
@@ -109,7 +156,12 @@
       "impact": "Corrupt workflow truth",
       "required_controls": "SQLite transaction boundaries",
       "mandatory_test": "Parallel state update test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-013",
@@ -118,7 +170,8 @@
       "impact": "Ambiguous audit history",
       "required_controls": "Serialized transaction and external anchor",
       "mandatory_test": "Concurrent append test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-014",
@@ -127,7 +180,12 @@
       "impact": "Self-review presented as independent",
       "required_controls": "Authenticated identities and capabilities",
       "mandatory_test": "Builder self-review denial",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-015",
@@ -136,7 +194,12 @@
       "impact": "Unauthorized action",
       "required_controls": "Secrets outside repo, scoped expiry, revocation",
       "mandatory_test": "Stolen expired/revoked token test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-016",
@@ -145,7 +208,12 @@
       "impact": "Arbitrary execution",
       "required_controls": "argv command broker, shell default-deny",
       "mandatory_test": "Injection corpus",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-017",
@@ -154,7 +222,12 @@
       "impact": "Data loss or compromise",
       "required_controls": "Policy denylist/allowlist and approvals",
       "mandatory_test": "Dangerous command tests",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-018",
@@ -163,7 +236,12 @@
       "impact": "Confidentiality loss",
       "required_controls": "Network default-deny and destination allowlist",
       "mandatory_test": "Blocked egress test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-019",
@@ -172,7 +250,12 @@
       "impact": "Credential compromise",
       "required_controls": "Ephemeral injection, redaction, secret scan",
       "mandatory_test": "Canary secret test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-020",
@@ -181,7 +264,12 @@
       "impact": "False completion",
       "required_controls": "Broker-generated evidence and independent rerun",
       "mandatory_test": "Vague/fabricated evidence rejection",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-021",
@@ -190,7 +278,8 @@
       "impact": "Old proof accepted",
       "required_controls": "Seal/check/evidence freshness binding",
       "mandatory_test": "Post-check edit invalidation",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-022",
@@ -199,7 +288,12 @@
       "impact": "False proof",
       "required_controls": "CAS hash, external escrow, verifier",
       "mandatory_test": "Mutation regression",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-023",
@@ -208,7 +302,8 @@
       "impact": "Regression hidden",
       "required_controls": "Protected tests and independent hidden checks",
       "mandatory_test": "Test weakening detection",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-024",
@@ -217,7 +312,8 @@
       "impact": "Agent overfits validation",
       "required_controls": "Separate verifier trust zone",
       "mandatory_test": "Leak scan and package inventory",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-025",
@@ -226,7 +322,8 @@
       "impact": "Partial feature accepted",
       "required_controls": "Criterion ledger and closure rules",
       "mandatory_test": "Missing criterion denial",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-026",
@@ -235,7 +332,8 @@
       "impact": "Weak independent challenge",
       "required_controls": "Review Capsule centered on contract and repository",
       "mandatory_test": "Adversarial review protocol test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-027",
@@ -244,7 +342,8 @@
       "impact": "Duplicate payment/deploy/email",
       "required_controls": "Idempotency and receipt verification",
       "mandatory_test": "Replay test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-028",
@@ -253,7 +352,12 @@
       "impact": "False external truth",
       "required_controls": "Capability-gated transitions",
       "mandatory_test": "AuthorizationDenied regression",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-029",
@@ -262,7 +366,8 @@
       "impact": "Unknown or inconsistent external state",
       "required_controls": "Prepared/executed receipts, recovery and compensation",
       "mandatory_test": "Crash-point tests",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-030",
@@ -271,7 +376,8 @@
       "impact": "Bad recovery state",
       "required_controls": "Content-addressed snapshot and safe extraction",
       "mandatory_test": "Tampered checkpoint test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-031",
@@ -280,7 +386,8 @@
       "impact": "Data loss",
       "required_controls": "Dry run and explicit delete-extra authority",
       "mandatory_test": "Recovery deletion test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-032",
@@ -289,7 +396,8 @@
       "impact": "Integrity failures after normal use",
       "required_controls": "Static/runtime physical separation",
       "mandatory_test": "Mutable DB exclusion regression",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-033",
@@ -298,7 +406,8 @@
       "impact": "Untrusted deliverable",
       "required_controls": "Freeze, final-location reopen and rehash",
       "mandatory_test": "Mutation test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-034",
@@ -307,7 +416,8 @@
       "impact": "Release loss",
       "required_controls": "Durability gate and external location verification",
       "mandatory_test": "Cleanup/retrieval drill",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-035",
@@ -316,7 +426,8 @@
       "impact": "Code execution or tainted release",
       "required_controls": "Pinned hashes, SBOM, provenance, review",
       "mandatory_test": "Dependency integrity test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-036",
@@ -325,7 +436,12 @@
       "impact": "Cost and availability impact",
       "required_controls": "Attempt, time, CPU, memory and cost budgets",
       "mandatory_test": "Circuit-breaker test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-037",
@@ -334,7 +450,8 @@
       "impact": "Wrong architecture or behaviour",
       "required_controls": "Uncertainty Ledger and provenance",
       "mandatory_test": "Unknown promotion denial",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-038",
@@ -343,7 +460,8 @@
       "impact": "Misleading performance claims",
       "required_controls": "Hidden tasks, repeated trials, independent grading",
       "mandatory_test": "Holdout benchmark",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-039",
@@ -352,7 +470,12 @@
       "impact": "Unsafe operator trust",
       "required_controls": "Capability-to-doc traceability and limitations",
       "mandatory_test": "Documentation audit",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-040",
@@ -361,7 +484,8 @@
       "impact": "System-wide unsafe delegation",
       "required_controls": "Approvals, critical quorum, signed audit, least privilege",
       "mandatory_test": "Critical-operation quorum test",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-041",
@@ -370,7 +494,12 @@
       "impact": "Accepted source diverges",
       "required_controls": "Isolated clone, broker delta, clean reconstruction, PromotionIntent and Git CAS",
       "mandatory_test": "Stale-base and crash-point promotion suite",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-042",
@@ -379,7 +508,12 @@
       "impact": "Data loss or hidden authority",
       "required_controls": "Mediated model-call broker, minimization, provider row and tool denial",
       "mandatory_test": "Transmission-canary and built-in-tool denial suite",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-043",
@@ -388,7 +522,12 @@
       "impact": "External host access",
       "required_controls": "Final-handle containment and supported-platform fail-closed policy",
       "mandatory_test": "Windows reparse and concurrent-swap corpus",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-044",
@@ -397,7 +536,8 @@
       "impact": "Duplicate consequential action",
       "required_controls": "OUTCOME_UNKNOWN, reconciliation and no automatic irreversible retry",
       "mandatory_test": "Crash after dispatch before receipt persistence",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-045",
@@ -406,7 +546,8 @@
       "impact": "False audit narrative",
       "required_controls": "Same-transaction events plus independent external anchors",
       "mandatory_test": "Gap, fork, rollback and stale-anchor suite",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-046",
@@ -415,7 +556,12 @@
       "impact": "Unauthorized authority",
       "required_controls": "Typed domain separation, key purposes, rotation and revocation",
       "mandatory_test": "Cross-object and wrong-purpose signature suite",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-047",
@@ -424,7 +570,12 @@
       "impact": "Unrevocable privileged action",
       "required_controls": "Offline v8.0 verification/read-only support row",
       "mandatory_test": "Offline issuance and redemption denial",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "CONTROL_EXERCISED_AWAITING_INDEPENDENT_REVIEW",
+      "stage_3_evidence": [
+        "tests/stage3",
+        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
     },
     {
       "id": "TM-048",
@@ -433,7 +584,8 @@
       "impact": "Invalid efficacy claim",
       "required_controls": "Preregistration, sealed custody, fixed stopping and new holdout after behavior change",
       "mandatory_test": "Holdout access and rerun audit",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-049",
@@ -442,7 +594,8 @@
       "impact": "Privacy, secret or contractual breach",
       "required_controls": "Pre-persistence classification, minimization, encryption, purge and holds",
       "mandatory_test": "Retention, purge and backup-deletion suite",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     },
     {
       "id": "TM-050",
@@ -451,7 +604,8 @@
       "impact": "System-wide false authority",
       "required_controls": "Kill switch, mass revocation, quarantine, rotation, recovery point and re-attestation",
       "mandatory_test": "Executable compromise recovery drill",
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_3_status": "OPEN_LATER_STAGE"
     }
   ]
 }

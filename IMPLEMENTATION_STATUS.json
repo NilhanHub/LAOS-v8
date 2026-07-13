@@ -1,18 +1,22 @@
 {
   "known_regression_count": 40,
-  "milestone": 2,
-  "milestone_name": "Typed v8 kernel and strict validation",
-  "next_milestone": 3,
+  "milestone": 4,
+  "milestone_name": "Mandatory Security Spine through policy and risk classification",
+  "next_milestone": 5,
   "requirement_count": 241,
   "stage0_historical_requirement_count": 210,
   "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
   "stage_1_status": "COMPLETE",
-  "status": "STAGE_2_COMPLETE_TYPED_KERNEL_IMPLEMENTED_V8_RUNTIME_NOT_IMPLEMENTED",
+  "status": "STAGE_3_REVIEW_CANDIDATE_LOCAL_SECURITY_SPINE_IMPLEMENTED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
   "target_release": "8.0.0",
   "v7_0_1_release_exists": false,
   "v7_track": "FIXTURE_ONLY",
   "v8_release_exists": false,
   "v8_runtime_exists": false,
   "stage_2_status": "COMPLETE",
-  "typed_kernel_exists": true
+  "typed_kernel_exists": true,
+  "stage_3_status": "AWAITING_NILHAN_REVIEW",
+  "security_spine_exists": true,
+  "security_spine_assurance": "LOCAL_TEST_PROFILE_AWAITING_INDEPENDENT_REVIEW",
+  "real_weaker_agent_executed": false
 }

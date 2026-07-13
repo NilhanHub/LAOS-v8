@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "stage": 3,
+  "check_count": 8,
+  "checks": [
+    "stage2_approval_and_stage3_truth",
+    "reviewed_ed25519_dependency_amendment",
+    "deployment_sandbox_and_enforcement_contracts",
+    "real_local_security_profile_evidence",
+    "fail_closed_path_policy_and_claim_runtime",
+    "requirements_threats_support_and_blockers",
+    "no_tracked_runtime_state_or_private_keys",
+    "minimal_pre_alpha_operator_paths"
+  ]
+}

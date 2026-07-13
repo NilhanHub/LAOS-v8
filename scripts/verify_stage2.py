@@ -154,7 +154,11 @@ def verify_platform(checks: list[str]) -> None:
     if not local["sqlite_wal_reset_fix_verified"]:
         require(local["sqlite_journal_mode"] == "DELETE", "Unverified SQLite selected WAL")
     support = load("SUPPORTED_ENVIRONMENTS.json")
-    require("PRIVILEGED_RUNTIME_UNCLAIMED" in support["claim_status"], "Support matrix overclaims runtime")
+    support_claim = support["claim_status"]
+    require(
+        "UNCLAIMED" in support_claim and ("PRIVILEGED_RUNTIME" in support_claim or "PRODUCTION" in support_claim),
+        "Support matrix overclaims runtime",
+    )
     require(len(support["kernel_ci_matrix"]) == 8, "Expected eight configured CI combinations")
     checks.append("platform_matrix_and_safe_sqlite_fallback")
 
@@ -192,7 +196,15 @@ def verify_governance(checks: list[str]) -> None:
 def verify_generated_evidence(checks: list[str]) -> None:
     dependency = load("Evidence/STAGE_2_DEPENDENCY_POC.json")
     require(dependency["status"] == "PASS", "Dependency proof of concept failed")
-    require(dependency["uv_lock_sha256"] == sha256(ROOT / "uv.lock"), "Dependency lock changed after evidence")
+    current_lock = sha256(ROOT / "uv.lock")
+    if dependency["uv_lock_sha256"] != current_lock:
+        amendment = load("Evidence/STAGE_3_DEPENDENCY_AMENDMENT.json")
+        require(
+            amendment["prior_uv_lock_sha256"] == dependency["uv_lock_sha256"]
+            and amendment["current_uv_lock_sha256"] == current_lock
+            and amendment["status"] == "REVIEWED_AND_LOCKED",
+            "Dependency lock changed without a reviewed amendment",
+        )
     migration = load("Evidence/STAGE_2_MIGRATION_DISCOVERY.json")
     require(migration["mode"] == "READ_ONLY_NO_EXTRACTION", "Migration discovery extracted the v7 archive")
     require(migration["source_sha256"] == EXPECTED_V7, "Migration source digest mismatch")
