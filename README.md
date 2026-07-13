@@ -1,6 +1,6 @@
 # LAOS v8 rebuild repository
 
-**Current state: Stage 2 review candidate; typed kernel implemented; LAOS v8 privileged runtime not implemented.**
+**Current state: Stage 2 complete; Stage 3 authorized; LAOS v8 privileged runtime not implemented.**
 
 This repository now contains the Stage 1 recovery/governance baseline and the Stage 2 strict typed kernel: canonical
 models, Draft 2020-12 schemas, fail-closed parsing, stable errors, transition tables, canonical hashing, platform

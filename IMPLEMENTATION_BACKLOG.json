@@ -32,7 +32,7 @@
       "depends_on": [
         1
       ],
-      "status": "REVIEW_CANDIDATE",
+      "status": "COMPLETED",
       "tasks": [
         {
           "id": "S2-CONTRACT",
@@ -47,7 +47,7 @@
         {
           "id": "S2-REVIEW",
           "title": "Obtain required independent review",
-          "status": "AWAITING_NILHAN_REVIEW"
+          "status": "COMPLETED"
         }
       ]
     },

@@ -168,14 +168,22 @@ def verify_governance(checks: list[str]) -> None:
         "A release blocker was prematurely closed",
     )
     status = load("IMPLEMENTATION_STATUS.json")
-    require(status["stage_2_status"] == "AWAITING_NILHAN_REVIEW", "Stage 2 review state is dishonest")
+    require(status["stage_2_status"] in {"AWAITING_NILHAN_REVIEW", "COMPLETE"}, "Stage 2 review state is dishonest")
+    if status["stage_2_status"] == "COMPLETE":
+        review = load("Evidence/STAGE_2_REVIEW.json")
+        require(
+            review["status"] == "APPROVED"
+            and review["reviewer"] == "Nilhan"
+            and review["reviewed_candidate_tag"] == "stage2-review-candidate",
+            "Stage 2 completion lacks Nilhan approval",
+        )
     require(status["typed_kernel_exists"] is True, "Typed kernel status missing")
     require(
         status["v8_runtime_exists"] is False and status["v8_release_exists"] is False, "Runtime or release overclaim"
     )
     stage2 = next(row for row in load("PROGRAM_STAGE_LEDGER.json")["stages"] if row["stage"] == 2)
     require(
-        stage2["status"] == "REVIEW_CANDIDATE" and stage2["independent_reviewer"] == "Nilhan",
+        stage2["status"] in {"REVIEW_CANDIDATE", "COMPLETED"} and stage2["independent_reviewer"] == "Nilhan",
         "Stage 2 review assignment mismatch",
     )
     checks.append("plan_stage_and_open_blocker_truth")
