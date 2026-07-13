@@ -1,0 +1,153 @@
+{
+  "record_version": "1.0.0",
+  "created_at_utc": "2026-07-13T07:50:08.942201+00:00",
+  "status": "PASS_AWAITING_NILHAN_REVIEW",
+  "assurance": "BOOTSTRAP_NOT_PRODUCTION_SIGNING",
+  "stage": 2,
+  "stage_name": "Typed kernel and platform contracts",
+  "clean_reconstruction": true,
+  "reconstructed_commit": "806d1cd1f16ed96af7c17be15790c5f0314a5a1a",
+  "expected_commit": "806d1cd1f16ed96af7c17be15790c5f0314a5a1a",
+  "reconstructed_tree": "609552645cc3a163427c7a36562e4a6e94712a30",
+  "reconstruction_worktree_clean_after_gates": true,
+  "commands": [
+    {
+      "argv": [
+        "sync",
+        "--frozen"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Checked 44 packages in 99ms\n",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src",
+        "tests/stage2",
+        "scripts/generate_stage2_contracts.py",
+        "scripts/generate_stage2_evidence.py",
+        "scripts/reconcile_stage2_records.py",
+        "scripts/verify_stage2.py",
+        "scripts/build_stage2_candidate_evidence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 14 source files\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "................................                                         [100%]\n32 passed in 8.90s\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage1.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks\": [\n    \"stage0_tag_target\",\n    \"authoritative_plan_digest\",\n    \"ten_stage_plan_subordinate\",\n    \"embedded_v7_digest\",\n    \"requirements_241_reconciled\",\n    \"ten_stage_ledger\",\n    \"milestones_0_to_16\",\n    \"release_blockers_open\",\n    \"threats_50_open\",\n    \"eight_fixture_specs\",\n    \"v7_fixture_source_observations\",\n    \"honest_implementation_status\",\n    \"fixture_only_decision\",\n    \"auxiliary_ledgers_parse\"\n  ],\n  \"check_count\": 14\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage2.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"stage\": 2,\n  \"check_count\": 8,\n  \"checks\": [\n    \"plan_stage_and_open_blocker_truth\",\n    \"forty_hashed_draft_2020_12_schemas\",\n    \"fail_closed_parser_schema_and_migration\",\n    \"unauthorized_side_effect_fails_before_external_operation\",\n    \"platform_matrix_and_safe_sqlite_fallback\",\n    \"dependency_and_read_only_migration_evidence\",\n    \"stable_errors_transitions_and_canonical_vector\",\n    \"provisional_pre_alpha_budgets\"\n  ]\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "build"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\laos_v8-8.0.0a2.tar.gz\nSuccessfully built dist\\laos_v8-8.0.0a2-py3-none-any.whl\n",
+      "status": "PASS"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
+      "bytes": 146471,
+      "sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 179381,
+      "sha256": "d9212276c842f7555a9da1df44249246d2b881424c35656efb4d9ec529d213ed"
+    },
+    {
+      "path": "schemas/SCHEMA_REGISTRY.json",
+      "bytes": 6204,
+      "sha256": "cb64079afc10033f7c1a7f59c07ce27b60129a9fe4fbe8af625075a0b0d59b91"
+    },
+    {
+      "path": "schemas/ERROR_CODES.json",
+      "bytes": 1408,
+      "sha256": "f83e33aafb02ebf5a21aa531ce6135a1d6a171768f98e07af8821a5773478ae5"
+    },
+    {
+      "path": "schemas/TRANSITION_TABLES.json",
+      "bytes": 2742,
+      "sha256": "c17e21b45d8f9d991ab63ba10e973c4121078085e66b2ba8218c895291892888"
+    },
+    {
+      "path": "schemas/golden/canonicalization-v1.json",
+      "bytes": 809,
+      "sha256": "7a07b97930d80b8ea26378509eb837ec18c7e5be170dc7c0c096dd7931e5e76a"
+    },
+    {
+      "path": "baseline/source/LAOS_v7.0_Complete_System(1).zip",
+      "bytes": 388876,
+      "sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d"
+    },
+    {
+      "path": "dist/laos_v8-8.0.0a2.tar.gz",
+      "bytes": 718105,
+      "sha256": "3e817a06a6cd2f5073cf9dc9b7194bd4297a0ecd2cf34aee6b23a5d31c95c016"
+    },
+    {
+      "path": "dist/laos_v8-8.0.0a2-py3-none-any.whl",
+      "bytes": 18568,
+      "sha256": "fee5abc7a5460ef6308bdd4559760262e256fef2c80521869f41af1da152a2de"
+    }
+  ],
+  "release_blockers_closed": [],
+  "release_blocker_count_open": 25,
+  "independent_reviewer": "Nilhan",
+  "typed_kernel_implemented": true,
+  "privileged_v8_runtime_implemented": false,
+  "v8_release_published": false
+}
