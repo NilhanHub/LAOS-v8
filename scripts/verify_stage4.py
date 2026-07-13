@@ -30,6 +30,7 @@ def verify() -> list[str]:
         in {
             "AWAITING_NILHAN_AND_INDEPENDENT_REVIEWER_GO_NO_GO",
             "NILHAN_GO_AWAITING_SECOND_INDEPENDENT_REVIEW",
+            "COMPLETE",
         },
         "Stage 4 status overclaim",
     )
@@ -89,17 +90,29 @@ def verify() -> list[str]:
     coverage = load("STAGE_4_ALPHA_COVERAGE.json")["coverage"]
     require(len(coverage) == 13, "Alpha coverage ledger is incomplete")
     require(
-        coverage[-1]["status"] in {"AWAITING_REVIEW", "NILHAN_GO_AWAITING_SECOND_REVIEW"},
-        "go/no-go was overstated",
+        coverage[-1]["status"]
+        in {"AWAITING_REVIEW", "NILHAN_GO_AWAITING_SECOND_REVIEW", "PASS_NILHAN_SOLE_REVIEW"},
+        "go/no-go status is invalid",
     )
     review = load("Evidence/STAGE_4_REVIEW.json")
-    require(
-        review["status"] in {"AWAITING_REVIEW", "AWAITING_SECOND_INDEPENDENT_REVIEW"}
-        and review["scope_frozen"] is False,
-        "review status is dishonest",
-    )
+    if review["status"] == "APPROVED":
+        require(review["scope_frozen"] is True, "approved Stage 4 did not freeze scope")
+        require(review["review_authority_model"] == "NILHAN_SOLE_HUMAN_REVIEWER", "review authority changed")
+        require(review["independent_reviewer"].startswith("Nilhan"), "Nilhan approval missing")
+        amendment = ROOT / "docs/GOVERNANCE_REVIEW_AUTHORITY_AMENDMENT_2026-07-13.md"
+        require(
+            amendment.is_file() and "ACCEPTED BY NILHAN" in amendment.read_text(encoding="utf-8"),
+            "amendment missing",
+        )
+    else:
+        require(
+            review["status"] in {"AWAITING_REVIEW", "AWAITING_SECOND_INDEPENDENT_REVIEW"}
+            and review["scope_frozen"] is False,
+            "review status is dishonest",
+        )
     stage4 = next(row for row in load("PROGRAM_STAGE_LEDGER.json")["stages"] if row["stage"] == 4)
-    require(stage4["status"] == "REVIEW_CANDIDATE" and stage4["owner"] == "Codex", "stage ledger mismatch")
+    require(stage4["status"] in {"REVIEW_CANDIDATE", "COMPLETED"}, "stage ledger status is invalid")
+    require(stage4["owner"] == "Codex" and stage4["independent_reviewer"] == "Nilhan", "stage roles mismatch")
     checks.append("coverage_and_review_gate")
     return checks
 
@@ -107,11 +120,12 @@ def verify() -> list[str]:
 def main() -> int:
     checks = verify()
     review = load("Evidence/STAGE_4_REVIEW.json")
-    status = (
-        "PASS_AWAITING_SECOND_INDEPENDENT_REVIEW"
-        if review["status"] == "AWAITING_SECOND_INDEPENDENT_REVIEW"
-        else "PASS_AWAITING_TWO_PARTY_GO_NO_GO_REVIEW"
-    )
+    if review["status"] == "APPROVED":
+        status = "PASS_STAGE_4_COMPLETE_NILHAN_SOLE_REVIEW"
+    elif review["status"] == "AWAITING_SECOND_INDEPENDENT_REVIEW":
+        status = "PASS_AWAITING_SECOND_INDEPENDENT_REVIEW"
+    else:
+        status = "PASS_AWAITING_TWO_PARTY_GO_NO_GO_REVIEW"
     print(json.dumps({"status": status, "checks": checks}, indent=2))
     return 0
 

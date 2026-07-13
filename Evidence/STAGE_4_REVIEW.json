@@ -1,12 +1,14 @@
 {
   "stage": 4,
-  "status": "AWAITING_SECOND_INDEPENDENT_REVIEW",
-  "nilhan_decision": "APPROVED_CONTINUE_TO_STAGE_5_AFTER_REQUIRED_SECOND_REVIEW",
-  "independent_reviewer": null,
-  "independent_reviewer_decision": null,
+  "status": "APPROVED",
+  "nilhan_decision": "APPROVED_CONTINUE_TO_STAGE_5",
+  "independent_reviewer": "Nilhan (sole human reviewer independent from Codex implementer)",
+  "independent_reviewer_decision": "APPROVED",
   "reviewed_candidate_commit": "8cc1405d503b6e5dca26e5d756391ae33b5f4bb0",
   "reviewed_candidate_tag": "stage4-review-candidate-v2",
-  "go_no_go": "NILHAN_GO_SECOND_REVIEW_PENDING",
-  "scope_frozen": false,
+  "go_no_go": "GO_CONTINUE_ARCHITECTURE_WITH_DOCUMENTED_CALIBRATIONS",
+  "scope_frozen": true,
+  "review_authority_model": "NILHAN_SOLE_HUMAN_REVIEWER",
+  "governance_amendment": "docs/GOVERNANCE_REVIEW_AUTHORITY_AMENDMENT_2026-07-13.md",
   "assurance": "BOOTSTRAP_NOT_PRODUCTION_SIGNING"
 }

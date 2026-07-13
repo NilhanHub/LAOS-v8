@@ -84,6 +84,12 @@
       "title": "Evidence custody and external anchoring",
       "status": "PROPOSED",
       "owner_stage": 6
+    },
+    {
+      "id": "ADR-0015",
+      "title": "Nilhan as sole human review authority",
+      "status": "ACCEPTED_2026_07_13",
+      "owner_stage": 4
     }
   ]
 }

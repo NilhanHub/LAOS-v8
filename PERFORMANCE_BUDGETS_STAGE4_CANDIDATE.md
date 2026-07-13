@@ -1,6 +1,6 @@
 # LAOS v8 Stage 4 performance-budget candidate
 
-Status: **AWAITING GO/NO-GO REVIEW; NOT FROZEN**
+Status: **APPROVED AND FROZEN BY NILHAN FOR THE ALPHA REFERENCE ROW**
 
 The eight-trial local pilot observed model-call times of roughly 3.1–3.8 seconds for two trivial development tasks. These observations are not production SLOs. The following conservative low-risk Alpha ceilings are proposed:
 

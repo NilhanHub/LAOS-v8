@@ -1,7 +1,7 @@
 # LAOS v8 rebuild repository
 
-**Current state: Stage 3 Mandatory Security Spine complete; Stage 4 Alpha Vertical Trust Slice is a review
-candidate awaiting the required two-party go/no-go decision; the full LAOS v8 runtime is not implemented.**
+**Current state: Stage 4 Alpha Vertical Trust Slice complete and Stage 5 authorized; the full LAOS v8 runtime is
+not implemented.**
 
 The repository contains the Stage 1 recovery/governance baseline, the accepted Stage 2 typed kernel, and a Stage 3
 accepted local Security Spine. Stage 3 implements transactional local SQLite state, repository seals,
@@ -15,6 +15,10 @@ reconstruction, a protected Docker check, result-bound evidence, an independent 
 Git compare-and-swap promotion. The development pilot is deliberately small and supports architecture pruning and
 budget calibration only; it is not a final efficacy claim. See `docs/STAGE_4_ALPHA_CONTRACT.md`,
 `STAGE_4_GO_NO_GO_AND_SCOPE_FREEZE_CANDIDATE.md`, and `Evidence/STAGE_4_ALPHA_RUNTIME/run.json`.
+
+Nilhan is the sole human reviewer and go/no-go authority, independent from Codex as implementer. See
+`docs/GOVERNANCE_REVIEW_AUTHORITY_AMENDMENT_2026-07-13.md`. Runtime role separation and technical independence
+gates remain mandatory.
 
 The active plan is root `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1. `LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md` is a subordinate execution index. Earlier documents under `design_inputs/` are historical Stage 0 inputs.
 
