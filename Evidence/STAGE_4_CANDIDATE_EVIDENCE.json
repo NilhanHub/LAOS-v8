@@ -1,0 +1,40 @@
+{
+  "assurance": "BOOTSTRAP_NOT_PRODUCTION_SIGNING",
+  "bundle": {
+    "bytes": 854179,
+    "path": "D:/Repo/LAOS/LAOS_v8_STAGE_4_REVIEW_CANDIDATE_V2.git.bundle",
+    "sha256": "f1f9b313778ab38c2ad314705f39f6debd20fa1c130f806b0b4ad34138bf946c",
+    "verified_complete_history": true
+  },
+  "candidate_commit": "8cc1405d503b6e5dca26e5d756391ae33b5f4bb0",
+  "candidate_tag": "stage4-review-candidate-v2",
+  "candidate_tree": "dbd68c73c84615eccbb679236569646bca2cf5d0",
+  "first_candidate_retained_as_failed": "stage4-review-candidate",
+  "gates": {
+    "build": "PASS",
+    "mypy": "PASS",
+    "pytest": "PASS_68",
+    "ruff_scoped": "PASS",
+    "uv_sync_frozen": "PASS",
+    "verify_stage1": "PASS",
+    "verify_stage2": "PASS",
+    "verify_stage3": "PASS",
+    "verify_stage4": "PASS_AWAITING_TWO_PARTY_GO_NO_GO_REVIEW"
+  },
+  "hashed_artifacts": {
+    "ALPHA_EXPERIMENT_PROTOCOL.json": "8e5ede366942daaa3a8a561588e4b96ed38a7d92161fac92a40ba6505c60bb89",
+    "Evidence/STAGE_4_ALPHA_PILOT.json": "9a4c102b66243d922dcba61e7ec98fe349243b39b8bbec827cc4ccaaada31d36",
+    "Evidence/STAGE_4_ALPHA_RUNTIME/run.json": "3b6d71eb44a3220213eeb316d07c19d0c11c3100d988b7d06c60d6775a4f94c4",
+    "Evidence/STAGE_4_ALPHA_RUNTIME/state-export.json": "5d0fdd2ad180448448836b25adefa57c113b50aa1e9e45f5d0e33831e90e510c",
+    "PERFORMANCE_BUDGETS_STAGE4_CANDIDATE.md": "e30dc086a915fed8f599c3ac2cc738b4dae34a3388dd03085a6f7575b508dfe3",
+    "STAGE_4_ALPHA_COVERAGE.json": "9cc7121052a33d0f59a43d85282ac3286d2fd8d366305f8990c519a7754c1233",
+    "STAGE_4_GO_NO_GO_AND_SCOPE_FREEZE_CANDIDATE.md": "9f39a015168853086449d4c53f492e90fc6cd803f909494491e1e0f4716ad054",
+    "docs/STAGE_4_ALPHA_CONTRACT.md": "d28abea458965f1f7d83828564158870cd77764c9919df5a65f650c7521ad714",
+    "uv.lock": "3f0cc1751cbee98763cba58a6e0f6211fb49bd2772562a95bf6016224fd537ed"
+  },
+  "reconstructed_worktree_clean": true,
+  "stage": 4,
+  "status": "PASS_AWAITING_NILHAN_AND_SECOND_INDEPENDENT_REVIEWER",
+  "v8_release_claimed": false,
+  "v8_runtime_claimed": false
+}
