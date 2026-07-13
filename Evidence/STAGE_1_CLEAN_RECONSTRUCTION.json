@@ -1,0 +1,26 @@
+{
+  "record_version": "1.0.0",
+  "assurance": "BOOTSTRAP",
+  "status": "PASS_AWAITING_NILHAN_REVIEW",
+  "source_commit": "8fac211c8e9e17c45760f34aadb42412a0c10d15",
+  "clone_head": "8fac211c8e9e17c45760f34aadb42412a0c10d15",
+  "clone_method": "git clone --no-local into a new temporary directory",
+  "clone_dirty_after_verification": false,
+  "tracked_file_count": 141,
+  "checks": {
+    "stage1_verifier_exit": 0,
+    "stage1_verifier_check_count": 14,
+    "pytest_exit": 0,
+    "pytest_result": "4 passed",
+    "authoritative_plan_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+    "plan_review_sha256": "3f5ff1c1103eee6136d55eebaed6f89f6cd78199e244f678717cc9a8cff8ef7f",
+    "embedded_v7_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d"
+  },
+  "failed_attempt_retained": {
+    "cause": "Global Git autocrlf changed plan bytes in the first fresh checkout.",
+    "observed_wrong_checkout_sha256": "009c5d9ca426715a7e6e2454a1c1a75266af9791225551d5c74a2c64e56ebb0f",
+    "repair": "Track the authoritative plan and review with -text in .gitattributes.",
+    "repair_commit": "8fac211c8e9e17c45760f34aadb42412a0c10d15"
+  },
+  "truth_boundary": "This proves clean reconstruction of the Stage 1 candidate. Nilhan review remains pending; no stage1-complete tag, v7.0.1 claim, v8 runtime claim, or v8 release claim is authorized."
+}

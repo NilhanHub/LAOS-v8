@@ -2,6 +2,8 @@
 
 **PASS — implementation candidate created; Nilhan review remains pending.**
 
+The first subsequent clean checkout exposed line-ending conversion of the authoritative plan. Commit `8fac211c8e9e17c45760f34aadb42412a0c10d15` added byte-preservation attributes. The corrected clean-clone result is recorded in `Evidence/STAGE_1_CLEAN_RECONSTRUCTION.json`.
+
 - Assurance: `BOOTSTRAP`
 - Verified content tree: `72a54a660bb87374b606d7849178f16f518fb298`
 - Stage 0 tag target: `9a98570803b78e29dada15ae7ee9f84feaf05284`
