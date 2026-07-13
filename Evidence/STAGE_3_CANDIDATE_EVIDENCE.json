@@ -1,0 +1,195 @@
+{
+  "record_version": "1.0.0",
+  "created_at_utc": "2026-07-13T13:54:12.270913+00:00",
+  "status": "PASS_AWAITING_NILHAN_REVIEW",
+  "assurance": "BOOTSTRAP_NOT_PRODUCTION_SIGNING",
+  "stage": 3,
+  "stage_name": "Mandatory Security Spine",
+  "clean_reconstruction": true,
+  "reconstructed_commit": "6e0f84dae644c245011cc1d05354b1fe65a1a767",
+  "expected_commit": "6e0f84dae644c245011cc1d05354b1fe65a1a767",
+  "reconstructed_tree": "bd289ebe5ccb94ee5758258efeda0a8378d17252",
+  "reconstruction_worktree_clean_after_gates": true,
+  "commands": [
+    {
+      "argv": [
+        "sync",
+        "--frozen"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Checked 47 packages in 73ms\n",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src",
+        "tests/stage2",
+        "tests/stage3",
+        "scripts/generate_stage3_evidence.py",
+        "scripts/reconcile_stage3_records.py",
+        "scripts/verify_stage2.py",
+        "scripts/verify_stage3.py",
+        "scripts/build_stage3_candidate_evidence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 27 source files\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "..............................................................           [100%]\n62 passed in 18.09s\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "python",
+        "scripts/generate_stage3_evidence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"output\": \"Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json\"\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage1.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks\": [\n    \"stage0_tag_target\",\n    \"authoritative_plan_digest\",\n    \"ten_stage_plan_subordinate\",\n    \"embedded_v7_digest\",\n    \"requirements_241_reconciled\",\n    \"ten_stage_ledger\",\n    \"milestones_0_to_16\",\n    \"release_blockers_open\",\n    \"threats_50_open\",\n    \"eight_fixture_specs\",\n    \"v7_fixture_source_observations\",\n    \"honest_implementation_status\",\n    \"fixture_only_decision\",\n    \"auxiliary_ledgers_parse\"\n  ],\n  \"check_count\": 14\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage2.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"stage\": 2,\n  \"check_count\": 8,\n  \"checks\": [\n    \"plan_stage_and_open_blocker_truth\",\n    \"forty_hashed_draft_2020_12_schemas\",\n    \"fail_closed_parser_schema_and_migration\",\n    \"unauthorized_side_effect_fails_before_external_operation\",\n    \"platform_matrix_and_safe_sqlite_fallback\",\n    \"dependency_and_read_only_migration_evidence\",\n    \"stable_errors_transitions_and_canonical_vector\",\n    \"provisional_pre_alpha_budgets\"\n  ]\n}\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage3.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"stage\": 3,\n  \"check_count\": 8,\n  \"checks\": [\n    \"stage2_approval_and_stage3_truth\",\n    \"reviewed_ed25519_dependency_amendment\",\n    \"deployment_sandbox_and_enforcement_contracts\",\n    \"real_local_security_profile_evidence\",\n    \"fail_closed_path_policy_and_claim_runtime\",\n    \"requirements_threats_support_and_blockers\",\n    \"no_tracked_runtime_state_or_private_keys\",\n    \"minimal_pre_alpha_operator_paths\"\n  ]\n}\n",
+      "stderr": "warning: in the working copy of 'app.py', LF will be replaced by CRLF the next time Git touches it\n",
+      "status": "PASS"
+    },
+    {
+      "argv": [
+        "build"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\laos_v8-8.0.0a3.tar.gz\nSuccessfully built dist\\laos_v8-8.0.0a3-py3-none-any.whl\n",
+      "status": "PASS"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
+      "bytes": 146471,
+      "sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 215756,
+      "sha256": "3f0cc1751cbee98763cba58a6e0f6211fb49bd2772562a95bf6016224fd537ed"
+    },
+    {
+      "path": "docs/STAGE_3_ENFORCEMENT_CONTRACT.md",
+      "bytes": 3564,
+      "sha256": "86f7dacef51090cb23aee356ad6de34b6ea1c0e7259ee2c38bc0e762a91b2a7c"
+    },
+    {
+      "path": "docs/STAGE_3_OPERATOR_PATHS.md",
+      "bytes": 2632,
+      "sha256": "01dd01df1fc5ffcbf676d808600febfa4d845a4803c5d9cb28216c5dc4f34f3c"
+    },
+    {
+      "path": "SANDBOX_PROFILE.json",
+      "bytes": 1155,
+      "sha256": "9365717818430ba5edc86f88726dd5633e1d5152a2dfde20623e72b6956e14e1"
+    },
+    {
+      "path": "PERMISSION_ENFORCEMENT_MATRIX.json",
+      "bytes": 2918,
+      "sha256": "87388b664b2bb417e3afbd936c52d1c0ddfdeb3cb06197abdcc4bfacd8f52e20"
+    },
+    {
+      "path": "STAGE_3_THREAT_COVERAGE.json",
+      "bytes": 5990,
+      "sha256": "d54dcbd6beabd20dd3e856e75179da8729cb9180b7cab44cbb9aa530711734c0"
+    },
+    {
+      "path": "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json",
+      "bytes": 2033,
+      "sha256": "630d5854a2c7d83af208c6a4a37ba87605031892b93b52bcd6eca0faf1ea3606"
+    },
+    {
+      "path": "Evidence/STAGE_3_VERIFICATION.json",
+      "bytes": 442,
+      "sha256": "c2b4c5aa2f7a2f403f5eb89bb99b397b5887ee28b11908bd1df6b95d00dfa25f"
+    },
+    {
+      "path": "baseline/source/LAOS_v7.0_Complete_System(1).zip",
+      "bytes": 388876,
+      "sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d"
+    },
+    {
+      "path": "dist/laos_v8-8.0.0a3.tar.gz",
+      "bytes": 777546,
+      "sha256": "cfa9c9baf8d685e98c752170045fad00148130f3cd44bcd030b29a328d4ca0aa"
+    },
+    {
+      "path": "dist/laos_v8-8.0.0a3-py3-none-any.whl",
+      "bytes": 48186,
+      "sha256": "c1f14c96a419676d81830e2c3c271177306535ebcab218c2ad5d748283ffaf85"
+    }
+  ],
+  "release_blockers_closed": [],
+  "release_blocker_count_open": 25,
+  "independent_reviewer": "Nilhan",
+  "security_spine_local_test_profile_implemented": true,
+  "real_weaker_agent_executed": false,
+  "full_v8_runtime_implemented": false,
+  "production_signing_implemented": false,
+  "v8_release_published": false
+}
