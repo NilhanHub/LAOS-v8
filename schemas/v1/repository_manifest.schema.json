@@ -1,0 +1,113 @@
+{
+  "$defs": {
+    "ManifestEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Digest",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "file",
+            "symlink"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "link_target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Link Target"
+        },
+        "mode": {
+          "maximum": 4095,
+          "minimum": 0,
+          "title": "Mode",
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 1024,
+          "title": "Path",
+          "type": "string"
+        },
+        "size": {
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "kind",
+        "size",
+        "digest",
+        "mode",
+        "link_target"
+      ],
+      "title": "ManifestEntry",
+      "type": "object"
+    }
+  },
+  "$id": "https://schemas.nilhan.dev/laos/v8/repository_manifest/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "algorithm": {
+      "const": "laos-manifest-v1",
+      "default": "laos-manifest-v1",
+      "title": "Algorithm",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/ManifestEntry"
+      },
+      "maxItems": 100000,
+      "title": "Entries",
+      "type": "array"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "repository_manifest",
+      "default": "repository_manifest",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "entries"
+  ],
+  "title": "RepositoryManifest",
+  "type": "object"
+}

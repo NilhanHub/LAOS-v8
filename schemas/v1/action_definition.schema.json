@@ -1,0 +1,88 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/action_definition/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "criterion_ids": {
+      "items": {
+        "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+        "type": "string"
+      },
+      "maxItems": 1024,
+      "minItems": 1,
+      "title": "Criterion Ids",
+      "type": "array"
+    },
+    "permissions": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_]{2,63}$",
+        "type": "string"
+      },
+      "maxItems": 1024,
+      "title": "Permissions",
+      "type": "array"
+    },
+    "phase": {
+      "enum": [
+        "understand",
+        "plan",
+        "implement",
+        "verify",
+        "review",
+        "promote"
+      ],
+      "title": "Phase",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "action_definition",
+      "default": "action_definition",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "task_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Task Id",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "title",
+    "task_id",
+    "phase",
+    "criterion_ids",
+    "permissions"
+  ],
+  "title": "ActionDefinition",
+  "type": "object"
+}

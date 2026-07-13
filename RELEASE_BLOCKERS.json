@@ -68,7 +68,8 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "Nilhan",
+      "stage_2_note": "Typed parsing and validation are implemented, but the blocker remains open until protected canonical-state integration and independent verification exist."
     },
     {
       "id": "RB-007",

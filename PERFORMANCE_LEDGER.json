@@ -1,72 +1,112 @@
 {
-  "ledger_version": "0.1.0",
-  "status": "DEFINITIONS_REQUIRED_BEFORE_ALPHA",
+  "ledger_version": "1.0.0",
+  "status": "PROVISIONAL_CIRCUIT_BREAKERS_DEFINED_ALPHA_MEASUREMENT_REQUIRED",
   "metrics": [
     {
       "id": "manifest_time_memory",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_entries": 100000,
+        "max_input_bytes": 1073741824,
+        "max_seconds": 60,
+        "max_peak_bytes": 2147483648
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "pack_size_latency",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_output_bytes": 104857600,
+        "max_seconds": 60
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "state_contention",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "p95_target_ms": 250,
+        "busy_timeout_seconds": 30
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "sandbox_startup",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_seconds": 60
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "evidence_growth",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_bytes_per_action": 1073741824
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "full_suite_duration",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_seconds": 1800
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "flake_rate",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_percent": 0
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "tokens",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_per_action": 200000
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "cost",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_usd_per_action": 25
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "retries",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_per_action": 3
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     },
     {
       "id": "human_minutes",
-      "budget": null,
-      "measurement": "OPEN",
-      "owner_stage": 2
+      "budget": {
+        "max_per_action": 120
+      },
+      "measurement": "NOT_MEASURED_PRE_ALPHA",
+      "owner_stage": 2,
+      "status": "PROVISIONAL_NOT_A_PRODUCTION_CLAIM"
     }
-  ]
+  ],
+  "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
+  "policy": "PERFORMANCE_BUDGETS.md"
 }

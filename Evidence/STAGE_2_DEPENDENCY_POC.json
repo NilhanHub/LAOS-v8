@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "all_checks_pass": true,
+    "duplicate_key_rejected": true,
+    "jsonschema_draft_2020_12_available": true,
+    "pydantic_strict_extra_rejected": true,
+    "rfc8785_canonical_vector": true
+  },
+  "privileged_runtime_support_claimed": false,
+  "report_version": "1.0.0",
+  "resolved_packages": {
+    "hypothesis": "6.156.6",
+    "jsonschema": "4.26.0",
+    "mypy": "2.2.0",
+    "pydantic": "2.13.4",
+    "pytest": "9.1.1",
+    "rfc8785": "0.1.4",
+    "ruff": "0.15.21"
+  },
+  "scope": "LOCAL_TYPED_KERNEL_DEPENDENCY_POC",
+  "status": "PASS",
+  "uv_lock_sha256": "d9212276c842f7555a9da1df44249246d2b881424c35656efb4d9ec529d213ed"
+}

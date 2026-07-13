@@ -1,0 +1,147 @@
+{
+  "$defs": {
+    "Role": {
+      "enum": [
+        "architect",
+        "builder",
+        "investigator",
+        "tester",
+        "verifier",
+        "reviewer",
+        "approver",
+        "signer",
+        "release_verifier"
+      ],
+      "title": "Role",
+      "type": "string"
+    }
+  },
+  "$id": "https://schemas.nilhan.dev/laos/v8/action_capsule/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action_definition_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Action Definition Digest",
+      "type": "string"
+    },
+    "actor_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "attempt_sequence": {
+      "minimum": 1,
+      "title": "Attempt Sequence",
+      "type": "integer"
+    },
+    "audience": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Audience",
+      "type": "string"
+    },
+    "base_seal": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Base Seal",
+      "type": "string"
+    },
+    "capsule_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Capsule Id",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "expires_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "issued_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Issued At",
+      "type": "string"
+    },
+    "issuer_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Issuer Id",
+      "type": "string"
+    },
+    "policy_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Policy Digest",
+      "type": "string"
+    },
+    "profile_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Profile Digest",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "action_capsule",
+      "default": "action_capsule",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "revocation_epoch": {
+      "minimum": 0,
+      "title": "Revocation Epoch",
+      "type": "integer"
+    },
+    "role": {
+      "$ref": "#/$defs/Role"
+    },
+    "skill_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Skill Digest",
+      "type": "string"
+    },
+    "state_version": {
+      "minimum": 0,
+      "title": "State Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "capsule_id",
+    "issuer_id",
+    "actor_id",
+    "role",
+    "audience",
+    "action_definition_digest",
+    "base_seal",
+    "policy_digest",
+    "profile_digest",
+    "skill_digest",
+    "state_version",
+    "attempt_sequence",
+    "issued_at",
+    "expires_at",
+    "revocation_epoch"
+  ],
+  "title": "ActionCapsule",
+  "type": "object"
+}

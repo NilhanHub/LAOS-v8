@@ -1,0 +1,64 @@
+{
+  "categories": {
+    "blueprints": [
+      "LAOS_v7/examples/project_blueprint.example.json",
+      "LAOS_v7/schemas/project_blueprint.schema.json",
+      "LAOS_v7/templates/blueprints/audit_only.template.json",
+      "LAOS_v7/templates/blueprints/existing_project_feature.template.json",
+      "LAOS_v7/templates/blueprints/existing_project_takeover.template.json",
+      "LAOS_v7/templates/blueprints/new_project_blueprint.template.json",
+      "LAOS_v7/templates/blueprints/repair_and_recovery.template.json"
+    ],
+    "capture": [
+      "LAOS_v7/COPY_PASTE_INSTRUCTION_TO_CAPTURE_AGENT.txt",
+      "LAOS_v7/docs/EXISTING_APP_CAPTURE_SYSTEM.md",
+      "LAOS_v7/project_pack_assets/roles/capture_investigator.md",
+      "LAOS_v7/project_pack_assets/skills/repository-capture/SKILL.md",
+      "LAOS_v7/schemas/app_intelligence/capture_request.schema.json",
+      "LAOS_v7/templates/requests/existing_app_capture_request.template.json",
+      "LAOS_v7/tools/capture_runtime.py",
+      "LAOS_v7/tools/compile_capture_pack.py"
+    ],
+    "evidence": [
+      "LAOS_v7/legacy/release_evidence_v6/CONTENT_INTEGRITY_MANIFEST.json",
+      "LAOS_v7/legacy/release_evidence_v6/README.md",
+      "LAOS_v7/legacy/release_evidence_v6/build_verification.json",
+      "LAOS_v7/legacy/release_evidence_v6/master_validation.json",
+      "LAOS_v7/legacy/release_evidence_v6/self_tests.txt",
+      "LAOS_v7/project_pack_assets/skills/evidence-artifact/SKILL.md",
+      "LAOS_v7/release_evidence/CONTENT_INTEGRITY_MANIFEST.json",
+      "LAOS_v7/release_evidence/README.md",
+      "LAOS_v7/release_evidence/build_verification.json",
+      "LAOS_v7/release_evidence/docx_a11y_audit.json",
+      "LAOS_v7/release_evidence/docx_visual_qa.json",
+      "LAOS_v7/release_evidence/master_validation.json",
+      "LAOS_v7/release_evidence/secret_scan.json",
+      "LAOS_v7/release_evidence/self_tests.txt",
+      "LAOS_v7/schemas/evidence.schema.json",
+      "LAOS_v7/templates/app_intelligence/EVIDENCE_ITEM.template.json",
+      "LAOS_v7/templates/evidence/claim_to_evidence.md",
+      "LAOS_v7/templates/evidence/context_intake.md",
+      "LAOS_v7/templates/evidence/escalation_packet.md",
+      "LAOS_v7/templates/evidence/failure_paths.md",
+      "LAOS_v7/templates/evidence/final_task_truth.md",
+      "LAOS_v7/templates/evidence/negative_evidence.md",
+      "LAOS_v7/templates/evidence/plan_contract.md",
+      "LAOS_v7/templates/evidence/review.md",
+      "LAOS_v7/templates/evidence/test_results.md"
+    ],
+    "runtime": [
+      "LAOS_v7/laos_runtime.py"
+    ],
+    "tests": [
+      "LAOS_v7/legacy/tests/test_laos_v6.py",
+      "LAOS_v7/tests/test_laos_v7.py"
+    ]
+  },
+  "entry_count": 155,
+  "migration_status": "DISCOVERY_ONLY_NOT_MIGRATED",
+  "mode": "READ_ONLY_NO_EXTRACTION",
+  "report_version": "1.0.0",
+  "source_archive": "LAOS_v7.0_Complete_System(1).zip",
+  "source_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+  "unknown_fields_policy": "QUARANTINE_DURING_MIGRATION"
+}

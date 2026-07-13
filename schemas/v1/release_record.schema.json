@@ -1,0 +1,79 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/release_record/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_ids": {
+      "items": {
+        "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+        "type": "string"
+      },
+      "maxItems": 1024,
+      "minItems": 1,
+      "title": "Artifact Ids",
+      "type": "array"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "release_record",
+      "default": "release_record",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "release_gate_matrix_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Release Gate Matrix Digest",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "planned",
+        "built",
+        "hashed",
+        "extracted",
+        "retested",
+        "attested",
+        "frozen",
+        "published"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:[a-z0-9.-]+)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "version",
+    "artifact_ids",
+    "release_gate_matrix_digest",
+    "state"
+  ],
+  "title": "ReleaseRecord",
+  "type": "object"
+}

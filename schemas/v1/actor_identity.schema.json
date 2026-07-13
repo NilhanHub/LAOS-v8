@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "Role": {
+      "enum": [
+        "architect",
+        "builder",
+        "investigator",
+        "tester",
+        "verifier",
+        "reviewer",
+        "approver",
+        "signer",
+        "release_verifier"
+      ],
+      "title": "Role",
+      "type": "string"
+    }
+  },
+  "$id": "https://schemas.nilhan.dev/laos/v8/actor_identity/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "identity_issuer": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Identity Issuer",
+      "type": "string"
+    },
+    "principal": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Principal",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "actor_identity",
+      "default": "actor_identity",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "roles": {
+      "items": {
+        "$ref": "#/$defs/Role"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Roles",
+      "type": "array"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "principal",
+    "roles",
+    "identity_issuer"
+  ],
+  "title": "ActorIdentity",
+  "type": "object"
+}

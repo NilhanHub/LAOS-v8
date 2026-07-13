@@ -1,0 +1,59 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/capture_acceptance/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_by": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Accepted By",
+      "type": "string"
+    },
+    "accepted_source_seal": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Accepted Source Seal",
+      "type": "string"
+    },
+    "app_intelligence_return_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "App Intelligence Return Id",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "capture_acceptance",
+      "default": "capture_acceptance",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "app_intelligence_return_id",
+    "accepted_source_seal",
+    "accepted_by"
+  ],
+  "title": "CaptureAcceptanceRecord",
+  "type": "object"
+}

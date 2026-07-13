@@ -1,0 +1,69 @@
+{
+  "codes": [
+    {
+      "code": "AUTHORIZATION_DENIED",
+      "exception": "AuthorizationDenied"
+    },
+    {
+      "code": "EVIDENCE_INVALID",
+      "exception": "EvidenceError"
+    },
+    {
+      "code": "INPUT_RESOURCE_LIMIT",
+      "exception": "ResourceLimitError"
+    },
+    {
+      "code": "JSON_DUPLICATE_KEY",
+      "exception": "DuplicateKeyError"
+    },
+    {
+      "code": "JSON_PARSE_FAILED",
+      "exception": "ParseError"
+    },
+    {
+      "code": "LAOS_ERROR",
+      "exception": "LaosError"
+    },
+    {
+      "code": "POLICY_DENIED",
+      "exception": "PolicyDenied"
+    },
+    {
+      "code": "RELEASE_INVALID",
+      "exception": "ReleaseError"
+    },
+    {
+      "code": "REPOSITORY_DRIFT",
+      "exception": "RepositoryDrift"
+    },
+    {
+      "code": "REVIEW_INVALID",
+      "exception": "ReviewError"
+    },
+    {
+      "code": "SECURITY_CONTROL_FAILED",
+      "exception": "SecurityError"
+    },
+    {
+      "code": "SIDE_EFFECT_FAILED",
+      "exception": "SideEffectError"
+    },
+    {
+      "code": "STATE_CONFLICT",
+      "exception": "StateConflict"
+    },
+    {
+      "code": "UNKNOWN_RECORD_TYPE",
+      "exception": "UnknownRecordType"
+    },
+    {
+      "code": "UNSUPPORTED_RECORD_VERSION",
+      "exception": "UnsupportedRecordVersion"
+    },
+    {
+      "code": "VALIDATION_FAILED",
+      "exception": "ValidationError"
+    }
+  ],
+  "registry_version": "1.0.0"
+}

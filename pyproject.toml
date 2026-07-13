@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling==1.31.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "laos-v8"
+version = "8.0.0a2"
+description = "Typed, fail-closed kernel for the LAOS v8 control plane"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+license = { text = "Proprietary" }
+authors = [{ name = "Nilhan" }]
+dependencies = [
+  "jsonschema[format-nongpl]==4.26.0",
+  "pydantic==2.13.4",
+  "rfc8785==0.1.4",
+]
+
+[project.scripts]
+laos = "laos_v8.cli:main"
+
+[dependency-groups]
+dev = [
+  "build==1.5.1",
+  "coverage==7.15.1",
+  "hypothesis==6.156.6",
+  "mypy==2.2.0",
+  "pytest==9.1.1",
+  "ruff==0.15.21",
+  "types-jsonschema==4.26.0.20260518",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/laos_v8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-config --strict-markers"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF", "S"]
+ignore = ["S101"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+show_error_codes = true
+packages = ["laos_v8"]
+mypy_path = "src"

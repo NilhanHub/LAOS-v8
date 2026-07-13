@@ -622,7 +622,7 @@
     },
     {
       "category": "UNDERSTAND_PLAN",
-      "description": "Vague acknowledgements such as “I understand” must fail.",
+      "description": "Vague acknowledgements such as \u201cI understand\u201d must fail.",
       "id": "REQ-UNDERSTAND_PLAN-003",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
@@ -1767,7 +1767,7 @@
       "id": "REQ-SCHEMAS-001",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "IMPLEMENTED_AWAITING_REVIEW",
       "target_milestones": [
         2
       ],
@@ -1779,10 +1779,17 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
-      "release_blocking": true
+      "evidence_status": "BOOTSTRAP_EVIDENCE_CAPTURED",
+      "release_blocking": true,
+      "evidence": [
+        "schemas/SCHEMA_REGISTRY.json",
+        "schemas/ERROR_CODES.json",
+        "schemas/TRANSITION_TABLES.json",
+        "tests/stage2",
+        "Evidence/STAGE_2_VERIFICATION.json"
+      ]
     },
     {
       "category": "SCHEMAS",
@@ -1790,7 +1797,7 @@
       "id": "REQ-SCHEMAS-002",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "IMPLEMENTED_AWAITING_REVIEW",
       "target_milestones": [
         2
       ],
@@ -1802,10 +1809,17 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
-      "release_blocking": true
+      "evidence_status": "BOOTSTRAP_EVIDENCE_CAPTURED",
+      "release_blocking": true,
+      "evidence": [
+        "schemas/SCHEMA_REGISTRY.json",
+        "schemas/ERROR_CODES.json",
+        "schemas/TRANSITION_TABLES.json",
+        "tests/stage2",
+        "Evidence/STAGE_2_VERIFICATION.json"
+      ]
     },
     {
       "category": "SCHEMAS",
@@ -1813,7 +1827,7 @@
       "id": "REQ-SCHEMAS-003",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "IMPLEMENTED_AWAITING_REVIEW",
       "target_milestones": [
         2
       ],
@@ -1825,10 +1839,17 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
-      "release_blocking": true
+      "evidence_status": "BOOTSTRAP_EVIDENCE_CAPTURED",
+      "release_blocking": true,
+      "evidence": [
+        "schemas/SCHEMA_REGISTRY.json",
+        "schemas/ERROR_CODES.json",
+        "schemas/TRANSITION_TABLES.json",
+        "tests/stage2",
+        "Evidence/STAGE_2_VERIFICATION.json"
+      ]
     },
     {
       "category": "SCHEMAS",
@@ -1836,7 +1857,7 @@
       "id": "REQ-SCHEMAS-004",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         2
       ],
@@ -1848,9 +1869,9 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": true
     },
     {
@@ -1859,7 +1880,7 @@
       "id": "REQ-SCHEMAS-005",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "IMPLEMENTED_AWAITING_REVIEW",
       "target_milestones": [
         2
       ],
@@ -1871,10 +1892,17 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
-      "release_blocking": true
+      "evidence_status": "BOOTSTRAP_EVIDENCE_CAPTURED",
+      "release_blocking": true,
+      "evidence": [
+        "schemas/SCHEMA_REGISTRY.json",
+        "schemas/ERROR_CODES.json",
+        "schemas/TRANSITION_TABLES.json",
+        "tests/stage2",
+        "Evidence/STAGE_2_VERIFICATION.json"
+      ]
     },
     {
       "category": "SCHEMAS",
@@ -1882,7 +1910,7 @@
       "id": "REQ-SCHEMAS-006",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         2
       ],
@@ -1894,9 +1922,9 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": true
     },
     {
@@ -1905,7 +1933,7 @@
       "id": "REQ-SCHEMAS-007",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         2
       ],
@@ -1917,9 +1945,9 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": true
     },
     {
@@ -4340,7 +4368,7 @@
     },
     {
       "category": "EVALUATION",
-      "description": "“Orders-of-magnitude improvement” remains a target until supported by reproducible results.",
+      "description": "\u201cOrders-of-magnitude improvement\u201d remains a target until supported by reproducible results.",
       "id": "REQ-EVALUATION-010",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
@@ -4505,7 +4533,7 @@
       "id": "REQ-DOCUMENTATION-001",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4518,9 +4546,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4529,7 +4557,7 @@
       "id": "REQ-DOCUMENTATION-002",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4542,9 +4570,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4553,7 +4581,7 @@
       "id": "REQ-DOCUMENTATION-003",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4566,9 +4594,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4577,7 +4605,7 @@
       "id": "REQ-DOCUMENTATION-004",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4590,9 +4618,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4601,7 +4629,7 @@
       "id": "REQ-DOCUMENTATION-005",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4614,9 +4642,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4625,7 +4653,7 @@
       "id": "REQ-DOCUMENTATION-006",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4638,9 +4666,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4649,7 +4677,7 @@
       "id": "REQ-DOCUMENTATION-007",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4662,9 +4690,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4673,7 +4701,7 @@
       "id": "REQ-DOCUMENTATION-008",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4686,9 +4714,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4697,7 +4725,7 @@
       "id": "REQ-DOCUMENTATION-009",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4710,9 +4738,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4721,7 +4749,7 @@
       "id": "REQ-DOCUMENTATION-010",
       "priority": "P1",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -4734,9 +4762,9 @@
       ],
       "scope_classification": "SHOULD_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": false
     },
     {
@@ -4960,7 +4988,7 @@
       "id": "REQ-REVISION_1_1-002",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "IMPLEMENTED_AWAITING_REVIEW",
       "target_milestones": [
         2
       ],
@@ -4972,10 +5000,17 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
-      "release_blocking": true
+      "evidence_status": "BOOTSTRAP_EVIDENCE_CAPTURED",
+      "release_blocking": true,
+      "evidence": [
+        "schemas/SCHEMA_REGISTRY.json",
+        "schemas/ERROR_CODES.json",
+        "schemas/TRANSITION_TABLES.json",
+        "tests/stage2",
+        "Evidence/STAGE_2_VERIFICATION.json"
+      ]
     },
     {
       "category": "REVISION_1_1",
@@ -5244,7 +5279,7 @@
       "id": "REQ-REVISION_1_1-014",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "IMPLEMENTED_AWAITING_REVIEW",
       "target_milestones": [
         2
       ],
@@ -5256,10 +5291,17 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-2-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
-      "release_blocking": true
+      "evidence_status": "BOOTSTRAP_EVIDENCE_CAPTURED",
+      "release_blocking": true,
+      "evidence": [
+        "schemas/SCHEMA_REGISTRY.json",
+        "schemas/ERROR_CODES.json",
+        "schemas/TRANSITION_TABLES.json",
+        "tests/stage2",
+        "Evidence/STAGE_2_VERIFICATION.json"
+      ]
     },
     {
       "category": "REVISION_1_1",
@@ -5286,7 +5328,7 @@
     },
     {
       "category": "REVISION_1_1",
-      "description": "Evidence escrow: canonical proof is held outside the builder’s write authority while a signed project-facing index remains under the root `Evidence/` folder.",
+      "description": "Evidence escrow: canonical proof is held outside the builder\u2019s write authority while a signed project-facing index remains under the root `Evidence/` folder.",
       "id": "REQ-REVISION_1_1-016",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
@@ -5475,7 +5517,7 @@
     },
     {
       "category": "REVISION_1_1",
-      "description": "Typed cryptographic envelope: domain separation, exact bytes, trust bootstrap, key purpose, rotation, revocation, anti-downgrade, and compromise recovery replace “sign JSON” ambiguity.",
+      "description": "Typed cryptographic envelope: domain separation, exact bytes, trust bootstrap, key purpose, rotation, revocation, anti-downgrade, and compromise recovery replace \u201csign JSON\u201d ambiguity.",
       "id": "REQ-REVISION_1_1-024",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
@@ -5644,7 +5686,7 @@
       "id": "REQ-REVISION_1_1-031",
       "priority": "P0",
       "source": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
-      "status": "PLANNED",
+      "status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION",
       "target_milestones": [
         15
       ],
@@ -5657,9 +5699,9 @@
       ],
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
-      "owner": "stage-8-implementation-owner",
+      "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "evidence_status": "OPEN",
+      "evidence_status": "PARTIAL_STAGE_2_FOUNDATION_ONLY",
       "release_blocking": true
     }
   ],

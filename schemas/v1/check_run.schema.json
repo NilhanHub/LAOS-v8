@@ -1,0 +1,76 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/check_run/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "check_definition_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Check Definition Id",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "exit_code": {
+      "title": "Exit Code",
+      "type": "integer"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "check_run",
+      "default": "check_run",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "result_seal": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Result Seal",
+      "type": "string"
+    },
+    "source_seal": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Source Seal",
+      "type": "string"
+    },
+    "stderr_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Stderr Digest",
+      "type": "string"
+    },
+    "stdout_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Stdout Digest",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "check_definition_id",
+    "source_seal",
+    "result_seal",
+    "exit_code",
+    "stdout_digest",
+    "stderr_digest"
+  ],
+  "title": "CheckRun",
+  "type": "object"
+}

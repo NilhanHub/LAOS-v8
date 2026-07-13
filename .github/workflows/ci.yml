@@ -1,0 +1,33 @@
+name: LAOS v8 kernel
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  kernel:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+        python: ["3.11", "3.12", "3.13", "3.14"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
+        with:
+          version: "0.11.19"
+          enable-cache: false
+      - run: uv python install ${{ matrix.python }}
+      - run: uv sync --frozen --python ${{ matrix.python }}
+      - run: >-
+          uv run --frozen ruff check src tests/stage2
+          scripts/generate_stage2_contracts.py scripts/generate_stage2_evidence.py
+          scripts/reconcile_stage2_records.py scripts/verify_stage2.py
+      - run: uv run --frozen mypy
+      - run: uv run --frozen pytest -q
+      - run: uv run --frozen python scripts/verify_stage1.py
+      - run: uv run --frozen python scripts/verify_stage2.py

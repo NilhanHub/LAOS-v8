@@ -1,8 +1,11 @@
 # LAOS v8 rebuild repository
 
-**Current state: Stage 1 review candidate; LAOS v8 runtime not implemented.**
+**Current state: Stage 2 review candidate; typed kernel implemented; LAOS v8 privileged runtime not implemented.**
 
-This repository now contains recovery, governance, reconciled ledgers, migration mapping, and fixture-only v7 regressions. It does not contain a working LAOS v8 runtime and is not a v8 release.
+This repository now contains the Stage 1 recovery/governance baseline and the Stage 2 strict typed kernel: canonical
+models, Draft 2020-12 schemas, fail-closed parsing, stable errors, transition tables, canonical hashing, platform
+diagnostics, dependency locks, migration discovery, tests, and bootstrap evidence. It does not contain the Security
+Spine, a privileged working LAOS v8 runtime, or a v8 release.
 
 The active plan is root `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1. `LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md` is a subordinate execution index. Earlier documents under `design_inputs/` are historical Stage 0 inputs.
 
@@ -20,4 +23,5 @@ Start with:
 6. `RELEASE_BLOCKERS.json`
 7. `THREAT_REGISTER.json`
 
-Do not describe this repository as LAOS v8 released or runnable. The exact status is machine-readable in `IMPLEMENTATION_STATUS.json`.
+The `laos` Stage 2 CLI exposes diagnostics, status, schema export, and read-only migration discovery only. Do not
+describe it as an execution runtime or release. The exact status is machine-readable in `IMPLEMENTATION_STATUS.json`.

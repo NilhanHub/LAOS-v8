@@ -1,0 +1,75 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/evaluation_run/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "candidate_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Candidate Digest",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "partition": {
+      "enum": [
+        "development",
+        "validation",
+        "holdout"
+      ],
+      "title": "Partition",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "protocol_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Protocol Digest",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "evaluation_run",
+      "default": "evaluation_run",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "planned",
+        "sealed",
+        "running",
+        "complete",
+        "invalidated"
+      ],
+      "title": "State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "protocol_digest",
+    "candidate_digest",
+    "partition",
+    "state"
+  ],
+  "title": "EvaluationRun",
+  "type": "object"
+}

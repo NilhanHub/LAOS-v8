@@ -1,0 +1,13 @@
+{
+  "connected_privileged_profile_claimed": false,
+  "filesystem": "D:",
+  "git_version": "git version 2.53.0.windows.2",
+  "machine": "AMD64",
+  "operating_system": "Windows-11-10.0.26200-SP0",
+  "python_implementation": "CPython",
+  "python_version": "3.14.3",
+  "sqlite_journal_mode": "DELETE",
+  "sqlite_version": "3.50.4",
+  "sqlite_wal_reset_fix_verified": false,
+  "status": "PASS"
+}

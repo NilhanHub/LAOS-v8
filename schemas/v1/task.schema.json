@@ -1,0 +1,83 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/task/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "criterion_ids": {
+      "items": {
+        "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+        "type": "string"
+      },
+      "maxItems": 1024,
+      "minItems": 1,
+      "title": "Criterion Ids",
+      "type": "array"
+    },
+    "depends_on": {
+      "default": [],
+      "items": {
+        "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+        "type": "string"
+      },
+      "maxItems": 1024,
+      "title": "Depends On",
+      "type": "array"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "task",
+      "default": "task",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "planned",
+        "ready",
+        "active",
+        "blocked",
+        "review",
+        "accepted",
+        "cancelled"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "title",
+    "criterion_ids",
+    "state"
+  ],
+  "title": "Task",
+  "type": "object"
+}

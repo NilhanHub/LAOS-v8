@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "RiskTier": {
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "critical"
+      ],
+      "title": "RiskTier",
+      "type": "string"
+    }
+  },
+  "$id": "https://schemas.nilhan.dev/laos/v8/incident_record/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "affected_trust_epoch": {
+      "minimum": 0,
+      "title": "Affected Trust Epoch",
+      "type": "integer"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "incident_record",
+      "default": "incident_record",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "severity": {
+      "$ref": "#/$defs/RiskTier"
+    },
+    "state": {
+      "enum": [
+        "open",
+        "contained",
+        "recovering",
+        "revalidated",
+        "closed"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "title",
+    "severity",
+    "state",
+    "affected_trust_epoch"
+  ],
+  "title": "IncidentRecord",
+  "type": "object"
+}

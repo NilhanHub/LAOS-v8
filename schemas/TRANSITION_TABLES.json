@@ -1,0 +1,154 @@
+{
+  "aggregates": {
+    "action_attempt": {
+      "transitions": {
+        "active": [
+          "aborted",
+          "submitted"
+        ],
+        "created": [
+          "aborted",
+          "active"
+        ],
+        "rejected": [
+          "aborted"
+        ],
+        "submitted": [
+          "rejected",
+          "verified"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    "criterion": {
+      "transitions": {
+        "open": [
+          "proven",
+          "rejected"
+        ],
+        "proven": [
+          "open",
+          "rejected",
+          "reviewed"
+        ],
+        "reviewed": [
+          "accepted",
+          "open",
+          "rejected"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    "engagement": {
+      "transitions": {
+        "active": [
+          "accepted",
+          "blocked",
+          "cancelled"
+        ],
+        "blocked": [
+          "active",
+          "cancelled"
+        ],
+        "draft": [
+          "active",
+          "cancelled"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    "promotion_intent": {
+      "transitions": {
+        "conflict": [
+          "aborted",
+          "reconciled"
+        ],
+        "locked": [
+          "aborted",
+          "conflict",
+          "promoted"
+        ],
+        "prepared": [
+          "aborted",
+          "locked"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    "release": {
+      "transitions": {
+        "attested": [
+          "frozen"
+        ],
+        "built": [
+          "hashed"
+        ],
+        "extracted": [
+          "retested"
+        ],
+        "frozen": [
+          "published"
+        ],
+        "hashed": [
+          "extracted"
+        ],
+        "planned": [
+          "built"
+        ],
+        "retested": [
+          "attested"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    "side_effect": {
+      "transitions": {
+        "approved": [
+          "dispatched",
+          "failed"
+        ],
+        "dispatched": [
+          "failed",
+          "outcome_unknown",
+          "verified"
+        ],
+        "outcome_unknown": [
+          "failed",
+          "reconciled"
+        ],
+        "proposed": [
+          "approved",
+          "failed"
+        ]
+      },
+      "version": "1.0.0"
+    },
+    "task": {
+      "transitions": {
+        "active": [
+          "blocked",
+          "cancelled",
+          "review"
+        ],
+        "blocked": [
+          "cancelled",
+          "ready"
+        ],
+        "planned": [
+          "cancelled",
+          "ready"
+        ],
+        "ready": [
+          "active",
+          "cancelled"
+        ],
+        "review": [
+          "accepted",
+          "ready"
+        ]
+      },
+      "version": "1.0.0"
+    }
+  },
+  "format_version": "1.0.0"
+}

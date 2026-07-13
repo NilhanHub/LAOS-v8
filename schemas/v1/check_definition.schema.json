@@ -1,0 +1,82 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/check_definition/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "argv": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 128,
+      "minItems": 1,
+      "title": "Argv",
+      "type": "array"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "network": {
+      "default": "deny",
+      "enum": [
+        "deny",
+        "allowlisted"
+      ],
+      "title": "Network",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "check_definition",
+      "default": "check_definition",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "timeout_seconds": {
+      "exclusiveMinimum": 0,
+      "maximum": 3600,
+      "title": "Timeout Seconds",
+      "type": "integer"
+    },
+    "title": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "working_directory": {
+      "maxLength": 1024,
+      "title": "Working Directory",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "title",
+    "argv",
+    "working_directory",
+    "timeout_seconds"
+  ],
+  "title": "CheckDefinition",
+  "type": "object"
+}

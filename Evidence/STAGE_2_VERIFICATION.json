@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "stage": 2,
+  "check_count": 8,
+  "checks": [
+    "plan_stage_and_open_blocker_truth",
+    "forty_hashed_draft_2020_12_schemas",
+    "fail_closed_parser_schema_and_migration",
+    "unauthorized_side_effect_fails_before_external_operation",
+    "platform_matrix_and_safe_sqlite_fallback",
+    "dependency_and_read_only_migration_evidence",
+    "stable_errors_transitions_and_canonical_vector",
+    "provisional_pre_alpha_budgets"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/policy_decision/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action_definition_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Action Definition Digest",
+      "type": "string"
+    },
+    "actor_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "allow",
+        "deny"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "policy_digest": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Policy Digest",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "policy_decision",
+      "default": "policy_decision",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "rule_ids": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_]{2,63}$",
+        "type": "string"
+      },
+      "maxItems": 1024,
+      "minItems": 1,
+      "title": "Rule Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "policy_digest",
+    "actor_id",
+    "action_definition_digest",
+    "decision",
+    "rule_ids"
+  ],
+  "title": "PolicyDecision",
+  "type": "object"
+}

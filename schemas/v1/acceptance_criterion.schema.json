@@ -1,0 +1,85 @@
+{
+  "$id": "https://schemas.nilhan.dev/laos/v8/acceptance_criterion/1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,6})?Z$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "evidence_level": {
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "title": "Evidence Level",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^project:[A-Za-z0-9][A-Za-z0-9._-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "record_type": {
+      "const": "acceptance_criterion",
+      "default": "acceptance_criterion",
+      "title": "Record Type",
+      "type": "string"
+    },
+    "record_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Record Version",
+      "type": "string"
+    },
+    "requirement_id": {
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*:[A-Za-z0-9][A-Za-z0-9._-]{0,126}$",
+      "title": "Requirement Id",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "open",
+        "proven",
+        "reviewed",
+        "accepted",
+        "rejected"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "statement": {
+      "maxLength": 8192,
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 512,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "project_id",
+    "created_at",
+    "title",
+    "requirement_id",
+    "statement",
+    "evidence_level",
+    "state"
+  ],
+  "title": "AcceptanceCriterion",
+  "type": "object"
+}

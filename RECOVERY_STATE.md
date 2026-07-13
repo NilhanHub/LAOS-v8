@@ -26,7 +26,9 @@ No prior v8 runtime source tree, executable test suite, SQLite schema, pack comp
 
 ## Current repository status
 
-This repository implements **Milestone 0 only**: baseline preservation, requirements traceability, known-defect specifications, threat model, architecture decisions, policies, and verification tooling. It does not claim a working LAOS v8 runtime.
+Stage 1 is complete. Stage 2 is a review candidate containing the strict typed kernel and its bootstrap evidence.
+The Security Spine, transactional canonical state, privileged executor, production evidence custody, and release
+pipeline remain unimplemented. No working privileged LAOS v8 runtime or release is claimed.
 
 ## Rebuild source
 
@@ -34,7 +36,8 @@ The repository can be reconstructed from the preserved v7 archive, the design-in
 
 ## Next legal engineering milestone
 
-Milestone 1: create the separate LAOS v7.0.1 emergency correctness branch and executable regressions for canonical fingerprinting, strict schema validation, pre-claim drift, safe paths, symlink escapes, and command execution.
+After Nilhan independently accepts Stage 2, Stage 3 may implement the Mandatory Security Spine. Until that review,
+Stage 2 remains `AWAITING_NILHAN_REVIEW` and Stage 3 has not begun.
 
 ## Git baseline
 

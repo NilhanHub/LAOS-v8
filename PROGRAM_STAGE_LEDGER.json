@@ -21,13 +21,13 @@
       "depends_on": [
         1
       ],
-      "status": "PLANNED",
+      "status": "REVIEW_CANDIDATE",
       "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
-      "owner": "stage-2-implementation-owner",
-      "independent_reviewer": "stage-2-independent-reviewer",
+      "owner": "Codex",
+      "independent_reviewer": "Nilhan",
       "entry_gate": "Stage 1 exit gate passed",
       "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
-      "evidence_policy": "BOOTSTRAP",
+      "evidence_policy": "BOOTSTRAP_NOT_PRODUCTION_SIGNING",
       "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
     },
     {

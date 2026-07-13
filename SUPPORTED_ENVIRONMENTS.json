@@ -1,16 +1,77 @@
 {
-  "matrix_version": "0.1.0",
-  "claim_status": "NO_RUNTIME_SUPPORT_CLAIM",
+  "matrix_version": "1.0.0",
+  "claim_status": "TYPED_KERNEL_LOCAL_VERIFIED_PRIVILEGED_RUNTIME_UNCLAIMED",
+  "supported_python": ">=3.11,<3.15",
+  "kernel_ci_matrix": [
+    {
+      "os": "windows-2025",
+      "python": "3.11",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    },
+    {
+      "os": "windows-2025",
+      "python": "3.12",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    },
+    {
+      "os": "windows-2025",
+      "python": "3.13",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    },
+    {
+      "os": "windows-2025",
+      "python": "3.14",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    },
+    {
+      "os": "ubuntu-24.04",
+      "python": "3.11",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    },
+    {
+      "os": "ubuntu-24.04",
+      "python": "3.12",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    },
+    {
+      "os": "ubuntu-24.04",
+      "python": "3.13",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    },
+    {
+      "os": "ubuntu-24.04",
+      "python": "3.14",
+      "status": "CONFIGURED_NOT_EXECUTED_REMOTELY"
+    }
+  ],
   "rows": [
     {
+      "id": "typed-kernel-windows-local-git",
+      "status": "LOCAL_CONTRACT_VERIFIED",
+      "privileged_connected_mode": false,
+      "filesystem": "local NTFS workspace",
+      "evidence": [
+        "Evidence/STAGE_2_LOCAL_PLATFORM.json"
+      ]
+    },
+    {
+      "id": "typed-kernel-linux-local-git",
+      "status": "CI_CONFIGURED_NOT_EXECUTED_REMOTELY",
+      "privileged_connected_mode": false,
+      "filesystem": "local filesystem required",
+      "evidence": [
+        ".github/workflows/ci.yml"
+      ]
+    },
+    {
       "id": "connected-windows-local-git",
-      "status": "PLANNED",
+      "status": "PRIVILEGED_RUNTIME_NOT_IMPLEMENTED",
       "privileged_connected_mode": true,
       "evidence": []
     },
     {
       "id": "connected-linux-local-git",
-      "status": "PLANNED",
+      "status": "PRIVILEGED_RUNTIME_NOT_IMPLEMENTED",
       "privileged_connected_mode": true,
       "evidence": []
     },
@@ -42,7 +103,9 @@
       "id": "network-filesystem-sqlite",
       "status": "UNSUPPORTED",
       "privileged_connected_mode": false,
-      "evidence": []
+      "evidence": [
+        "PLATFORM_GOLDEN_VECTORS.json"
+      ]
     },
     {
       "id": "distributed-canonical-state",
