@@ -402,6 +402,9 @@ class SupportClaim(RecordBase):
     evidence_digests: tuple[Sha256Digest, ...] = Field(max_length=1024)
 
 
+KeyPurpose = Literal["capsule", "event_anchor", "release", "pack_manifest"]
+
+
 class TypedEnvelope(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
     envelope_version: Literal["1.0.0"] = "1.0.0"
@@ -409,7 +412,7 @@ class TypedEnvelope(BaseModel):
     payload: Annotated[str, StringConstraints(min_length=1, max_length=2_000_000)]
     algorithm: Literal["Ed25519"]
     key_id: RecordId
-    key_purpose: Literal["capsule", "event_anchor", "release"]
+    key_purpose: KeyPurpose
     issuer: RecordId
     audience: Annotated[str, StringConstraints(min_length=1, max_length=256)]
     subject_digest: Sha256Digest

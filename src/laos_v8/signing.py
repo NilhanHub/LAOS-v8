@@ -5,7 +5,6 @@ from __future__ import annotations
 import base64
 import hashlib
 from dataclasses import dataclass
-from typing import Literal
 
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import serialization
@@ -13,7 +12,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey,
 
 from .canonical import signature_domain
 from .errors import SecurityError, ValidationError
-from .models import TypedEnvelope
+from .models import KeyPurpose, TypedEnvelope
 
 
 def _encode(value: bytes) -> str:
@@ -31,7 +30,7 @@ def _decode(value: str) -> bytes:
 class TestTrustRoot:
     key_id: str
     public_key_b64: str
-    key_purpose: Literal["capsule", "event_anchor", "release"]
+    key_purpose: KeyPurpose
     assurance: str = "STAGE_3_TEST_ONLY_NOT_PRODUCTION"
 
     def verifier(self) -> EnvelopeVerifier:
@@ -45,7 +44,7 @@ class TestTrustRoot:
 class ProtectedTestSigner:
     """In-memory Stage 3 signer; private key bytes are never exported."""
 
-    def __init__(self, key_purpose: Literal["capsule", "event_anchor", "release"] = "capsule") -> None:
+    def __init__(self, key_purpose: KeyPurpose = "capsule") -> None:
         self._key = Ed25519PrivateKey.generate()
         self.key_purpose = key_purpose
         public = self._key.public_key().public_bytes(serialization.Encoding.Raw, serialization.PublicFormat.Raw)
@@ -61,7 +60,7 @@ class ProtectedTestSigner:
         payload: bytes,
         *,
         payload_type: str,
-        key_purpose: Literal["capsule", "event_anchor", "release"],
+        key_purpose: KeyPurpose,
         issuer: str,
         audience: str,
         issued_at: str,
@@ -91,7 +90,7 @@ class EnvelopeVerifier:
         self,
         key_id: str,
         public_key: Ed25519PublicKey,
-        key_purpose: Literal["capsule", "event_anchor", "release"],
+        key_purpose: KeyPurpose,
     ) -> None:
         self.key_id = key_id
         self.public_key = public_key

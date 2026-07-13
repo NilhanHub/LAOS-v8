@@ -30,7 +30,7 @@ def dsse_pae(payload_type: str, payload: bytes) -> bytes:
 
 
 def signature_domain(key_purpose: str, payload_type: str, payload: bytes) -> bytes:
-    if key_purpose not in {"capsule", "event_anchor", "release"}:
+    if key_purpose not in {"capsule", "event_anchor", "release", "pack_manifest"}:
         raise ValidationError("unknown signing key purpose", code="UNKNOWN_KEY_PURPOSE")
     domain_type = f"application/vnd.nilhan.laos.signature.{key_purpose}.v1+{payload_type}"
     return dsse_pae(domain_type, payload)

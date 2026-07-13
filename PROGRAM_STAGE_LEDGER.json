@@ -66,11 +66,11 @@
       "depends_on": [
         4
       ],
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
       "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "entry_gate": "Stage 4 exit gate passed",
+      "entry_gate": "Stage 4 exit gate passed; core contracts implemented; signing custody decision required",
       "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
       "evidence_policy": "BOOTSTRAP",
       "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."

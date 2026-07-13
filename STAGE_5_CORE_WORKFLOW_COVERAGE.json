@@ -1,0 +1,105 @@
+{
+  "record_version": "1.0.0",
+  "authority": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md Revision 1.1 Milestones 5 through 8",
+  "assurance": "STAGE_5_IMPLEMENTATION_CHECKPOINT_NOT_COMPLETION",
+  "coverage": [
+    {
+      "id": "S5-01",
+      "milestone": 5,
+      "requirement": "Four physically separate allowlisted pack projections",
+      "evidence": "src/laos_v8/packs.py and tests/stage5/test_packs_and_trust.py",
+      "status": "PASS_BOOTSTRAP_SIGNER"
+    },
+    {
+      "id": "S5-02",
+      "milestone": 5,
+      "requirement": "Single typed Action Capsule with exact context and one-use redemption",
+      "evidence": "src/laos_v8/capsule.py and tests/stage3/test_capsule_and_signing.py",
+      "status": "PASS_BOOTSTRAP_SIGNER"
+    },
+    {
+      "id": "S5-03",
+      "milestone": 5,
+      "requirement": "Leak canaries, classifications, private-key exclusion, capability manifest, safe extraction, and exact digest verification",
+      "evidence": "src/laos_v8/packs.py and Stage 5 pack tests",
+      "status": "PASS"
+    },
+    {
+      "id": "S5-04",
+      "milestone": 5,
+      "requirement": "Strict canonical JSON, duplicate-key denial, signature domains, issuer/audience, key purpose, trust pinning, revocation, historical verification, anti-rollback, and Alpha retirement",
+      "evidence": "src/laos_v8/parser.py, signing.py, trust.py, packs.py and Stage 3/5 tests",
+      "status": "PASS_BOOTSTRAP_TRUST_PROFILE"
+    },
+    {
+      "id": "S5-05",
+      "milestone": 5,
+      "requirement": "Private key held by a reviewed production-capable protected signer outside the compiler process",
+      "evidence": "No qualifying implementation; ProtectedTestSigner is explicitly test-only",
+      "status": "OPEN_SIGNING_CUSTODY_DECISION_REQUIRED"
+    },
+    {
+      "id": "S5-06",
+      "milestone": 6,
+      "requirement": "One-action serialized graph; future actions hidden until acceptance",
+      "evidence": "src/laos_v8/action_engine.py and tests/stage5/test_action_engine.py",
+      "status": "PASS"
+    },
+    {
+      "id": "S5-07",
+      "milestone": 6,
+      "requirement": "UNDERSTAND and PLAN exact-binding gates before IMPLEMENT",
+      "evidence": "Stage 5 Action Engine tests",
+      "status": "PASS"
+    },
+    {
+      "id": "S5-08",
+      "milestone": 6,
+      "requirement": "Attempt budgets, identical-retry escalation, fresh sessions, complete criteria, and signed amendment history",
+      "evidence": "Stage 5 Action Engine tests",
+      "status": "PASS"
+    },
+    {
+      "id": "S5-09",
+      "milestone": 7,
+      "requirement": "Seven strict versioned offline executor profile classes",
+      "evidence": "profiles/OFFLINE_EXECUTOR_PROFILES.json and tests/stage5/test_prompting.py",
+      "status": "PASS_OFFLINE_FIXTURES_NOT_RELEASED"
+    },
+    {
+      "id": "S5-10",
+      "milestone": 7,
+      "requirement": "Policy-bounded prompt compiler, linting, deterministic digests, decomposition, context labels, uncertainty, and compact handoff",
+      "evidence": "src/laos_v8/prompting.py and tests/stage5/test_prompting.py",
+      "status": "PASS"
+    },
+    {
+      "id": "S5-11",
+      "milestone": 7,
+      "requirement": "Every released profile has qualifying real calibration evidence with exact provider/model/tool/settings/environment provenance",
+      "evidence": "No Stage 5 profile is released; the prior Stage 4 Alpha pilot is not silently reused as profile calibration",
+      "status": "OPEN_REAL_CALIBRATION_REQUIRED_BEFORE_PROFILE_RELEASE"
+    },
+    {
+      "id": "S5-12",
+      "milestone": 8,
+      "requirement": "Strict signed read-only capture, evidence-bound facts, per-fact Architect acceptance, freshness, and unchanged-seal continuation",
+      "evidence": "src/laos_v8/capture.py and tests/stage5/test_core_workflows.py",
+      "status": "PASS_TRUSTED_FIXTURE"
+    },
+    {
+      "id": "S5-13",
+      "milestone": 8,
+      "requirement": "Reviewed content-addressed template, accepted blueprint graph, sanitized isolated Git genesis, idempotency, quarantine, seals, and first action",
+      "evidence": "src/laos_v8/new_build.py and tests/stage5/test_core_workflows.py",
+      "status": "PASS_TRUSTED_FIXTURE"
+    },
+    {
+      "id": "S5-14",
+      "milestone": 8,
+      "requirement": "Real weaker-investigator capture through the qualifying read-only enforcement and evidence path",
+      "evidence": "Not yet run; fixture round trip does not substitute for real weaker-agent execution",
+      "status": "OPEN_REAL_CAPTURE_ROUND_TRIP_REQUIRED"
+    }
+  ]
+}

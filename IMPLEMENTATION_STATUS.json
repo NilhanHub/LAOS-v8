@@ -7,7 +7,7 @@
   "stage0_historical_requirement_count": 210,
   "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
   "stage_1_status": "COMPLETE",
-  "status": "STAGE_4_COMPLETE_NILHAN_APPROVED_STAGE_5_AUTHORIZED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+  "status": "STAGE_5_IN_PROGRESS_SIGNING_CUSTODY_DECISION_REQUIRED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
   "target_release": "8.0.0",
   "v7_0_1_release_exists": false,
   "v7_track": "FIXTURE_ONLY",
@@ -20,6 +20,13 @@
   "security_spine_assurance": "LOCAL_TEST_PROFILE_NAMED_HUMAN_REVIEW",
   "real_weaker_agent_executed": true,
   "stage_4_status": "COMPLETE",
+  "stage_5_status": "IN_PROGRESS",
+  "stage_5_checkpoint": "CORE_CONTRACTS_AND_TRUSTED_FIXTURE_ROUND_TRIPS_PASS",
+  "stage_5_open_gates": [
+    "PROTECTED_SIGNING_CUSTODY",
+    "RELEASED_PROFILE_REAL_CALIBRATION",
+    "REAL_WEAKER_INVESTIGATOR_CAPTURE_ROUND_TRIP"
+  ],
   "alpha_vertical_slice_exists": true,
   "alpha_assurance": "LOCAL_DEVELOPMENT_ALPHA_PROOF_NOT_FINAL_EFFICACY_OR_RELEASE",
   "human_review_authority": "Nilhan",
