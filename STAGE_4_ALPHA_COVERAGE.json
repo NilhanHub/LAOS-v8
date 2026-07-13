@@ -14,7 +14,7 @@
     {"id": "A4-10", "requirement": "Replay, self-review, stale base, evidence mutation, path, and command denials", "evidence": "Stage 4 adversarial tests and runtime replay denial", "status": "PASS"},
     {"id": "A4-11", "requirement": "Crash boundaries reconcile safely", "evidence": "spent capsule, clean reconstruction, repeatable evidence binding, retry-safe/already-promoted/conflict classification", "status": "PASS_LOCAL_ALPHA"},
     {"id": "A4-12", "requirement": "Randomized four-condition development pilot", "evidence": "Evidence/STAGE_4_ALPHA_PILOT.json", "status": "PASS_NO_EFFICACY_CLAIM"},
-    {"id": "A4-13", "requirement": "Nilhan and independent reviewer go/no-go and scope freeze", "evidence": "STAGE_4_GO_NO_GO_AND_SCOPE_FREEZE_CANDIDATE.md", "status": "AWAITING_REVIEW"}
+    {"id": "A4-13", "requirement": "Nilhan and independent reviewer go/no-go and scope freeze", "evidence": "STAGE_4_GO_NO_GO_AND_SCOPE_FREEZE_CANDIDATE.md", "status": "NILHAN_GO_AWAITING_SECOND_REVIEW"}
   ],
   "record_version": "1.0.0"
 }

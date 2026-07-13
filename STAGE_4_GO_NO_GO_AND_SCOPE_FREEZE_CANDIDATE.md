@@ -1,6 +1,6 @@
 # Stage 4 go/no-go and v8.0 scope-freeze candidate
 
-Status: **AWAITING NILHAN AND A SECOND INDEPENDENT REVIEWER**
+Status: **NILHAN APPROVED — AWAITING A SECOND INDEPENDENT REVIEWER**
 
 ## Recommended decision
 
@@ -19,6 +19,6 @@ The Alpha pulled forward only the minimum task, capsule, workspace, verification
 
 ## Review questions
 
-- Nilhan: approve, request bounded changes, or stop?
+- Nilhan: **GO**, recorded 2026-07-13 against `stage4-review-candidate-v2`.
 - Second independent reviewer: confirm that the trust spine mediated the model, that the failure evidence is honest, and that cost/friction does not overwhelm the demonstrated safety benefit.
 - If approved, record both identities and decisions before marking Stage 4 complete or authorizing Stage 5.

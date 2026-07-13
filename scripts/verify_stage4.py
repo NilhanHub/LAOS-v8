@@ -25,7 +25,14 @@ def verify() -> list[str]:
     checks: list[str] = []
     status = load("IMPLEMENTATION_STATUS.json")
     require(status["stage_3_status"] == "COMPLETE", "Stage 3 is not complete")
-    require(status["stage_4_status"] == "AWAITING_NILHAN_AND_INDEPENDENT_REVIEWER_GO_NO_GO", "Stage 4 status overclaim")
+    require(
+        status["stage_4_status"]
+        in {
+            "AWAITING_NILHAN_AND_INDEPENDENT_REVIEWER_GO_NO_GO",
+            "NILHAN_GO_AWAITING_SECOND_INDEPENDENT_REVIEW",
+        },
+        "Stage 4 status overclaim",
+    )
     require(status["real_weaker_agent_executed"] is True, "real local model execution is not recorded")
     require(
         status["v8_runtime_exists"] is False and status["v8_release_exists"] is False,
@@ -81,9 +88,16 @@ def verify() -> list[str]:
 
     coverage = load("STAGE_4_ALPHA_COVERAGE.json")["coverage"]
     require(len(coverage) == 13, "Alpha coverage ledger is incomplete")
-    require(coverage[-1]["status"] == "AWAITING_REVIEW", "go/no-go was overstated")
+    require(
+        coverage[-1]["status"] in {"AWAITING_REVIEW", "NILHAN_GO_AWAITING_SECOND_REVIEW"},
+        "go/no-go was overstated",
+    )
     review = load("Evidence/STAGE_4_REVIEW.json")
-    require(review["status"] == "AWAITING_REVIEW" and review["scope_frozen"] is False, "review status is dishonest")
+    require(
+        review["status"] in {"AWAITING_REVIEW", "AWAITING_SECOND_INDEPENDENT_REVIEW"}
+        and review["scope_frozen"] is False,
+        "review status is dishonest",
+    )
     stage4 = next(row for row in load("PROGRAM_STAGE_LEDGER.json")["stages"] if row["stage"] == 4)
     require(stage4["status"] == "REVIEW_CANDIDATE" and stage4["owner"] == "Codex", "stage ledger mismatch")
     checks.append("coverage_and_review_gate")
@@ -92,7 +106,13 @@ def verify() -> list[str]:
 
 def main() -> int:
     checks = verify()
-    print(json.dumps({"status": "PASS_AWAITING_TWO_PARTY_GO_NO_GO_REVIEW", "checks": checks}, indent=2))
+    review = load("Evidence/STAGE_4_REVIEW.json")
+    status = (
+        "PASS_AWAITING_SECOND_INDEPENDENT_REVIEW"
+        if review["status"] == "AWAITING_SECOND_INDEPENDENT_REVIEW"
+        else "PASS_AWAITING_TWO_PARTY_GO_NO_GO_REVIEW"
+    )
+    print(json.dumps({"status": status, "checks": checks}, indent=2))
     return 0
 
 

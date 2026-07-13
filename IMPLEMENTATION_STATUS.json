@@ -19,7 +19,7 @@
   "security_spine_exists": true,
   "security_spine_assurance": "LOCAL_TEST_PROFILE_NAMED_HUMAN_REVIEW",
   "real_weaker_agent_executed": true,
-  "stage_4_status": "AWAITING_NILHAN_AND_INDEPENDENT_REVIEWER_GO_NO_GO",
+  "stage_4_status": "NILHAN_GO_AWAITING_SECOND_INDEPENDENT_REVIEW",
   "alpha_vertical_slice_exists": true,
   "alpha_assurance": "LOCAL_DEVELOPMENT_ALPHA_PROOF_NOT_FINAL_EFFICACY_OR_RELEASE"
 }

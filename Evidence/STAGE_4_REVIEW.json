@@ -1,12 +1,12 @@
 {
   "stage": 4,
-  "status": "AWAITING_REVIEW",
-  "nilhan_decision": null,
+  "status": "AWAITING_SECOND_INDEPENDENT_REVIEW",
+  "nilhan_decision": "APPROVED_CONTINUE_TO_STAGE_5_AFTER_REQUIRED_SECOND_REVIEW",
   "independent_reviewer": null,
   "independent_reviewer_decision": null,
-  "reviewed_candidate_commit": null,
+  "reviewed_candidate_commit": "8cc1405d503b6e5dca26e5d756391ae33b5f4bb0",
   "reviewed_candidate_tag": "stage4-review-candidate-v2",
-  "go_no_go": null,
+  "go_no_go": "NILHAN_GO_SECOND_REVIEW_PENDING",
   "scope_frozen": false,
   "assurance": "BOOTSTRAP_NOT_PRODUCTION_SIGNING"
 }
