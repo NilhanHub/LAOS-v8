@@ -277,7 +277,7 @@ def verify_repository_hygiene(checks: list[str]) -> None:
     tracked = git("ls-files").splitlines()
     forbidden_suffixes = (".sqlite", ".sqlite3", "-wal", "-shm")
     require(not any(name.lower().endswith(forbidden_suffixes) for name in tracked), "Mutable database state is tracked")
-    private_markers = ("BEGIN PRIVATE KEY", "OPENSSH PRIVATE KEY")
+    private_markers = ("BEGIN " + "PRIVATE KEY", "OPENSSH " + "PRIVATE KEY")
     for name in tracked:
         path = ROOT / name
         if path.is_file() and path.stat().st_size <= 2_000_000:
