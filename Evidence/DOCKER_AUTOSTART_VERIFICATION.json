@@ -1,0 +1,48 @@
+{
+  "record_version": "1.0.0",
+  "created_at": "2026-07-14T05:02:00Z",
+  "assurance": "LOCAL_WINDOWS_PROFILE_VERIFIED_NOT_A_CROSS_PLATFORM_RELEASE_CLAIM",
+  "status": "PASS",
+  "wrapper": {
+    "package": "codex-docker-bootstrap==1.0.0",
+    "source": "tools/codex-docker-bootstrap",
+    "install_command": "uv tool install --force .\\tools\\codex-docker-bootstrap",
+    "docker_resolution": "C:\\Users\\Nilhan.dev\\.local\\bin\\docker.exe",
+    "docker_compose_resolution": "C:\\Users\\Nilhan.dev\\.local\\bin\\docker-compose.exe",
+    "real_docker": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe",
+    "wrapper_sha256": "526c885be320f0eb0222893eec527c0435bd49f9c32baaff7b3d1d3335b6e753",
+    "compose_wrapper_sha256": "af608d70ff198182fc4df9ddea653f07190869f179db8dbd038ac4e43c5501e5",
+    "ensure_wrapper_sha256": "6179773e7d03bfa4c20b2ea70accf9e2b374504dea59dbb7c5b61eebe8e31345",
+    "real_docker_sha256": "0cdb9dea2e39a0a29e5dc3f9732f572dc140547b28deab0495589b4f79b31ca1"
+  },
+  "cold_start": {
+    "initial_desktop_status": "stopped",
+    "active_containers_before_controlled_stop": 0,
+    "ensure_command_started_desktop": true,
+    "ensure_elapsed_ms": 25425,
+    "ordinary_docker_command_restarted_desktop": true,
+    "ordinary_docker_restart_elapsed_ms": 35141,
+    "server_version": "29.5.3",
+    "final_desktop_status": "running",
+    "manual_operator_action_required": false,
+    "docker_left_running": true
+  },
+  "verification": {
+    "bootstrap_unit_tests": "PASS_13",
+    "laos_tests": "PASS_119_NO_DOCKER_SKIP",
+    "ruff": "PASS_SCOPED",
+    "mypy": "PASS_STRICT",
+    "stage_verifiers": "PASS_STAGES_1_THROUGH_5_CHECKPOINT",
+    "package_build": "PASS_SDIST_AND_WHEEL",
+    "legacy_docker_compose": "PASS",
+    "argument_array_forwarding": "PASS",
+    "concurrent_single_start": "PASS",
+    "sanitized_log_contains_command_arguments": false
+  },
+  "rollback": "uv tool uninstall codex-docker-bootstrap; remove the marked CODEX DOCKER BOOTSTRAP block from the current-user PowerShell profile and the Docker Dependencies section from the profile AGENTS.md",
+  "limitations": [
+    "Programs invoking Docker by absolute path bypass the profile wrapper.",
+    "Programs connecting directly to the Docker API bypass the profile wrapper.",
+    "LAOS independently starts Docker Desktop through its trusted real Docker path and fails closed."
+  ]
+}

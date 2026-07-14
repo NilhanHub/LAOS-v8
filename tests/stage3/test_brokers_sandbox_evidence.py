@@ -1,14 +1,17 @@
 from __future__ import annotations
 
 import json
+import os
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
+from unittest.mock import Mock, patch
 
 import pytest
 
+from laos_v8 import sandbox as sandbox_module
 from laos_v8.brokers import CommandBroker, EmergencyController, WorkspaceBroker
-from laos_v8.errors import EvidenceError, PolicyDenied
+from laos_v8.errors import EvidenceError, PolicyDenied, SecurityError
 from laos_v8.evidence import EvidenceBroker
 from laos_v8.model_broker import TRANSMISSION_CANARY, LocalOnlyModelBroker, ModelCallRequest
 from laos_v8.policy import PolicyEngine, ResourceBudget, minimal_stage3_policy
@@ -47,6 +50,60 @@ def test_docker_command_has_mandatory_isolation_flags(tmp_path: Path) -> None:
     assert "--pids-limit" in command and "--memory" in command and "--cpus" in command
     assert DOCKER_IMAGE in command
     assert "--privileged" not in command and "--network host" not in joined
+
+
+def test_docker_ensure_returns_immediately_when_engine_is_ready() -> None:
+    sandbox = DockerSandbox("C:\\trusted\\docker.exe")
+    with patch.object(sandbox, "availability", return_value=(True, "29.5.3")):
+        readiness = sandbox.ensure_available()
+    assert readiness.available is True
+    assert readiness.started is False
+    assert readiness.server_version == "29.5.3"
+
+
+def test_docker_ensure_starts_desktop_and_rechecks_engine() -> None:
+    sandbox = DockerSandbox("C:\\trusted\\docker.exe")
+    completed = Mock(returncode=0, stdout="", stderr="")
+    with (
+        patch.object(sandbox_module.os, "name", "nt"),
+        patch.object(
+            sandbox,
+            "availability",
+            side_effect=(
+                (False, "docker-engine-unavailable"),
+                (False, "docker-engine-unavailable"),
+                (True, "29.5.3"),
+            ),
+        ),
+        patch.object(sandbox_module.subprocess, "run", return_value=completed) as run,
+    ):
+        readiness = sandbox.ensure_available(timeout_seconds=60)
+    assert readiness.started is True
+    assert readiness.server_version == "29.5.3"
+    run.assert_called_once_with(
+        ["C:\\trusted\\docker.exe", "desktop", "start", "--timeout", "30"],
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=35,
+    )
+
+
+def test_docker_ensure_fails_closed_when_desktop_start_fails() -> None:
+    sandbox = DockerSandbox("C:\\trusted\\docker.exe")
+    completed = Mock(returncode=1, stdout="", stderr="start failed")
+    with (
+        patch.object(sandbox_module.os, "name", "nt"),
+        patch.object(sandbox, "availability", return_value=(False, "docker-engine-unavailable")),
+        patch.object(sandbox_module.subprocess, "run", return_value=completed),
+    ):
+        with pytest.raises(SecurityError) as denied:
+            sandbox.ensure_available(timeout_seconds=60)
+    assert denied.value.code == "SANDBOX_UNAVAILABLE"
+    assert denied.value.detail.context == {
+        "detail": "docker-desktop-start-failed",
+        "automatic_start_attempted": True,
+    }
 
 
 def test_workspace_command_evidence_and_emergency_brokers(
@@ -197,9 +254,13 @@ def test_local_model_broker_labels_untrusted_content_and_denies_external_or_tool
 @pytest.mark.integration
 def test_real_docker_sandbox_when_engine_available(tmp_path: Path) -> None:
     sandbox = DockerSandbox()
-    available, detail = sandbox.availability()
-    if not available:
-        pytest.skip(detail)
+    if os.name == "nt":
+        readiness = sandbox.ensure_available()
+        assert readiness.available is True
+    else:
+        available, detail = sandbox.availability()
+        if not available:
+            pytest.skip(detail)
     workspace = tmp_path / "workspace"
     workspace.mkdir()
     result = sandbox.run(

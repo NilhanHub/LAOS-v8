@@ -13,6 +13,8 @@ coordination, or support for unmediated host execution.
 - Candidate: disposable `git clone --no-local --no-hardlinks`, detached at an accepted base commit, with an independent
   `.git` directory and explicit line-ending policy.
 - Executor: Docker Desktop Linux/amd64 container using the digest-pinned profile in `SANDBOX_PROFILE.json`.
+- Provider lifecycle: Docker Desktop is started automatically on demand, readiness is verified before dispatch, and
+  the shared engine remains running afterward.
 - Risk: the local Docker test row is limited to low and moderate actions; high and critical actions fail closed.
 - Model path: deterministic local-only test adapter. External model transmission and built-in tools are unsupported.
 - Evidence: host broker-owned content-addressed storage outside the executor workspace.
@@ -39,8 +41,9 @@ without final-handle containment is unsupported; broader race-safe cross-platfor
 
 ## Failure behavior
 
-- Missing Docker, an unverified image, stale policy, stale repository seal, expired/replayed capsule, wrong identity,
-  path escape, unavailable evidence custody, or an emergency stop blocks the affected action.
+- Missing Docker installation, failed automatic Docker Desktop startup, an unverified image, stale policy, stale
+  repository seal, expired/replayed capsule, wrong identity, path escape, unavailable evidence custody, or an
+  emergency stop blocks the affected action.
 - SQLite network paths and distributed coordination are rejected.
 - Non-Git authoritative mutation, offline privileged operation, raw-secret injection, external model calls, production
   side effects, and critical work without quorum remain unsupported.

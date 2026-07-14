@@ -91,9 +91,7 @@ def run(repo: Path, output: Path, ollama_executable: str | None) -> dict[str, ob
     expires = now + timedelta(hours=2)
     profile = minimal_stage4_alpha_policy()
     sandbox = DockerSandbox()
-    available, detail = sandbox.availability()
-    if not available:
-        raise RuntimeError(f"qualifying Docker sandbox unavailable: {detail}")
+    sandbox.ensure_available()
 
     with tempfile.TemporaryDirectory(prefix="laos-stage4-alpha-") as temporary:
         work = Path(temporary)

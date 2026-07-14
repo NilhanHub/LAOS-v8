@@ -12,6 +12,7 @@ Authority: `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1, Milestones 5–
 - Seven strict offline executor-profile fixtures plus policy ceilings, prompt linting, automatic decomposition, labeled context manifests, uncertainty records, compact handoffs, and exact calibration provenance contracts.
 - Strict signed capture/App Intelligence contracts, read-only capability denial, unchanged source-seal validation, evidence-bound facts, freshness, per-fact Nilhan/Architect disposition, and drift-safe continuation.
 - Strict new-build objectives and blueprints, requirement/criterion graph checks, reviewed content-addressed templates, sanitized isolated Git genesis, idempotent retry, partial-intent quarantine, collision denial, source/base seals, and first-action trace.
+- Profile-wide Docker and Docker Compose wrappers plus an independent LAOS startup controller now start Docker Desktop on demand, verify engine readiness, leave it running, and fail closed without manual operator startup or unrestricted host fallback. Verification is recorded in `Evidence/DOCKER_AUTOSTART_VERIFICATION.json`.
 
 ## Verified limitations and open gates
 

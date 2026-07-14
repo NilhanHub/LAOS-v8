@@ -76,6 +76,14 @@ def verify() -> list[str]:
     require(all((ROOT / path).is_file() for path in expected_modules), "Stage 5 module missing")
     require((ROOT / "Evidence/STAGE_5_IMPLEMENTATION_CHECKPOINT.md").is_file(), "checkpoint evidence missing")
     checks.append("implementation_presence")
+
+    docker = load("Evidence/DOCKER_AUTOSTART_VERIFICATION.json")
+    require(docker["status"] == "PASS", "Docker automatic-start evidence failed")
+    require(docker["cold_start"]["manual_operator_action_required"] is False, "manual Docker startup remains")
+    require(docker["cold_start"]["final_desktop_status"] == "running", "Docker was not left running")
+    require(docker["verification"]["laos_tests"] == "PASS_119_NO_DOCKER_SKIP", "Docker test was skipped")
+    require(docker["verification"]["sanitized_log_contains_command_arguments"] is False, "Docker log leaked argv")
+    checks.append("automatic_docker_dependency")
     return checks
 
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TypedDict
 
+from .errors import SecurityError
 from .sandbox import DOCKER_IMAGE, SANDBOX_PROFILE, DockerSandbox
 
 
@@ -38,7 +39,7 @@ _DENIALS: dict[str, tuple[str, str]] = {
     ),
     "SANDBOX_UNAVAILABLE": (
         "The qualifying pinned sandbox provider is unavailable.",
-        "Restore the supported Docker provider and rerun doctor; direct host execution is unsupported.",
+        "Inspect the automatic Docker Desktop startup detail and rerun doctor; direct host execution is unsupported.",
     ),
     "EVIDENCE_TAMPERED": (
         "Canonical evidence bytes do not match their registered content digest.",
@@ -70,12 +71,26 @@ def explain_denial(code: str) -> DenialExplanation:
 
 
 def sandbox_diagnostic() -> dict[str, object]:
-    available, detail = DockerSandbox().availability()
+    sandbox = DockerSandbox()
+    try:
+        readiness = sandbox.ensure_available()
+        available = readiness.available
+        detail = readiness.detail
+        started = readiness.started
+        elapsed_ms = readiness.elapsed_ms
+    except SecurityError as exc:
+        available = False
+        detail = str((exc.detail.context or {}).get("detail", exc.code))
+        started = False
+        elapsed_ms = 0
     return {
         "profile": SANDBOX_PROFILE,
         "image": DOCKER_IMAGE,
         "available": available,
         "detail": detail,
+        "automatic_start_attempted": True,
+        "automatically_started": started,
+        "startup_elapsed_ms": elapsed_ms,
         "direct_host_execution_supported": False,
         "production_assurance_claimed": False,
     }

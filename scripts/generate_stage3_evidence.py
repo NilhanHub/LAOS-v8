@@ -39,9 +39,8 @@ def docker_details() -> dict[str, object]:
     if docker is None:
         return {"status": "FAIL", "error": "docker-cli-unavailable"}
     sandbox = DockerSandbox(docker)
-    available, server = sandbox.availability()
-    if not available:
-        return {"status": "FAIL", "error": server}
+    readiness = sandbox.ensure_available()
+    server = readiness.server_version
     probe = """
 import json, os, pathlib, socket
 status = pathlib.Path('/proc/self/status').read_text()
@@ -79,6 +78,7 @@ print(json.dumps(result, sort_keys=True))
     return {
         "status": "PASS" if result.exit_code == 0 and inspected.returncode == 0 else "FAIL",
         "server_version": server,
+        "docker_automatically_started": readiness.started,
         "provider": result.provider,
         "image": result.image,
         "image_repo_digests": json.loads(inspected.stdout) if inspected.returncode == 0 else [],

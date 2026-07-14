@@ -101,9 +101,7 @@ def run(output: Path, ollama_executable: str | None) -> dict[str, object]:
     adapter = PinnedOllamaAdapter(OllamaModelPin(MODEL_TAG, MODEL_BLOB), executable=ollama_executable)
     broker = LocalOnlyModelBroker(adapter)
     sandbox = DockerSandbox()
-    available, detail = sandbox.availability()
-    if not available:
-        raise RuntimeError(f"qualifying sandbox unavailable: {detail}")
+    sandbox.ensure_available()
     trials = [(task, condition) for task in TASKS for condition in CONDITIONS]
     random.Random(SEED).shuffle(trials)  # noqa: S311 - reproducible experiment assignment, not cryptography
     records: list[dict[str, object]] = []

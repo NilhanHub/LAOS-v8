@@ -8,9 +8,9 @@ Every state and evidence path must be local. Structured failures are written as 
 
 ## Read-only orientation
 
-- `laos --root <repository> doctor` reports host diagnostics and whether the exact pinned Stage 3 Docker provider is
-  currently available. `security_spine_ready` is false when it is unavailable; direct host execution remains
-  unsupported.
+- `laos --root <repository> doctor` starts Docker Desktop on demand, waits for the exact pinned Stage 3 Docker
+  provider, and reports whether automatic startup occurred. `security_spine_ready` is false when automatic startup
+  fails; direct host execution remains unsupported and Nilhan is not expected to open Docker Desktop manually.
 - `laos --root <repository> status` prints the machine-readable implementation status.
 - `laos explain-denial <ERROR_CODE>` returns a safe explanation and operator action without exposing secrets or
   evaluator internals.
