@@ -792,7 +792,7 @@ Revision 1.1 plan hash. See `tests/stage5/test_evidence_integrity.py`.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Supply an ordinary review JSON file that names
 Nilhan and matches the candidate identifiers; the verifier produced approval.
@@ -808,7 +808,7 @@ authentication remains Stage 6 work.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Replace every command argument array with invented
 values while retaining PASS-shaped rows; candidate verification accepted them.
@@ -823,7 +823,7 @@ builder-asserted bootstrap evidence, not an authenticated execution attestation.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Modify working-tree code, run the standalone
 generator, and observe evidence attributed to unchanged HEAD and tree IDs.
@@ -837,7 +837,7 @@ worktree and an evidence path outside the repository before collectors run.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Hand-author PASS-shaped Docker, state, signing, and
 operator rows without running collectors; full current verification accepted it.
@@ -852,7 +852,7 @@ current PASS.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Point the candidate tag at an unrelated commit while
 using independently matching receipt fields; the structural checks accepted it.
@@ -867,7 +867,7 @@ Approval still requires the unimplemented protected Nilhan authentication.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Choose `s` as the output name so substring filtering
 also removed a dirty `src/file.py` status row.
@@ -881,7 +881,7 @@ and exempts only one exact normalized output path.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Select a package path as receipt output; the final
 atomic JSON write replaced the artifact after its digest was recorded.
@@ -895,7 +895,7 @@ untracked Stage 5 Evidence JSON path. Tracked and colliding paths are denied.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Present otherwise valid current evidence completed
 in the distant past; no maximum age prevented PASS.
@@ -909,7 +909,7 @@ verification and is regenerated immediately before the full verifier runs.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Supply absent package files and fabricated package
 hashes; the verifier explicitly skipped both rows.
@@ -924,7 +924,7 @@ release artifact custody remains open for Stage 8.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
 
 **Original reproduction:** Sign facts, completion, and envelope issuance that
 all predate request issuance; the continuation path accepted them.

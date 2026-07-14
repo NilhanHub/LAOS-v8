@@ -1,0 +1,261 @@
+{
+  "artifacts": [
+    {
+      "bytes": 146471,
+      "path": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
+      "sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729"
+    },
+    {
+      "bytes": 4777,
+      "path": "STAGE_5_CORE_WORKFLOW_COVERAGE.json",
+      "sha256": "48c14b56443aa63eefa3790020bc4fc7277e96b40a97f5a0e9969e00e4d4c0b8"
+    },
+    {
+      "bytes": 1605,
+      "path": "IMPLEMENTATION_STATUS.json",
+      "sha256": "344ad694c648d68a4499f88d7a3f928d52463b53e449fa79138cf6b87f40230b"
+    },
+    {
+      "bytes": 2380,
+      "path": "Evidence/DOCKER_AUTOSTART_VERIFICATION.json",
+      "sha256": "93fb6e290704990ba7eba6973ab5e6675b611aa2041eb3164c3d578b907d7ff6"
+    },
+    {
+      "bytes": 2176,
+      "path": "schemas/golden/protected-envelope-v2.json",
+      "sha256": "444241fa61f7b587d6dbee1440df12099b29b20d63691fdd310f81fcfe73817b"
+    },
+    {
+      "bytes": 215756,
+      "path": "uv.lock",
+      "sha256": "3f0cc1751cbee98763cba58a6e0f6211fb49bd2772562a95bf6016224fd537ed"
+    }
+  ],
+  "assurance": "BOOTSTRAP_BUILDER_ASSERTED_NOT_AUTHENTICATED_NOT_PRODUCTION_SIGNING",
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "sync",
+        "--frozen",
+        "--all-groups"
+      ],
+      "exit_code": 0,
+      "label": "uv_sync",
+      "status": "PASS",
+      "stderr_bytes": 27,
+      "stderr_sha256": "29064db7a851c3a8e3c484183614f076c363ba3798f55f124962b158fc6d6f4e",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src",
+        "tests/stage2",
+        "tests/stage3",
+        "tests/stage4",
+        "tests/stage5",
+        "scripts/generate_stage3_evidence.py",
+        "scripts/verify_stage3.py",
+        "scripts/verify_stage5_checkpoint.py",
+        "scripts/build_stage3_candidate_evidence.py",
+        "scripts/build_stage5_candidate_evidence.py"
+      ],
+      "exit_code": 0,
+      "label": "ruff_scoped",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 19,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "label": "mypy",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 45,
+      "stdout_sha256": "dabfe9cda912714cdc654091ac8afe8d42fa03311ac477b1adc45f41fe1610c6"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "label": "pytest_full",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 265,
+      "stdout_sha256": "fd55d548a9bd92417829c36d37dbe45034fcc5ab7a9500674d37231c0e76c30f"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "-q",
+        "tests/stage3/test_brokers_sandbox_evidence.py::test_real_docker_sandbox_when_engine_available"
+      ],
+      "exit_code": 0,
+      "label": "docker_integration",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 100,
+      "stdout_sha256": "06980137129ed40a786addf4fda77a2c5fac0f6f277799e06ba4b619f9c14e13"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage1.py"
+      ],
+      "exit_code": 0,
+      "label": "verify_stage1",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 498,
+      "stdout_sha256": "0e344b8a14c84d1e1a8ad066d7cef2be27d84ce3a4dddceb3ecbb282bb9aea9c"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage2.py"
+      ],
+      "exit_code": 0,
+      "label": "verify_stage2",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 474,
+      "stdout_sha256": "95d988de44397049faebe5935046b8d7a2265bd05e7edf6ce72c2b2e01653cda"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage3.py",
+        "--evidence",
+        "C:\\Users\\Nilhan.dev\\AppData\\Local\\Temp\\laos-stage5-96a88d7e4f034629a17c459bc7c4f967\\STAGE_3_LOCAL_SECURITY_PROFILE.json",
+        "--expected-run-id",
+        "run:96a88d7e4f034629a17c459bc7c4f967",
+        "--expected-source-commit",
+        "80755d39cf4e679b9424b2d599f10975d9f84a25",
+        "--output",
+        "C:\\Users\\Nilhan.dev\\AppData\\Local\\Temp\\laos-stage5-96a88d7e4f034629a17c459bc7c4f967\\STAGE_3_VERIFICATION.json"
+      ],
+      "exit_code": 0,
+      "label": "verify_stage3",
+      "status": "PASS",
+      "stderr_bytes": 99,
+      "stderr_sha256": "1bf9da03a25bff537d88590dab303893a65c0d568e6fb602995e86fe542e53ef",
+      "stdout_bytes": 550,
+      "stdout_sha256": "37f59855f92498281e157f1a611422837a5bca1771c8945432c321288fc1ca87"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage4.py"
+      ],
+      "exit_code": 0,
+      "label": "verify_stage4",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 229,
+      "stdout_sha256": "c4e971b3322af7954498ded88d217ce1a597aea8e9e28802e3bb1d6956063a0c"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage5_checkpoint.py"
+      ],
+      "exit_code": 0,
+      "label": "verify_stage5",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 244,
+      "stdout_sha256": "5dc1c82b93ac04b6d00a5fde5506ff867c3b62c5afcbd4b90cfea6de07700876"
+    },
+    {
+      "argv": [
+        "uv",
+        "build"
+      ],
+      "exit_code": 0,
+      "label": "package_build",
+      "status": "PASS",
+      "stderr_bytes": 179,
+      "stderr_sha256": "b4654d8017193e6f3b7dee12a506f3f8cc5ad18be645c028649f6e51911a888f",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "-q",
+        "tests/stage2/test_canonical_and_transitions.py",
+        "tests/stage3/test_capsule_and_signing.py",
+        "tests/stage5/test_action_engine.py",
+        "tests/stage5/test_packs_and_trust.py",
+        "tests/stage5/test_core_workflows.py",
+        "tests/stage5/test_capture_security.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ],
+      "exit_code": 0,
+      "label": "security_regressions",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 182,
+      "stdout_sha256": "9a8294e074ddb52d1bf192b1228d6473405e2227b177ecfd5fc8c6b3ed3194cc"
+    }
+  ],
+  "completed_at_utc": "2026-07-14T13:32:41.039116Z",
+  "failure_code": null,
+  "generator_version": "laos-stage5-candidate/1.1.0",
+  "producer_authentication": "NONE_STAGE6_OPEN",
+  "record_version": "1.1.0",
+  "run_id": "run:96a88d7e4f034629a17c459bc7c4f967",
+  "source_commit": "80755d39cf4e679b9424b2d599f10975d9f84a25",
+  "source_tree": "d5db7f72367e6fabb9b76fddf4a373c0be9d17b0",
+  "stage": 5,
+  "started_at_utc": "2026-07-14T13:31:29.239136Z",
+  "status": "PASS_AWAITING_NILHAN_REVIEW"
+}
