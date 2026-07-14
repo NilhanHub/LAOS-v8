@@ -19,7 +19,7 @@ from .errors import SecurityError, ValidationError
 from .models import TypedEnvelope
 from .parser import strict_loads
 from .safe_paths import safe_extract_zip, validate_relative_path
-from .signing import ProtectedTestSigner
+from .signing import Signer
 from .trust import TrustRegistry
 
 PACK_MEDIA_TYPE = "application/vnd.nilhan.laos.pack-manifest.v1+json"
@@ -69,7 +69,10 @@ class PackManifest(BaseModel):
     projection_version: Literal["1.0.0"] = "1.0.0"
     entries: tuple[PackEntry, ...] = Field(min_length=1, max_length=10_000)
     capability_digest: str = Field(pattern=r"^sha256:[a-f0-9]{64}$")
-    assurance: Literal["STAGE_5_BOOTSTRAP_SIGNER_NOT_PRODUCTION_CUSTODY"]
+    assurance: Literal[
+        "STAGE_5_BOOTSTRAP_SIGNER_NOT_PRODUCTION_CUSTODY",
+        "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR",
+    ]
 
 
 @dataclass(frozen=True, slots=True)
@@ -145,7 +148,7 @@ def _zip_bytes(files: dict[str, bytes]) -> bytes:
 
 
 class PackCompiler:
-    def __init__(self, signer: ProtectedTestSigner, scanner: LeakScanner | None = None) -> None:
+    def __init__(self, signer: Signer, scanner: LeakScanner | None = None) -> None:
         if signer.key_purpose != "pack_manifest":
             raise SecurityError("pack compiler requires a pack-manifest key", code="PACK_SIGNER_PURPOSE_DENIED")
         self.signer = signer
@@ -217,7 +220,11 @@ class PackCompiler:
             audience=request.audience,
             entries=tuple(sorted(entries, key=lambda item: item.path.encode("utf-8"))),
             capability_digest=f"sha256:{hashlib.sha256(capabilities).hexdigest()}",
-            assurance="STAGE_5_BOOTSTRAP_SIGNER_NOT_PRODUCTION_CUSTODY",
+            assurance=(
+                "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR"
+                if self.signer.assurance == "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR"
+                else "STAGE_5_BOOTSTRAP_SIGNER_NOT_PRODUCTION_CUSTODY"
+            ),
         )
         manifest_bytes = canonical_json(manifest)
         envelope = self.signer.sign(

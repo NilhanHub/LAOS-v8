@@ -8,7 +8,7 @@ from typing import Literal
 
 from .errors import SecurityError, ValidationError
 from .models import KeyPurpose, TypedEnvelope
-from .signing import EnvelopeVerifier, TestTrustRoot
+from .signing import EnvelopeVerifier, PublicTrustRoot
 
 
 def _utc(value: str) -> datetime:
@@ -23,12 +23,12 @@ def _utc(value: str) -> datetime:
 
 @dataclass(frozen=True, slots=True)
 class PublicTrustRecord:
-    trust_root: TestTrustRoot
+    trust_root: PublicTrustRoot
     issuer: str
     purpose: KeyPurpose
     valid_from: str
     valid_until: str
-    status: Literal["active", "revoked", "retired_historical"] = "active"
+    status: Literal["active", "reserved", "revoked", "retired_historical"] = "active"
     revoked_at: str | None = None
     generation: int = 1
     alpha_test_root: bool = False

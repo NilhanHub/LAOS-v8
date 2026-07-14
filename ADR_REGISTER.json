@@ -28,7 +28,7 @@
     {
       "id": "ADR-0005",
       "title": "Signing, identity and capabilities",
-      "status": "PARTIAL_TEST_SIGNER_PRODUCTION_CUSTODY_OPEN",
+      "status": "ACCEPTED_LOCAL_DOCKER_PROTECTED_SIGNER_AWAITING_STAGE5_COMPLETION_REVIEW",
       "owner_stage": 5
     },
     {
@@ -58,7 +58,7 @@
     {
       "id": "ADR-0010",
       "title": "Typed signing envelope and key lifecycle",
-      "status": "ACCEPTED_PROTECTED_ENVELOPE_V2_TEST_ROOT_PRODUCTION_LIFECYCLE_OPEN",
+      "status": "ACCEPTED_PROTECTED_ENVELOPE_V2_LOCAL_SIGNER_LIFECYCLE",
       "owner_stage": 3
     },
     {

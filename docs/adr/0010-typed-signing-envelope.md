@@ -1,6 +1,6 @@
 # ADR-0010: Typed signing envelope and key lifecycle
 
-- Status: **Accepted protected-envelope v2 for the ephemeral test trust root; production lifecycle remains open**
+- Status: **Accepted protected-envelope v2 and local protected-signer lifecycle; broader custody remains open**
 
 ## Decision
 
@@ -24,7 +24,13 @@ stable.
 
 ## Boundary
 
-Stage 5 continues to use `ProtectedTestSigner`, an in-memory test signer. This
-decision does not supply production key custody, rotation operations, external
-anchoring, or compromise recovery. Those release gates remain open and require
-Nilhan's independent review.
+Stage 5 has a production-capable local signer for its accepted single-operator
+Windows/Docker row. Capsule, event-anchor, and pack-manifest keys are active and
+purpose-separated; the release key is reserved for Stage 8. Rotation retires
+the prior public key for historical verification, revocation replaces a
+compromised active key, and production trust excludes Alpha test roots.
+
+The private key volume is outside compiler and agent workspaces, but Docker or
+host administrators remain trusted. External anchoring, KMS/HSM custody,
+protected reviewer identity, multi-operator quorum, and full incident recovery
+remain assigned to later stages.

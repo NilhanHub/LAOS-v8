@@ -12,6 +12,7 @@ from .evidence import EvidenceBroker
 from .migration_discovery import discover_v7
 from .operator_paths import explain_denial, sandbox_diagnostic
 from .platform_profile import doctor
+from .protected_signer import DockerProtectedSigner
 from .schema_registry import export_schemas
 from .state import CanonicalState
 
@@ -78,6 +79,17 @@ def main(argv: list[str] | None = None) -> int:
     evidence_reconcile.add_argument("state")
     evidence_reconcile.add_argument("store")
     evidence_reconcile.add_argument("--actor", required=True)
+    commands.add_parser("signer-build")
+    signer_bootstrap = commands.add_parser("signer-bootstrap")
+    signer_bootstrap.add_argument("--purpose", default="capsule", choices=("capsule", "event_anchor", "pack_manifest"))
+    signer_doctor = commands.add_parser("signer-doctor")
+    signer_doctor.add_argument("--purpose", default="capsule", choices=("capsule", "event_anchor", "pack_manifest"))
+    signer_rotate = commands.add_parser("signer-rotate")
+    signer_rotate.add_argument("--purpose", required=True, choices=("capsule", "event_anchor", "pack_manifest"))
+    signer_revoke = commands.add_parser("signer-revoke")
+    signer_revoke.add_argument("--purpose", required=True, choices=("capsule", "event_anchor", "pack_manifest"))
+    signer_revoke.add_argument("--key-id", required=True)
+    signer_revoke.add_argument("--reason", required=True)
     args = parser.parse_args(argv)
     root = _root(args.root)
     try:
@@ -101,6 +113,21 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "explain-denial":
             print(json.dumps(explain_denial(args.code), indent=2))
+            return 0
+        if args.command == "signer-build":
+            image_id = DockerProtectedSigner.build_image(root)
+            print(json.dumps({"status": "PASS", "image_id": image_id}, indent=2))
+            return 0
+        if args.command in {"signer-bootstrap", "signer-doctor", "signer-rotate", "signer-revoke"}:
+            signer = DockerProtectedSigner(root, args.purpose)
+            if args.command == "signer-bootstrap":
+                print(signer.bootstrap().model_dump_json(indent=2))
+            elif args.command == "signer-doctor":
+                print(json.dumps(signer.doctor(), indent=2))
+            elif args.command == "signer-rotate":
+                print(signer.rotate().model_dump_json(indent=2))
+            else:
+                print(signer.revoke(args.key_id, args.reason).model_dump_json(indent=2))
             return 0
         if args.command == "backup":
             state_path = _existing_file(args.state, code="STATE_DATABASE_MISSING")

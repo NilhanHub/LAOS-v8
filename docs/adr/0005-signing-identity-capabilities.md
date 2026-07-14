@@ -1,6 +1,6 @@
 # ADR-0005: Authenticate identities and bind authority to signed capability envelopes
 
-- Status: **Accepted at the architectural level**
+- Status: **Accepted for the Stage 5 local protected-signer support row**
 - Date: 2026-07-12
 
 ## Context
@@ -11,6 +11,21 @@ Self-declared actor strings cannot prove builder/reviewer independence or protec
 
 Represent actors, sessions, roles, and capabilities explicitly. Bind every Action Capsule to actor, role, project, repository seal, policy, model profile, authorised skills, nonce, and expiry. Support revocation and replay prevention. Keep private keys and raw secrets outside project repositories. Use one stable AuthorizationDenied hierarchy for all policy denials.
 
+For the supported single-operator Windows/Docker row, purpose-separated Ed25519
+keys are generated and retained only in a dedicated Docker volume. A one-shot,
+networkless, non-root signer container accepts a strict canonical request on
+standard input and returns only a protected envelope or public metadata. It has
+no listening port, Docker socket, project mount, or private-key export command.
+The release-purpose key is provisioned but reserved and cannot sign in Stage 5.
+
+The compiler depends only on the `Signer` protocol. `ProtectedTestSigner`
+remains unit-test-only; production-profile compilation uses
+`DockerProtectedSigner` and records its lower, local assurance explicitly.
+
 ## Consequences
 
 Identity integration becomes required for meaningful independence. Offline/local modes must state their lower assurance rather than imitate strong provenance.
+
+This row trusts Nilhan and anyone with Docker/host-administrator authority. It
+does not claim HSM/KMS, hostile-administrator, multi-operator, or protected
+reviewer identity assurance. Those stronger support rows remain later work.

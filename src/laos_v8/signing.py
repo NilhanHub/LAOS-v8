@@ -1,10 +1,11 @@
-"""Typed Ed25519 envelopes using an explicitly test-only protected signer."""
+"""Typed Ed25519 envelopes and the common protected-signer contract."""
 
 from __future__ import annotations
 
 import base64
 import hashlib
 from dataclasses import dataclass
+from typing import Literal, Protocol
 
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import serialization
@@ -26,12 +27,18 @@ def _decode(value: str) -> bytes:
         raise ValidationError("invalid base64url envelope value", code="ENVELOPE_BASE64_INVALID") from exc
 
 
+SignerAssurance = Literal[
+    "STAGE_3_TEST_ONLY_NOT_PRODUCTION",
+    "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR",
+]
+
+
 @dataclass(frozen=True, slots=True)
-class TestTrustRoot:
+class PublicTrustRoot:
     key_id: str
     public_key_b64: str
     key_purpose: KeyPurpose
-    assurance: str = "STAGE_3_TEST_ONLY_NOT_PRODUCTION"
+    assurance: SignerAssurance
 
     def verifier(self, *, trusted_issuer: str | None = None) -> EnvelopeVerifier:
         return EnvelopeVerifier(
@@ -42,19 +49,75 @@ class TestTrustRoot:
         )
 
 
+class Signer(Protocol):
+    """Minimum signer surface accepted by control-plane compilers."""
+
+    key_purpose: KeyPurpose
+    assurance: SignerAssurance
+
+    @property
+    def trust_root(self) -> PublicTrustRoot: ...
+
+    def sign(
+        self,
+        payload: bytes,
+        *,
+        payload_type: str,
+        key_purpose: KeyPurpose,
+        issuer: str,
+        audience: str,
+        issued_at: str,
+        expires_at: str | None,
+    ) -> TypedEnvelope: ...
+
+
+def sign_envelope(
+    private_key: Ed25519PrivateKey,
+    payload: bytes,
+    *,
+    key_id: str,
+    payload_type: str,
+    key_purpose: KeyPurpose,
+    issuer: str,
+    audience: str,
+    issued_at: str,
+    expires_at: str | None,
+) -> TypedEnvelope:
+    """Create the one canonical v2 envelope shared by every signer backend."""
+    encoded_payload = _encode(payload)
+    statement = ProtectedEnvelope(
+        payload_type=payload_type,
+        payload=encoded_payload,
+        algorithm="Ed25519",
+        key_id=key_id,
+        key_purpose=key_purpose,
+        issuer=issuer,
+        audience=audience,
+        subject_digest=f"sha256:{hashlib.sha256(payload).hexdigest()}",
+        issued_at=issued_at,
+        expires_at=expires_at,
+    )
+    signature = private_key.sign(signature_domain(statement))
+    return TypedEnvelope.model_validate(
+        {**statement.model_dump(mode="json"), "signature": _encode(signature)},
+        strict=True,
+    )
+
+
 class ProtectedTestSigner:
     """In-memory Stage 3 signer; private key bytes are never exported."""
 
     def __init__(self, key_purpose: KeyPurpose = "capsule") -> None:
         self._key = Ed25519PrivateKey.generate()
         self.key_purpose = key_purpose
+        self.assurance: SignerAssurance = "STAGE_3_TEST_ONLY_NOT_PRODUCTION"
         public = self._key.public_key().public_bytes(serialization.Encoding.Raw, serialization.PublicFormat.Raw)
         self.key_id = f"key:{hashlib.sha256(public).hexdigest()[:32]}"
 
     @property
-    def trust_root(self) -> TestTrustRoot:
+    def trust_root(self) -> PublicTrustRoot:
         public = self._key.public_key().public_bytes(serialization.Encoding.Raw, serialization.PublicFormat.Raw)
-        return TestTrustRoot(self.key_id, _encode(public), self.key_purpose)
+        return PublicTrustRoot(self.key_id, _encode(public), self.key_purpose, self.assurance)
 
     def sign(
         self,
@@ -69,23 +132,16 @@ class ProtectedTestSigner:
     ) -> TypedEnvelope:
         if key_purpose != self.key_purpose:
             raise SecurityError("test signer key purpose mismatch", code="SIGNER_KEY_PURPOSE_DENIED")
-        encoded_payload = _encode(payload)
-        statement = ProtectedEnvelope(
-            payload_type=payload_type,
-            payload=encoded_payload,
-            algorithm="Ed25519",
+        return sign_envelope(
+            self._key,
+            payload,
             key_id=self.key_id,
+            payload_type=payload_type,
             key_purpose=key_purpose,
             issuer=issuer,
             audience=audience,
-            subject_digest=f"sha256:{hashlib.sha256(payload).hexdigest()}",
             issued_at=issued_at,
             expires_at=expires_at,
-        )
-        signature = self._key.sign(signature_domain(statement))
-        return TypedEnvelope.model_validate(
-            {**statement.model_dump(mode="json"), "signature": _encode(signature)},
-            strict=True,
         )
 
 

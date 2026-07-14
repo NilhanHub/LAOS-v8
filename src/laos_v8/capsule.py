@@ -10,7 +10,7 @@ from datetime import UTC, datetime
 from .canonical import canonical_json
 from .errors import AuthorizationDenied, SecurityError, ValidationError
 from .models import ActionCapsule, Role, TypedEnvelope
-from .signing import EnvelopeVerifier, ProtectedTestSigner
+from .signing import EnvelopeVerifier, Signer
 from .state import CanonicalState
 
 CAPSULE_MEDIA_TYPE = "application/vnd.nilhan.laos.action-capsule.v1+json"
@@ -34,7 +34,7 @@ class VerifiedCapsule:
 
 
 class CapsuleAuthority:
-    def __init__(self, signer: ProtectedTestSigner, *, issuer: str, audience: str) -> None:
+    def __init__(self, signer: Signer, *, issuer: str, audience: str) -> None:
         self.signer = signer
         self.issuer = issuer
         self.audience = audience

@@ -12,10 +12,10 @@
     },
     {
       "capability": "sign_capsule",
-      "owner": "host protected test signer",
-      "enforcement_point": "typed signing request after policy",
+      "owner": "one-shot local Docker protected signer",
+      "enforcement_point": "typed purpose-bound request over stdin to a networkless key-volume container",
       "executor_direct_access": false,
-      "status": "TEST_ONLY_PRODUCTION_CUSTODY_OPEN"
+      "status": "ENFORCED_STAGE5_SINGLE_OPERATOR_LOCAL_PROFILE"
     },
     {
       "capability": "candidate_write",
