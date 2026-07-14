@@ -4,10 +4,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError as PydanticValidationError
 
 from laos_v8.capsule import CapsuleAuthority, verify_and_redeem
 from laos_v8.errors import AuthorizationDenied, SecurityError
-from laos_v8.models import Role
+from laos_v8.models import Role, TypedEnvelope
 from laos_v8.signing import ProtectedTestSigner
 from laos_v8.state import CanonicalState
 
@@ -152,3 +153,56 @@ def test_capsule_tamper_wrong_context_and_expiry_fail(tmp_path: Path, digest: st
                 expected_issuer="actor:architect",
                 expected_audience="broker:stage3",
             )
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "expected_issuer", "expected_audience"),
+    (
+        ("issuer", "actor:substituted", "actor:substituted", "broker:stage3"),
+        ("audience", "broker:substituted", "actor:architect", "broker:substituted"),
+        ("issued_at", "2026-07-12T12:00:00Z", "actor:architect", "broker:stage3"),
+        ("expires_at", "2030-07-14T00:00:00Z", "actor:architect", "broker:stage3"),
+    ),
+)
+def test_protected_envelope_context_cannot_be_substituted(
+    field: str,
+    value: str,
+    expected_issuer: str,
+    expected_audience: str,
+) -> None:
+    signer = ProtectedTestSigner()
+    envelope = signer.sign(
+        b'{"bounded":true}',
+        payload_type="application/vnd.nilhan.laos.test+json",
+        key_purpose="capsule",
+        issuer="actor:architect",
+        audience="broker:stage3",
+        issued_at="2026-07-13T00:00:00Z",
+        expires_at="2026-07-14T00:00:00Z",
+    )
+    substituted = envelope.model_copy(update={field: value})
+    with pytest.raises(SecurityError) as denied:
+        signer.trust_root.verifier().verify(
+            substituted,
+            expected_purpose="capsule",
+            expected_payload_type=envelope.payload_type,
+            expected_issuer=expected_issuer,
+            expected_audience=expected_audience,
+        )
+    assert denied.value.code == "SIGNATURE_INVALID"
+
+
+def test_legacy_context_free_envelope_is_rejected() -> None:
+    signer = ProtectedTestSigner()
+    envelope = signer.sign(
+        b"{}",
+        payload_type="application/vnd.nilhan.laos.test+json",
+        key_purpose="capsule",
+        issuer="actor:architect",
+        audience="broker:stage3",
+        issued_at="2026-07-13T00:00:00Z",
+        expires_at=None,
+    )
+    legacy = envelope.model_dump(mode="json") | {"envelope_version": "1.0.0"}
+    with pytest.raises(PydanticValidationError):
+        TypedEnvelope.model_validate(legacy, strict=True)

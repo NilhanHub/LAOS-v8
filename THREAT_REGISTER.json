@@ -185,6 +185,11 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ],
+      "stage_5_security_status": "ORDINARY_REVIEW_JSON_FAILS_CLOSED_PROTECTED_NILHAN_AUTHENTICATION_OPEN",
+      "stage_5_security_evidence": [
+        "scripts/verify_stage5_checkpoint.py",
+        "tests/stage5/test_evidence_integrity.py"
       ]
     },
     {
@@ -269,6 +274,11 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ],
+      "stage_5_security_status": "EXACT_COMMAND_POLICY_BUILDER_ASSERTED_RECEIPT_IMPLEMENTED_PROTECTED_PRODUCER_OPEN",
+      "stage_5_security_evidence": [
+        "src/laos_v8/evidence_receipts.py",
+        "tests/stage5/test_evidence_integrity.py"
       ]
     },
     {
@@ -279,7 +289,13 @@
       "required_controls": "Seal/check/evidence freshness binding",
       "mandatory_test": "Post-check edit invalidation",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_5_security_status": "CLEAN_SOURCE_REGENERATION_AND_15_MINUTE_FRESHNESS_IMPLEMENTED_PROTECTED_CUSTODY_OPEN",
+      "stage_5_security_evidence": [
+        "scripts/generate_stage3_evidence.py",
+        "scripts/verify_stage3.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "TM-022",
@@ -323,7 +339,12 @@
       "required_controls": "Criterion ledger and closure rules",
       "mandatory_test": "Missing criterion denial",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_5_security_status": "EXACT_STAGE5_CRITERION_MAP_IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+      "stage_5_security_evidence": [
+        "scripts/verify_stage5_checkpoint.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "TM-026",
@@ -407,7 +428,13 @@
       "required_controls": "Freeze, final-location reopen and rehash",
       "mandatory_test": "Mutation test",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_5_security_status": "CANDIDATE_OUTPUT_COLLISION_DENIED_EPHEMERAL_BUILD_ARTIFACTS_UNCLAIMED_RELEASE_CUSTODY_OPEN",
+      "stage_5_security_evidence": [
+        "scripts/build_stage5_candidate_evidence.py",
+        "scripts/verify_stage5_checkpoint.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "TM-034",
@@ -527,6 +554,11 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ],
+      "stage_5_security_status": "WINDOWS_ALIAS_AND_GIT_CONFIG_HARDENING_IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+      "stage_5_security_evidence": [
+        "src/laos_v8/new_build.py",
+        "tests/stage5/test_core_workflows.py"
       ]
     },
     {
@@ -561,6 +593,12 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ],
+      "stage_5_security_status": "PROTECTED_ENVELOPE_V2_AND_ISSUER_BINDING_IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+      "stage_5_security_evidence": [
+        "schemas/golden/protected-envelope-v2.json",
+        "tests/stage3/test_capsule_and_signing.py",
+        "tests/stage5/test_packs_and_trust.py"
       ]
     },
     {

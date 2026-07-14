@@ -61,7 +61,13 @@
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
       "independent_verifier": "Nilhan",
-      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates.",
+      "stage_5_security_note": "Protected-envelope v2 authenticates authority and time context, trust keys are issuer-bound, and pack context must agree. This blocker remains OPEN pending Nilhan review, production signing custody, and integrated release gates.",
+      "stage_5_security_evidence": [
+        "schemas/golden/protected-envelope-v2.json",
+        "tests/stage3/test_capsule_and_signing.py",
+        "tests/stage5/test_packs_and_trust.py"
+      ]
     },
     {
       "id": "RB-006",
@@ -109,7 +115,12 @@
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
       "independent_verifier": "Nilhan",
-      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates.",
+      "stage_5_security_note": "Template paths now deny Unicode/case aliases, Windows trailing-dot/space ambiguity, control paths, and case collisions; writes and Git genesis are hardened. This blocker remains OPEN for the complete supported-platform escape and concurrency corpus.",
+      "stage_5_security_evidence": [
+        "src/laos_v8/new_build.py",
+        "tests/stage5/test_core_workflows.py"
+      ]
     },
     {
       "id": "RB-010",
@@ -132,7 +143,12 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "stage_5_security_note": "Ordinary JSON naming Nilhan is explicitly unauthenticated and cannot produce approval. This blocker remains OPEN until Stage 6 supplies protected Nilhan identity and independent review custody.",
+      "stage_5_security_evidence": [
+        "scripts/verify_stage5_checkpoint.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "RB-012",
@@ -143,7 +159,14 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "stage_5_security_note": "Current Stage 3 evidence now requires a clean source, regeneration by fixed collectors, run/source binding, and a 15-minute freshness window. Stage 5 receipts require exact command arrays and exact retained artifact hashes, but truthfully declare that the builder is unauthenticated. This blocker remains OPEN until protected evidence custody and owner-stage review exist.",
+      "stage_5_security_evidence": [
+        "src/laos_v8/evidence_receipts.py",
+        "scripts/verify_stage3.py",
+        "scripts/verify_stage5_checkpoint.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "RB-013",
@@ -154,7 +177,12 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "stage_5_security_note": "The Stage 5 candidate builder is local developer/operator tooling and runs its fixed verification commands on that host. The focused scan did not establish a lower-privilege attack path, but RB-013 remains OPEN for Stage 6 protected execution and no product sandbox claim is made.",
+      "stage_5_security_evidence": [
+        "scripts/build_stage5_candidate_evidence.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "RB-014",
@@ -198,7 +226,14 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "stage_5_security_note": "Run-bound atomic receipts prevent stale PASS reuse, regenerate current Stage 3 evidence, enforce exact commands, and hash retained candidate artifacts. They explicitly remain builder-asserted bootstrap evidence in the repository. This blocker remains OPEN until broker-controlled custody, authenticated producers, immutable anchoring, and the owner-stage audit controls exist.",
+      "stage_5_security_evidence": [
+        "src/laos_v8/evidence_receipts.py",
+        "scripts/generate_stage3_evidence.py",
+        "scripts/build_stage5_candidate_evidence.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "RB-018",
@@ -209,7 +244,13 @@
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "stage_5_security_note": "Ephemeral source and wheel outputs are now represented only by the exact uv build command gate and are not claimed as retained candidate artifacts. This blocker remains OPEN for Stage 8 release artifact custody, SBOM, provenance, reproducibility, consumer policy, and durable retrieval.",
+      "stage_5_security_evidence": [
+        "scripts/build_stage5_candidate_evidence.py",
+        "scripts/verify_stage5_checkpoint.py",
+        "tests/stage5/test_evidence_integrity.py"
+      ]
     },
     {
       "id": "RB-019",

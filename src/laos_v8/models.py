@@ -405,9 +405,9 @@ class SupportClaim(RecordBase):
 KeyPurpose = Literal["capsule", "event_anchor", "release", "pack_manifest"]
 
 
-class TypedEnvelope(BaseModel):
+class ProtectedEnvelope(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
-    envelope_version: Literal["1.0.0"] = "1.0.0"
+    envelope_version: Literal["2.0.0"] = "2.0.0"
     payload_type: Annotated[str, StringConstraints(pattern=r"^application/vnd\.nilhan\.laos\.[a-z0-9.-]+\+json$")]
     payload: Annotated[str, StringConstraints(min_length=1, max_length=2_000_000)]
     algorithm: Literal["Ed25519"]
@@ -418,6 +418,9 @@ class TypedEnvelope(BaseModel):
     subject_digest: Sha256Digest
     issued_at: UtcTimestamp
     expires_at: UtcTimestamp | None
+
+
+class TypedEnvelope(ProtectedEnvelope):
     signature: Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9_-]{86}$")]
 
 

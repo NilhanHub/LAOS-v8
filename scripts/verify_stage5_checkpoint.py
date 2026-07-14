@@ -3,14 +3,52 @@
 
 from __future__ import annotations
 
+import argparse
+import hashlib
 import json
+import shutil
+import subprocess
 from pathlib import Path
 from typing import Any
 
 from laos_v8.canonical import canonical_json
+from laos_v8.evidence_receipts import (
+    EvidenceReviewReceipt,
+    EvidenceRunReceipt,
+    stage5_candidate_command_policy,
+)
 from laos_v8.prompting import ExecutorProfile
+from laos_v8.sandbox import DockerSandbox
 
 ROOT = Path(__file__).resolve().parents[1]
+EXPECTED_COVERAGE = {
+    "S5-01": (5, "PASS_BOOTSTRAP_SIGNER"),
+    "S5-02": (5, "PASS_BOOTSTRAP_SIGNER"),
+    "S5-03": (5, "PASS"),
+    "S5-04": (5, "PASS_PROTECTED_ENVELOPE_V2_BOOTSTRAP_TRUST_PROFILE"),
+    "S5-05": (5, "OPEN_SIGNING_CUSTODY_DECISION_REQUIRED"),
+    "S5-06": (6, "PASS"),
+    "S5-07": (6, "PASS"),
+    "S5-08": (6, "PASS"),
+    "S5-09": (7, "PASS_OFFLINE_FIXTURES_NOT_RELEASED"),
+    "S5-10": (7, "PASS"),
+    "S5-11": (7, "OPEN_REAL_CALIBRATION_REQUIRED_BEFORE_PROFILE_RELEASE"),
+    "S5-12": (8, "PASS_CAPTURE_FIXTURE_WITH_TIME_BINDING"),
+    "S5-13": (8, "PASS_TEMPLATE_FIXTURE_WITH_WINDOWS_ALIAS_DEFENSE"),
+    "S5-14": (8, "OPEN_REAL_CAPTURE_ROUND_TRIP_REQUIRED"),
+}
+REQUIRED_CANDIDATE_ARTIFACTS = {
+    "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
+    "STAGE_5_CORE_WORKFLOW_COVERAGE.json",
+    "IMPLEMENTATION_STATUS.json",
+    "Evidence/DOCKER_AUTOSTART_VERIFICATION.json",
+    "schemas/golden/protected-envelope-v2.json",
+    "uv.lock",
+}
+EXPECTED_CANDIDATE_ASSURANCE = "BOOTSTRAP_BUILDER_ASSERTED_NOT_AUTHENTICATED_NOT_PRODUCTION_SIGNING"
+EXPECTED_CANDIDATE_GENERATOR = "laos-stage5-candidate/1.1.0"
+EXPECTED_CANDIDATE_PATH = "Evidence/STAGE_5_SECURITY_REMEDIATION_CANDIDATE.json"
+EXPECTED_CANDIDATE_TAG = "stage5-security-remediation-candidate"
 
 
 def load(relative: str) -> Any:
@@ -20,6 +58,80 @@ def load(relative: str) -> Any:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def git(*args: str) -> str:
+    executable = shutil.which("git")
+    require(executable is not None, "Git is unavailable")
+    return subprocess.check_output(  # noqa: S603 - resolved executable and fixed verifier arguments
+        [executable, "-C", str(ROOT), *args], text=True
+    ).strip()
+
+
+def git_bytes(*args: str) -> bytes:
+    executable = shutil.which("git")
+    require(executable is not None, "Git is unavailable")
+    return subprocess.check_output(  # noqa: S603 - resolved executable and fixed verifier arguments
+        [executable, "-C", str(ROOT), *args]
+    )
+
+
+def verify_candidate_evidence(path: Path, *, expected_source_commit: str) -> EvidenceRunReceipt:
+    receipt = EvidenceRunReceipt.model_validate_json(path.read_bytes(), strict=True)
+    require(receipt.stage == 5, "Candidate evidence belongs to another stage")
+    require(receipt.status == "PASS_AWAITING_NILHAN_REVIEW", "Candidate evidence is not a passing review candidate")
+    require(receipt.assurance == EXPECTED_CANDIDATE_ASSURANCE, "Candidate assurance boundary changed")
+    require(receipt.producer_authentication == "NONE_STAGE6_OPEN", "Candidate producer assurance changed")
+    require(receipt.generator_version == EXPECTED_CANDIDATE_GENERATOR, "Candidate generator version changed")
+    require(receipt.source_commit == expected_source_commit, "Candidate source commit differs")
+    command_policy = stage5_candidate_command_policy(receipt.run_id, expected_source_commit)
+    require(
+        tuple(command.label for command in receipt.commands) == tuple(command_policy),
+        "Candidate command order or identities differ",
+    )
+    require(
+        all(command.argv == command_policy[command.label] for command in receipt.commands),
+        "Candidate command arguments differ",
+    )
+    require(
+        {artifact.path for artifact in receipt.artifacts} == REQUIRED_CANDIDATE_ARTIFACTS,
+        "Candidate artifacts differ",
+    )
+    require(receipt.source_commit is not None and receipt.source_tree is not None, "Candidate source is unbound")
+    require(git("rev-parse", f"{receipt.source_commit}^{{tree}}") == receipt.source_tree, "Candidate tree mismatch")
+    for artifact in receipt.artifacts:
+        target = ROOT / artifact.path
+        require(target.is_file(), f"Candidate artifact is missing: {artifact.path}")
+        require(target.stat().st_size == artifact.bytes, f"Candidate artifact size changed: {artifact.path}")
+        require(sha256(target) == artifact.sha256, f"Candidate artifact hash changed: {artifact.path}")
+    return receipt
+
+
+def verify_review_receipt(path: Path, candidate: EvidenceRunReceipt, candidate_path: Path) -> None:
+    review = EvidenceReviewReceipt.model_validate_json(path.read_bytes(), strict=True)
+    require(review.reviewed_run_id == candidate.run_id, "Review targets another evidence run")
+    require(review.evidence_receipt_sha256 == sha256(candidate_path), "Review evidence digest mismatch")
+    require(review.reviewed_candidate_tag == EXPECTED_CANDIDATE_TAG, "Review tag changed")
+    tagged_commit = git("rev-parse", f"{review.reviewed_candidate_tag}^{{commit}}")
+    require(
+        tagged_commit == review.reviewed_candidate_commit,
+        "Review candidate tag does not resolve to its recorded commit",
+    )
+    parent_row = git("rev-list", "--parents", "-n", "1", tagged_commit).split()
+    require(len(parent_row) == 2, "Review candidate commit must have exactly one parent")
+    require(parent_row[1] == candidate.source_commit, "Review candidate parent is not the source commit")
+    try:
+        relative_candidate = candidate_path.resolve().relative_to(ROOT).as_posix()
+    except ValueError as exc:
+        raise AssertionError("Review candidate receipt must be repository-bound") from exc
+    require(relative_candidate == EXPECTED_CANDIDATE_PATH, "Review candidate receipt path changed")
+    tagged_receipt = git_bytes("show", f"{tagged_commit}:{relative_candidate}")
+    require(hashlib.sha256(tagged_receipt).hexdigest() == sha256(candidate_path), "Tagged candidate receipt differs")
+    raise AssertionError("PROTECTED_NILHAN_REVIEW_AUTHENTICATION_NOT_IMPLEMENTED")
 
 
 def verify() -> list[str]:
@@ -47,10 +159,15 @@ def verify() -> list[str]:
 
     coverage = load("STAGE_5_CORE_WORKFLOW_COVERAGE.json")
     rows = coverage["coverage"]
-    require(len(rows) == 14, "Stage 5 coverage rows are incomplete")
-    require({row["milestone"] for row in rows} == {5, 6, 7, 8}, "Milestone coverage changed")
-    open_rows = {row["id"] for row in rows if row["status"].startswith("OPEN_")}
-    require(open_rows == {"S5-05", "S5-11", "S5-14"}, "Stage 5 open claims changed")
+    identifiers = [row["id"] for row in rows]
+    require(len(identifiers) == len(set(identifiers)), "Stage 5 coverage contains duplicate criteria")
+    require(set(identifiers) == set(EXPECTED_COVERAGE), "Stage 5 coverage criterion identities changed")
+    require(
+        all((row["milestone"], row["status"]) == EXPECTED_COVERAGE[row["id"]] for row in rows),
+        "Stage 5 milestone ownership or status changed",
+    )
+    plan_digest = sha256(ROOT / "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md")
+    require(coverage.get("authority_sha256") == plan_digest, "Stage 5 coverage is not bound to the active plan")
     checks.append("milestone_coverage")
 
     fixture = load("profiles/OFFLINE_EXECUTOR_PROFILES.json")
@@ -77,19 +194,42 @@ def verify() -> list[str]:
     require((ROOT / "Evidence/STAGE_5_IMPLEMENTATION_CHECKPOINT.md").is_file(), "checkpoint evidence missing")
     checks.append("implementation_presence")
 
-    docker = load("Evidence/DOCKER_AUTOSTART_VERIFICATION.json")
-    require(docker["status"] == "PASS", "Docker automatic-start evidence failed")
-    require(docker["cold_start"]["manual_operator_action_required"] is False, "manual Docker startup remains")
-    require(docker["cold_start"]["final_desktop_status"] == "running", "Docker was not left running")
-    require(docker["verification"]["laos_tests"] == "PASS_119_NO_DOCKER_SKIP", "Docker test was skipped")
-    require(docker["verification"]["sanitized_log_contains_command_arguments"] is False, "Docker log leaked argv")
-    checks.append("automatic_docker_dependency")
+    readiness = DockerSandbox().ensure_available()
+    require(readiness.available and bool(readiness.server_version), "Docker engine is not currently ready")
+    checks.append("automatic_docker_dependency_live")
     return checks
 
 
 def main() -> int:
-    checks = verify()
-    print(json.dumps({"status": "PASS_STAGE_5_CHECKPOINT_NOT_COMPLETE", "checks": checks}, indent=2))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--candidate-evidence", type=Path)
+    parser.add_argument("--expected-source-commit")
+    parser.add_argument("--review-receipt", type=Path)
+    parser.add_argument("--require-review", action="store_true")
+    args = parser.parse_args()
+    try:
+        checks = verify()
+        status = "PASS_STAGE_5_CHECKPOINT_NOT_COMPLETE"
+        candidate = None
+        if args.candidate_evidence is not None:
+            require(args.expected_source_commit is not None, "Candidate evidence requires an expected source commit")
+            candidate_path = args.candidate_evidence.resolve()
+            candidate = verify_candidate_evidence(
+                candidate_path,
+                expected_source_commit=args.expected_source_commit,
+            )
+            checks.append("candidate_evidence_revision_and_hash_binding")
+            status = "PASS_AWAITING_NILHAN_REVIEW"
+        if args.require_review:
+            require(candidate is not None and args.candidate_evidence is not None, "Review requires candidate evidence")
+            require(args.review_receipt is not None, "Nilhan review receipt is required")
+            verify_review_receipt(args.review_receipt.resolve(), candidate, args.candidate_evidence.resolve())
+        elif args.review_receipt is not None:
+            raise AssertionError("Review receipt requires --require-review")
+    except Exception as exc:
+        print(json.dumps({"status": "FAIL", "error": str(exc)}, indent=2))
+        return 1
+    print(json.dumps({"status": status, "checks": checks}, indent=2))
     return 0
 
 

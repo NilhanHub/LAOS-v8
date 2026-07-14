@@ -3,12 +3,14 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import shutil
 import subprocess
 import sys
 import tempfile
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +26,8 @@ from laos_v8.state import CanonicalState
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_PLAN = "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729"
 EXPECTED_STAGE2 = "28288ba876d0e05a07ba7459ecda9fa6c3e6b716"
+CURRENT_EVIDENCE_GENERATOR = "laos-stage3-evidence/2.1.0"
+MAX_CURRENT_EVIDENCE_AGE_SECONDS = 900
 
 
 def load(name: str) -> Any:
@@ -53,6 +57,42 @@ def git_at(root: Path, *args: str) -> str:
     return subprocess.check_output(  # noqa: S603 - resolved executable and fixed verifier arguments
         [executable, "-C", str(root), *args], text=True
     ).strip()
+
+
+def utc_now() -> datetime:
+    return datetime.now(UTC)
+
+
+def require_external_evidence_path(path: Path, label: str) -> None:
+    require(not path.resolve().is_relative_to(ROOT), f"{label} must be outside the repository")
+
+
+def regenerate_current_evidence(
+    evidence_path: Path,
+    *,
+    expected_run_id: str,
+    expected_source_commit: str,
+) -> None:
+    require_external_evidence_path(evidence_path, "Current evidence")
+    require(git("rev-parse", "HEAD") == expected_source_commit, "Current source commit is not checked out")
+    require(
+        not git("status", "--porcelain=v1", "-z", "--untracked-files=all"),
+        "Current evidence requires a clean worktree",
+    )
+    completed = subprocess.run(  # noqa: S603 - current interpreter and fixed generator arguments
+        [
+            sys.executable,
+            str(ROOT / "scripts/generate_stage3_evidence.py"),
+            "--output",
+            str(evidence_path),
+            "--run-id",
+            expected_run_id,
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    require(completed.returncode == 0, "Current evidence regeneration failed")
 
 
 def verify_governance(checks: list[str]) -> None:
@@ -128,9 +168,50 @@ def verify_contracts(checks: list[str]) -> None:
     checks.append("deployment_sandbox_and_enforcement_contracts")
 
 
-def verify_local_security_evidence(checks: list[str]) -> None:
-    evidence = load("Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json")
+def verify_local_security_evidence(
+    checks: list[str],
+    *,
+    evidence_path: Path,
+    expected_run_id: str | None,
+    expected_source_commit: str | None,
+    historical: bool,
+) -> None:
+    evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
     require(evidence["status"] == "PASS", "Local Security Spine profile failed")
+    if historical:
+        checks.append("historical_local_security_profile_not_current")
+    else:
+        require(evidence.get("record_version") == "2.0.0", "Current evidence is not run-bound v2")
+        require(
+            evidence.get("generator_version") == CURRENT_EVIDENCE_GENERATOR,
+            "Current evidence generator version changed",
+        )
+        require(expected_run_id is not None, "Current evidence requires an expected run ID")
+        require(expected_source_commit is not None, "Current evidence requires an expected source commit")
+        require(evidence.get("run_id") == expected_run_id, "Evidence run ID mismatch")
+        require(evidence.get("source_commit") == expected_source_commit, "Evidence source commit mismatch")
+        expected_tree = git("rev-parse", f"{expected_source_commit}^{{tree}}")
+        require(evidence.get("source_tree") == expected_tree, "Evidence source tree mismatch")
+        started_value = evidence.get("started_at_utc")
+        completed_value = evidence.get("completed_at_utc")
+        require(isinstance(started_value, str) and started_value.endswith("Z"), "Evidence start time is invalid")
+        require(
+            isinstance(completed_value, str) and completed_value.endswith("Z"),
+            "Evidence completion time is invalid",
+        )
+        try:
+            started = datetime.fromisoformat(started_value.replace("Z", "+00:00")).astimezone(UTC)
+            completed = datetime.fromisoformat(completed_value.replace("Z", "+00:00")).astimezone(UTC)
+        except ValueError as exc:
+            raise AssertionError("Evidence timing is invalid") from exc
+        require(started <= completed, "Evidence timing order is invalid")
+        current = utc_now()
+        require(completed <= current + timedelta(seconds=300), "Evidence completion is in the future")
+        require(
+            completed >= current - timedelta(seconds=MAX_CURRENT_EVIDENCE_AGE_SECONDS),
+            "Current evidence is stale",
+        )
+        checks.append("current_run_identity_and_source_binding")
     require(evidence["docker"]["status"] == "PASS", "Real Docker sandbox was not exercised")
     probe = evidence["docker"]["probe"]
     require(
@@ -318,29 +399,78 @@ def verify_operator_paths(checks: list[str]) -> None:
     checks.append("minimal_pre_alpha_operator_paths")
 
 
-def verify() -> dict[str, object]:
+def verify(
+    *,
+    evidence_path: Path,
+    expected_run_id: str | None,
+    expected_source_commit: str | None,
+    historical: bool,
+) -> dict[str, object]:
     checks: list[str] = []
+    if not historical:
+        require(expected_run_id is not None, "Current evidence requires an expected run ID")
+        require(expected_source_commit is not None, "Current evidence requires an expected source commit")
+        regenerate_current_evidence(
+            evidence_path,
+            expected_run_id=expected_run_id,
+            expected_source_commit=expected_source_commit,
+        )
     verify_governance(checks)
     verify_dependency_amendment(checks)
     verify_contracts(checks)
-    verify_local_security_evidence(checks)
+    verify_local_security_evidence(
+        checks,
+        evidence_path=evidence_path,
+        expected_run_id=expected_run_id,
+        expected_source_commit=expected_source_commit,
+        historical=historical,
+    )
     verify_fail_closed_runtime(checks)
     verify_ledgers(checks)
     verify_repository_hygiene(checks)
     verify_operator_paths(checks)
-    return {"status": "PASS", "stage": 3, "check_count": len(checks), "checks": checks}
+    status = (
+        "PASS_HISTORICAL_EVIDENCE_ONLY"
+        if historical
+        else "PASS_BOOTSTRAP_CURRENT_EVIDENCE_NOT_AUTHENTICATED"
+    )
+    return {"status": status, "stage": 3, "check_count": len(checks), "checks": checks}
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--evidence", type=Path, default=ROOT / "Evidence" / "STAGE_3_LOCAL_SECURITY_PROFILE.json")
+    parser.add_argument("--expected-run-id")
+    parser.add_argument("--expected-source-commit")
+    parser.add_argument("--historical", action="store_true")
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    current = args.expected_run_id is not None or args.expected_source_commit is not None
+    if args.historical == current:
+        parser.error("select --historical or provide both current-evidence identity arguments")
+    if current and (args.expected_run_id is None or args.expected_source_commit is None):
+        parser.error("current evidence requires both --expected-run-id and --expected-source-commit")
+    if current and args.output is None:
+        parser.error("current evidence requires an explicit --output outside the repository")
+    output_path = args.output or ROOT / "Evidence" / "STAGE_3_VERIFICATION.json"
+    if current:
+        require_external_evidence_path(args.evidence.resolve(), "Current evidence")
+        require_external_evidence_path(output_path.resolve(), "Current verification output")
     try:
-        result = verify()
+        result = verify(
+            evidence_path=args.evidence.resolve(),
+            expected_run_id=args.expected_run_id,
+            expected_source_commit=args.expected_source_commit,
+            historical=args.historical,
+        )
     except Exception as exc:
         result = {"status": "FAIL", "stage": 3, "error": str(exc)}
         exit_code = 1
     else:
         exit_code = 0
     output = json.dumps(result, indent=2) + "\n"
-    (ROOT / "Evidence" / "STAGE_3_VERIFICATION.json").write_bytes(output.encode("utf-8"))
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_bytes(output.encode("utf-8"))
     print(output, end="")
     return exit_code
 

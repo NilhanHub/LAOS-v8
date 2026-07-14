@@ -7,8 +7,9 @@ import hashlib
 import os
 import shutil
 import subprocess
+import unicodedata
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -17,7 +18,39 @@ from .action_engine import ActionNode
 from .canonical import canonical_json
 from .errors import AuthorizationDenied, SecurityError, StateConflict, ValidationError
 from .repository_truth import build_manifest, require_unchanged
-from .safe_paths import validate_relative_path
+from .safe_paths import SafeRoot, validate_relative_path
+
+_WINDOWS_RESERVED_NAMES = {
+    "CON",
+    "PRN",
+    "AUX",
+    "NUL",
+    *(f"COM{index}" for index in range(1, 10)),
+    *(f"LPT{index}" for index in range(1, 10)),
+}
+
+
+def _validated_template_path(value: str) -> PurePosixPath:
+    parsed = validate_relative_path(value)
+    normalized_parts: list[str] = []
+    for part in parsed.parts:
+        normalized = unicodedata.normalize("NFC", part)
+        if normalized != part:
+            raise ValueError("TEMPLATE_PATH_NONCANONICAL")
+        if part.endswith((" ", ".")):
+            raise ValueError("TEMPLATE_PATH_AMBIGUOUS")
+        device_name = part.split(".", maxsplit=1)[0].upper()
+        if device_name in _WINDOWS_RESERVED_NAMES:
+            raise ValueError("TEMPLATE_PATH_AMBIGUOUS")
+        normalized_parts.append(normalized)
+    result = PurePosixPath(*normalized_parts)
+    if result.parts[0].casefold() in {".git", ".laos"}:
+        raise ValueError("TEMPLATE_CONTROL_PATH_DENIED")
+    return result
+
+
+def _template_collision_key(value: str) -> str:
+    return _validated_template_path(value).as_posix().casefold()
 
 
 class ProductObjective(BaseModel):
@@ -128,9 +161,7 @@ class TemplateFile(BaseModel):
 
     @model_validator(mode="after")
     def safe_and_exact(self) -> TemplateFile:
-        normalized = validate_relative_path(self.path).as_posix()
-        if normalized == ".git" or normalized.startswith(".git/") or normalized.startswith(".laos/"):
-            raise ValueError("TEMPLATE_CONTROL_PATH_DENIED")
+        _validated_template_path(self.path)
         try:
             payload = base64.b64decode(self.content_b64, validate=True)
         except ValueError as exc:
@@ -155,7 +186,7 @@ class ReviewedTemplate(BaseModel):
 
     @model_validator(mode="after")
     def unique_paths(self) -> ReviewedTemplate:
-        paths = [validate_relative_path(item.path).as_posix() for item in self.files]
+        paths = [_template_collision_key(item.path) for item in self.files]
         if len(paths) != len(set(paths)):
             raise ValueError("TEMPLATE_DUPLICATE_PATH")
         return self
@@ -202,8 +233,15 @@ def _git(root: Path | None, *args: str) -> str:
     if root is not None:
         command.extend(("-C", str(root)))
     command.extend(args)
-    environment = os.environ.copy()
-    environment.update({"GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull, "GIT_TERMINAL_PROMPT": "0"})
+    environment = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
+    environment.update(
+        {
+            "GIT_CONFIG_NOSYSTEM": "1",
+            "GIT_CONFIG_SYSTEM": os.devnull,
+            "GIT_CONFIG_GLOBAL": os.devnull,
+            "GIT_TERMINAL_PROMPT": "0",
+        }
+    )
     completed = subprocess.run(command, text=True, capture_output=True, check=False, env=environment)  # noqa: S603
     if completed.returncode:
         raise StateConflict(completed.stderr.strip() or "genesis Git operation failed", code="GENESIS_GIT_FAILED")
@@ -275,16 +313,32 @@ class GenesisCompiler:
             destination.replace(quarantine)
         destination.mkdir(parents=True)
         try:
+            safe_destination = SafeRoot(destination)
             for item in template.files:
-                target = destination / validate_relative_path(item.path)
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_bytes(item.payload())
+                relative = _validated_template_path(item.path)
+                parents: list[str] = []
+                for part in relative.parent.parts:
+                    parents.append(part)
+                    safe_destination.for_write("/".join(parents)).mkdir(exist_ok=True)
+                target = safe_destination.write_bytes_atomic(
+                    relative.as_posix(),
+                    item.payload(),
+                    max_bytes=104_857_600,
+                )
                 if item.executable:
                     target.chmod(0o755)
-            control = destination / ".laos"
+            control = safe_destination.for_write(".laos")
             control.mkdir()
-            (control / "blueprint.json").write_bytes(canonical_json(blueprint.model_dump(mode="json")))
-            (control / "genesis-intent.json").write_bytes(intent)
+            safe_destination.write_bytes_atomic(
+                ".laos/blueprint.json",
+                canonical_json(blueprint.model_dump(mode="json")),
+                max_bytes=2_000_000,
+            )
+            safe_destination.write_bytes_atomic(
+                ".laos/genesis-intent.json",
+                intent,
+                max_bytes=2_000_000,
+            )
             _git(None, "init", "--initial-branch=main", str(destination))
             _git(destination, "config", "core.hooksPath", os.devnull)
             _git(destination, "config", "commit.gpgSign", "false")

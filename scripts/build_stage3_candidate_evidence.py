@@ -54,8 +54,11 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--expected-commit", required=True)
     args = parser.parse_args()
+    args.output_dir.mkdir(parents=True, exist_ok=True)
 
     uv = executable("uv")
+    local_profile = args.output_dir / "STAGE_3_LOCAL_SECURITY_PROFILE.json"
+    local_verification = args.output_dir / "STAGE_3_VERIFICATION.json"
     scoped_scripts = [
         "scripts/generate_stage3_evidence.py",
         "scripts/reconcile_stage3_records.py",
@@ -68,13 +71,41 @@ def main() -> int:
         [uv, "run", "--frozen", "ruff", "check", "src", "tests/stage2", "tests/stage3", *scoped_scripts],
         [uv, "run", "--frozen", "mypy"],
         [uv, "run", "--frozen", "pytest", "-q"],
-        [uv, "run", "--frozen", "python", "scripts/generate_stage3_evidence.py"],
-        [uv, "run", "--frozen", "python", "scripts/verify_stage1.py"],
-        [uv, "run", "--frozen", "python", "scripts/verify_stage2.py"],
-        [uv, "run", "--frozen", "python", "scripts/verify_stage3.py"],
-        [uv, "build"],
+        [
+            uv,
+            "run",
+            "--frozen",
+            "python",
+            "scripts/generate_stage3_evidence.py",
+            "--output",
+            str(local_profile),
+        ],
     ]
     results = [run(command) for command in commands]
+    run_id = ""
+    if results[-1]["exit_code"] == 0:
+        run_id = str(json.loads(local_profile.read_text(encoding="utf-8"))["run_id"])
+        current_commands = [
+            [uv, "run", "--frozen", "python", "scripts/verify_stage1.py"],
+            [uv, "run", "--frozen", "python", "scripts/verify_stage2.py"],
+            [
+                uv,
+                "run",
+                "--frozen",
+                "python",
+                "scripts/verify_stage3.py",
+                "--evidence",
+                str(local_profile),
+                "--expected-run-id",
+                run_id,
+                "--expected-source-commit",
+                args.expected_commit,
+                "--output",
+                str(local_verification),
+            ],
+            [uv, "build"],
+        ]
+        results.extend(run(command) for command in current_commands)
     commit = git("rev-parse", "HEAD")
     tree = git("rev-parse", "HEAD^{tree}")
     status = git("status", "--short")
@@ -89,8 +120,6 @@ def main() -> int:
         "SANDBOX_PROFILE.json",
         "PERMISSION_ENFORCEMENT_MATRIX.json",
         "STAGE_3_THREAT_COVERAGE.json",
-        "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json",
-        "Evidence/STAGE_3_VERIFICATION.json",
         "baseline/source/LAOS_v7.0_Complete_System(1).zip",
         "dist/laos_v8-8.0.0a3.tar.gz",
         "dist/laos_v8-8.0.0a3-py3-none-any.whl",
@@ -99,6 +128,12 @@ def main() -> int:
     for relative in artifact_names:
         path = ROOT / relative
         artifacts.append({"path": relative, "bytes": path.stat().st_size, "sha256": sha256(path)})
+    for name, path in (
+        ("STAGE_3_LOCAL_SECURITY_PROFILE.json", local_profile),
+        ("STAGE_3_VERIFICATION.json", local_verification),
+    ):
+        if path.is_file():
+            artifacts.append({"path": name, "bytes": path.stat().st_size, "sha256": sha256(path)})
 
     report = {
         "record_version": "1.0.0",
@@ -123,7 +158,6 @@ def main() -> int:
         "production_signing_implemented": False,
         "v8_release_published": False,
     }
-    args.output_dir.mkdir(parents=True, exist_ok=True)
     json_path = args.output_dir / "STAGE_3_CANDIDATE_EVIDENCE.json"
     json_path.write_bytes((json.dumps(report, indent=2) + "\n").encode("utf-8"))
 

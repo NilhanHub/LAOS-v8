@@ -35,6 +35,7 @@ CAPTURE_DENIED = (
     "NETWORK",
     "RAW_SECRETS",
 )
+MAX_CAPTURE_FUTURE_SKEW_SECONDS = 300
 
 
 class CaptureRequest(BaseModel):
@@ -122,6 +123,9 @@ class ValidatedCapture(BaseModel):
     capture: AppIntelligenceReturn
     capture_digest: str
     envelope_digest: str
+    envelope_issued_at: str
+    request_issued_at: str
+    validated_at: str
 
 
 class ContinuationResult(BaseModel):
@@ -136,6 +140,46 @@ class ContinuationResult(BaseModel):
     preservation_rules: tuple[str, ...]
     continuation_constraints: tuple[str, ...]
     first_action: ActionNode
+
+
+def _capture_time(value: str) -> datetime:
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValidationError("capture timestamp is invalid", code="CAPTURE_TIME_INVALID") from exc
+    if parsed.tzinfo is None:
+        raise ValidationError("capture timestamp lacks an offset", code="CAPTURE_TIME_INVALID")
+    return parsed.astimezone(UTC)
+
+
+def _require_capture_chronology(
+    capture: AppIntelligenceReturn,
+    *,
+    envelope_issued_at: str,
+    request_issued_at: str,
+    now: datetime,
+) -> None:
+    current = now.astimezone(UTC)
+    future_limit = current + timedelta(seconds=MAX_CAPTURE_FUTURE_SKEW_SECONDS)
+    completed = _capture_time(capture.completed_at)
+    envelope_issued = _capture_time(envelope_issued_at)
+    request_issued = _capture_time(request_issued_at)
+    if envelope_issued < request_issued or completed < request_issued:
+        raise AuthorizationDenied("capture predates its request", code="CAPTURE_BEFORE_REQUEST_ISSUED")
+    if completed > future_limit:
+        raise AuthorizationDenied("capture completion is too far in the future", code="CAPTURE_COMPLETED_IN_FUTURE")
+    if completed > envelope_issued:
+        raise AuthorizationDenied("capture completed after its envelope was issued", code="CAPTURE_CHRONOLOGY_INVALID")
+    for fact in capture.facts:
+        captured = _capture_time(fact.captured_at)
+        if captured < request_issued:
+            raise AuthorizationDenied("capture fact predates its request", code="CAPTURE_BEFORE_REQUEST_ISSUED")
+        if captured > future_limit:
+            raise AuthorizationDenied("capture fact is too far in the future", code="CAPTURE_FACT_IN_FUTURE")
+        if captured > completed:
+            raise AuthorizationDenied("capture fact postdates capture completion", code="CAPTURE_CHRONOLOGY_INVALID")
+        if current >= captured + timedelta(seconds=fact.freshness_seconds):
+            raise AuthorizationDenied("capture fact is stale", code="CAPTURE_FACT_STALE")
 
 
 def create_capture_request(
@@ -173,17 +217,14 @@ def validate_capture_return(
     now: datetime,
 ) -> ValidatedCapture:
     current = now.astimezone(UTC)
-    expires = datetime.fromisoformat(request.expires_at.replace("Z", "+00:00")).astimezone(UTC)
+    issued = _capture_time(request.issued_at)
+    expires = _capture_time(request.expires_at)
+    if expires <= issued:
+        raise AuthorizationDenied("capture request chronology is invalid", code="CAPTURE_REQUEST_CHRONOLOGY_INVALID")
+    if issued > current + timedelta(seconds=MAX_CAPTURE_FUTURE_SKEW_SECONDS):
+        raise AuthorizationDenied("capture request is not yet valid", code="CAPTURE_REQUEST_NOT_YET_VALID")
     if current >= expires:
         raise AuthorizationDenied("capture request is stale", code="CAPTURE_REQUEST_EXPIRED")
-    envelope_issued = datetime.fromisoformat(envelope.issued_at.replace("Z", "+00:00")).astimezone(UTC)
-    if current < envelope_issued:
-        raise AuthorizationDenied("capture return is not yet valid", code="CAPTURE_RETURN_NOT_YET_VALID")
-    if envelope.expires_at is None:
-        raise AuthorizationDenied("capture return lacks expiry", code="CAPTURE_RETURN_EXPIRY_REQUIRED")
-    envelope_expires = datetime.fromisoformat(envelope.expires_at.replace("Z", "+00:00")).astimezone(UTC)
-    if current >= envelope_expires:
-        raise AuthorizationDenied("capture return is expired", code="CAPTURE_RETURN_EXPIRED")
     payload = verifier.verify(
         envelope,
         expected_purpose="event_anchor",
@@ -191,6 +232,14 @@ def validate_capture_return(
         expected_issuer=expected_issuer,
         expected_audience=expected_audience,
     )
+    envelope_issued = _capture_time(envelope.issued_at)
+    if envelope_issued > current + timedelta(seconds=MAX_CAPTURE_FUTURE_SKEW_SECONDS):
+        raise AuthorizationDenied("capture return is not yet valid", code="CAPTURE_RETURN_NOT_YET_VALID")
+    if envelope.expires_at is None:
+        raise AuthorizationDenied("capture return lacks expiry", code="CAPTURE_RETURN_EXPIRY_REQUIRED")
+    envelope_expires = _capture_time(envelope.expires_at)
+    if current >= envelope_expires:
+        raise AuthorizationDenied("capture return is expired", code="CAPTURE_RETURN_EXPIRED")
     returned = AppIntelligenceReturn.model_validate_json(payload, strict=True)
     if (
         returned.capture_id != request.capture_id
@@ -201,13 +250,22 @@ def validate_capture_return(
     ):
         raise AuthorizationDenied("capture return binding mismatch", code="CAPTURE_RETURN_BINDING_MISMATCH")
     require_unchanged(repository, request.repository_seal, seal_kind="source")
-    for fact in returned.facts:
-        captured = datetime.fromisoformat(fact.captured_at.replace("Z", "+00:00")).astimezone(UTC)
-        if current >= captured + timedelta(seconds=fact.freshness_seconds):
-            raise AuthorizationDenied("capture fact is stale", code="CAPTURE_FACT_STALE")
+    _require_capture_chronology(
+        returned,
+        envelope_issued_at=envelope.issued_at,
+        request_issued_at=request.issued_at,
+        now=current,
+    )
     digest = f"sha256:{hashlib.sha256(payload).hexdigest()}"
     envelope_digest = f"sha256:{hashlib.sha256(canonical_json(envelope.model_dump(mode='json'))).hexdigest()}"
-    return ValidatedCapture(capture=returned, capture_digest=digest, envelope_digest=envelope_digest)
+    return ValidatedCapture(
+        capture=returned,
+        capture_digest=digest,
+        envelope_digest=envelope_digest,
+        envelope_issued_at=envelope.issued_at,
+        request_issued_at=request.issued_at,
+        validated_at=current.isoformat().replace("+00:00", "Z"),
+    )
 
 
 def compile_continuation(
@@ -223,10 +281,12 @@ def compile_continuation(
     if acceptance.capture_digest != validated.capture_digest:
         raise AuthorizationDenied("acceptance targets another capture", code="CAPTURE_ACCEPTANCE_BINDING_MISMATCH")
     current = now.astimezone(UTC)
-    for fact in capture.facts:
-        captured = datetime.fromisoformat(fact.captured_at.replace("Z", "+00:00")).astimezone(UTC)
-        if current >= captured + timedelta(seconds=fact.freshness_seconds):
-            raise AuthorizationDenied("capture fact is stale", code="CAPTURE_FACT_STALE")
+    _require_capture_chronology(
+        capture,
+        envelope_issued_at=validated.envelope_issued_at,
+        request_issued_at=validated.request_issued_at,
+        now=current,
+    )
     known = {fact.fact_id for fact in capture.facts}
     dispositions = {item.fact_id: item.status for item in acceptance.dispositions}
     if len(dispositions) != len(acceptance.dispositions) or set(dispositions) != known:

@@ -54,6 +54,8 @@ def test_transactional_state_audit_cas_claim_and_backup(tmp_path: Path) -> None:
     with CanonicalState(restored) as state:
         assert state.get_aggregate("task:one").state == "ready"
         assert state.control_status() == (False, 0, "")
+    backup.unlink()
+    assert not backup.exists()
 
 
 def test_existing_state_version_is_never_guessed_or_silently_upgraded(tmp_path: Path) -> None:

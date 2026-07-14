@@ -106,7 +106,7 @@ class TrustRegistry:
             raise SecurityError("trust key cannot authorize current work", code="TRUST_KEY_REVOKED")
         if historical and record.revoked_at is not None and _utc(envelope.issued_at) >= _utc(record.revoked_at):
             raise SecurityError("signature postdates key revocation", code="TRUST_KEY_REVOKED")
-        return record.trust_root.verifier()
+        return record.trust_root.verifier(trusted_issuer=record.issuer)
 
     def public_snapshot(self) -> dict[str, object]:
         return {

@@ -241,11 +241,6 @@ class ActionEngine:
     ) -> None:
         if self._phase in {"AWAIT_ACCEPTANCE", "BLOCKED", "COMPLETE"}:
             raise StateConflict("current action cannot be amended in this phase", code="AMENDMENT_PHASE_DENIED")
-        current_time = now.astimezone(UTC)
-        if current_time < _utc(envelope.issued_at):
-            raise AuthorizationDenied("amendment is not yet valid", code="AMENDMENT_NOT_YET_VALID")
-        if envelope.expires_at is None or current_time >= _utc(envelope.expires_at):
-            raise AuthorizationDenied("amendment is expired", code="AMENDMENT_EXPIRED")
         payload = verifier.verify(
             envelope,
             expected_purpose="event_anchor",
@@ -253,6 +248,11 @@ class ActionEngine:
             expected_issuer=expected_issuer,
             expected_audience=expected_audience,
         )
+        current_time = now.astimezone(UTC)
+        if current_time < _utc(envelope.issued_at):
+            raise AuthorizationDenied("amendment is not yet valid", code="AMENDMENT_NOT_YET_VALID")
+        if envelope.expires_at is None or current_time >= _utc(envelope.expires_at):
+            raise AuthorizationDenied("amendment is expired", code="AMENDMENT_EXPIRED")
         amendment = ActionAmendment.model_validate_json(payload, strict=True)
         if amendment.chain_id != self.chain_id or amendment.supersedes_action_id != self._current:
             raise AuthorizationDenied("amendment binding mismatch", code="AMENDMENT_BINDING_MISMATCH")

@@ -14,7 +14,7 @@ from laos_v8.action_engine import (
     UnderstandSubmission,
 )
 from laos_v8.canonical import canonical_json
-from laos_v8.errors import AuthorizationDenied, StateConflict, ValidationError
+from laos_v8.errors import AuthorizationDenied, SecurityError, StateConflict, ValidationError
 from laos_v8.models import TypedEnvelope
 from laos_v8.signing import ProtectedTestSigner
 
@@ -273,6 +273,27 @@ def test_amendment_time_window_is_enforced(
             now=now,
         )
     assert denied.value.code == code
+
+
+def test_expired_amendment_cannot_be_extended_without_resigning() -> None:
+    subject = engine()
+    signer = ProtectedTestSigner("event_anchor")
+    original = signed_amendment(
+        subject,
+        signer,
+        subject.current.action.model_copy(update={"objective": "signed replacement"}),
+        expires_at="2026-07-13T00:00:00Z",
+    )
+    substituted = original.model_copy(update={"expires_at": "2030-07-13T00:00:00Z"})
+    with pytest.raises(SecurityError) as denied:
+        subject.apply_amendment(
+            substituted,
+            verifier=signer.trust_root.verifier(),
+            expected_issuer="authority:stage5",
+            expected_audience="engine:stage5",
+            now=datetime(2026, 7, 14, tzinfo=UTC),
+        )
+    assert denied.value.code == "SIGNATURE_INVALID"
 
 
 def test_amendment_cannot_rewire_graph_or_change_active_attempt() -> None:

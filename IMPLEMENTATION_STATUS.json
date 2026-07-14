@@ -1,5 +1,5 @@
 {
-  "known_regression_count": 40,
+  "known_regression_count": 47,
   "milestone": 4,
   "milestone_name": "Mandatory Security Spine through policy and risk classification",
   "next_milestone": 5,
@@ -21,7 +21,10 @@
   "real_weaker_agent_executed": true,
   "stage_4_status": "COMPLETE",
   "stage_5_status": "IN_PROGRESS",
-  "stage_5_checkpoint": "CORE_CONTRACTS_AND_TRUSTED_FIXTURE_ROUND_TRIPS_PASS",
+  "stage_5_checkpoint": "SECURITY_REMEDIATION_IMPLEMENTED_VERIFICATION_AND_NILHAN_REVIEW_PENDING",
+  "stage_5_security_scan_source_commit": "5f9babd281a4080653986f237bb3af89dcccf4b5",
+  "stage_5_validated_scan_finding_count": 7,
+  "stage_5_deferred_scan_candidate_count": 7,
   "stage_5_open_gates": [
     "PROTECTED_SIGNING_CUSTODY",
     "RELEASED_PROFILE_REAL_CALIBRATION",

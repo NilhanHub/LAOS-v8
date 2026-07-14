@@ -9,6 +9,9 @@ import rfc8785
 from pydantic import BaseModel
 
 from .errors import ValidationError
+from .models import ProtectedEnvelope
+
+PROTECTED_ENVELOPE_MEDIA_TYPE = "application/vnd.nilhan.laos.protected-envelope.v2+json"
 
 
 def canonical_json(value: BaseModel | dict[str, Any] | list[Any]) -> bytes:
@@ -29,8 +32,8 @@ def dsse_pae(payload_type: str, payload: bytes) -> bytes:
     return b"DSSEv1 %d %b %d %b" % (len(type_bytes), type_bytes, len(payload), payload)
 
 
-def signature_domain(key_purpose: str, payload_type: str, payload: bytes) -> bytes:
-    if key_purpose not in {"capsule", "event_anchor", "release", "pack_manifest"}:
+def signature_domain(statement: ProtectedEnvelope) -> bytes:
+    """Authenticate the complete v2 envelope context under one typed domain."""
+    if statement.key_purpose not in {"capsule", "event_anchor", "release", "pack_manifest"}:
         raise ValidationError("unknown signing key purpose", code="UNKNOWN_KEY_PURPOSE")
-    domain_type = f"application/vnd.nilhan.laos.signature.{key_purpose}.v1+{payload_type}"
-    return dsse_pae(domain_type, payload)
+    return dsse_pae(PROTECTED_ENVELOPE_MEDIA_TYPE, canonical_json(statement))

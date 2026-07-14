@@ -675,3 +675,262 @@ Unknowns have explicit state, provenance, owner, resolution, and acceptance.
 
 Separate immutable release, static harness, runtime state, evidence, and artifact manifests.
 
+## REG-041 — Protected authority and time fields were outside the envelope signature
+
+- Scan finding: `LAOS-S5-F-001`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_SCAN`
+- Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Change issuer, audience, issue time, or expiry while
+retaining the signature; the vulnerable verifier accepted the altered context.
+
+**Regression evidence:** Protected-envelope v2 and its golden vector authenticate
+the complete authority/time statement. See
+`tests/stage3/test_capsule_and_signing.py` and
+`tests/stage5/test_action_engine.py`. Legacy v1 fails closed.
+
+## REG-042 — Trusted key registration did not constrain the claimed issuer
+
+- Scan finding: `LAOS-S5-F-002`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_SCAN`
+- Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Register a key for one issuer, sign an envelope that
+claims another issuer, and verify the pack through the trust registry.
+
+**Regression evidence:** Trust-created verifiers carry the registered issuer and
+deny cross-issuer use with `TRUST_ISSUER_MISMATCH`; see
+`tests/stage5/test_packs_and_trust.py`.
+
+## REG-043 — Windows `.GIT` aliases could install an executing Git configuration
+
+- Scan finding: `LAOS-S5-F-003`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_SCAN`
+- Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Supply `.GIT/config` and `.gitattributes` in a
+template so `git add` invokes a malicious clean filter on Windows.
+
+**Regression evidence:** Unicode-normalized, case-folded complete-template
+validation denies `.git`/`.laos` aliases, case collisions, Windows ambiguous
+names, and unsafe Git configuration. Writes use no-follow atomic operations and
+Git runs without system/global configuration or hooks. See
+`tests/stage5/test_core_workflows.py`.
+
+## REG-044 — Future capture timestamps bypassed freshness checks
+
+- Scan finding: `LAOS-S5-F-004`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_SCAN`
+- Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Sign a capture whose fact timestamp is far in the
+future; freshness arithmetic treated it as current.
+
+**Regression evidence:** Initial and continuation validation share one chronology
+validator, allow at most 300 seconds of positive skew, and deny future facts,
+invalid ordering, stale facts, or completion after envelope issuance. See
+`tests/stage5/test_capture_security.py`.
+
+## REG-045 — Stage 3 generation failure could preserve an older PASS
+
+- Scan finding: `LAOS-S5-F-005`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_SCAN`
+- Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Leave a PASS at the evidence path, then fail Docker
+startup before the old generator writes replacement evidence.
+
+**Regression evidence:** The generator atomically publishes `IN_PROGRESS` before
+collection and replaces it with `FAIL` on every exception. Current verification
+requires the expected run ID and source revision. See
+`tests/stage5/test_evidence_integrity.py`.
+
+## REG-046 — Stage 5 checkpoint trusted mutable self-asserted evidence
+
+- Scan finding: `LAOS-S5-F-006`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_SCAN`
+- Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Replace repository evidence fields with fabricated
+PASS values that were not tied to a current execution or source revision.
+
+**Regression evidence:** Candidate receipts bind the run, commit/tree, fixed
+command arrays, exit codes, sanitized transcript hashes, and artifact hashes;
+Docker readiness is checked live. Approval remains a separate Nilhan-authored
+receipt. See `tests/stage5/test_evidence_integrity.py`.
+
+## REG-047 — Stage 5 coverage verification allowed criterion substitution
+
+- Scan finding: `LAOS-S5-F-007`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_SCAN`
+- Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Duplicate one passing coverage row while omitting a
+different required criterion; the vulnerable row-count check still passed.
+
+**Regression evidence:** The Stage 5 verifier requires the exact unique
+`S5-01` through `S5-14` map, expected milestone/status pairs, and the active
+Revision 1.1 plan hash. See `tests/stage5/test_evidence_integrity.py`.
+
+## REG-048 — Stage 5 approval accepted an unauthenticated Nilhan name
+
+- Scan candidate: `CAND-001`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Supply an ordinary review JSON file that names
+Nilhan and matches the candidate identifiers; the verifier produced approval.
+
+**Regression evidence:** Review verification now binds the candidate tag,
+source parent, and exact receipt blob, then fails closed with
+`PROTECTED_NILHAN_REVIEW_AUTHENTICATION_NOT_IMPLEMENTED`. Protected Nilhan
+authentication remains Stage 6 work.
+
+## REG-049 — Candidate command PASS rows were self-asserted
+
+- Scan candidate: `CAND-002`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Replace every command argument array with invented
+values while retaining PASS-shaped rows; candidate verification accepted them.
+
+**Regression evidence:** The receipt must match one exact ordered, run-bound
+command map and declares `producer_authentication=NONE_STAGE6_OPEN`. It is
+builder-asserted bootstrap evidence, not an authenticated execution attestation.
+
+## REG-050 — Current Stage 3 evidence could bind dirty bytes to clean Git IDs
+
+- Scan candidate: `CAND-006`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Modify working-tree code, run the standalone
+generator, and observe evidence attributed to unchanged HEAD and tree IDs.
+
+**Regression evidence:** Current generation and verification require a clean
+worktree and an evidence path outside the repository before collectors run.
+
+## REG-051 — Full current Stage 3 verification accepted hand-authored collectors
+
+- Scan candidate: `CAND-007`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Hand-author PASS-shaped Docker, state, signing, and
+operator rows without running collectors; full current verification accepted it.
+
+**Regression evidence:** Full current mode regenerates the run-bound evidence
+with the fixed generator before verification. Historical mode cannot emit a
+current PASS.
+
+## REG-052 — Review did not bind source, evidence commit, and receipt blob
+
+- Scan candidate: `CAND-010`
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Point the candidate tag at an unrelated commit while
+using independently matching receipt fields; the structural checks accepted it.
+
+**Regression evidence:** The tagged evidence commit must have exactly one
+parent equal to the source commit and contain the exact candidate receipt blob.
+Approval still requires the unimplemented protected Nilhan authentication.
+
+## REG-053 — Substring filtering could hide unrelated dirty files
+
+- Scan candidate: `CAND-004`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Choose `s` as the output name so substring filtering
+also removed a dirty `src/file.py` status row.
+
+**Regression evidence:** The builder parses NUL-delimited Git status records
+and exempts only one exact normalized output path.
+
+## REG-054 — Receipt output could overwrite a just-hashed package
+
+- Scan candidate: `CAND-005`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Select a package path as receipt output; the final
+atomic JSON write replaced the artifact after its digest was recorded.
+
+**Regression evidence:** In-repository output is restricted to the exact
+untracked Stage 5 Evidence JSON path. Tracked and colliding paths are denied.
+
+## REG-055 — Stale Stage 3 evidence could still claim current PASS
+
+- Scan candidate: `CAND-008`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Present otherwise valid current evidence completed
+in the distant past; no maximum age prevented PASS.
+
+**Regression evidence:** Current evidence must complete within 15 minutes of
+verification and is regenerated immediately before the full verifier runs.
+
+## REG-056 — Candidate verification skipped claimed package artifacts
+
+- Scan candidate: `CAND-009`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Supply absent package files and fabricated package
+hashes; the verifier explicitly skipped both rows.
+
+**Regression evidence:** Ephemeral packages are no longer claimed as retained
+candidate artifacts. The exact `uv build` invocation remains a command gate;
+release artifact custody remains open for Stage 8.
+
+## REG-057 — Signed capture events could predate their request
+
+- Scan candidate: `CAND-011`
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
+- Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
+- Status: `REMEDIATION_IMPLEMENTED_VERIFICATION_PENDING`
+
+**Original reproduction:** Sign facts, completion, and envelope issuance that
+all predate request issuance; the continuation path accepted them.
+
+**Regression evidence:** Validated capture state carries request issuance and
+both initial validation and continuation deny pre-request events with
+`CAPTURE_BEFORE_REQUEST_ISSUED`. Exactly 300 seconds of positive skew remains
+allowed by policy; 301 seconds remains denied.
+

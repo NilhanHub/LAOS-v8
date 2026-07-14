@@ -279,6 +279,12 @@ def verify_pack(
         manifest = PackManifest.model_validate_json(manifest_bytes, strict=True)
         if manifest.pack_kind != expected_kind or manifest.project_id != expected_project:
             raise SecurityError("pack identity binding mismatch", code="PACK_BINDING_MISMATCH")
+        if (
+            manifest.issuer != envelope.issuer
+            or manifest.audience != envelope.audience
+            or manifest.created_at != envelope.issued_at
+        ):
+            raise SecurityError("pack manifest context differs from its envelope", code="PACK_CONTEXT_BINDING_MISMATCH")
         expected_paths = {entry.path for entry in manifest.entries} | {"manifest.json", "manifest.envelope.json"}
         if set(extracted) != expected_paths:
             raise SecurityError("pack contains unmanifested content", code="PACK_UNMANIFESTED_CONTENT")

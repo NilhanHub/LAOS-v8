@@ -4,6 +4,7 @@ import base64
 import hashlib
 import shutil
 import subprocess
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -409,3 +410,101 @@ def test_blueprint_and_template_fail_closed_on_missing_truth() -> None:
             content_b64=base64.b64encode(payload).decode("ascii"),
             sha256="0" * 64,
         )
+
+
+@pytest.mark.parametrize(
+    "path",
+    (".GIT/config", ".Git/config", ".LAOS/state.json", "README.md.", "README.md ", "NUL.txt"),
+)
+def test_template_rejects_windows_control_aliases(path: str) -> None:
+    payload = b"bounded"
+    with pytest.raises(PydanticValidationError):
+        TemplateFile(
+            path=path,
+            content_b64=base64.b64encode(payload).decode("ascii"),
+            sha256=hashlib.sha256(payload).hexdigest(),
+        )
+
+
+def test_template_rejects_case_insensitive_path_collisions() -> None:
+    payload = b"bounded"
+    encoded = base64.b64encode(payload).decode("ascii")
+    digest = hashlib.sha256(payload).hexdigest()
+    with pytest.raises(PydanticValidationError):
+        ReviewedTemplate(
+            template_id="template:collision",
+            toolchain=("python@3.11",),
+            dependencies=(),
+            licenses=("Proprietary",),
+            provenance=("review:Nilhan",),
+            compatible_environments=("windows-python-3.11",),
+            files=(
+                TemplateFile(path="README.md", content_b64=encoded, sha256=digest),
+                TemplateFile(path="readme.md", content_b64=encoded, sha256=digest),
+            ),
+        )
+
+
+def test_genesis_ignores_host_git_filter_configuration(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    marker = tmp_path / "filter-executed.txt"
+    filter_script = tmp_path / "filter.py"
+    filter_script.write_text(
+        "import pathlib, sys\npathlib.Path(sys.argv[1]).write_text('executed')\n"
+        "sys.stdout.buffer.write(sys.stdin.buffer.read())\n",
+        encoding="utf-8",
+    )
+    git_config = tmp_path / "malicious.gitconfig"
+    python_path = Path(sys.executable).as_posix()
+    script_path = filter_script.as_posix()
+    marker_path = marker.as_posix()
+    git_config.write_text(
+        f'[filter "evil"]\n\tclean = "{python_path}" "{script_path}" "{marker_path}"\n\trequired = true\n',
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(git_config))
+    attributes = b"*.txt filter=evil\n"
+    payload = b"safe payload\n"
+    selected = ReviewedTemplate(
+        template_id="template:git-filter",
+        toolchain=("python@3.11",),
+        dependencies=(),
+        licenses=("Proprietary",),
+        provenance=("review:Nilhan",),
+        compatible_environments=("windows-python-3.11",),
+        files=(
+            TemplateFile(
+                path=".gitattributes",
+                content_b64=base64.b64encode(attributes).decode("ascii"),
+                sha256=hashlib.sha256(attributes).hexdigest(),
+            ),
+            TemplateFile(
+                path="payload.txt",
+                content_b64=base64.b64encode(payload).decode("ascii"),
+                sha256=hashlib.sha256(payload).hexdigest(),
+            ),
+        ),
+    )
+    plan = blueprint()
+    request = NewBuildRequest(
+        request_id="new-build:git-filter",
+        project_id="project:git-filter",
+        blueprint_digest=plan.digest,
+        template_digest=selected.digest,
+        initial_action=current_action(),
+    )
+    acceptance = BlueprintAcceptance(
+        acceptance_id="acceptance:git-filter",
+        blueprint_digest=plan.digest,
+        architect_proposal_envelope_digest=DIGEST,
+        human_reviewer="Nilhan",
+        accepted_at="2026-07-13T00:00:00Z",
+        expires_at="2026-07-14T00:00:00Z",
+    )
+    GenesisCompiler(TemplateRegistry((selected,)), tmp_path / "control").compile(
+        request,
+        plan,
+        acceptance,
+        destination=tmp_path / "safe-app",
+        now="2026-07-13T01:00:00Z",
+    )
+    assert not marker.exists()

@@ -93,6 +93,33 @@ def test_pack_is_reproducible_for_same_request(tmp_path: Path) -> None:
     assert first.archive.read_bytes() == second.archive.read_bytes()
 
 
+def test_trusted_key_cannot_claim_another_registered_issuer(tmp_path: Path) -> None:
+    signer = ProtectedTestSigner("pack_manifest")
+    archive = tmp_path / "issuer-substitution.zip"
+    PackCompiler(signer).compile(request("agent_execution", "execution/task.json"), archive)
+    registry = TrustRegistry()
+    registry.add(
+        PublicTrustRecord(
+            signer.trust_root,
+            "authority:lower",
+            "pack_manifest",
+            "2026-01-01T00:00:00Z",
+            "2030-01-01T00:00:00Z",
+        )
+    )
+    with pytest.raises(SecurityError) as denied:
+        verify_pack(
+            archive,
+            trust=registry,
+            expected_kind="agent_execution",
+            expected_project="project:stage5",
+            expected_issuer="authority:stage5",
+            expected_audience="consumer:stage5",
+            now=datetime(2026, 7, 14, tzinfo=UTC),
+        )
+    assert denied.value.code == "TRUST_ISSUER_MISMATCH"
+
+
 @pytest.mark.parametrize(
     "payload",
     (

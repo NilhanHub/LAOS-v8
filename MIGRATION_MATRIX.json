@@ -1,6 +1,14 @@
 {
-  "matrix_version": "0.1.0",
+  "matrix_version": "1.3.0",
   "source": "LAOS v7.0 immutable archive",
+  "stage_5_security_remediation": {
+    "status": "IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+    "serialized_envelope_policy": "V1_UNSUPPORTED_FAIL_CLOSED_V2_REQUIRED",
+    "bootstrap_evidence_receipt_policy": "V1_0_UNSUPPORTED_V1_1_BUILDER_ASSERTED_NOT_AUTHENTICATED",
+    "review_record_policy": "ORDINARY_JSON_CANNOT_APPROVE_PROTECTED_NILHAN_AUTHENTICATION_REQUIRED",
+    "compatibility_rationale": "Intentional pre-release break; no persisted v1 envelope was found.",
+    "release_claim": "NONE"
+  },
   "policy": {
     "copy_on_write": true,
     "dry_run": true,
@@ -16,14 +24,16 @@
       "v7_source": "v7 JSON blueprint",
       "v8_target": "v8 versioned typed model",
       "owner_stage": 5,
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_5_security_status": "TEMPLATE_PATH_AND_GIT_GENESIS_HARDENING_IMPLEMENTED_AWAITING_NILHAN_REVIEW"
     },
     {
       "feature": "capture_app_intelligence",
       "v7_source": "v7 capture return",
       "v8_target": "strict validated capture aggregate",
       "owner_stage": 5,
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_5_security_status": "REQUEST_BOUND_CAPTURE_CHRONOLOGY_AND_300_SECOND_POSITIVE_SKEW_CONTROL_IMPLEMENTED_AWAITING_NILHAN_REVIEW"
     },
     {
       "feature": "continuation_fingerprint",
@@ -44,7 +54,8 @@
       "v7_source": "project-writable files",
       "v8_target": "broker-controlled CAS plus signed index",
       "owner_stage": 6,
-      "status": "OPEN"
+      "status": "OPEN",
+      "stage_5_security_status": "REGENERATED_FRESH_RUN_BOUND_BUILDER_ASSERTED_RECEIPTS_IMPLEMENTED_PROTECTED_CUSTODY_AND_PRODUCER_AUTHENTICATION_OPEN"
     },
     {
       "feature": "side_effect_records",
@@ -59,6 +70,14 @@
       "v8_target": "clean static artifacts and runtime initialization",
       "owner_stage": 8,
       "status": "OPEN"
+    },
+    {
+      "feature": "signed_authority_envelope",
+      "v7_source": "no supported v8 protected-envelope serialization",
+      "v8_target": "RFC 8785 canonical protected-envelope v2 with issuer and audience binding",
+      "owner_stage": 5,
+      "status": "OPEN",
+      "stage_5_security_status": "V2_IMPLEMENTED_V1_FAILS_CLOSED_PRODUCTION_KEY_CUSTODY_OPEN"
     }
   ]
 }

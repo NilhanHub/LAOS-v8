@@ -438,7 +438,7 @@ class CanonicalState:
 
     def backup(self, destination: Path) -> str:
         target = _validate_local_database(destination)
-        with sqlite3.connect(target) as output:
+        with contextlib.closing(sqlite3.connect(target)) as output:
             self.connection.backup(output)
             if str(output.execute("PRAGMA integrity_check").fetchone()[0]) != "ok":
                 raise EvidenceError("SQLite backup integrity check failed", code="SQLITE_BACKUP_INVALID")

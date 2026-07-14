@@ -58,7 +58,7 @@
     {
       "id": "ADR-0010",
       "title": "Typed signing envelope and key lifecycle",
-      "status": "ACCEPTED_TEST_ROOT_PRODUCTION_LIFECYCLE_OPEN",
+      "status": "ACCEPTED_PROTECTED_ENVELOPE_V2_TEST_ROOT_PRODUCTION_LIFECYCLE_OPEN",
       "owner_stage": 3
     },
     {
@@ -82,7 +82,7 @@
     {
       "id": "ADR-0014",
       "title": "Evidence custody and external anchoring",
-      "status": "PROPOSED",
+      "status": "PARTIAL_RUN_BOUND_BOOTSTRAP_RECEIPTS_PROTECTED_CUSTODY_STAGE6_OPEN",
       "owner_stage": 6
     },
     {

@@ -12,7 +12,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey,
 
 from .canonical import signature_domain
 from .errors import SecurityError, ValidationError
-from .models import KeyPurpose, TypedEnvelope
+from .models import KeyPurpose, ProtectedEnvelope, TypedEnvelope
 
 
 def _encode(value: bytes) -> str:
@@ -33,11 +33,12 @@ class TestTrustRoot:
     key_purpose: KeyPurpose
     assurance: str = "STAGE_3_TEST_ONLY_NOT_PRODUCTION"
 
-    def verifier(self) -> EnvelopeVerifier:
+    def verifier(self, *, trusted_issuer: str | None = None) -> EnvelopeVerifier:
         return EnvelopeVerifier(
             self.key_id,
             Ed25519PublicKey.from_public_bytes(_decode(self.public_key_b64)),
             self.key_purpose,
+            trusted_issuer=trusted_issuer,
         )
 
 
@@ -68,20 +69,23 @@ class ProtectedTestSigner:
     ) -> TypedEnvelope:
         if key_purpose != self.key_purpose:
             raise SecurityError("test signer key purpose mismatch", code="SIGNER_KEY_PURPOSE_DENIED")
-        subject = f"sha256:{hashlib.sha256(payload).hexdigest()}"
-        signature = self._key.sign(signature_domain(key_purpose, payload_type, payload))
-        return TypedEnvelope(
+        encoded_payload = _encode(payload)
+        statement = ProtectedEnvelope(
             payload_type=payload_type,
-            payload=_encode(payload),
+            payload=encoded_payload,
             algorithm="Ed25519",
             key_id=self.key_id,
             key_purpose=key_purpose,
             issuer=issuer,
             audience=audience,
-            subject_digest=subject,
+            subject_digest=f"sha256:{hashlib.sha256(payload).hexdigest()}",
             issued_at=issued_at,
             expires_at=expires_at,
-            signature=_encode(signature),
+        )
+        signature = self._key.sign(signature_domain(statement))
+        return TypedEnvelope.model_validate(
+            {**statement.model_dump(mode="json"), "signature": _encode(signature)},
+            strict=True,
         )
 
 
@@ -91,10 +95,13 @@ class EnvelopeVerifier:
         key_id: str,
         public_key: Ed25519PublicKey,
         key_purpose: KeyPurpose,
+        *,
+        trusted_issuer: str | None = None,
     ) -> None:
         self.key_id = key_id
         self.public_key = public_key
         self.key_purpose = key_purpose
+        self.trusted_issuer = trusted_issuer
 
     def verify(
         self,
@@ -105,23 +112,31 @@ class EnvelopeVerifier:
         expected_issuer: str,
         expected_audience: str,
     ) -> bytes:
+        if envelope.envelope_version != "2.0.0":
+            raise SecurityError("legacy or unknown envelope version is denied", code="SIGNATURE_VERSION_DENIED")
         if envelope.algorithm != "Ed25519" or envelope.key_id != self.key_id:
             raise SecurityError("signature key or algorithm is not trusted", code="SIGNATURE_KEY_DENIED")
         if envelope.key_purpose != expected_purpose or expected_purpose != self.key_purpose:
             raise SecurityError("signature key purpose mismatch", code="SIGNATURE_PURPOSE_MISMATCH")
         if envelope.payload_type != expected_payload_type:
             raise SecurityError("signed payload type mismatch", code="SIGNATURE_TYPE_MISMATCH")
-        if envelope.issuer != expected_issuer or envelope.audience != expected_audience:
-            raise SecurityError("signed issuer or audience mismatch", code="SIGNATURE_CONTEXT_MISMATCH")
         payload = _decode(envelope.payload)
         observed = f"sha256:{hashlib.sha256(payload).hexdigest()}"
         if observed != envelope.subject_digest:
             raise SecurityError("signed subject digest mismatch", code="SIGNATURE_SUBJECT_MISMATCH")
+        statement = ProtectedEnvelope.model_validate(
+            envelope.model_dump(mode="json", exclude={"signature"}),
+            strict=True,
+        )
         try:
             self.public_key.verify(
                 _decode(envelope.signature),
-                signature_domain(envelope.key_purpose, envelope.payload_type, payload),
+                signature_domain(statement),
             )
         except InvalidSignature as exc:
             raise SecurityError("envelope signature is invalid", code="SIGNATURE_INVALID") from exc
+        if self.trusted_issuer is not None and envelope.issuer != self.trusted_issuer:
+            raise SecurityError("signature key issuer mismatch", code="TRUST_ISSUER_MISMATCH")
+        if envelope.issuer != expected_issuer or envelope.audience != expected_audience:
+            raise SecurityError("signed issuer or audience mismatch", code="SIGNATURE_CONTEXT_MISMATCH")
         return payload

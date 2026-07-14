@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import importlib.metadata
 import json
@@ -15,6 +16,7 @@ from pathlib import Path
 
 from laos_v8.capsule import CapsuleAuthority, verify_and_redeem
 from laos_v8.evidence import EvidenceBroker
+from laos_v8.evidence_receipts import atomic_write_json, new_run_id
 from laos_v8.models import Role
 from laos_v8.operator_paths import explain_denial
 from laos_v8.policy import ResourceBudget
@@ -24,14 +26,21 @@ from laos_v8.state import CanonicalState
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "Evidence"
-
-
-def write_json(path: Path, value: object) -> None:
-    path.write_bytes((json.dumps(value, indent=2, sort_keys=True) + "\n").encode("utf-8"))
+GENERATOR_VERSION = "laos-stage3-evidence/2.1.0"
 
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def git(*args: str) -> str:
+    executable = shutil.which("git")
+    if executable is None:
+        raise RuntimeError("git-unavailable")
+    return subprocess.check_output(  # noqa: S603 - resolved executable and fixed metadata arguments
+        [executable, "-C", str(ROOT), *args],
+        text=True,
+    ).strip()
 
 
 def docker_details() -> dict[str, object]:
@@ -222,34 +231,80 @@ def operator_details() -> dict[str, object]:
         }
 
 
-def main() -> int:
-    docker = docker_details()
-    state = state_details()
-    signing = signing_details()
-    operator = operator_details()
-    status = "PASS" if all(item["status"] == "PASS" for item in (docker, state, signing, operator)) else "FAIL"
-    report = {
-        "record_version": "1.0.0",
-        "status": status,
+def generate(output: Path, *, run_id: str | None = None) -> dict[str, object]:
+    output = output.resolve()
+    active_run_id = run_id or new_run_id()
+    started = datetime.now(UTC).isoformat().replace("+00:00", "Z")
+    base: dict[str, object] = {
+        "record_version": "2.0.0",
+        "run_id": active_run_id,
         "stage": 3,
+        "status": "IN_PROGRESS",
         "assurance": "LOCAL_SECURITY_SPINE_TEST_PROFILE",
-        "docker": docker,
-        "state": state,
-        "signing": signing,
-        "operator_paths": operator,
-        "dependencies": {
-            name: importlib.metadata.version(name)
-            for name in ("cryptography", "pydantic", "jsonschema", "rfc8785", "hypothesis")
-        },
-        "uv_lock_sha256": sha256(ROOT / "uv.lock"),
-        "real_weaker_agent_executed": False,
-        "external_model_transmission": False,
-        "production_side_effect_executed": False,
-        "v8_release_claimed": False,
+        "generator_version": GENERATOR_VERSION,
+        "started_at_utc": started,
+        "completed_at_utc": None,
+        "source_commit": None,
+        "source_tree": None,
     }
-    write_json(EVIDENCE / "STAGE_3_LOCAL_SECURITY_PROFILE.json", report)
-    print(json.dumps({"status": status, "output": "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"}, indent=2))
-    return 0 if status == "PASS" else 1
+    atomic_write_json(output, base)
+    try:
+        if output.is_relative_to(ROOT):
+            raise RuntimeError("current-evidence-output-must-be-outside-repository")
+        if git("status", "--porcelain=v1", "-z", "--untracked-files=all"):
+            raise RuntimeError("current-evidence-requires-clean-worktree")
+        source_commit = git("rev-parse", "HEAD")
+        source_tree = git("rev-parse", "HEAD^{tree}")
+        base["source_commit"] = source_commit
+        base["source_tree"] = source_tree
+        docker = docker_details()
+        state = state_details()
+        signing = signing_details()
+        operator = operator_details()
+        passed = all(item["status"] == "PASS" for item in (docker, state, signing, operator))
+        report = {
+            **base,
+            "status": "PASS" if passed else "FAIL",
+            "completed_at_utc": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
+            "source_commit": source_commit,
+            "source_tree": source_tree,
+            "docker": docker,
+            "state": state,
+            "signing": signing,
+            "operator_paths": operator,
+            "dependencies": {
+                name: importlib.metadata.version(name)
+                for name in ("cryptography", "pydantic", "jsonschema", "rfc8785", "hypothesis")
+            },
+            "uv_lock_sha256": sha256(ROOT / "uv.lock"),
+            "real_weaker_agent_executed": False,
+            "external_model_transmission": False,
+            "production_side_effect_executed": False,
+            "v8_release_claimed": False,
+        }
+        if not passed:
+            report["failure_code"] = "STAGE3_COMPONENT_FAILED"
+    except Exception as exc:
+        report = {
+            **base,
+            "status": "FAIL",
+            "completed_at_utc": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
+            "failure_code": str(getattr(exc, "code", type(exc).__name__)),
+            "failure_type": type(exc).__name__,
+        }
+    atomic_write_json(output, report)
+    return report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--run-id")
+    args = parser.parse_args()
+    output = args.output.resolve()
+    report = generate(output, run_id=args.run_id)
+    print(json.dumps({"status": report["status"], "run_id": report["run_id"], "output": str(output)}, indent=2))
+    return 0 if report["status"] == "PASS" else 1
 
 
 if __name__ == "__main__":
