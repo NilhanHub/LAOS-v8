@@ -1,0 +1,22 @@
+{
+  "record_version": "1.0.0",
+  "status": "QUALIFYING_REAL_CAPTURE_REUSABLE_FOR_STAGE_5_CANDIDATE",
+  "policy": "The sealed-v7 capture passed before the clean-clone pytest path defect stopped the candidate. Reuse this exact formal receipt; do not replace it merely because downstream verification needed repair.",
+  "formal_run_id": "run:a255e18e07b54eea8f505bf58b46204b",
+  "formal_source_commit": "d295e6a44d9a9aa5d048857c6b255d2d4a9b74d5",
+  "formal_source_tree": "79f509cc1ababbffadcbd50053ee70650f60dbb8",
+  "capture_id": "capture:v7-6e1ceaf1de53",
+  "capture_receipt_sha256": "c3d4a4cd713568c83e647a2265f44a8da80280e456fb1780dec4022749067707",
+  "protected_signer_status_sha256": "7bfc598b6d3e67023b099f6eedbc75c53d907abebfddfb531012f301afce6458",
+  "failed_candidate_sha256": "f07a606c4b531260726e48649e93e1188c8b0946533ca3bacb360f2f5dfd1bbb",
+  "failed_candidate_status": "FAIL",
+  "failed_candidate_failure_code": "candidate-command-failed:pytest_full",
+  "downstream_failure_reproduction": "The Stage 5 integration test resolved the archive as clean_clone_parent/LAOS_v7.0_Complete_System.zip instead of using the verified archive supplied to the candidate builder.",
+  "v7_archive_sha256_before": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+  "v7_archive_sha256_after": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
+  "source_seal_before": "sha256:c22fcfccf573bca072ada26b0db086e612696ec3561e3e972f162cc13dff3402",
+  "source_seal_after": "sha256:c22fcfccf573bca072ada26b0db086e612696ec3561e3e972f162cc13dff3402",
+  "repository_code_executed": false,
+  "first_capsule_redeemed": false,
+  "review_status": "PASS_AWAITING_NILHAN_REVIEW"
+}

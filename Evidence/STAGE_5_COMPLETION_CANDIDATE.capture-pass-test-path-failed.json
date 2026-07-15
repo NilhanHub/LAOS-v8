@@ -1,0 +1,193 @@
+{
+  "artifacts": [],
+  "assurance": "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW",
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/diagnose_stage5_structured_output.py"
+      ],
+      "exit_code": 0,
+      "label": "structured_output_diagnostic",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 266,
+      "stdout_sha256": "9809cb2a012671a1b15280a0d459a0b17a8e2191792a52b8e02207b4c9b52c86"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage5_calibration_receipt.py"
+      ],
+      "exit_code": 0,
+      "label": "formal_calibration_receipt",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 219,
+      "stdout_sha256": "dd0765f26c16e7ce1456b8f4f961e030c9d46d9c5d45d241e7139d7921622325"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "laos",
+        "signer-build"
+      ],
+      "exit_code": 0,
+      "label": "protected_signer_build",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 116,
+      "stdout_sha256": "ee19fe188fedc5350248148871aa2edf858fe45191912c4cb66943530261e067"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "laos",
+        "signer-bootstrap"
+      ],
+      "exit_code": 0,
+      "label": "protected_signer_bootstrap",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 1680,
+      "stdout_sha256": "00bf99b1b6f760b575f022fb4ee44322036f08c02ad22de91a274dff8d40c729"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/run_stage5_real_capture.py",
+        "--archive",
+        "D:\\Repo\\LAOS\\LAOS_v7.0_Complete_System.zip",
+        "--binding",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_PROFILE_BINDING.json",
+        "--output",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_REAL_CAPTURE_RECEIPT.json"
+      ],
+      "exit_code": 0,
+      "label": "real_v7_capture",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "laos",
+        "signer-doctor",
+        "--purpose",
+        "capsule"
+      ],
+      "exit_code": 0,
+      "label": "protected_signer_doctor",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 931,
+      "stdout_sha256": "0e30fb65547c27e4de5d5c0342f7498ca079e73d1a097347031dfc7b3d1887d5"
+    },
+    {
+      "argv": [
+        "uv",
+        "sync",
+        "--frozen",
+        "--all-groups"
+      ],
+      "exit_code": 0,
+      "label": "uv_sync",
+      "status": "PASS",
+      "stderr_bytes": 27,
+      "stderr_sha256": "5df6558ab734d47b8fba4003127f955108d4ff4d2c4733ff4aedbb80ecc43018",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src",
+        "tests/stage2",
+        "tests/stage3",
+        "tests/stage4",
+        "tests/stage5",
+        "scripts/generate_stage3_evidence.py",
+        "scripts/verify_stage3.py",
+        "scripts/verify_stage5_checkpoint.py",
+        "scripts/build_stage3_candidate_evidence.py",
+        "scripts/build_stage5_candidate_evidence.py"
+      ],
+      "exit_code": 0,
+      "label": "ruff_scoped",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 19,
+      "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "label": "mypy",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 45,
+      "stdout_sha256": "a2767b4f5fbc495fbc163c1c3983210351cf45f12ec5302828989d1065383f9b"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 1,
+      "label": "pytest_full",
+      "status": "FAIL",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 1475,
+      "stdout_sha256": "81879b843d484f7992a570226465be6191031119fdd255c4b371aa4442aa84b3"
+    }
+  ],
+  "completed_at_utc": "2026-07-15T06:39:26.527300Z",
+  "failure_code": "candidate-command-failed:pytest_full",
+  "generator_version": "laos-stage5-completion-candidate/1.2.0",
+  "producer_authentication": "NONE_STAGE6_OPEN",
+  "record_version": "1.1.0",
+  "run_id": "run:a255e18e07b54eea8f505bf58b46204b",
+  "source_commit": "d295e6a44d9a9aa5d048857c6b255d2d4a9b74d5",
+  "source_tree": "79f509cc1ababbffadcbd50053ee70650f60dbb8",
+  "stage": 5,
+  "started_at_utc": "2026-07-15T06:35:51.371392Z",
+  "status": "FAIL"
+}

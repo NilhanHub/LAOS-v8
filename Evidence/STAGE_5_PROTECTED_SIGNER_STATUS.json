@@ -1,0 +1,33 @@
+{
+  "assurance": "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR",
+  "image_id": "sha256:ea3bbf5e54622d807032283110bc71bf4022a69660c917d3467d1f031d719fd0",
+  "keys": [
+    {
+      "generation": 1,
+      "key_id": "key:e34838b9cd8af0e3129ade11ebcd007b",
+      "purpose": "capsule",
+      "status": "active"
+    },
+    {
+      "generation": 1,
+      "key_id": "key:da71c74c5db34c841ccee5c8852ee191",
+      "purpose": "event_anchor",
+      "status": "active"
+    },
+    {
+      "generation": 1,
+      "key_id": "key:d5912387148a4236becb572d9b30634a",
+      "purpose": "pack_manifest",
+      "status": "active"
+    },
+    {
+      "generation": 1,
+      "key_id": "key:36b66bf14c58fbbd3f9dce590575f06b",
+      "purpose": "release",
+      "status": "reserved"
+    }
+  ],
+  "signer_instance_id": "signer:bb01102a91b141eba8ebc31f2049cdca",
+  "status": "PASS",
+  "volume": "laos-v8-stage5-signer-keys-v1"
+}
