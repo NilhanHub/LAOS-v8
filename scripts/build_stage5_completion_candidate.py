@@ -28,7 +28,7 @@ from laos_v8.stage5_calibration import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-GENERATOR_VERSION = "laos-stage5-completion-candidate/1.0.0"
+GENERATOR_VERSION = "laos-stage5-completion-candidate/1.1.0"
 ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
 GENERATED = {
     "calibration": "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
@@ -41,7 +41,12 @@ GENERATED = {
 STATIC_ARTIFACTS = (
     "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
     "Evidence/STAGE_5_CALIBRATION_V1_FAILURES.json",
+    "Evidence/STAGE_5_CALIBRATION_V1_1_FAILURES.json",
+    "Evidence/STAGE_5_CALIBRATION_RECEIPT.v1-1-attempt-1.json",
+    "Evidence/STAGE_5_CALIBRATION_RECEIPT.v1-1-attempt-2.json",
+    "Evidence/STAGE_5_COMPLETION_CANDIDATE.v1-1-failed.json",
     "profiles/STAGE_5_CALIBRATION_PLAN.json",
+    "profiles/STAGE_5_CALIBRATION_PLAN_V1_1_RETIRED.json",
 )
 
 
@@ -137,6 +142,14 @@ def main() -> int:
     commands: list[CommandReceipt] = []
     stage3_root: Path | None = None
     try:
+        command, _ = run(
+            "structured_output_diagnostic",
+            ("uv", "run", "--frozen", "python", "scripts/diagnose_stage5_structured_output.py"),
+        )
+        commands.append(command)
+        if command.status != "PASS":
+            raise RuntimeError("candidate-command-failed:structured_output_diagnostic")
+
         calibration = output_root / GENERATED["calibration"]
         binding = output_root / GENERATED["binding"]
         command, _ = run(
@@ -209,6 +222,7 @@ def main() -> int:
                 "ruff",
                 "check",
                 "scripts/build_stage5_completion_candidate.py",
+                "scripts/diagnose_stage5_structured_output.py",
                 "scripts/run_stage5_calibration.py",
                 "scripts/run_stage5_real_capture.py",
                 "scripts/verify_stage5_completion_candidate.py",

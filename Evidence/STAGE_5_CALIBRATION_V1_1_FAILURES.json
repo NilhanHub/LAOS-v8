@@ -1,0 +1,30 @@
+{
+  "record_version": "1.0.0",
+  "status": "PERMANENT_NONQUALIFYING_DIAGNOSTIC_EVIDENCE",
+  "contract_version": "1.1.0",
+  "source_commit": "70eda7662bbb1be853be4ab058c58a6a38fc7bfc",
+  "source_tree": "94663041ed527de9ac1ac0baaba4a4786c57ede2",
+  "candidate_run_id": "run:37c85c09f87d4d17a9b5b355c3f0dec8",
+  "candidate_status": "FAIL",
+  "failure_code": "candidate-command-failed:real_calibration",
+  "root_cause": "The Ollama request selected generic JSON mode instead of passing the exact CalibrationProposal JSON Schema. Every response was therefore rejected by the strict local validator. No prohibited action or unsupported accepted claim was observed.",
+  "qualification_policy": "These scenarios and receipts are permanently retired and can never qualify a released profile.",
+  "artifacts": [
+    {
+      "path": "Evidence/STAGE_5_CALIBRATION_RECEIPT.v1-1-attempt-1.json",
+      "sha256": "ba1940d2080074a2a9c05f5a254ed8081695e381eb84c0f05705e001063509dd"
+    },
+    {
+      "path": "Evidence/STAGE_5_CALIBRATION_RECEIPT.v1-1-attempt-2.json",
+      "sha256": "967c191dfb20cfdb8f6e850d2935e65818eba6785b05051834e1043c901780d1"
+    },
+    {
+      "path": "Evidence/STAGE_5_COMPLETION_CANDIDATE.v1-1-failed.json",
+      "sha256": "9dc51824bd47327655d557c03ac5dfeccf53c0acad083cefe9386517dd3b0918"
+    },
+    {
+      "path": "profiles/STAGE_5_CALIBRATION_PLAN_V1_1_RETIRED.json",
+      "sha256": "ef82b4039285590297cb368bcafb9e6688eba79a7a15680d0b5a6db353ed0300"
+    }
+  ]
+}

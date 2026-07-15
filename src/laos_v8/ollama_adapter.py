@@ -8,12 +8,44 @@ import shutil
 import subprocess
 import urllib.request
 from dataclasses import dataclass
-from typing import Literal
+from typing import Literal, Protocol
 
 from .canonical import canonical_json
 from .errors import ResourceLimitError, SecurityError
 
 OLLAMA_ORIGIN = "http://127.0.0.1:11434"
+JsonSchema = dict[str, object]
+_OLLAMA_GRAMMAR_UNSUPPORTED = frozenset({"title", "maxLength", "maxItems"})
+
+
+def ollama_grammar_schema(schema: JsonSchema) -> JsonSchema:
+    """Project validation-only limits out of Ollama's grammar schema.
+
+    Ollama 0.31 rejects these keywords while parsing its generation grammar. The
+    original Pydantic model remains the authoritative post-generation validator.
+    """
+
+    def project(value: object) -> object:
+        if isinstance(value, dict):
+            return {
+                str(key): project(item)
+                for key, item in value.items()
+                if str(key) not in _OLLAMA_GRAMMAR_UNSUPPORTED
+            }
+        if isinstance(value, list):
+            return [project(item) for item in value]
+        return value
+
+    projected = project(schema)
+    if not isinstance(projected, dict):
+        raise TypeError("projected Ollama schema is not an object")
+    return projected
+
+
+class StructuredOutputProvider(Protocol):
+    """A local provider that is constrained by an exact JSON Schema."""
+
+    def __call__(self, prompt: str, *, output_schema: JsonSchema) -> str: ...
 
 
 @dataclass(frozen=True, slots=True)
@@ -84,14 +116,15 @@ class PinnedOllamaAdapter:
         if marker not in completed.stdout:
             raise SecurityError("Ollama model blob does not match the pin", code="OLLAMA_MODEL_PIN_MISMATCH")
 
-    def __call__(self, prompt: str) -> str:
+    def __call__(self, prompt: str, *, output_schema: JsonSchema | None = None) -> str:
         self.verify_pin()
+        response_format: str | JsonSchema = output_schema if output_schema is not None else "json"
         request_body = json.dumps(
             {
                 "model": self.pin.tag,
                 "prompt": prompt,
                 "stream": False,
-                "format": "json",
+                "format": response_format,
                 "keep_alive": self.settings.keep_alive,
                 "options": {
                     "temperature": self.settings.temperature,

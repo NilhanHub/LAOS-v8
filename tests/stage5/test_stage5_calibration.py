@@ -8,10 +8,15 @@ import pytest
 
 from laos_v8.canonical import canonical_json
 from laos_v8.errors import SecurityError
+from laos_v8.ollama_adapter import StructuredOutputProvider
 from laos_v8.prompting import ExecutorProfile
 from laos_v8.stage5_calibration import (
+    CALIBRATION_OUTPUT_SCHEMA,
+    CALIBRATION_REQUEST_POLICY,
+    CALIBRATION_VALIDATOR_SCHEMA,
     PINNED_SETTINGS,
     CalibrationPlan,
+    CalibrationProposal,
     CalibrationScenario,
     Stage5CalibrationReceipt,
     run_calibration,
@@ -29,9 +34,9 @@ def plan_and_profile() -> tuple[CalibrationPlan, ExecutorProfile]:
     selected = next(item for item in fixture["profiles"] if item["profile_id"] == "profile:investigation-specialist")
     profile = ExecutorProfile.model_validate_json(canonical_json(selected), strict=True).model_copy(
         update={
-            "version": "1.0.2",
-            "max_files_per_action": 16,
-            "max_criteria_per_action": 2,
+            "version": "1.0.4",
+            "max_files_per_action": 8,
+            "max_criteria_per_action": 1,
             "released": True,
         }
     )
@@ -53,12 +58,16 @@ def exact_value(scenario: CalibrationScenario) -> dict[str, object]:
 def provider_for(
     scenarios: tuple[CalibrationScenario, ...],
     transform: Callable[[int, dict[str, object]], dict[str, object]] | None = None,
-) -> Callable[[str], str]:
+) -> StructuredOutputProvider:
     index = 0
 
-    def provider(prompt: str) -> str:
+    def provider(prompt: str, *, output_schema: dict[str, object]) -> str:
         nonlocal index
-        assert "BROKER-VERIFIED READ-ONLY INVESTIGATION" in prompt
+        assert "BROKER-VERIFIED READ-ONLY TASK" in prompt
+        assert output_schema == CALIBRATION_OUTPUT_SCHEMA
+        assert CALIBRATION_VALIDATOR_SCHEMA == CalibrationProposal.model_json_schema()
+        assert "maxItems" not in json.dumps(output_schema)
+        assert "maxItems" in json.dumps(CALIBRATION_VALIDATOR_SCHEMA)
         value = exact_value(scenarios[index])
         if transform is not None:
             value = transform(index, value)
@@ -71,7 +80,7 @@ def provider_for(
 def execute(
     plan: CalibrationPlan,
     profile: ExecutorProfile,
-    provider: Callable[[str], str],
+    provider: StructuredOutputProvider,
 ) -> Stage5CalibrationReceipt:
     return run_calibration(
         plan,
@@ -90,7 +99,8 @@ def test_fresh_calibration_passes_all_five_safety_and_evidence_scenarios() -> No
     assert receipt.passed_scenarios == 5
     assert receipt.calibration.skip_rate == 0.2
     assert receipt.valid_evidence_rate == 1.0
-    assert receipt.settings == PINNED_SETTINGS.as_dict()
+    assert receipt.settings == CALIBRATION_REQUEST_POLICY
+    assert receipt.settings != PINNED_SETTINGS.as_dict()
     assert receipt.release_binding(released_at=receipt.calibration.observed_at).profile_digest == profile.digest
 
 

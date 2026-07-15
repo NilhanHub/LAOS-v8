@@ -9,7 +9,6 @@ import shutil
 import stat
 import subprocess
 import tempfile
-from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Literal
@@ -33,6 +32,7 @@ from .capture import (
 )
 from .errors import RepositoryDrift, SecurityError, ValidationError
 from .models import ActionCapsule, Role
+from .ollama_adapter import JsonSchema, StructuredOutputProvider, ollama_grammar_schema
 from .prompting import ReleasedProfileBinding
 from .repository_truth import ManifestSnapshot, build_manifest
 from .safe_paths import safe_extract_zip, validate_relative_path
@@ -66,9 +66,9 @@ class BrokerEvidence(BaseModel):
 
 class CaptureProposal(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
-    area: str
+    area: str = Field(min_length=1, max_length=256)
     statement: str = Field(min_length=1, max_length=8192)
-    source_path: str
+    source_path: str = Field(min_length=1, max_length=512)
     line_start: int = Field(ge=1)
     line_end: int = Field(ge=1)
     file_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
@@ -77,6 +77,14 @@ class CaptureProposal(BaseModel):
     contradictions: tuple[str, ...] = Field(max_length=32)
     unknowns: tuple[str, ...] = Field(max_length=32)
     prohibited_actions: tuple[str, ...] = Field(max_length=32)
+
+
+CAPTURE_VALIDATOR_SCHEMA: JsonSchema = CaptureProposal.model_json_schema()
+CAPTURE_OUTPUT_SCHEMA: JsonSchema = ollama_grammar_schema(CAPTURE_VALIDATOR_SCHEMA)
+CAPTURE_OUTPUT_SCHEMA_DIGEST = f"sha256:{hashlib.sha256(canonical_json(CAPTURE_OUTPUT_SCHEMA)).hexdigest()}"
+CAPTURE_VALIDATOR_SCHEMA_DIGEST = (
+    f"sha256:{hashlib.sha256(canonical_json(CAPTURE_VALIDATOR_SCHEMA)).hexdigest()}"
+)
 
 
 class CaptureFactReceipt(BaseModel):
@@ -103,6 +111,8 @@ class RealCaptureReceipt(BaseModel):
     model_identity_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
     profile_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
     settings_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
+    output_schema_sha256: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
+    validator_schema_sha256: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
     prompt_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
     archive_path_name: Literal["LAOS_v7.0_Complete_System.zip"] = "LAOS_v7.0_Complete_System.zip"
     archive_sha256_before: str = Field(pattern=r"^[0-9a-f]{64}$")
@@ -127,6 +137,10 @@ class RealCaptureReceipt(BaseModel):
 
     @model_validator(mode="after")
     def complete_capture(self) -> RealCaptureReceipt:
+        if self.output_schema_sha256 != CAPTURE_OUTPUT_SCHEMA_DIGEST:
+            raise ValueError("REAL_CAPTURE_OUTPUT_SCHEMA_MISMATCH")
+        if self.validator_schema_sha256 != CAPTURE_VALIDATOR_SCHEMA_DIGEST:
+            raise ValueError("REAL_CAPTURE_VALIDATOR_SCHEMA_MISMATCH")
         if self.source_seal_before != self.source_seal_after:
             raise ValueError("REAL_CAPTURE_SOURCE_DRIFT")
         if self.archive_sha256_before != V7_ARCHIVE_SHA256 or self.archive_sha256_after != V7_ARCHIVE_SHA256:
@@ -242,7 +256,7 @@ def _stamp(value: datetime) -> str:
 
 def run_real_capture(
     archive: Path,
-    provider: Callable[[str], str],
+    provider: StructuredOutputProvider,
     *,
     model_identity_digest: str,
     released_binding: ReleasedProfileBinding,
@@ -282,7 +296,7 @@ def run_real_capture(
                 evidence = _evidence(source, area)
                 prompt = capture_prompt(evidence)
                 prompt_hashes.append(hashlib.sha256(prompt.encode("utf-8")).hexdigest())
-                raw = provider(prompt)
+                raw = provider(prompt, output_schema=CAPTURE_OUTPUT_SCHEMA)
                 proposal = CaptureProposal.model_validate_json(raw, strict=True)
                 if proposal.prohibited_actions:
                     raise SecurityError("investigator requested a denied action", code="REAL_CAPTURE_PROHIBITED_ACTION")
@@ -433,6 +447,8 @@ def run_real_capture(
                 model_identity_digest=model_identity_digest,
                 profile_digest=released_binding.profile_digest,
                 settings_digest=released_binding.settings_digest,
+                output_schema_sha256=CAPTURE_OUTPUT_SCHEMA_DIGEST,
+                validator_schema_sha256=CAPTURE_VALIDATOR_SCHEMA_DIGEST,
                 prompt_digest=f"sha256:{hashlib.sha256(canonical_json(prompt_hashes)).hexdigest()}",
                 archive_sha256_before=V7_ARCHIVE_SHA256,
                 archive_sha256_after=archive_after,

@@ -1,0 +1,37 @@
+{
+  "artifacts": [],
+  "assurance": "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW",
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/run_stage5_calibration.py",
+        "--output",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_CALIBRATION_RECEIPT.json",
+        "--binding-output",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_PROFILE_BINDING.json"
+      ],
+      "exit_code": 1,
+      "label": "real_calibration",
+      "status": "FAIL",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "completed_at_utc": "2026-07-15T06:06:11.390770Z",
+  "failure_code": "candidate-command-failed:real_calibration",
+  "generator_version": "laos-stage5-completion-candidate/1.0.0",
+  "producer_authentication": "NONE_STAGE6_OPEN",
+  "record_version": "1.1.0",
+  "run_id": "run:37c85c09f87d4d17a9b5b355c3f0dec8",
+  "source_commit": "70eda7662bbb1be853be4ab058c58a6a38fc7bfc",
+  "source_tree": "94663041ed527de9ac1ac0baaba4a4786c57ede2",
+  "stage": 5,
+  "started_at_utc": "2026-07-15T06:04:54.635996Z",
+  "status": "FAIL"
+}

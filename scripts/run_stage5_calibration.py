@@ -26,9 +26,9 @@ def load_profile(root: Path) -> ExecutorProfile:
     selected = next(item for item in payload["profiles"] if item["profile_id"] == "profile:investigation-specialist")
     return ExecutorProfile.model_validate_json(canonical_json(selected), strict=True).model_copy(
         update={
-            "version": "1.0.2",
-            "max_files_per_action": 16,
-            "max_criteria_per_action": 2,
+            "version": "1.0.4",
+            "max_files_per_action": 8,
+            "max_criteria_per_action": 1,
             "released": True,
         }
     )
@@ -71,12 +71,12 @@ def main() -> int:
     )
     atomic_write_json(args.output, receipt)
     if receipt.status == "FAIL":
-        first_path = args.output.with_name(f"{args.output.stem}.v1-1-attempt-1{args.output.suffix}")
+        first_path = args.output.with_name(f"{args.output.stem}.v1-2-attempt-1{args.output.suffix}")
         atomic_write_json(first_path, receipt)
         reduced = profile.model_copy(
             update={
-                "version": "1.0.3",
-                "max_files_per_action": 8,
+                "version": "1.0.5",
+                "max_files_per_action": 4,
                 "max_criteria_per_action": 1,
             }
         )

@@ -13,6 +13,9 @@ from pathlib import Path
 from laos_v8.evidence_receipts import EvidenceRunReceipt
 from laos_v8.prompting import ReleasedProfileBinding
 from laos_v8.stage5_calibration import (
+    CALIBRATION_OUTPUT_SCHEMA_DIGEST,
+    CALIBRATION_REQUEST_POLICY,
+    CALIBRATION_VALIDATOR_SCHEMA_DIGEST,
     PINNED_MODEL,
     SETTINGS_DIGEST,
     ActiveProfileInventory,
@@ -23,7 +26,7 @@ from laos_v8.stage5_real_capture import V7_ARCHIVE_SHA256, RealCaptureReceipt
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_PATH = "Evidence/STAGE_5_COMPLETION_CANDIDATE.json"
 EXPECTED_ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
-EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.0.0"
+EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.1.0"
 
 
 def require(condition: bool, message: str) -> None:
@@ -65,6 +68,7 @@ def verify(expected_source_commit: str, candidate_tag: str | None) -> list[str]:
     require(all(command.status == "PASS" for command in candidate.commands), "candidate command failed")
     required_labels = {
         "real_calibration",
+        "structured_output_diagnostic",
         "real_v7_capture",
         "protected_signer_doctor",
         "pytest_full",
@@ -90,7 +94,16 @@ def verify(expected_source_commit: str, candidate_tag: str | None) -> list[str]:
     require(calibration.model_tag == PINNED_MODEL.tag, "calibration model tag drifted")
     require(calibration.model_blob_sha256 == PINNED_MODEL.blob_sha256, "calibration model blob drifted")
     require(calibration.calibration.settings_digest == SETTINGS_DIGEST, "calibration settings drifted")
-    require(calibration.profile.version in {"1.0.2", "1.0.3"}, "released profile version is unexpected")
+    require(calibration.profile.version in {"1.0.4", "1.0.5"}, "released profile version is unexpected")
+    require(calibration.settings == CALIBRATION_REQUEST_POLICY, "calibration request policy drifted")
+    require(
+        calibration.settings.get("output_schema_sha256") == CALIBRATION_OUTPUT_SCHEMA_DIGEST,
+        "calibration schema binding drifted",
+    )
+    require(
+        calibration.settings.get("validator_schema_sha256") == CALIBRATION_VALIDATOR_SCHEMA_DIGEST,
+        "calibration validator binding drifted",
+    )
     require(calibration.unsupported_accepted_claims == 0, "calibration accepted unsupported claims")
     require(calibration.prohibited_actions == 0, "calibration performed a prohibited action")
     checks.append("qualifying_calibration")
