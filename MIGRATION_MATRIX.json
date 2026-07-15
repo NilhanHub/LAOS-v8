@@ -1,5 +1,5 @@
 {
-  "matrix_version": "1.3.0",
+  "matrix_version": "1.4.0",
   "source": "LAOS v7.0 immutable archive",
   "stage_5_security_remediation": {
     "status": "IMPLEMENTED_AWAITING_NILHAN_REVIEW",
@@ -7,6 +7,14 @@
     "bootstrap_evidence_receipt_policy": "V1_0_UNSUPPORTED_V1_1_BUILDER_ASSERTED_NOT_AUTHENTICATED",
     "review_record_policy": "ORDINARY_JSON_CANNOT_APPROVE_PROTECTED_NILHAN_AUTHENTICATION_REQUIRED",
     "compatibility_rationale": "Intentional pre-release break; no persisted v1 envelope was found.",
+    "release_claim": "NONE"
+  },
+  "stage_5_completion_candidate": {
+    "status": "PASS_AWAITING_NILHAN_REVIEW",
+    "run_id": "run:5e6535f10aa1440aa45f24eb053491d9",
+    "calibration_contract": "1.2.0",
+    "released_investigation_profile": "1.0.4",
+    "sealed_v7_capture": "PASS_NO_SOURCE_CHANGE_NO_REPOSITORY_CODE_EXECUTION_FIRST_CAPSULE_UNREDEEMED",
     "release_claim": "NONE"
   },
   "policy": {
@@ -33,7 +41,7 @@
       "v8_target": "strict validated capture aggregate",
       "owner_stage": 5,
       "status": "OPEN",
-      "stage_5_security_status": "REQUEST_BOUND_CAPTURE_CHRONOLOGY_AND_300_SECOND_POSITIVE_SKEW_CONTROL_IMPLEMENTED_AWAITING_NILHAN_REVIEW"
+      "stage_5_security_status": "REAL_SEALED_V7_CAPTURE_AND_REQUEST_BOUND_CHRONOLOGY_PASS_AWAITING_NILHAN_REVIEW"
     },
     {
       "feature": "continuation_fingerprint",
@@ -55,7 +63,7 @@
       "v8_target": "broker-controlled CAS plus signed index",
       "owner_stage": 6,
       "status": "OPEN",
-      "stage_5_security_status": "REGENERATED_FRESH_RUN_BOUND_BUILDER_ASSERTED_RECEIPTS_IMPLEMENTED_PROTECTED_CUSTODY_AND_PRODUCER_AUTHENTICATION_OPEN"
+      "stage_5_security_status": "FORMAL_CALIBRATION_AND_CAPTURE_RECEIPTS_HASH_BOUND_REUSED_AND_CANDIDATE_PASS_PROTECTED_CUSTODY_AND_PRODUCER_AUTHENTICATION_STAGE6_OPEN"
     },
     {
       "feature": "side_effect_records",
@@ -77,7 +85,7 @@
       "v8_target": "RFC 8785 canonical protected-envelope v2 with issuer and audience binding",
       "owner_stage": 5,
       "status": "OPEN",
-      "stage_5_security_status": "V2_IMPLEMENTED_V1_FAILS_CLOSED_PRODUCTION_KEY_CUSTODY_OPEN"
+      "stage_5_security_status": "V2_AND_LOCAL_DOCKER_PROTECTED_SIGNER_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW_HSM_KMS_FUTURE_ROW_OPEN"
     }
   ]
 }

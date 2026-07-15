@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed verifier for the non-completion Stage 5 implementation checkpoint."""
+"""Fail-closed verifier for the Stage 5 completion candidate checkpoint."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ from laos_v8.evidence_receipts import (
 )
 from laos_v8.prompting import ExecutorProfile
 from laos_v8.sandbox import DockerSandbox
+from laos_v8.stage5_calibration import ActiveProfileInventory
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_COVERAGE = {
@@ -26,16 +27,16 @@ EXPECTED_COVERAGE = {
     "S5-02": (5, "PASS_BOOTSTRAP_SIGNER"),
     "S5-03": (5, "PASS"),
     "S5-04": (5, "PASS_PROTECTED_ENVELOPE_V2_BOOTSTRAP_TRUST_PROFILE"),
-    "S5-05": (5, "OPEN_SIGNING_CUSTODY_DECISION_REQUIRED"),
+    "S5-05": (5, "PASS_AWAITING_NILHAN_REVIEW"),
     "S5-06": (6, "PASS"),
     "S5-07": (6, "PASS"),
     "S5-08": (6, "PASS"),
     "S5-09": (7, "PASS_OFFLINE_FIXTURES_NOT_RELEASED"),
     "S5-10": (7, "PASS"),
-    "S5-11": (7, "OPEN_REAL_CALIBRATION_REQUIRED_BEFORE_PROFILE_RELEASE"),
+    "S5-11": (7, "PASS_AWAITING_NILHAN_REVIEW"),
     "S5-12": (8, "PASS_CAPTURE_FIXTURE_WITH_TIME_BINDING"),
     "S5-13": (8, "PASS_TEMPLATE_FIXTURE_WITH_WINDOWS_ALIAS_DEFENSE"),
-    "S5-14": (8, "OPEN_REAL_CAPTURE_ROUND_TRIP_REQUIRED"),
+    "S5-14": (8, "PASS_AWAITING_NILHAN_REVIEW"),
 }
 REQUIRED_CANDIDATE_ARTIFACTS = {
     "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md",
@@ -140,8 +141,9 @@ def verify() -> list[str]:
     require(status["stage_4_status"] == "COMPLETE", "Stage 4 is not complete")
     require(status["stage_5_status"] == "IN_PROGRESS", "Stage 5 checkpoint status changed")
     require(
-        status["status"] == "STAGE_5_IN_PROGRESS_SIGNING_CUSTODY_DECISION_REQUIRED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
-        "program status overclaims or omits the custody decision",
+        status["status"]
+        == "STAGE_5_COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+        "program status overclaims or omits the pending Nilhan review",
     )
     require(status["v8_runtime_exists"] is False and status["v8_release_exists"] is False, "v8 overclaim")
     required_open = {
@@ -153,7 +155,10 @@ def verify() -> list[str]:
     checks.append("program_truth")
 
     stage = next(item for item in load("PROGRAM_STAGE_LEDGER.json")["stages"] if item["stage"] == 5)
-    require(stage["status"] == "IN_PROGRESS", "Stage 5 ledger status is not in progress")
+    require(
+        stage["status"] == "IN_PROGRESS_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW",
+        "Stage 5 ledger status is not awaiting Nilhan review",
+    )
     require(stage["owner"] == "Codex" and stage["independent_reviewer"] == "Nilhan", "roles changed")
     checks.append("governance")
 
@@ -180,7 +185,11 @@ def verify() -> list[str]:
         fixture["assurance"] == "OFFLINE_FIXTURES_NOT_RELEASED_NOT_CALIBRATED",
         "profile assurance overclaim",
     )
-    checks.append("offline_profiles")
+    active = ActiveProfileInventory.model_validate_json(
+        (ROOT / "profiles/ACTIVE_EXECUTOR_PROFILES.json").read_bytes(), strict=True
+    )
+    require(sum(item.released for item in active.profiles) == 1, "active profile release count differs")
+    checks.append("offline_profiles_and_one_calibrated_active_profile")
 
     expected_modules = {
         "src/laos_v8/action_engine.py",
@@ -209,7 +218,7 @@ def main() -> int:
     args = parser.parse_args()
     try:
         checks = verify()
-        status = "PASS_STAGE_5_CHECKPOINT_NOT_COMPLETE"
+        status = "PASS_STAGE_5_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW"
         candidate = None
         if args.candidate_evidence is not None:
             require(args.expected_source_commit is not None, "Candidate evidence requires an expected source commit")

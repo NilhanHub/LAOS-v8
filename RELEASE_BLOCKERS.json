@@ -3,6 +3,12 @@
   "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
   "canonicality": "Bootstrap view; protected transactional state becomes canonical when implemented.",
   "count": 25,
+  "stage_5_completion_candidate": {
+    "status": "PASS_AWAITING_NILHAN_REVIEW",
+    "run_id": "run:5e6535f10aa1440aa45f24eb053491d9",
+    "cleared_release_blockers": [],
+    "note": "Stage 5 product-gate evidence passed, but no release blocker is closed by a pre-release local candidate. Stage 6 protected authentication, evidence custody, sandbox enforcement and later release/evaluation gates remain binding."
+  },
   "blockers": [
     {
       "id": "RB-001",
@@ -38,7 +44,8 @@
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
       "independent_verifier": "Nilhan",
-      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates.",
+      "stage_5_completion_note": "Purpose-separated private keys remained inside the dedicated Docker volume during the passing candidate. The supported row still trusts Nilhan and the Windows/Docker administrator; RB-003 remains OPEN for later integrated authority review."
     },
     {
       "id": "RB-004",
@@ -62,7 +69,7 @@
       "evidence_digests": [],
       "independent_verifier": "Nilhan",
       "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates.",
-      "stage_5_security_note": "Protected-envelope v2 authenticates authority and time context, trust keys are issuer-bound, and pack context must agree. This blocker remains OPEN pending Nilhan review, production signing custody, and integrated release gates.",
+      "stage_5_security_note": "Protected-envelope v2 authenticates authority and time context, trust keys are issuer-bound, pack context must agree, and the local protected signer candidate passed. This blocker remains OPEN pending Nilhan review and integrated release gates.",
       "stage_5_security_evidence": [
         "schemas/golden/protected-envelope-v2.json",
         "tests/stage3/test_capsule_and_signing.py",
@@ -91,7 +98,8 @@
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
       "evidence_digests": [],
       "independent_verifier": "Nilhan",
-      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates."
+      "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates.",
+      "stage_5_completion_note": "The sealed-v7 capture reproduced identical source seals before and after, bound six evidence areas, and issued an unredeemed first capsule. RB-007 remains OPEN until later integrated lineage and release gates close."
     },
     {
       "id": "RB-008",

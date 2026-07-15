@@ -1,0 +1,11 @@
+{
+  "record_version": "1.0.0",
+  "status": "PASS_AWAITING_NILHAN_REVIEW_SUPERSEDED_BY_PROGRAM_TRUTH_RECONCILIATION",
+  "run_id": "run:5e6535f10aa1440aa45f24eb053491d9",
+  "source_commit": "56d4e493822bcc2fe2a304c1cdf853bd6a46badd",
+  "source_tree": "245288747dd86c2565336874d1cc87d01fa84d79",
+  "candidate_sha256": "dab64446a33be3cdd830c4dbebfb2bde4d1cf5f06d7cb7436100e3d85cb5f90b",
+  "command_count": 20,
+  "all_commands_passed": true,
+  "reason_for_supersession": "The passing run preceded reconciliation of Stage 5 coverage, program status, governance, threat, defect, migration, and blocker records. It is preserved as valid evidence but is not the tag candidate."
+}

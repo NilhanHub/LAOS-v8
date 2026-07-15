@@ -2,6 +2,18 @@
   "register_version": "1.1.0",
   "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
   "count": 50,
+  "stage_5_completion_candidate": {
+    "status": "PASS_AWAITING_NILHAN_REVIEW",
+    "run_id": "run:5e6535f10aa1440aa45f24eb053491d9",
+    "evidence": [
+      "Evidence/STAGE_5_COMPLETION_CANDIDATE.json",
+      "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
+      "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json",
+      "Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json"
+    ],
+    "controlled_at_candidate": ["TM-002", "TM-006", "TM-020", "TM-021", "TM-022", "TM-042"],
+    "residual_boundary": "Threat rows remain OPEN until their owner-stage review and later protected evidence, sandbox, release, and evaluation controls close them."
+  },
   "threats": [
     {
       "id": "TM-001",
@@ -25,6 +37,11 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ],
+      "stage_5_completion_status": "BROKER_CLASSIFIED_PROMPT_INJECTION_AND_PROHIBITED_ACTION_SCENARIOS_PASS_AWAITING_NILHAN_REVIEW",
+      "stage_5_completion_evidence": [
+        "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
+        "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json"
       ]
     },
     {
@@ -77,6 +94,11 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ],
+      "stage_5_completion_status": "EXACT_MODEL_BLOB_PROFILE_SETTINGS_AND_CALIBRATION_BINDING_PASS_AWAITING_NILHAN_REVIEW",
+      "stage_5_completion_evidence": [
+        "Evidence/STAGE_5_PROFILE_BINDING.json",
+        "profiles/ACTIVE_EXECUTOR_PROFILES.json"
       ]
     },
     {

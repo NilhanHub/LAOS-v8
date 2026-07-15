@@ -2,7 +2,7 @@
   "record_version": "1.0.0",
   "authority": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md Revision 1.1 Milestones 5 through 8",
   "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
-  "assurance": "STAGE_5_IMPLEMENTATION_CHECKPOINT_NOT_COMPLETION",
+  "assurance": "STAGE_5_COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW",
   "coverage": [
     {
       "id": "S5-01",
@@ -36,8 +36,8 @@
       "id": "S5-05",
       "milestone": 5,
       "requirement": "Private key held by a reviewed production-capable protected signer outside the compiler process",
-      "evidence": "No qualifying implementation; ProtectedTestSigner is explicitly test-only",
-      "status": "OPEN_SIGNING_CUSTODY_DECISION_REQUIRED"
+      "evidence": "src/laos_v8/protected_signer.py; signer/Dockerfile; Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json; Evidence/STAGE_5_COMPLETION_CANDIDATE.json",
+      "status": "PASS_AWAITING_NILHAN_REVIEW"
     },
     {
       "id": "S5-06",
@@ -78,8 +78,8 @@
       "id": "S5-11",
       "milestone": 7,
       "requirement": "Every released profile has qualifying real calibration evidence with exact provider/model/tool/settings/environment provenance",
-      "evidence": "No Stage 5 profile is released; the prior Stage 4 Alpha pilot is not silently reused as profile calibration",
-      "status": "OPEN_REAL_CALIBRATION_REQUIRED_BEFORE_PROFILE_RELEASE"
+      "evidence": "Evidence/STAGE_5_CALIBRATION_RECEIPT.json; Evidence/STAGE_5_CALIBRATION_V1_2_PROVENANCE.json; Evidence/STAGE_5_PROFILE_BINDING.json; profiles/ACTIVE_EXECUTOR_PROFILES.json",
+      "status": "PASS_AWAITING_NILHAN_REVIEW"
     },
     {
       "id": "S5-12",
@@ -99,8 +99,8 @@
       "id": "S5-14",
       "milestone": 8,
       "requirement": "Real weaker-investigator capture through the qualifying read-only enforcement and evidence path",
-      "evidence": "Not yet run; fixture round trip does not substitute for real weaker-agent execution",
-      "status": "OPEN_REAL_CAPTURE_ROUND_TRIP_REQUIRED"
+      "evidence": "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json; Evidence/STAGE_5_REAL_CAPTURE_PROVENANCE.json; Evidence/STAGE_5_COMPLETION_CANDIDATE.json",
+      "status": "PASS_AWAITING_NILHAN_REVIEW"
     }
   ]
 }

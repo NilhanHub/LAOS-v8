@@ -30,7 +30,7 @@ from laos_v8.stage5_calibration import (
 from laos_v8.stage5_real_capture import V7_ARCHIVE_SHA256, RealCaptureReceipt
 
 ROOT = Path(__file__).resolve().parents[1]
-GENERATOR_VERSION = "laos-stage5-completion-candidate/1.3.0"
+GENERATOR_VERSION = "laos-stage5-completion-candidate/1.4.0"
 ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
 GENERATED = {
     "calibration": "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
@@ -51,6 +51,8 @@ STATIC_ARTIFACTS = (
     "Evidence/STAGE_5_COMPLETION_CANDIDATE.v1-2-capture-failed.json",
     "Evidence/STAGE_5_COMPLETION_CANDIDATE.capture-pass-test-path-failed.json",
     "Evidence/STAGE_5_REAL_CAPTURE_PROVENANCE.json",
+    "Evidence/STAGE_5_COMPLETION_CANDIDATE.pre-reconciliation-pass.json",
+    "Evidence/STAGE_5_PRE_RECONCILIATION_CANDIDATE_PROVENANCE.json",
     "profiles/STAGE_5_CALIBRATION_PLAN.json",
     "profiles/STAGE_5_CALIBRATION_PLAN_V1_1_RETIRED.json",
 )

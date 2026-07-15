@@ -1,5 +1,5 @@
 {
-  "register_version": "1.1.0",
+  "register_version": "1.2.0",
   "adrs": [
     {
       "id": "ADR-0001",
@@ -28,7 +28,7 @@
     {
       "id": "ADR-0005",
       "title": "Signing, identity and capabilities",
-      "status": "ACCEPTED_LOCAL_DOCKER_PROTECTED_SIGNER_AWAITING_STAGE5_COMPLETION_REVIEW",
+      "status": "ACCEPTED_LOCAL_DOCKER_PROTECTED_SIGNER_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW",
       "owner_stage": 5
     },
     {
@@ -90,6 +90,12 @@
       "title": "Nilhan as sole human review authority",
       "status": "ACCEPTED_2026_07_13",
       "owner_stage": 4
+    },
+    {
+      "id": "ADR-0016",
+      "title": "Broker-classified structured model output and immutable formal receipt reuse",
+      "status": "ACCEPTED_STAGE_5_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW",
+      "owner_stage": 5
     }
   ]
 }

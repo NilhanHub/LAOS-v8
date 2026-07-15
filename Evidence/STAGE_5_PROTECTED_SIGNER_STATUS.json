@@ -1,6 +1,6 @@
 {
   "assurance": "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR",
-  "image_id": "sha256:ea3bbf5e54622d807032283110bc71bf4022a69660c917d3467d1f031d719fd0",
+  "image_id": "sha256:fddeb2e9ee6028f1d8a4458b34cd52b4f11cb72120c99c4416d13b1e0958ca00",
   "keys": [
     {
       "generation": 1,

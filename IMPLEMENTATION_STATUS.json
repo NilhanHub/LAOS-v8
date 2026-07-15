@@ -1,5 +1,5 @@
 {
-  "known_regression_count": 47,
+  "known_regression_count": 60,
   "milestone": 4,
   "milestone_name": "Mandatory Security Spine through policy and risk classification",
   "next_milestone": 5,
@@ -7,7 +7,7 @@
   "stage0_historical_requirement_count": 210,
   "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
   "stage_1_status": "COMPLETE",
-  "status": "STAGE_5_IN_PROGRESS_SIGNING_CUSTODY_DECISION_REQUIRED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+  "status": "STAGE_5_COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
   "target_release": "8.0.0",
   "v7_0_1_release_exists": false,
   "v7_track": "FIXTURE_ONLY",
@@ -21,7 +21,10 @@
   "real_weaker_agent_executed": true,
   "stage_4_status": "COMPLETE",
   "stage_5_status": "IN_PROGRESS",
-  "stage_5_checkpoint": "SECURITY_REMEDIATION_IMPLEMENTED_VERIFICATION_AND_NILHAN_REVIEW_PENDING",
+  "stage_5_checkpoint": "COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW",
+  "stage_5_completion_candidate_run_id": "run:5e6535f10aa1440aa45f24eb053491d9",
+  "stage_5_completion_candidate_source_commit": "56d4e493822bcc2fe2a304c1cdf853bd6a46badd",
+  "stage_5_completion_candidate_evidence": "Evidence/STAGE_5_COMPLETION_CANDIDATE.json",
   "stage_5_security_scan_source_commit": "5f9babd281a4080653986f237bb3af89dcccf4b5",
   "stage_5_validated_scan_finding_count": 7,
   "stage_5_deferred_scan_candidate_count": 7,
@@ -30,6 +33,11 @@
     "RELEASED_PROFILE_REAL_CALIBRATION",
     "REAL_WEAKER_INVESTIGATOR_CAPTURE_ROUND_TRIP"
   ],
+  "stage_5_gate_evidence_status": {
+    "PROTECTED_SIGNING_CUSTODY": "PASS_AWAITING_NILHAN_REVIEW",
+    "RELEASED_PROFILE_REAL_CALIBRATION": "PASS_AWAITING_NILHAN_REVIEW",
+    "REAL_WEAKER_INVESTIGATOR_CAPTURE_ROUND_TRIP": "PASS_AWAITING_NILHAN_REVIEW"
+  },
   "alpha_vertical_slice_exists": true,
   "alpha_assurance": "LOCAL_DEVELOPMENT_ALPHA_PROOF_NOT_FINAL_EFFICACY_OR_RELEASE",
   "human_review_authority": "Nilhan",

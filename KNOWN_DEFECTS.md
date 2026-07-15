@@ -934,3 +934,59 @@ both initial validation and continuation deny pre-request events with
 `CAPTURE_BEFORE_REQUEST_ISSUED`. Exactly 300 seconds of positive skew remains
 allowed by policy; 301 seconds remains denied.
 
+## REG-058 — Generic Ollama JSON mode did not enforce the calibration schema
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_CALIBRATION_RECOVERY`
+- Affected revision: `70eda7662bbb1be853be4ab058c58a6a38fc7bfc`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** Both v1.1 formal attempts returned JSON that failed
+the strict `CalibrationProposal` validator because the adapter requested only
+generic JSON mode rather than a shape-constrained output grammar.
+
+**Regression evidence:** The v1.1 attempts and failed candidate are preserved
+as permanently nonqualifying evidence. The v1.2 request binds both the
+Ollama-compatible output grammar and authoritative Pydantic validator digests;
+the fresh formal run passed 5/5 without a retry. See
+`Evidence/STAGE_5_CALIBRATION_V1_1_FAILURES.json`,
+`Evidence/STAGE_5_CALIBRATION_V1_2_PROVENANCE.json`, and
+`tests/stage5/test_ollama_structured_output.py`.
+
+## REG-059 — Event-anchor signer allowlist named the wrong capture media type
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_CAPTURE_INTEGRATION`
+- Affected revision: `f276b6f0922570e832ebe6fd315dc86f0f683787`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** The real capture reached protected signing, then the
+event-anchor signer denied the established
+`application/vnd.nilhan.laos.app-intelligence-return.v1+json` payload because
+its allowlist mistakenly expected `capture-return`.
+
+**Regression evidence:** The allowlist now uses the canonical capture media
+type and a focused signer test verifies purpose-bound signing and verification.
+The preserved formal capture subsequently passed with unchanged v7 source and
+archive digests. See `Evidence/STAGE_5_REAL_CAPTURE_PROVENANCE.json` and
+`tests/stage5/test_protected_signer.py`.
+
+## REG-060 — Clean-clone integration test assumed the v7 archive was beside the clone
+
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE5_EVIDENCE_WORKFLOW`
+- Affected revision: `d295e6a44d9a9aa5d048857c6b255d2d4a9b74d5`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** The formal capture passed, but full pytest failed in
+the temporary reconstruction because the integration test searched the clone's
+parent directory instead of using the already verified archive supplied to the
+candidate builder.
+
+**Regression evidence:** The builder verifies the archive name and SHA-256,
+passes its absolute path through `LAOS_V7_ARCHIVE`, and the integration test
+still relies on the capture workflow's exact digest check. The final clean
+candidate passed full pytest and Docker integration without skips. See
+`Evidence/STAGE_5_COMPLETION_CANDIDATE.capture-pass-test-path-failed.json` and
+`Evidence/STAGE_5_COMPLETION_CANDIDATE.json`.
+

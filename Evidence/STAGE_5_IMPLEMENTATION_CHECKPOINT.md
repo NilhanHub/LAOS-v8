@@ -1,6 +1,6 @@
 # LAOS v8 Stage 5 implementation checkpoint
 
-Status: **IN PROGRESS — not a Stage 5 completion candidate**
+Status: **COMPLETION CANDIDATE PASSED — awaiting Nilhan review**
 
 Authority: `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1, Milestones 5–8.
 
@@ -14,8 +14,9 @@ Authority: `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1, Milestones 5–
 - Strict new-build objectives and blueprints, requirement/criterion graph checks, reviewed content-addressed templates, sanitized isolated Git genesis, idempotent retry, partial-intent quarantine, collision denial, source/base seals, and first-action trace.
 - Profile-wide Docker and Docker Compose wrappers plus an independent LAOS startup controller now start Docker Desktop on demand, verify engine readiness, leave it running, and fail closed without manual operator startup or unrestricted host fallback. Verification is recorded in `Evidence/DOCKER_AUTOSTART_VERIFICATION.json`.
 - Commit `82512cb` adds the purpose-separated, one-shot Docker protected signer and its lifecycle controls for the explicitly bounded single-operator Windows/Docker support row. It does not claim hostile-administrator or HSM/KMS protection.
-- The calibration recovery preserves both failed v1 attempts, retires their exposed scenarios, and preregisters a fresh v1.1 evidence/safety set. No recovered profile is released until the real run qualifies.
-- The real-capture runner seals a disposable v7 reconstruction, exposes only classified broker-selected lines to the pinned local model, separates Architect dispositions from Nilhan approval, and issues no redeemed authority.
+- The calibration recovery preserves the failed v1 and v1.1 attempts, permanently retires every exposed scenario, and binds both the Ollama-compatible output grammar and strict Pydantic validator. Fresh contract v1.2 passed 5/5 on its first formal run with zero unsupported accepted claims, zero prohibited actions, and 100% valid evidence references.
+- The released `profile:investigation-specialist` is bound to pinned `qwen2.5-coder:1.5b`, blob, settings, schema, environment, and calibration receipt. The other six executor profiles remain explicitly unreleased.
+- The formal real-capture run sealed a disposable v7 reconstruction, exposed only classified broker-selected lines to the pinned local model, covered all six capture areas, separated Architect dispositions from Nilhan approval, preserved identical source/archive digests, and issued an unredeemed first capsule through the protected signer.
 
 ## Stage 5 security-remediation candidate
 
@@ -39,14 +40,10 @@ the committed candidate in a separate clean reconstruction.
 
 ## Verified limitations and open gates
 
-1. `ProtectedTestSigner` remains explicitly test-only. The protected Docker signer is implemented, but Stage 5 cannot close until its clean-reconstruction lifecycle evidence and the other completion gates pass.
-2. All seven checked-in baseline profiles remain offline, unreleased fixtures. The investigation profile is released only by an exact passing calibration receipt and active binding.
-3. The real v7 workflow is implemented but no real-capture success claim is made before committed-source candidate generation.
-4. Integrated mature evidence custody, protected-check closure, independent technical review, and quorum remain Stage 6 work as assigned by the ten-stage plan.
-5. LAOS v8 remains incomplete and unreleased.
-6. The security-remediation candidate is not approved until Nilhan reviews the
-   clean-reconstruction receipt. An ordinary JSON review record cannot create
-   approval; protected Nilhan authentication remains open. The candidate does
-   not close any of the three existing Stage 5 product gates.
+1. Candidate run `run:5e6535f10aa1440aa45f24eb053491d9` passed 20 automated gates from clean source commit `56d4e493822bcc2fe2a304c1cdf853bd6a46badd`; its receipt remains `PASS_AWAITING_NILHAN_REVIEW`.
+2. The three Stage 5 product-gate records now have passing evidence but remain binding until Nilhan explicitly approves the completion candidate. No approval is inferred from model output, Codex implementation, or ordinary self-authored JSON.
+3. `ProtectedTestSigner` remains test-only. The supported protected-signer row is the local single-operator Windows/Docker profile and trusts Nilhan and the host/Docker administrator; it does not claim hostile-admin, HSM/KMS, or multi-operator isolation.
+4. Integrated protected reviewer authentication, mature evidence custody, protected checks, sandbox enforcement, and quorum remain Stage 6 work as assigned by the ten-stage plan.
+5. All release blockers remain open for their assigned later stages. LAOS v8 remains incomplete and unreleased.
 
-The checkpoint deliberately stops before the Milestone 5–8 exit gates rather than treating fixture success or bootstrap cryptography as production capability.
+This checkpoint stops at a reviewable Stage 5 candidate rather than converting automated evidence into Nilhan approval or an LAOS v8 release claim.
