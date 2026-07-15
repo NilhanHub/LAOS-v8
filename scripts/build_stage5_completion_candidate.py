@@ -21,14 +21,14 @@ from laos_v8.evidence_receipts import (
     new_run_id,
     stage5_candidate_command_policy,
 )
-from laos_v8.prompting import ExecutorProfile
+from laos_v8.prompting import ExecutorProfile, ReleasedProfileBinding
 from laos_v8.stage5_calibration import (
     Stage5CalibrationReceipt,
     build_active_profile_inventory,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-GENERATOR_VERSION = "laos-stage5-completion-candidate/1.1.0"
+GENERATOR_VERSION = "laos-stage5-completion-candidate/1.2.0"
 ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
 GENERATED = {
     "calibration": "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
@@ -44,7 +44,9 @@ STATIC_ARTIFACTS = (
     "Evidence/STAGE_5_CALIBRATION_V1_1_FAILURES.json",
     "Evidence/STAGE_5_CALIBRATION_RECEIPT.v1-1-attempt-1.json",
     "Evidence/STAGE_5_CALIBRATION_RECEIPT.v1-1-attempt-2.json",
+    "Evidence/STAGE_5_CALIBRATION_V1_2_PROVENANCE.json",
     "Evidence/STAGE_5_COMPLETION_CANDIDATE.v1-1-failed.json",
+    "Evidence/STAGE_5_COMPLETION_CANDIDATE.v1-2-capture-failed.json",
     "profiles/STAGE_5_CALIBRATION_PLAN.json",
     "profiles/STAGE_5_CALIBRATION_PLAN_V1_1_RETIRED.json",
 )
@@ -150,28 +152,34 @@ def main() -> int:
         if command.status != "PASS":
             raise RuntimeError("candidate-command-failed:structured_output_diagnostic")
 
-        calibration = output_root / GENERATED["calibration"]
-        binding = output_root / GENERATED["binding"]
         command, _ = run(
-            "real_calibration",
-            (
-                "uv",
-                "run",
-                "--frozen",
-                "python",
-                "scripts/run_stage5_calibration.py",
-                "--output",
-                str(calibration),
-                "--binding-output",
-                str(binding),
-            ),
+            "formal_calibration_receipt",
+            ("uv", "run", "--frozen", "python", "scripts/verify_stage5_calibration_receipt.py"),
         )
         commands.append(command)
         if command.status != "PASS":
-            raise RuntimeError("candidate-command-failed:real_calibration")
-        calibration_receipt = Stage5CalibrationReceipt.model_validate_json(calibration.read_bytes(), strict=True)
+            raise RuntimeError("candidate-command-failed:formal_calibration_receipt")
+        calibration_receipt = Stage5CalibrationReceipt.model_validate_json(
+            (ROOT / GENERATED["calibration"]).read_bytes(), strict=True
+        )
+        binding_record = ReleasedProfileBinding.model_validate_json(
+            (ROOT / GENERATED["binding"]).read_bytes(), strict=True
+        )
+        calibration = output_root / GENERATED["calibration"]
+        binding = output_root / GENERATED["binding"]
+        atomic_write_json(calibration, calibration_receipt)
+        atomic_write_json(binding, binding_record)
         inventory = build_active_profile_inventory(load_offline_profiles(), calibration_receipt)
         atomic_write_json(output_root / GENERATED["profiles"], inventory)
+
+        for label, signer_command in (
+            ("protected_signer_build", "signer-build"),
+            ("protected_signer_bootstrap", "signer-bootstrap"),
+        ):
+            command, _ = run(label, ("uv", "run", "--frozen", "laos", signer_command))
+            commands.append(command)
+            if command.status != "PASS":
+                raise RuntimeError(f"candidate-command-failed:{label}")
 
         capture = output_root / GENERATED["capture"]
         command, _ = run(
@@ -225,6 +233,7 @@ def main() -> int:
                 "scripts/diagnose_stage5_structured_output.py",
                 "scripts/run_stage5_calibration.py",
                 "scripts/run_stage5_real_capture.py",
+                "scripts/verify_stage5_calibration_receipt.py",
                 "scripts/verify_stage5_completion_candidate.py",
                 "scripts/verify_ruff_baseline.py",
             ),

@@ -21,12 +21,17 @@ from laos_v8.stage5_calibration import (
     ActiveProfileInventory,
     Stage5CalibrationReceipt,
 )
-from laos_v8.stage5_real_capture import V7_ARCHIVE_SHA256, RealCaptureReceipt
+from laos_v8.stage5_real_capture import (
+    CAPTURE_OUTPUT_SCHEMA_DIGEST,
+    CAPTURE_VALIDATOR_SCHEMA_DIGEST,
+    V7_ARCHIVE_SHA256,
+    RealCaptureReceipt,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_PATH = "Evidence/STAGE_5_COMPLETION_CANDIDATE.json"
 EXPECTED_ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
-EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.1.0"
+EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.2.0"
 
 
 def require(condition: bool, message: str) -> None:
@@ -67,9 +72,11 @@ def verify(expected_source_commit: str, candidate_tag: str | None) -> list[str]:
         require(sha256(path) == artifact.sha256, f"candidate artifact hash differs: {artifact.path}")
     require(all(command.status == "PASS" for command in candidate.commands), "candidate command failed")
     required_labels = {
-        "real_calibration",
+        "formal_calibration_receipt",
         "structured_output_diagnostic",
         "real_v7_capture",
+        "protected_signer_build",
+        "protected_signer_bootstrap",
         "protected_signer_doctor",
         "pytest_full",
         "docker_integration",
@@ -131,6 +138,8 @@ def verify(expected_source_commit: str, candidate_tag: str | None) -> list[str]:
     require(capture.archive_sha256_after == V7_ARCHIVE_SHA256, "v7 archive changed")
     require(capture.profile_digest == binding.profile_digest, "capture profile binding differs")
     require(capture.settings_digest == binding.settings_digest, "capture settings binding differs")
+    require(capture.output_schema_sha256 == CAPTURE_OUTPUT_SCHEMA_DIGEST, "capture output schema differs")
+    require(capture.validator_schema_sha256 == CAPTURE_VALIDATOR_SCHEMA_DIGEST, "capture validator schema differs")
     require(capture.source_seal_before == capture.source_seal_after, "captured source changed")
     require(capture.human_reviewer is None, "capture falsely claims Nilhan review")
     require(not capture.repository_code_executed, "capture executed repository code")

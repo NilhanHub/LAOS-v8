@@ -29,7 +29,7 @@ MAX_REQUEST_SKEW_SECONDS = 300
 PURPOSE_MEDIA_PREFIXES: dict[KeyPurpose, tuple[str, ...]] = {
     "capsule": ("application/vnd.nilhan.laos.action-capsule.",),
     "event_anchor": (
-        "application/vnd.nilhan.laos.capture-return.",
+        "application/vnd.nilhan.laos.app-intelligence-return.",
         "application/vnd.nilhan.laos.event-anchor.",
     ),
     "pack_manifest": ("application/vnd.nilhan.laos.pack-manifest.",),

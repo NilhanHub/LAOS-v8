@@ -32,7 +32,7 @@ def key_root(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
 def request(*, purpose: str = "capsule", requested_at: datetime | None = None) -> SigningRequest:
     media = {
         "capsule": "application/vnd.nilhan.laos.action-capsule.v1+json",
-        "event_anchor": "application/vnd.nilhan.laos.capture-return.v1+json",
+        "event_anchor": "application/vnd.nilhan.laos.app-intelligence-return.v1+json",
         "pack_manifest": "application/vnd.nilhan.laos.pack-manifest.v1+json",
         "release": "application/vnd.nilhan.laos.release-record.v1+json",
     }[purpose]
@@ -88,6 +88,31 @@ def test_signing_uses_active_purpose_key_and_verifies(key_root: Path, monkeypatc
     )
     assert payload == b'{"bounded":true}'
     assert not any(key_root.glob(".keyring-*.tmp"))
+
+
+def test_event_anchor_accepts_app_intelligence_return_media_type(
+    key_root: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    bundle = signer_service.bootstrap()
+    value = request(purpose="event_anchor")
+    monkeypatch.setattr(signer_service, "_read_stdin", lambda: canonical_json(value))
+
+    envelope = TypedEnvelope.model_validate_json(signer_service.sign(), strict=True)
+    active = next(item for item in bundle.keys if item.purpose == "event_anchor")
+    payload = PublicTrustRoot(
+        active.key_id,
+        active.public_key_b64,
+        active.purpose,
+        "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR",
+    ).verifier(trusted_issuer="control:stage5").verify(
+        envelope,
+        expected_purpose="event_anchor",
+        expected_payload_type=value.payload_type,
+        expected_issuer="control:stage5",
+        expected_audience="agent:stage5",
+    )
+    assert payload == b'{"bounded":true}'
 
 
 def test_signer_denies_stale_wrong_purpose_and_reserved_release(
