@@ -1,5 +1,8 @@
 # LAOS v8 rebuild repository
 
+> [!TIP]
+> For a recruiter- and engineer-friendly architecture tour, see [ENGINEERING_OVERVIEW.md](ENGINEERING_OVERVIEW.md).
+
 **Current state: Stage 4 Alpha Vertical Trust Slice complete and Stage 5 authorized; the full LAOS v8 runtime is
 not implemented.**
 
