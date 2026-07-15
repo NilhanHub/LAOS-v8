@@ -105,7 +105,7 @@ def run(clone: Path, label: str, argv: tuple[str, ...], environment: dict[str, s
 
 
 def command_policy(run_id: str, source_commit: str) -> dict[str, tuple[str, ...]]:
-    generated = f"Evidence/generated/stage6/{run_id.removeprefix('run:')}"
+    generated = f"../stage6-generated-{run_id.removeprefix('run:')}"
     return {
         "uv_sync": ("uv", "sync", "--frozen", "--all-groups"),
         "ruff_changed": (

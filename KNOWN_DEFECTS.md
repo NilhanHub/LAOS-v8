@@ -1044,3 +1044,21 @@ wire value to the closed `EvidenceLevel` enum before strict validation. Invalid
 or unknown values still fail closed. The real Docker integration passes without
 loosening the request model.
 
+## REG-064 — Candidate builder placed current Stage 3 evidence inside the clone
+
+- Severity: **P3**
+- Classification: `CONFIRMED_V8_STAGE6_CANDIDATE_WORKFLOW`
+- Affected revision: `2662d92bb451304554489f4ec8764b6cb836201d`
+- Status: `REMEDIATION_IMPLEMENTED_AWAITING_CLEAN_RECONSTRUCTION`
+
+**Original reproduction:** The first Stage 6 clean candidate completed the
+preceding fixed gates but failed at `generate_stage3`. The builder used an
+ignored `Evidence/generated` path inside the clean clone. Stage 3 correctly
+rejected that location because current evidence must be outside the source
+repository even when Git ignores it.
+
+**Correction:** The candidate policy now uses a relative sibling staging path
+outside the clone. The recorded command remains sanitized and portable without
+weakening Stage 3's current-evidence boundary. The failed attempt is retained at
+`Evidence/STAGE_6_CANDIDATE_ATTEMPT_1_FAILED.json`.
+

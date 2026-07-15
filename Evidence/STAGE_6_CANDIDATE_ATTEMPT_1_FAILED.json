@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0.0",
+  "stage": 6,
+  "status": "FAIL",
+  "source_commit": "2662d92bb451304554489f4ec8764b6cb836201d",
+  "failed_gate": "generate_stage3",
+  "failure_code": "CURRENT_EVIDENCE_OUTPUT_INSIDE_REPOSITORY",
+  "cause": "The builder selected an ignored path inside the clean clone; Stage 3 requires current evidence outside the source repository.",
+  "remediation": "Use a sanitized relative sibling staging path outside the clean clone.",
+  "does_not_change_stage5_evidence": true,
+  "does_not_approve_stage6": true,
+  "v8_release_claimed": false
+}
