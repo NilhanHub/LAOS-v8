@@ -1,6 +1,6 @@
 # LAOS v8 Stage 5 implementation checkpoint
 
-Status: **GATE EVIDENCE PASSED — corrected completion candidate rerun required**
+Status: **COMPLETION CANDIDATE PASSED — awaiting Nilhan review**
 
 Authority: `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1, Milestones 5–8.
 
@@ -40,13 +40,13 @@ the committed candidate in a separate clean reconstruction.
 
 ## Verified limitations and open gates
 
-1. Pre-reconciliation candidate run `run:5e6535f10aa1440aa45f24eb053491d9` passed 20 automated gates from clean source commit `56d4e493822bcc2fe2a304c1cdf853bd6a46badd`. The first reconciled-source rerun then failed closed on the signer-status path alias and has been preserved; a corrected clean rerun is required before Nilhan review.
+1. Corrected candidate run `run:ea3248f8ede94973ae669ded5fa3c30f` passed all 20 automated gates from clean source commit `7497d149281e9e6924bf79cc22c2c89ea51f8dfe`; its receipt remains `PASS_AWAITING_NILHAN_REVIEW`. Earlier failed and pre-reconciliation receipts remain preserved as nonqualifying history.
 2. The three Stage 5 product-gate records now have passing evidence but remain binding until Nilhan explicitly approves the completion candidate. No approval is inferred from model output, Codex implementation, or ordinary self-authored JSON.
 3. `ProtectedTestSigner` remains test-only. The supported protected-signer row is the local single-operator Windows/Docker profile and trusts Nilhan and the host/Docker administrator; it does not claim hostile-admin, HSM/KMS, or multi-operator isolation.
 4. Integrated protected reviewer authentication, mature evidence custody, protected checks, sandbox enforcement, and quorum remain Stage 6 work as assigned by the ten-stage plan.
 5. All release blockers remain open for their assigned later stages. LAOS v8 remains incomplete and unreleased.
 
-This checkpoint stops before a final reviewable Stage 5 candidate rather than converting gate evidence into Nilhan approval or an LAOS v8 release claim.
+This checkpoint stops at a reviewable Stage 5 candidate rather than converting automated evidence into Nilhan approval or an LAOS v8 release claim.
 
 The first post-reconciliation clean run exposed and preserved a signer-status
 path-alias defect: a live image rebuild changed the current image ID and was

@@ -5,7 +5,7 @@
   "count": 25,
   "stage_5_completion_candidate": {
     "status": "PASS_AWAITING_NILHAN_REVIEW",
-    "run_id": "run:5e6535f10aa1440aa45f24eb053491d9",
+    "run_id": "run:ea3248f8ede94973ae669ded5fa3c30f",
     "cleared_release_blockers": [],
     "note": "Stage 5 product-gate evidence passed, but no release blocker is closed by a pre-release local candidate. Stage 6 protected authentication, evidence custody, sandbox enforcement and later release/evaluation gates remain binding."
   },
