@@ -1121,3 +1121,23 @@ integration bootstraps the same volumes twice and requires the public key
 identity to remain unchanged. The failed attempt is retained at
 `Evidence/STAGE_6_CANDIDATE_ATTEMPT_4_FAILED.json`.
 
+## REG-068 — Clean verifier omitted the nested protected-check mountpoint
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE6_CLEAN_VERIFIER_INTEGRATION`
+- Affected revision: `deda37b2265f4996e659c620e108abe0836d192c`
+- Status: `REMEDIATION_IMPLEMENTED_AWAITING_CLEAN_RECONSTRUCTION`
+
+**Original reproduction:** The fifth clean candidate passed the fixed source
+gates, repeat custodian bootstrap, and Stage 4 reconstruction. Docker then
+failed before executing the protected test because it could not create a nested
+mountpoint beneath the already read-only `/workspace` bind.
+
+**Correction:** The clean verifier now creates the empty control mountpoint only
+inside its disposable copy, before mounting the signed protected checks. It
+fails closed if a candidate already occupies that reserved path, and the
+authoritative source digest remains unchanged. Nonzero verification failures
+also retain only exit code and sanitized transcript digests. The protected test
+and its historical digest are unchanged. The failed attempt is retained at
+`Evidence/STAGE_6_CANDIDATE_ATTEMPT_5_FAILED.json`.
+

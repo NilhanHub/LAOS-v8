@@ -92,6 +92,30 @@ def test_clean_verifier_uses_disposable_copy_and_detects_source_drift(tmp_path: 
     assert (candidate / "app.py").read_text(encoding="utf-8") == "print('bounded')\n"
 
 
+def test_clean_verifier_creates_control_mountpoint_only_in_disposable_copy(tmp_path: Path) -> None:
+    class MountpointSandbox(_FakeSandbox):
+        def run_spec(self, spec: CommandSpec) -> SandboxResult:
+            assert (spec.workspace / ".laos-protected-checks").is_dir()
+            return super().run_spec(spec)
+
+    candidate = tmp_path / "candidate"
+    checks = tmp_path / "checks"
+    candidate.mkdir()
+    checks.mkdir()
+    (candidate / "app.py").write_text("pass\n", encoding="utf-8")
+    receipt = CleanVerifier(MountpointSandbox()).verify(
+        candidate,
+        argv=("python", "/workspace/.laos-protected-checks/check.py"),
+        budget=_budget(),
+        criterion_ids=("criterion:stage6-protected-check",),
+        source_commit="a" * 40,
+        source_tree="b" * 40,
+        protected_check_workspace=checks,
+    )
+    assert receipt.status == "PASS"
+    assert not (candidate / ".laos-protected-checks").exists()
+
+
 def test_clean_verifier_fails_closed_on_nonzero_check(tmp_path: Path) -> None:
     class Failing(_FakeSandbox):
         def run_spec(self, spec: CommandSpec) -> SandboxResult:

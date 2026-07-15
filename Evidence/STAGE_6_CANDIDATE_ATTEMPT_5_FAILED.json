@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0.0",
+  "stage": 6,
+  "status": "FAIL",
+  "source_commit": "deda37b2265f4996e659c620e108abe0836d192c",
+  "failed_gate": "clean_verifier_protected_check_mount",
+  "failure_code": "CLEAN_VERIFICATION_FAILED",
+  "cause": "Docker could not create a nested protected-check mountpoint beneath the read-only source bind because the disposable verifier copy did not contain the control directory.",
+  "remediation": "Create the empty control mountpoint only in the verifier's disposable copy, reject candidates that occupy it, and keep the authoritative source digest unchanged.",
+  "protected_check_not_relaxed": true,
+  "does_not_approve_stage6": true,
+  "v8_release_claimed": false
+}

@@ -83,6 +83,14 @@ class CleanVerifier:
         with tempfile.TemporaryDirectory(prefix="laos-clean-verifier-") as temporary:
             verifier_root = Path(temporary) / "source"
             shutil.copytree(source, verifier_root, ignore=shutil.ignore_patterns(".git"))
+            if protected_check_workspace is not None:
+                mountpoint = verifier_root / ".laos-protected-checks"
+                if mountpoint.exists():
+                    raise SecurityError(
+                        "candidate occupies the protected-check control path",
+                        code="PROTECTED_CHECK_MOUNTPOINT_OCCUPIED",
+                    )
+                mountpoint.mkdir(mode=0o500)
             for path in verifier_root.rglob("*"):
                 if path.is_file():
                     os.chmod(path, stat.S_IREAD)
@@ -99,7 +107,15 @@ class CleanVerifier:
         if post_digest != source_digest:
             raise SecurityError("authoritative source changed during clean verification", code="CLEAN_SOURCE_DRIFT")
         if result.exit_code != 0:
-            raise SecurityError("clean verification failed", code="CLEAN_VERIFICATION_FAILED")
+            raise SecurityError(
+                "clean verification failed",
+                code="CLEAN_VERIFICATION_FAILED",
+                context={
+                    "exit_code": result.exit_code,
+                    "stdout_digest": result.stdout_digest,
+                    "stderr_digest": result.stderr_digest,
+                },
+            )
         return VerificationReceipt(
             receipt_id=f"verification:{uuid.uuid4().hex}",
             status="PASS",
