@@ -31,7 +31,7 @@ from laos_v8.stage5_real_capture import (
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_PATH = "Evidence/STAGE_5_COMPLETION_CANDIDATE.json"
 EXPECTED_ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
-EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.2.0"
+EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.3.0"
 
 
 def require(condition: bool, message: str) -> None:
@@ -74,7 +74,7 @@ def verify(expected_source_commit: str, candidate_tag: str | None) -> list[str]:
     required_labels = {
         "formal_calibration_receipt",
         "structured_output_diagnostic",
-        "real_v7_capture",
+        "formal_capture_receipt",
         "protected_signer_build",
         "protected_signer_bootstrap",
         "protected_signer_doctor",

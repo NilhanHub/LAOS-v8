@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import tempfile
@@ -26,9 +27,10 @@ from laos_v8.stage5_calibration import (
     Stage5CalibrationReceipt,
     build_active_profile_inventory,
 )
+from laos_v8.stage5_real_capture import V7_ARCHIVE_SHA256, RealCaptureReceipt
 
 ROOT = Path(__file__).resolve().parents[1]
-GENERATOR_VERSION = "laos-stage5-completion-candidate/1.2.0"
+GENERATOR_VERSION = "laos-stage5-completion-candidate/1.3.0"
 ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
 GENERATED = {
     "calibration": "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
@@ -47,6 +49,8 @@ STATIC_ARTIFACTS = (
     "Evidence/STAGE_5_CALIBRATION_V1_2_PROVENANCE.json",
     "Evidence/STAGE_5_COMPLETION_CANDIDATE.v1-1-failed.json",
     "Evidence/STAGE_5_COMPLETION_CANDIDATE.v1-2-capture-failed.json",
+    "Evidence/STAGE_5_COMPLETION_CANDIDATE.capture-pass-test-path-failed.json",
+    "Evidence/STAGE_5_REAL_CAPTURE_PROVENANCE.json",
     "profiles/STAGE_5_CALIBRATION_PLAN.json",
     "profiles/STAGE_5_CALIBRATION_PLAN_V1_1_RETIRED.json",
 )
@@ -67,6 +71,10 @@ def git(*args: str) -> str:
 
 def digest(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
+
+
+def file_digest(path: Path) -> str:
+    return digest(path.read_bytes())
 
 
 def run(label: str, argv: tuple[str, ...]) -> tuple[CommandReceipt, bytes]:
@@ -121,6 +129,10 @@ def main() -> int:
     if output_root == ROOT or output_root.is_relative_to(ROOT):
         raise SystemExit("completion candidate output must be outside the clean source reconstruction")
     output_root.mkdir(parents=True, exist_ok=True)
+    archive = args.archive.resolve(strict=True)
+    if archive.name != "LAOS_v7.0_Complete_System.zip" or file_digest(archive) != V7_ARCHIVE_SHA256:
+        raise SystemExit("sealed v7 archive digest differs")
+    os.environ["LAOS_V7_ARCHIVE"] = str(archive)
     source_commit = git("rev-parse", "HEAD")
     source_tree = git("rev-parse", "HEAD^{tree}")
     if source_commit != args.expected_commit or git("status", "--porcelain", "--untracked-files=all"):
@@ -181,26 +193,17 @@ def main() -> int:
             if command.status != "PASS":
                 raise RuntimeError(f"candidate-command-failed:{label}")
 
-        capture = output_root / GENERATED["capture"]
         command, _ = run(
-            "real_v7_capture",
-            (
-                "uv",
-                "run",
-                "--frozen",
-                "python",
-                "scripts/run_stage5_real_capture.py",
-                "--archive",
-                str(args.archive.resolve()),
-                "--binding",
-                str(binding),
-                "--output",
-                str(capture),
-            ),
+            "formal_capture_receipt",
+            ("uv", "run", "--frozen", "python", "scripts/verify_stage5_real_capture_receipt.py"),
         )
         commands.append(command)
         if command.status != "PASS":
-            raise RuntimeError("candidate-command-failed:real_v7_capture")
+            raise RuntimeError("candidate-command-failed:formal_capture_receipt")
+        capture_receipt = RealCaptureReceipt.model_validate_json(
+            (ROOT / GENERATED["capture"]).read_bytes(), strict=True
+        )
+        atomic_write_json(output_root / GENERATED["capture"], capture_receipt)
 
         command, signer_output = run(
             "protected_signer_doctor",
@@ -234,6 +237,7 @@ def main() -> int:
                 "scripts/run_stage5_calibration.py",
                 "scripts/run_stage5_real_capture.py",
                 "scripts/verify_stage5_calibration_receipt.py",
+                "scripts/verify_stage5_real_capture_receipt.py",
                 "scripts/verify_stage5_completion_candidate.py",
                 "scripts/verify_ruff_baseline.py",
             ),

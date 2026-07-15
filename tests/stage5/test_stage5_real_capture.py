@@ -58,7 +58,8 @@ def released_binding(root: Path) -> ReleasedProfileBinding:
 @pytest.mark.integration
 def test_real_v7_capture_uses_pinned_model_and_protected_signer_without_source_changes() -> None:
     root = Path(__file__).resolve().parents[2]
-    archive = root.parent / "LAOS_v7.0_Complete_System.zip"
+    configured_archive = os.environ.get("LAOS_V7_ARCHIVE")
+    archive = Path(configured_archive) if configured_archive else root.parent / "LAOS_v7.0_Complete_System.zip"
     dependencies = (
         ("archive", archive.exists()),
         ("ollama", bool(shutil.which("ollama"))),
