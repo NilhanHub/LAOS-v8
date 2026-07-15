@@ -1,0 +1,75 @@
+{
+  "artifacts": [],
+  "assurance": "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW",
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/diagnose_stage5_structured_output.py"
+      ],
+      "exit_code": 0,
+      "label": "structured_output_diagnostic",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 266,
+      "stdout_sha256": "9809cb2a012671a1b15280a0d459a0b17a8e2191792a52b8e02207b4c9b52c86"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/run_stage5_calibration.py",
+        "--output",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_CALIBRATION_RECEIPT.json",
+        "--binding-output",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_PROFILE_BINDING.json"
+      ],
+      "exit_code": 0,
+      "label": "real_calibration",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/run_stage5_real_capture.py",
+        "--archive",
+        "D:\\Repo\\LAOS\\LAOS_v7.0_Complete_System.zip",
+        "--binding",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_PROFILE_BINDING.json",
+        "--output",
+        "D:\\Repo\\LAOS\\LAOS_v8\\Evidence\\STAGE_5_REAL_CAPTURE_RECEIPT.json"
+      ],
+      "exit_code": 1,
+      "label": "real_v7_capture",
+      "status": "FAIL",
+      "stderr_bytes": 1510,
+      "stderr_sha256": "a301be0aa8a8b9a713010213b9d7062e541ed72f84b69b2ec498473a0f099655",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "completed_at_utc": "2026-07-15T06:28:11.313347Z",
+  "failure_code": "candidate-command-failed:real_v7_capture",
+  "generator_version": "laos-stage5-completion-candidate/1.1.0",
+  "producer_authentication": "NONE_STAGE6_OPEN",
+  "record_version": "1.1.0",
+  "run_id": "run:d6b60d7fe0ca494ea07492f444ee97df",
+  "source_commit": "f276b6f0922570e832ebe6fd315dc86f0f683787",
+  "source_tree": "7a93f64558d17b81564ec7a850628940ed99ee46",
+  "stage": 5,
+  "started_at_utc": "2026-07-15T06:26:38.359781Z",
+  "status": "FAIL"
+}

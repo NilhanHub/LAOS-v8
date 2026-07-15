@@ -1,0 +1,13 @@
+{
+  "calibration_id": "calibration:stage5-qwen-v1-2-attempt-1",
+  "calibration_receipt_sha256": "sha256:158385b9889d25ea56f610386124f7d6022c2911d068dc2fc92731f17f793cb3",
+  "environment_digest": "sha256:d5dcc3950b521bbe19187ff8532dc1c834ed1f183aaacce564b5c3f897f0bcba",
+  "model_blob_sha256": "29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104",
+  "model_tag": "qwen2.5-coder:1.5b",
+  "profile_digest": "sha256:70e26c84faf0e3799431bcfb70c70c8c99d85fb548f2445aecafdb4988e4f7e1",
+  "profile_id": "profile:investigation-specialist",
+  "provider": "ollama",
+  "record_version": "1.0.0",
+  "released_at": "2026-07-15T06:27:01.449025Z",
+  "settings_digest": "sha256:5f73a9fa339cd7368079ab5dd03dda98cda31512de428ad14912279b35557fd3"
+}
