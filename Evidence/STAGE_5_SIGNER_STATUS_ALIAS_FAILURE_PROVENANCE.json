@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0.0",
+  "status": "PRESERVED_NONQUALIFYING_DIAGNOSTIC_EVIDENCE",
+  "failed_run_id": "run:de2c5bf783b348ac9253d4a3dcbcb350",
+  "failed_source_commit": "0e5a02637e73a1dca05d30259a420dbecbac8b96",
+  "failed_source_tree": "953c1aa5e54f2a0648929bf7b6917efa47c64b67",
+  "failed_candidate_sha256": "acd9bd86d550de75c4e6f2d41d564f33561146aef4d6276a8578399932d9221b",
+  "failed_candidate_status": "FAIL",
+  "failed_candidate_failure_code": "candidate-command-failed:formal_capture_receipt",
+  "cause": "The mutable current signer-doctor status and the immutable signer snapshot used by the formal real capture shared one path. Rebuilding the image changed only the image ID and made the historical capture verifier compare against the wrong snapshot.",
+  "remediation": "Preserve a dedicated immutable real-capture signer snapshot, keep the live signer-doctor record separate, and require signer instance, protected volume, purpose, generation, public key identity, and key state continuity while allowing the rebuilt image ID to differ.",
+  "qualifying_claim": "NONE"
+}

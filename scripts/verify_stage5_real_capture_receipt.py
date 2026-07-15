@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROVENANCE = ROOT / "Evidence/STAGE_5_REAL_CAPTURE_PROVENANCE.json"
 FAILED_CANDIDATE = ROOT / "Evidence/STAGE_5_COMPLETION_CANDIDATE.capture-pass-test-path-failed.json"
 CAPTURE = ROOT / "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json"
-SIGNER = ROOT / "Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json"
+CAPTURE_SIGNER = ROOT / "Evidence/STAGE_5_REAL_CAPTURE_SIGNER_STATUS.json"
 BINDING = ROOT / "Evidence/STAGE_5_PROFILE_BINDING.json"
 
 
@@ -58,7 +58,10 @@ def main() -> int:
         "capture reuse is not authorized",
     )
     require(sha256(CAPTURE) == provenance["capture_receipt_sha256"], "capture receipt digest differs")
-    require(sha256(SIGNER) == provenance["protected_signer_status_sha256"], "signer status digest differs")
+    require(
+        sha256(CAPTURE_SIGNER) == provenance["protected_signer_status_sha256"],
+        "capture signer snapshot digest differs",
+    )
     require(sha256(FAILED_CANDIDATE) == provenance["failed_candidate_sha256"], "failed candidate digest differs")
     require(
         provenance["v7_archive_sha256_before"] == V7_ARCHIVE_SHA256
@@ -105,11 +108,17 @@ def main() -> int:
     require(not capture.provider_direct_repository_access, "provider received repository access")
     require(not capture.first_capsule_redeemed, "capture redeemed the first capsule")
     require(len(capture.facts) == 6, "capture areas are incomplete")
-    signer = json.loads(SIGNER.read_text(encoding="utf-8"))
+    signer = json.loads(CAPTURE_SIGNER.read_text(encoding="utf-8"))
     require(signer.get("status") == "PASS", "protected signer status is not PASS")
     require(
         signer.get("assurance") == "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR",
         "protected signer assurance differs",
+    )
+    keys = {item["purpose"]: item for item in signer.get("keys", [])}
+    require(keys.get("capsule", {}).get("key_id") == capture.capsule_key_id, "capture capsule key differs")
+    require(
+        keys.get("event_anchor", {}).get("key_id") == capture.event_anchor_key_id,
+        "capture event-anchor key differs",
     )
     print(
         json.dumps(

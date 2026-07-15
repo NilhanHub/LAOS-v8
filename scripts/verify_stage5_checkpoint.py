@@ -140,10 +140,19 @@ def verify() -> list[str]:
     status = load("IMPLEMENTATION_STATUS.json")
     require(status["stage_4_status"] == "COMPLETE", "Stage 4 is not complete")
     require(status["stage_5_status"] == "IN_PROGRESS", "Stage 5 checkpoint status changed")
+    expected_program_states = {
+        (
+            "STAGE_5_COMPLETION_CANDIDATE_RERUN_REQUIRED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+            "COMPLETION_CANDIDATE_RERUN_REQUIRED",
+        ),
+        (
+            "STAGE_5_COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+            "COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW",
+        ),
+    }
     require(
-        status["status"]
-        == "STAGE_5_COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
-        "program status overclaims or omits the pending Nilhan review",
+        (status["status"], status["stage_5_checkpoint"]) in expected_program_states,
+        "program status overclaims or omits the Stage 5 candidate state",
     )
     require(status["v8_runtime_exists"] is False and status["v8_release_exists"] is False, "v8 overclaim")
     required_open = {
@@ -156,8 +165,12 @@ def verify() -> list[str]:
 
     stage = next(item for item in load("PROGRAM_STAGE_LEDGER.json")["stages"] if item["stage"] == 5)
     require(
-        stage["status"] == "IN_PROGRESS_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW",
-        "Stage 5 ledger status is not awaiting Nilhan review",
+        stage["status"]
+        in {
+            "IN_PROGRESS_COMPLETION_CANDIDATE_RERUN_REQUIRED",
+            "IN_PROGRESS_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW",
+        },
+        "Stage 5 ledger status is not a permitted in-progress candidate state",
     )
     require(stage["owner"] == "Codex" and stage["independent_reviewer"] == "Nilhan", "roles changed")
     checks.append("governance")
@@ -218,7 +231,12 @@ def main() -> int:
     args = parser.parse_args()
     try:
         checks = verify()
-        status = "PASS_STAGE_5_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW"
+        program = load("IMPLEMENTATION_STATUS.json")
+        status = (
+            "PASS_STAGE_5_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW"
+            if program["stage_5_checkpoint"] == "COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW"
+            else "PASS_STAGE_5_COMPLETION_CANDIDATE_RERUN_REQUIRED"
+        )
         candidate = None
         if args.candidate_evidence is not None:
             require(args.expected_source_commit is not None, "Candidate evidence requires an expected source commit")

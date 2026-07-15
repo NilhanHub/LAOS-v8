@@ -372,6 +372,17 @@ def test_stage5_candidate_does_not_claim_ephemeral_build_packages() -> None:
     )
 
 
+def test_stage5_signer_continuity_ignores_rebuild_image_id_but_rejects_key_drift() -> None:
+    module = _script("verify_stage5_completion_candidate.py")
+    capture = json.loads((ROOT / "Evidence/STAGE_5_REAL_CAPTURE_SIGNER_STATUS.json").read_text(encoding="utf-8"))
+    rebuilt = copy.deepcopy(capture)
+    rebuilt["image_id"] = "sha256:" + "f" * 64
+    assert module.protected_signer_identity(rebuilt) == module.protected_signer_identity(capture)
+
+    rebuilt["keys"][0]["key_id"] = "key:" + "0" * 32
+    assert module.protected_signer_identity(rebuilt) != module.protected_signer_identity(capture)
+
+
 def _git(root: Path, *args: str) -> None:
     executable = shutil.which("git")
     assert executable is not None

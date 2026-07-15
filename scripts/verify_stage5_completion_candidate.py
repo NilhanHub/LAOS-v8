@@ -31,7 +31,7 @@ from laos_v8.stage5_real_capture import (
 ROOT = Path(__file__).resolve().parents[1]
 CANDIDATE_PATH = "Evidence/STAGE_5_COMPLETION_CANDIDATE.json"
 EXPECTED_ASSURANCE = "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW"
-EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.4.0"
+EXPECTED_GENERATOR = "laos-stage5-completion-candidate/1.5.0"
 
 
 def require(condition: bool, message: str) -> None:
@@ -45,6 +45,31 @@ def load(relative: str) -> object:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def protected_signer_identity(value: object) -> tuple[str, str, str, tuple[tuple[str, int, str, str], ...]]:
+    require(isinstance(value, dict), "protected signer status is invalid")
+    assurance = value.get("assurance")
+    instance = value.get("signer_instance_id")
+    volume = value.get("volume")
+    raw_keys = value.get("keys")
+    require(isinstance(assurance, str), "protected signer assurance is invalid")
+    require(isinstance(instance, str), "protected signer instance is invalid")
+    require(isinstance(volume, str), "protected signer volume is invalid")
+    require(isinstance(raw_keys, list), "protected signer keys are invalid")
+    keys: list[tuple[str, int, str, str]] = []
+    for raw in raw_keys:
+        require(isinstance(raw, dict), "protected signer key is invalid")
+        purpose = raw.get("purpose")
+        generation = raw.get("generation")
+        key_id = raw.get("key_id")
+        status = raw.get("status")
+        require(isinstance(purpose, str), "protected signer key purpose is invalid")
+        require(isinstance(generation, int), "protected signer key generation is invalid")
+        require(isinstance(key_id, str), "protected signer key ID is invalid")
+        require(isinstance(status, str), "protected signer key status is invalid")
+        keys.append((purpose, generation, key_id, status))
+    return assurance, instance, volume, tuple(sorted(keys))
 
 
 def git(*args: str) -> str:
@@ -148,10 +173,23 @@ def verify(expected_source_commit: str, candidate_tag: str | None) -> list[str]:
     checks.append("sealed_v7_round_trip")
 
     signer = load("Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json")
+    capture_signer = load("Evidence/STAGE_5_REAL_CAPTURE_SIGNER_STATUS.json")
     require(isinstance(signer, dict) and signer.get("status") == "PASS", "protected signer doctor failed")
     require(
         signer.get("assurance") == "STAGE_5_LOCAL_PROTECTED_SIGNER_SINGLE_OPERATOR",
         "protected signer assurance differs",
+    )
+    live_identity = protected_signer_identity(signer)
+    capture_identity = protected_signer_identity(capture_signer)
+    require(live_identity == capture_identity, "protected signer identity continuity differs")
+    live_keys = {(purpose, generation): (key_id, status) for purpose, generation, key_id, status in live_identity[3]}
+    require(
+        live_keys.get(("capsule", 1), (None, None))[0] == capture.capsule_key_id,
+        "current capsule signer key differs from capture",
+    )
+    require(
+        live_keys.get(("event_anchor", 1), (None, None))[0] == capture.event_anchor_key_id,
+        "current event-anchor signer key differs from capture",
     )
     checks.append("protected_signing_custody")
 

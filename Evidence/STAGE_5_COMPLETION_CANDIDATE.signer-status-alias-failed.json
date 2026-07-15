@@ -1,0 +1,97 @@
+{
+  "artifacts": [],
+  "assurance": "LOCAL_PROTECTED_SIGNER_AND_PINNED_MODEL_AWAITING_NILHAN_REVIEW",
+  "commands": [
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/diagnose_stage5_structured_output.py"
+      ],
+      "exit_code": 0,
+      "label": "structured_output_diagnostic",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 266,
+      "stdout_sha256": "9809cb2a012671a1b15280a0d459a0b17a8e2191792a52b8e02207b4c9b52c86"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage5_calibration_receipt.py"
+      ],
+      "exit_code": 0,
+      "label": "formal_calibration_receipt",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 219,
+      "stdout_sha256": "dd0765f26c16e7ce1456b8f4f961e030c9d46d9c5d45d241e7139d7921622325"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "laos",
+        "signer-build"
+      ],
+      "exit_code": 0,
+      "label": "protected_signer_build",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 116,
+      "stdout_sha256": "5c493fb90171c6c491e51112408288825461d5b2578935c3bec2ac6365a135bd"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "laos",
+        "signer-bootstrap"
+      ],
+      "exit_code": 0,
+      "label": "protected_signer_bootstrap",
+      "status": "PASS",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 1680,
+      "stdout_sha256": "00bf99b1b6f760b575f022fb4ee44322036f08c02ad22de91a274dff8d40c729"
+    },
+    {
+      "argv": [
+        "uv",
+        "run",
+        "--frozen",
+        "python",
+        "scripts/verify_stage5_real_capture_receipt.py"
+      ],
+      "exit_code": 1,
+      "label": "formal_capture_receipt",
+      "status": "FAIL",
+      "stderr_bytes": 894,
+      "stderr_sha256": "30575adbf77f71357b30791fcd5e64b1ac069b1d648cf3be6448e5cacc31fc4c",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "completed_at_utc": "2026-07-15T07:03:35.809851Z",
+  "failure_code": "candidate-command-failed:formal_capture_receipt",
+  "generator_version": "laos-stage5-completion-candidate/1.4.0",
+  "producer_authentication": "NONE_STAGE6_OPEN",
+  "record_version": "1.1.0",
+  "run_id": "run:de2c5bf783b348ac9253d4a3dcbcb350",
+  "source_commit": "0e5a02637e73a1dca05d30259a420dbecbac8b96",
+  "source_tree": "953c1aa5e54f2a0648929bf7b6917efa47c64b67",
+  "stage": 5,
+  "started_at_utc": "2026-07-15T07:02:51.398930Z",
+  "status": "FAIL"
+}

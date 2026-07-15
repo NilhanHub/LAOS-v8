@@ -990,3 +990,24 @@ candidate passed full pytest and Docker integration without skips. See
 `Evidence/STAGE_5_COMPLETION_CANDIDATE.capture-pass-test-path-failed.json` and
 `Evidence/STAGE_5_COMPLETION_CANDIDATE.json`.
 
+## REG-061 — Live signer status path aliased the immutable capture snapshot
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE5_EVIDENCE_WORKFLOW`
+- Affected revision: `0e5a02637e73a1dca05d30259a420dbecbac8b96`
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+
+**Original reproduction:** The clean candidate rebuilt the same signer source,
+which produced a new Docker image ID. The formal capture verifier then compared
+the immutable capture provenance with the mutable current signer-doctor path and
+failed before the remaining gates ran.
+
+**Regression evidence:** The failed receipt remains at
+`Evidence/STAGE_5_COMPLETION_CANDIDATE.signer-status-alias-failed.json`. The
+formal capture now binds the dedicated immutable
+`Evidence/STAGE_5_REAL_CAPTURE_SIGNER_STATUS.json` snapshot. Candidate
+verification separately requires the current signer to retain the same signer
+instance, protected volume, key purposes, generations, public key IDs, and key
+states while allowing a source-identical image rebuild to have a different
+image ID.
+
