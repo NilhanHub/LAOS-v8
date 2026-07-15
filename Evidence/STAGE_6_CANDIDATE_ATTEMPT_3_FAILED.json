@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0.0",
+  "stage": 6,
+  "status": "FAIL",
+  "source_commit": "2195025da1931ff22a32f253ed1b67d09c724191",
+  "failed_gate": "replay_stage4",
+  "failure_code": "FOREIGN_STAGE4_COMMIT_UNAVAILABLE",
+  "cause": "The Stage 6 replay attempted to resolve the historical Stage 4 disposable-repository result commit in the main LAOS repository.",
+  "remediation": "Reconstruct the frozen Stage 4 result content, derive its Git tree in a fresh disposable repository, and retain the historical foreign commit only as provenance.",
+  "does_not_change_stage4_evidence": true,
+  "does_not_approve_stage6": true,
+  "v8_release_claimed": false
+}

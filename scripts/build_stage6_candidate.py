@@ -58,14 +58,24 @@ def executable(name: str) -> str:
 
 
 def git(root: Path, *args: str) -> str:
+    environment = dict(os.environ)
+    environment.update(
+        {
+            "GIT_CONFIG_NOSYSTEM": "1",
+            "GIT_CONFIG_GLOBAL": os.devnull,
+            "GIT_CONFIG_SYSTEM": os.devnull,
+            "GIT_TERMINAL_PROMPT": "0",
+        }
+    )
     completed = subprocess.run(  # noqa: S603 - resolved Git and fixed builder call sites
-        [executable("git"), "-C", str(root), *args],
+        [executable("git"), "-c", f"core.hooksPath={os.devnull}", "-C", str(root), *args],
         text=True,
         encoding="utf-8",
         errors="strict",
         capture_output=True,
         check=False,
         timeout=60,
+        env=environment,
     )
     if completed.returncode:
         raise RuntimeError(completed.stderr.strip() or "Git command failed")
@@ -153,7 +163,12 @@ def replay_stage4(
     with tempfile.TemporaryDirectory(prefix="laos-stage6-replay-") as temporary:
         candidate = Path(temporary) / "candidate"
         shutil.copytree(clone / "tests/fixtures/stage4_alpha/source", candidate)
+        (candidate / ".gitattributes").write_bytes(b".gitattributes text eol=lf\n*.py text eol=lf\n")
         (candidate / proposal["relative_path"]).write_text(proposal["replacement"], encoding="utf-8", newline="\n")
+        git(candidate, "init", "--initial-branch=stage6-replay")
+        git(candidate, "config", "core.autocrlf", "false")
+        git(candidate, "add", "--all")
+        result_tree = git(candidate, "write-tree")
         store_root = Path.home() / ".laos" / "protected_checks" / "stage6" / run_id.removeprefix("run:")
         check_store = ProtectedCheckStore(store_root)
         issued_at = datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -165,7 +180,6 @@ def replay_stage4(
             audience="verifier:clean",
             issued_at=issued_at,
         )
-        result_tree = git(clone, "rev-parse", f"{runtime['result_commit']}^{{tree}}")
         verification = CleanVerifier(DockerSandbox()).verify(
             candidate,
             argv=bundle.argv,

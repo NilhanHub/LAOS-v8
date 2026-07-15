@@ -1082,3 +1082,23 @@ gate fails, so a verifier's primary structured diagnostic cannot be hidden.
 The failed attempt is retained at
 `Evidence/STAGE_6_CANDIDATE_ATTEMPT_2_FAILED.json`.
 
+## REG-066 — Stage 6 replay resolved a foreign Stage 4 commit in the main repository
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE6_REPLAY_RECONSTRUCTION`
+- Affected revision: `2195025da1931ff22a32f253ed1b67d09c724191`
+- Status: `REMEDIATION_IMPLEMENTED_AWAITING_CLEAN_RECONSTRUCTION`
+
+**Original reproduction:** The third clean candidate passed the fixed command
+sequence and reached the genuine Stage 4 replay, then attempted to resolve the
+historical result commit in the main LAOS clone. That commit correctly belonged
+to the disposable Stage 4 candidate repository and was never part of the LAOS
+source history.
+
+**Correction:** The replay now reconstructs the frozen Stage 4 fixture and
+proposal, restores the fixture's tracked attributes, and derives the result tree
+inside a new disposable Git repository with external configuration and hooks
+disabled. The historical result commit remains provenance; it is not falsely
+claimed as an object in the main repository. The failed attempt is retained at
+`Evidence/STAGE_6_CANDIDATE_ATTEMPT_3_FAILED.json`.
+
