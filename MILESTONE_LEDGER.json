@@ -205,7 +205,9 @@
       "acceptance_criteria": "Revision 1.1 Milestone 9 exit gate plus affected stable release blockers.",
       "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
       "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
-      "open_cross_subsystem_requirements": true
+      "open_cross_subsystem_requirements": true,
+      "stage_6_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "stage_6_evidence": "STAGE_6_EXECUTION_ASSURANCE_COVERAGE.json"
     },
     {
       "milestone": 10,
@@ -226,7 +228,9 @@
       "acceptance_criteria": "Revision 1.1 Milestone 10 exit gate plus affected stable release blockers.",
       "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
       "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
-      "open_cross_subsystem_requirements": true
+      "open_cross_subsystem_requirements": true,
+      "stage_6_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "stage_6_evidence": "STAGE_6_EXECUTION_ASSURANCE_COVERAGE.json"
     },
     {
       "milestone": 11,
@@ -247,7 +251,9 @@
       "acceptance_criteria": "Revision 1.1 Milestone 11 exit gate plus affected stable release blockers.",
       "required_evidence": "Bootstrap evidence until v8 evidence custody is independently accepted; then rerun through v8.",
       "rollback_recovery": "Revert authority to the last accepted immutable tag and retain the failed attempt as evidence.",
-      "open_cross_subsystem_requirements": true
+      "open_cross_subsystem_requirements": true,
+      "stage_6_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "stage_6_evidence": "STAGE_6_EXECUTION_ASSURANCE_COVERAGE.json"
     },
     {
       "milestone": 12,

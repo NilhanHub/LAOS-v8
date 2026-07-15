@@ -1,13 +1,13 @@
 {
   "known_regression_count": 61,
-  "milestone": 8,
-  "milestone_name": "New-build compiler and existing-application capture/continuation",
-  "next_milestone": 9,
+  "milestone": 11,
+  "milestone_name": "Verification depth and independent review",
+  "next_milestone": 12,
   "requirement_count": 241,
   "stage0_historical_requirement_count": 210,
   "source_archive_sha256": "661445d68a2f44ef0434d9c7b71954b1974e45af625a920ab7dcf72ecf6e1b6d",
   "stage_1_status": "COMPLETE",
-  "status": "STAGE_5_COMPLETE_STAGE_6_PLANNED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
+  "status": "STAGE_6_IN_PROGRESS_AWAITING_PROTECTED_REVIEW_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
   "target_release": "8.0.0",
   "v7_0_1_release_exists": false,
   "v7_track": "FIXTURE_ONLY",
@@ -21,7 +21,7 @@
   "real_weaker_agent_executed": true,
   "stage_4_status": "COMPLETE",
   "stage_5_status": "COMPLETE",
-  "stage_6_status": "PLANNED",
+  "stage_6_status": "IN_PROGRESS_AWAITING_PROTECTED_REVIEW",
   "stage_5_checkpoint": "COMPLETE_NILHAN_APPROVED",
   "stage_5_completion_candidate_run_id": "run:ea3248f8ede94973ae669ded5fa3c30f",
   "stage_5_completion_candidate_source_commit": "7497d149281e9e6924bf79cc22c2c89ea51f8dfe",
@@ -42,5 +42,14 @@
   "alpha_vertical_slice_exists": true,
   "alpha_assurance": "LOCAL_DEVELOPMENT_ALPHA_PROOF_NOT_FINAL_EFFICACY_OR_RELEASE",
   "human_review_authority": "Nilhan",
-  "human_review_authority_model": "SOLE_HUMAN_REVIEWER_INDEPENDENT_FROM_CODEX_IMPLEMENTER"
+  "human_review_authority_model": "SOLE_HUMAN_REVIEWER_INDEPENDENT_FROM_CODEX_IMPLEMENTER",
+  "stage_6_requirements": 49,
+  "stage_6_release_blockers_mitigated_but_open": [
+    "RB-011",
+    "RB-012",
+    "RB-013",
+    "RB-014"
+  ],
+  "stage_6_review_assurance": "PASSPHRASE_PROTECTED_OPENSSH_ED25519_PENDING_NILHAN_ENROLLMENT",
+  "stage_7_status": "PLANNED"
 }

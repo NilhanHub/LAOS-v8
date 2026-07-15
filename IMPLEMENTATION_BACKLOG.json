@@ -132,22 +132,22 @@
       "depends_on": [
         5
       ],
-      "status": "PLANNED",
+      "status": "IN_PROGRESS_AWAITING_PROTECTED_REVIEW",
       "tasks": [
         {
           "id": "S6-CONTRACT",
           "title": "Satisfy the stage contract in the ten-stage plan",
-          "status": "PLANNED"
+          "status": "IMPLEMENTED_AWAITING_REVIEW"
         },
         {
           "id": "S6-EVIDENCE",
           "title": "Capture evidence and rerun affected earlier gates",
-          "status": "OPEN"
+          "status": "IMPLEMENTED_AWAITING_REVIEW"
         },
         {
           "id": "S6-REVIEW",
           "title": "Obtain required independent review",
-          "status": "OPEN"
+          "status": "AWAITING_NILHAN_PROTECTED_REVIEW"
         }
       ]
     },

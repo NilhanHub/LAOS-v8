@@ -11,7 +11,14 @@
       "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json",
       "Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json"
     ],
-    "controlled_at_candidate": ["TM-002", "TM-006", "TM-020", "TM-021", "TM-022", "TM-042"],
+    "controlled_at_candidate": [
+      "TM-002",
+      "TM-006",
+      "TM-020",
+      "TM-021",
+      "TM-022",
+      "TM-042"
+    ],
     "review_evidence": "Evidence/STAGE_5_REVIEW.json",
     "residual_boundary": "Threat rows remain OPEN until their owner-stage review and later protected evidence, sandbox, release, and evaluation controls close them. Stage 5 completion does not close threat rows owned by later stages."
   },
@@ -43,7 +50,8 @@
       "stage_5_completion_evidence": [
         "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
         "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-003",
@@ -67,7 +75,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-005",
@@ -81,7 +90,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-006",
@@ -100,7 +110,8 @@
       "stage_5_completion_evidence": [
         "Evidence/STAGE_5_PROFILE_BINDING.json",
         "profiles/ACTIVE_EXECUTOR_PROFILES.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-007",
@@ -114,7 +125,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-008",
@@ -128,7 +140,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-009",
@@ -142,7 +155,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-010",
@@ -156,7 +170,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-011",
@@ -170,7 +185,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-012",
@@ -184,7 +200,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-013",
@@ -213,7 +230,8 @@
       "stage_5_security_evidence": [
         "scripts/verify_stage5_checkpoint.py",
         "tests/stage5/test_evidence_integrity.py"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-015",
@@ -227,7 +245,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-016",
@@ -241,7 +260,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-017",
@@ -255,7 +275,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-018",
@@ -269,7 +290,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-019",
@@ -283,7 +305,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-020",
@@ -302,7 +325,8 @@
       "stage_5_security_evidence": [
         "src/laos_v8/evidence_receipts.py",
         "tests/stage5/test_evidence_integrity.py"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-021",
@@ -318,7 +342,8 @@
         "scripts/generate_stage3_evidence.py",
         "scripts/verify_stage3.py",
         "tests/stage5/test_evidence_integrity.py"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-022",
@@ -332,7 +357,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-023",
@@ -367,7 +393,8 @@
       "stage_5_security_evidence": [
         "scripts/verify_stage5_checkpoint.py",
         "tests/stage5/test_evidence_integrity.py"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-026",
@@ -377,7 +404,8 @@
       "required_controls": "Review Capsule centered on contract and repository",
       "mandatory_test": "Adversarial review protocol test",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-027",
@@ -401,7 +429,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-029",
@@ -457,7 +486,8 @@
         "scripts/build_stage5_candidate_evidence.py",
         "scripts/verify_stage5_checkpoint.py",
         "tests/stage5/test_evidence_integrity.py"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-034",
@@ -477,7 +507,8 @@
       "required_controls": "Pinned hashes, SBOM, provenance, review",
       "mandatory_test": "Dependency integrity test",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-036",
@@ -491,7 +522,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-037",
@@ -525,7 +557,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-040",
@@ -535,7 +568,8 @@
       "required_controls": "Approvals, critical quorum, signed audit, least privilege",
       "mandatory_test": "Critical-operation quorum test",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-041",
@@ -549,7 +583,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-042",
@@ -563,7 +598,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-043",
@@ -582,7 +618,8 @@
       "stage_5_security_evidence": [
         "src/laos_v8/new_build.py",
         "tests/stage5/test_core_workflows.py"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-044",
@@ -622,7 +659,8 @@
         "schemas/golden/protected-envelope-v2.json",
         "tests/stage3/test_capsule_and_signing.py",
         "tests/stage5/test_packs_and_trust.py"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-047",
@@ -636,7 +674,8 @@
       "stage_3_evidence": [
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
-      ]
+      ],
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-048",
@@ -656,7 +695,8 @@
       "required_controls": "Pre-persistence classification, minimization, encryption, purge and holds",
       "mandatory_test": "Retention, purge and backup-deletion suite",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     },
     {
       "id": "TM-050",
@@ -666,7 +706,20 @@
       "required_controls": "Kill switch, mass revocation, quarantine, rotation, recovery point and re-attestation",
       "mandatory_test": "Executable compromise recovery drill",
       "status": "OPEN",
-      "stage_3_status": "OPEN_LATER_STAGE"
+      "stage_3_status": "OPEN_LATER_STAGE",
+      "stage_6_status": "CONTROL_IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
     }
-  ]
+  ],
+  "stage_6_execution_assurance": {
+    "status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+    "covered_release_blockers": [
+      "RB-011",
+      "RB-012",
+      "RB-013",
+      "RB-014"
+    ],
+    "evidence": [
+      "STAGE_6_EXECUTION_ASSURANCE_COVERAGE.json"
+    ]
+  }
 }

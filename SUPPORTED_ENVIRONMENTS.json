@@ -1,6 +1,6 @@
 {
   "matrix_version": "1.1.0",
-  "claim_status": "STAGE_3_LOCAL_SECURITY_SPINE_REVIEW_CANDIDATE_PRODUCTION_UNCLAIMED",
+  "claim_status": "STAGE_6_WINDOWS_DOCKER_CANDIDATE_AWAITING_PROTECTED_REVIEW_PRODUCTION_UNCLAIMED",
   "supported_python": ">=3.11,<3.15",
   "kernel_ci_matrix": [
     {
@@ -124,6 +124,18 @@
       "evidence": [
         "SANDBOX_PROFILE.json",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
+      ]
+    },
+    {
+      "id": "docker-desktop-linux-amd64-stage6",
+      "status": "LOCAL_LOW_MODERATE_PROVIDER_EXERCISED_AWAITING_PROTECTED_REVIEW",
+      "privileged_connected_mode": true,
+      "maximum_risk": "MODERATE",
+      "high_critical_status": "DENIED_QUORUM_UNAVAILABLE",
+      "real_credentials": "DENIED",
+      "evidence": [
+        "STAGE_6_EXECUTION_ASSURANCE_COVERAGE.json",
+        "Evidence/STAGE_6_COMPLETION_CANDIDATE.json"
       ]
     }
   ],

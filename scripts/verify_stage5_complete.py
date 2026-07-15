@@ -118,7 +118,11 @@ def verify(completion_tag: str | None = None) -> list[str]:
 
     status = load("IMPLEMENTATION_STATUS.json")
     require(status["stage_5_status"] == "COMPLETE", "Stage 5 is not complete")
-    require(status["stage_6_status"] == "PLANNED", "Stage 6 status differs")
+    require(
+        status["stage_6_status"]
+        in {"PLANNED", "IN_PROGRESS_AWAITING_PROTECTED_REVIEW", "PASS_AWAITING_NILHAN_PROTECTED_REVIEW", "COMPLETE"},
+        "Stage 6 status differs",
+    )
     require(status["stage_5_checkpoint"] == "COMPLETE_NILHAN_APPROVED", "Stage 5 checkpoint differs")
     require(status["stage_5_open_gates"] == [], "Stage 5 gates remain open")
     require(set(status["stage_5_gate_evidence_status"]) == EXPECTED_GATES, "Stage 5 gate identities differ")
@@ -135,7 +139,12 @@ def verify(completion_tag: str | None = None) -> list[str]:
     stage_ledger = load("PROGRAM_STAGE_LEDGER.json")
     stage5 = next(item for item in stage_ledger["stages"] if item["stage"] == 5)
     stage6 = next(item for item in stage_ledger["stages"] if item["stage"] == 6)
-    require(stage5["status"] == "COMPLETED" and stage6["status"] == "PLANNED", "stage ledger transition differs")
+    require(
+        stage5["status"] == "COMPLETED"
+        and stage6["status"]
+        in {"PLANNED", "IN_PROGRESS_AWAITING_PROTECTED_REVIEW", "PASS_AWAITING_NILHAN_PROTECTED_REVIEW", "COMPLETED"},
+        "stage ledger transition differs",
+    )
     require(stage5["owner"] == "Codex" and stage5["independent_reviewer"] == "Nilhan", "Stage 5 roles differ")
 
     coverage = load("STAGE_5_CORE_WORKFLOW_COVERAGE.json")

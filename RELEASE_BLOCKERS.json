@@ -151,12 +151,20 @@
       "status": "OPEN",
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
-      "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "evidence_digests": [
+        "sha256:02419b910c305b8cadb61ff8b0c8da4dd494e4c95062713c68c0fdb9e82b1423",
+        "sha256:92b923e5c8d9939d71a1b93605567a3f7db6fc8c3f5b1a8ac89f3d1a182d7b6c"
+      ],
+      "independent_verifier": "NILHAN_PROTECTED_REVIEW_PENDING",
       "stage_5_security_note": "Ordinary JSON naming Nilhan is explicitly unauthenticated and cannot produce approval. This blocker remains OPEN until Stage 6 supplies protected Nilhan identity and independent review custody.",
       "stage_5_security_evidence": [
         "scripts/verify_stage5_checkpoint.py",
         "tests/stage5/test_evidence_integrity.py"
+      ],
+      "stage_6_mitigation_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "stage_6_evidence": [
+        "src/laos_v8/protected_review.py",
+        "tests/stage6/test_criterion_and_review.py"
       ]
     },
     {
@@ -167,14 +175,24 @@
       "status": "OPEN",
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
-      "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "evidence_digests": [
+        "sha256:de842ac87e46ee2caa626e16e865a45e90efa0c39e4d0f7a916da6f00ab1be5c",
+        "sha256:c34ecdee67d6f46911ba3acbff8103baac5917a25b6d06e0c073ce6163771aba",
+        "sha256:212b20457b812368370594d3bcbd348d8ce1042dfa6e3d13949e510789b88fe8"
+      ],
+      "independent_verifier": "NILHAN_PROTECTED_REVIEW_PENDING",
       "stage_5_security_note": "Current Stage 3 evidence now requires a clean source, regeneration by fixed collectors, run/source binding, and a 15-minute freshness window. Stage 5 receipts require exact command arrays and exact retained artifact hashes, but truthfully declare that the builder is unauthenticated. This blocker remains OPEN until protected evidence custody and owner-stage review exist.",
       "stage_5_security_evidence": [
         "src/laos_v8/evidence_receipts.py",
         "scripts/verify_stage3.py",
         "scripts/verify_stage5_checkpoint.py",
         "tests/stage5/test_evidence_integrity.py"
+      ],
+      "stage_6_mitigation_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "stage_6_evidence": [
+        "src/laos_v8/criterion_closure.py",
+        "src/laos_v8/protected_checks.py",
+        "tests/stage6/test_protected_checks.py"
       ]
     },
     {
@@ -185,12 +203,22 @@
       "status": "OPEN",
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
-      "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE",
+      "evidence_digests": [
+        "sha256:9b5ae156107715f5ad0185c8cb967068309686bde8d1b4bfc43cec3e5a717d95",
+        "sha256:2bf35eed12257d4047934774b0cbee7b71043fc188666fb39be1e2a0f1082f12",
+        "sha256:075f2bcbb1166c566394a0508ddb6338e69826734db766e7421ac8ff0717f4cd"
+      ],
+      "independent_verifier": "NILHAN_PROTECTED_REVIEW_PENDING",
       "stage_5_security_note": "The Stage 5 candidate builder is local developer/operator tooling and runs its fixed verification commands on that host. The focused scan did not establish a lower-privilege attack path, but RB-013 remains OPEN for Stage 6 protected execution and no product sandbox claim is made.",
       "stage_5_security_evidence": [
         "scripts/build_stage5_candidate_evidence.py",
         "tests/stage5/test_evidence_integrity.py"
+      ],
+      "stage_6_mitigation_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "stage_6_evidence": [
+        "src/laos_v8/sandbox.py",
+        "src/laos_v8/clean_verifier.py",
+        "tests/stage6/test_sandbox_assurance.py"
       ]
     },
     {
@@ -201,8 +229,18 @@
       "status": "OPEN",
       "builder_write_authority": false,
       "waiverability": "NON_WAIVABLE_FOR_CLAIMED_SUPPORT_ROW",
-      "evidence_digests": [],
-      "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
+      "evidence_digests": [
+        "sha256:9b5ae156107715f5ad0185c8cb967068309686bde8d1b4bfc43cec3e5a717d95",
+        "sha256:d7ec476514e39a5dfa40f97937f357f8c4fe207bc5cd468f9da9a20a5cf3adac",
+        "sha256:e86b01c82f6a5ade24aaf344bea1dde89b64fdfa4c88f6ac44d674fa97a88ddb"
+      ],
+      "independent_verifier": "NILHAN_PROTECTED_REVIEW_PENDING",
+      "stage_6_mitigation_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "stage_6_evidence": [
+        "src/laos_v8/sandbox.py",
+        "src/laos_v8/custody_service.py",
+        "tests/stage6/test_evidence_custody.py"
+      ]
     },
     {
       "id": "RB-015",
@@ -338,5 +376,6 @@
       "evidence_digests": [],
       "independent_verifier": "UNASSIGNED_UNTIL_OWNER_STAGE"
     }
-  ]
+  ],
+  "stage_6_candidate": "AWAITING_PROTECTED_REVIEW"
 }

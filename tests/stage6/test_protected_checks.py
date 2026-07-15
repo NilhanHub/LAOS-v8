@@ -40,7 +40,7 @@ def test_protected_check_bundle_is_signed_immutable_and_tamper_evident(tmp_path:
     now = datetime.now(UTC).replace(microsecond=0)
     bundle = store.provision(
         (check,),
-        argv=("python", "/protected_checks/test_hidden.py"),
+        argv=("python", "/workspace/.laos-protected-checks/test_hidden.py"),
         signer=signer,
         issuer="control:stage6",
         audience="verifier:clean",
@@ -73,7 +73,7 @@ def test_verifier_mount_is_read_only_and_separate(tmp_path: Path) -> None:
     source.mkdir()
     checks.mkdir()
     spec = CommandSpec(
-        argv=("python", "/protected_checks/check.py"),
+        argv=("python", "/workspace/.laos-protected-checks/check.py"),
         workspace=source,
         protected_check_workspace=checks,
         execution_role="verifier",
@@ -81,4 +81,4 @@ def test_verifier_mount_is_read_only_and_separate(tmp_path: Path) -> None:
     )
     command = DockerSandbox("docker").build_spec_command(spec, name="stage6-check-test")
     joined = "\n".join(command)
-    assert "src=" + str(checks.resolve()) + ",dst=/protected_checks,readonly" in joined
+    assert "src=" + str(checks.resolve()) + ",dst=/workspace/.laos-protected-checks,readonly" in joined

@@ -28,13 +28,13 @@
     {
       "id": "ADR-0005",
       "title": "Signing, identity and capabilities",
-      "status": "ACCEPTED_LOCAL_DOCKER_PROTECTED_SIGNER_STAGE_5_COMPLETE_NILHAN_APPROVED",
+      "status": "ACCEPTED_STAGE6_PASSPHRASE_REVIEW_AUTHENTICATION_AWAITING_ENROLLMENT",
       "owner_stage": 5
     },
     {
       "id": "ADR-0006",
       "title": "Sandbox provider interface",
-      "status": "ACCEPTED_DOCKER_PROFILE_EXERCISED",
+      "status": "ACCEPTED_STAGE6_DOCKER_PROVIDER_EXERCISED_AWAITING_PROTECTED_REVIEW",
       "owner_stage": 6
     },
     {
@@ -82,7 +82,7 @@
     {
       "id": "ADR-0014",
       "title": "Evidence custody and external anchoring",
-      "status": "PARTIAL_RUN_BOUND_BOOTSTRAP_RECEIPTS_PROTECTED_CUSTODY_STAGE6_OPEN",
+      "status": "ACCEPTED_STAGE6_ENCRYPTED_CUSTODY_AWAITING_PROTECTED_REVIEW",
       "owner_stage": 6
     },
     {

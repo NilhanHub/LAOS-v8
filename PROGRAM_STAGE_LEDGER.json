@@ -81,14 +81,16 @@
       "depends_on": [
         5
       ],
-      "status": "PLANNED",
+      "status": "IN_PROGRESS_AWAITING_PROTECTED_REVIEW",
       "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
       "owner": "Codex",
       "independent_reviewer": "Nilhan",
       "entry_gate": "Stage 5 exit gate passed",
       "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
       "evidence_policy": "V8_PROTECTED_EVIDENCE_PATH",
-      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
+      "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence.",
+      "candidate_evidence": "Evidence/STAGE_6_COMPLETION_CANDIDATE.json",
+      "review_challenge": "Evidence/STAGE_6_REVIEW_CHALLENGE.json"
     },
     {
       "stage": 7,

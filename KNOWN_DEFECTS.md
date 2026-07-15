@@ -1011,3 +1011,36 @@ instance, protected volume, key purposes, generations, public key IDs, and key
 states while allowing a source-identical image rebuild to have a different
 image ID.
 
+## REG-062 — Custodian bootstrap dropped file-owner authority before final chmod
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE6_CUSTODY_BOOTSTRAP`
+- Affected revision: `e8400d9e` development successor
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_STAGE6_REVIEW`
+
+**Original reproduction:** The first real Docker custodian integration failed
+closed during `prepare-volumes`. The root preparation container dropped all
+capabilities except `CHOWN`, changed ownership to the non-root custodian, and
+then attempted `chmod`, which correctly failed after it was no longer the owner.
+
+**Regression evidence:** Preparation now sets the restrictive mode before the
+final ownership transfer. The real Docker integration bootstraps distinct key
+and data volumes and continues through encrypted capture, fetch, purge, and
+reconciliation. See `tests/stage6/test_evidence_custody.py`.
+
+## REG-063 — Strict custody wire decoding rejected the evidence-level enum
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE6_CUSTODY_PROTOCOL`
+- Affected revision: `e8400d9e` development successor
+- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_STAGE6_REVIEW`
+
+**Original reproduction:** Unit calls supplied `EvidenceLevel.L3`, while the
+real canonical JSON request correctly carried `"L3"`. Strict Python-object
+validation rejected the unconverted string before any evidence was stored.
+
+**Regression evidence:** The container boundary now explicitly converts the
+wire value to the closed `EvidenceLevel` enum before strict validation. Invalid
+or unknown values still fail closed. The real Docker integration passes without
+loosening the request model.
+

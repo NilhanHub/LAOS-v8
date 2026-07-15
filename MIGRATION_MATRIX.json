@@ -88,5 +88,12 @@
       "status": "OPEN",
       "stage_5_security_status": "V2_AND_LOCAL_DOCKER_PROTECTED_SIGNER_CANDIDATE_PASS_NILHAN_APPROVED_STAGE5_COMPLETE_HSM_KMS_FUTURE_ROW_OPEN"
     }
-  ]
+  ],
+  "stage_6_execution_assurance": {
+    "historical_criterion_states": "READABLE_NOT_REWRITTEN",
+    "ambiguous_migration": "MIGRATION_EVIDENCE_REQUIRED",
+    "new_criterion_lifecycle": "CRITERION_V2",
+    "evidence_custody": "ENCRYPTED_DOCKER_VOLUME_WITH_SIGNED_PROJECT_INDEX",
+    "status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW"
+  }
 }

@@ -153,11 +153,14 @@ def verify() -> list[str]:
     }
     if stage5_complete:
         require(
-            (status["status"], status["stage_5_checkpoint"])
-            == (
-                "STAGE_5_COMPLETE_STAGE_6_PLANNED_FULL_V8_RUNTIME_NOT_IMPLEMENTED",
-                "COMPLETE_NILHAN_APPROVED",
-            ),
+            status["stage_5_checkpoint"] == "COMPLETE_NILHAN_APPROVED"
+            and status["stage_6_status"]
+            in {
+                "PLANNED",
+                "IN_PROGRESS_AWAITING_PROTECTED_REVIEW",
+                "PASS_AWAITING_NILHAN_PROTECTED_REVIEW",
+                "COMPLETE",
+            },
             "completed Stage 5 program status differs",
         )
         require(status["stage_5_open_gates"] == [], "completed Stage 5 retains an open gate")

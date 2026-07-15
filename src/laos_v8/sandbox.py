@@ -377,7 +377,7 @@ class DockerSandbox:
             command.extend(("--mount", f"type=bind,src={output},dst=/outputs"))
         if spec.protected_check_workspace is not None:
             checks = self._safe_workspace(spec.protected_check_workspace, code="PROTECTED_CHECK_WORKSPACE_DENIED")
-            command.extend(("--mount", f"type=bind,src={checks},dst=/protected_checks,readonly"))
+            command.extend(("--mount", f"type=bind,src={checks},dst=/workspace/.laos-protected-checks,readonly"))
         for name_key, value in spec.environment:
             command.extend(("--env", f"{name_key}={value}"))
         command.extend((DOCKER_IMAGE, *spec.argv))

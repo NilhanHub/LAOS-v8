@@ -19,7 +19,10 @@
       "capability": "action_evidence_review_promotion",
       "classification": "MUST_V8_0",
       "owner_stage": 6,
-      "status": "OPEN"
+      "status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
+      "evidence": [
+        "STAGE_6_EXECUTION_ASSURANCE_COVERAGE.json"
+      ]
     },
     {
       "capability": "recovery_and_migration",
