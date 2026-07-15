@@ -156,6 +156,9 @@ def test_real_docker_custodian_encrypts_persists_and_purges() -> None:
     client = DockerEvidenceCustodian(root, key_volume=key_volume, data_volume=data_volume, docker=docker)
     try:
         assert client.bootstrap()["status"] == "PASS"
+        first_key_id = client.doctor()["key_id"]
+        assert client.bootstrap()["status"] == "PASS"
+        assert client.doctor()["key_id"] == first_key_id
         record = client.capture(_request())
         assert client.fetch(record.object_id) == b'{"status":"PASS"}'
         assert client.doctor()["object_count"] == 1

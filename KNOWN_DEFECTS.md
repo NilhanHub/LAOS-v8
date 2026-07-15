@@ -1102,3 +1102,22 @@ disabled. The historical result commit remains provenance; it is not falsely
 claimed as an object in the main repository. The failed attempt is retained at
 `Evidence/STAGE_6_CANDIDATE_ATTEMPT_3_FAILED.json`.
 
+## REG-067 — Custodian volume preparation was not repeat-bootstrap safe
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE6_CUSTODY_LIFECYCLE`
+- Affected revision: `fc89a370e8386074f172641d66869cba34be7f6b`
+- Status: `REMEDIATION_IMPLEMENTED_AWAITING_CLEAN_RECONSTRUCTION`
+
+**Original reproduction:** The fourth clean candidate completed its fixed
+source gates, rebuilt the custodian image, and failed closed while preparing an
+already provisioned volume. The first bootstrap had correctly transferred the
+volume to UID 65532; the repeat path then attempted `chmod` while root had only
+the narrowly restored `CHOWN` capability and no longer owned the directory.
+
+**Correction:** Repeat preparation now temporarily reclaims each volume root,
+sets mode `0700`, and transfers ownership back to UID/GID 65532. The real Docker
+integration bootstraps the same volumes twice and requires the public key
+identity to remain unchanged. The failed attempt is retained at
+`Evidence/STAGE_6_CANDIDATE_ATTEMPT_4_FAILED.json`.
+

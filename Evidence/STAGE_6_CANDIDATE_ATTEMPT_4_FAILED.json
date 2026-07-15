@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0.0",
+  "stage": 6,
+  "status": "FAIL",
+  "source_commit": "fc89a370e8386074f172641d66869cba34be7f6b",
+  "failed_gate": "evidence_custodian_bootstrap",
+  "failure_code": "CUSTODY_INTERNAL_FAILURE",
+  "cause": "A repeated bootstrap attempted to chmod an existing non-root-owned volume directory before temporarily reclaiming its ownership.",
+  "remediation": "Reclaim each volume root with the narrowly granted CHOWN capability, restore mode 0700, and transfer it back to the non-root custodian; verify key identity remains stable across repeated bootstrap.",
+  "custodian_failed_closed": true,
+  "does_not_approve_stage6": true,
+  "v8_release_claimed": false
+}

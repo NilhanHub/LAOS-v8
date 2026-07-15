@@ -341,6 +341,7 @@ def main(argv: list[str] | None = None) -> int:
                 raise SecurityError("volume ownership control is unavailable", code="CUSTODY_PREPARE_DENIED")
             for root in (KEY_ROOT, DATA_ROOT):
                 root.mkdir(mode=0o700, parents=True, exist_ok=True)
+                change_owner(root, 0, 0)
                 os.chmod(root, 0o700)
                 change_owner(root, 65532, 65532)
             output: Any = {"status": "PASS"}
