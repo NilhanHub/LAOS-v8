@@ -14,6 +14,8 @@ from .operator_paths import explain_denial, sandbox_diagnostic
 from .platform_profile import doctor
 from .protected_signer import DockerProtectedSigner
 from .schema_registry import export_schemas
+from .stage6_cli import configure as configure_stage6_commands
+from .stage6_cli import handle as handle_stage6_command
 from .state import CanonicalState
 
 
@@ -90,9 +92,13 @@ def main(argv: list[str] | None = None) -> int:
     signer_revoke.add_argument("--purpose", required=True, choices=("capsule", "event_anchor", "pack_manifest"))
     signer_revoke.add_argument("--key-id", required=True)
     signer_revoke.add_argument("--reason", required=True)
+    configure_stage6_commands(commands)
     args = parser.parse_args(argv)
     root = _root(args.root)
     try:
+        stage6 = handle_stage6_command(args, root)
+        if stage6 is not None:
+            return stage6
         if args.command == "doctor":
             report = doctor(root).as_dict()
             sandbox = sandbox_diagnostic()
