@@ -6,6 +6,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError as PydanticValidationError
 
 from laos_v8.action_engine import ActionNode
 from laos_v8.canonical import canonical_json
@@ -138,6 +139,26 @@ def test_capture_allows_exactly_five_minutes_of_positive_skew(tmp_path: Path) ->
     )
     result = compile_continuation(repo, validated, acceptance, first_action=_action(), now=now)
     assert result.accepted_fact_ids == ("fact:one",)
+
+
+def test_pending_capture_review_cannot_name_nilhan_as_if_approval_already_occurred() -> None:
+    base = {
+        "acceptance_id": "acceptance:pending",
+        "capture_digest": "sha256:" + "a" * 64,
+        "architect_principal": "architect:laos-v8",
+        "human_reviewer": None,
+        "dispositions": (
+            FactDisposition(fact_id="fact:one", status="accepted", rationale="Exact broker evidence."),
+        ),
+        "preservation_rules": ("preserve source",),
+        "continuation_constraints": ("remain read-only",),
+        "accepted_at": "2026-07-15T00:00:00Z",
+        "review_status": "PASS_AWAITING_NILHAN_REVIEW",
+    }
+    pending = ArchitectCaptureAcceptance.model_validate(base, strict=True)
+    assert pending.human_reviewer is None
+    with pytest.raises(PydanticValidationError):
+        ArchitectCaptureAcceptance.model_validate({**base, "human_reviewer": "Nilhan"}, strict=True)
 
 
 @pytest.mark.parametrize(

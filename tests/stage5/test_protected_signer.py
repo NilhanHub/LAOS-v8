@@ -148,6 +148,27 @@ def test_real_docker_signer_is_persistent_concurrent_and_lifecycle_safe() -> Non
     try:
         bundle = signer.bootstrap()
         original = signer.trust_root
+        isolated = subprocess.run(  # noqa: S603 - trusted Docker executable and fixed no-volume isolation probe
+            [
+                docker,
+                "run",
+                "--rm",
+                "--network",
+                "none",
+                "--read-only",
+                "--cap-drop",
+                "ALL",
+                "--security-opt",
+                "no-new-privileges",
+                signer.image_id(),
+                "public",
+            ],
+            capture_output=True,
+            check=False,
+            timeout=30,
+        )
+        assert isolated.returncode != 0
+        assert b"private_key" not in isolated.stdout + isolated.stderr
         restarted = DockerProtectedSigner(root, "capsule", volume=volume)
         assert restarted.trust_root.key_id == original.key_id
         assert "private" not in bundle.model_dump_json().lower()

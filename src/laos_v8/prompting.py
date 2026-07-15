@@ -100,6 +100,23 @@ class CalibrationRecord(BaseModel):
         return self
 
 
+class ReleasedProfileBinding(BaseModel):
+    """Exact evidence binding required before an executor profile may be released."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+    record_version: Literal["1.0.0"] = "1.0.0"
+    profile_id: str = Field(pattern=r"^profile:[A-Za-z0-9._-]{1,120}$")
+    profile_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
+    provider: Literal["ollama"] = "ollama"
+    model_tag: str = Field(min_length=1, max_length=256)
+    model_blob_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    settings_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
+    calibration_id: str = Field(pattern=r"^calibration:[A-Za-z0-9._-]{1,120}$")
+    calibration_receipt_sha256: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
+    environment_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
+    released_at: str
+
+
 class ContextItem(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
     context_id: str = Field(pattern=r"^context:[A-Za-z0-9._-]{1,120}$")
@@ -211,9 +228,29 @@ class PromptCompiler:
         self,
         profile: ExecutorProfile,
         records: tuple[CalibrationRecord, ...],
+        bindings: tuple[ReleasedProfileBinding, ...] = (),
     ) -> None:
-        if profile.released and not any(record.profile_digest == profile.digest for record in records):
-            raise ValidationError("released profile lacks calibration evidence", code="PROFILE_CALIBRATION_REQUIRED")
+        if not profile.released:
+            return
+        matches = [record for record in records if record.profile_digest == profile.digest]
+        if len(matches) != 1:
+            raise ValidationError(
+                "released profile lacks unique calibration evidence",
+                code="PROFILE_CALIBRATION_REQUIRED",
+            )
+        record = matches[0]
+        exact = [
+            binding
+            for binding in bindings
+            if binding.profile_id == profile.profile_id
+            and binding.profile_digest == profile.digest
+            and binding.calibration_id == record.calibration_id
+            and binding.settings_digest == record.settings_digest
+            and binding.environment_digest == record.environment_digest
+            and binding.model_tag == record.model_snapshot
+        ]
+        if len(exact) != 1:
+            raise ValidationError("released profile lacks an exact model binding", code="PROFILE_BINDING_REQUIRED")
 
     def decompose(
         self,

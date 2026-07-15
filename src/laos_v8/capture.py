@@ -111,11 +111,20 @@ class ArchitectCaptureAcceptance(BaseModel):
     acceptance_id: str = Field(pattern=r"^acceptance:[A-Za-z0-9._-]{1,120}$")
     capture_digest: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
     architect_principal: str = Field(min_length=1, max_length=512)
-    human_reviewer: Literal["Nilhan"]
+    human_reviewer: Literal["Nilhan"] | None
     dispositions: tuple[FactDisposition, ...] = Field(min_length=1, max_length=10_000)
     preservation_rules: tuple[str, ...] = Field(min_length=1, max_length=256)
     continuation_constraints: tuple[str, ...] = Field(min_length=1, max_length=256)
     accepted_at: str
+    review_status: Literal["PASS_AWAITING_NILHAN_REVIEW", "APPROVED"] = "APPROVED"
+
+    @model_validator(mode="after")
+    def review_claim_is_honest(self) -> ArchitectCaptureAcceptance:
+        if self.review_status == "APPROVED" and self.human_reviewer != "Nilhan":
+            raise ValueError("CAPTURE_NILHAN_APPROVAL_REQUIRED")
+        if self.review_status == "PASS_AWAITING_NILHAN_REVIEW" and self.human_reviewer is not None:
+            raise ValueError("CAPTURE_REVIEW_PENDING_CANNOT_NAME_REVIEWER")
+        return self
 
 
 class ValidatedCapture(BaseModel):

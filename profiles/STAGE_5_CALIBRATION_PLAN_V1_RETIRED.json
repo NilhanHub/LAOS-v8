@@ -1,0 +1,44 @@
+{
+  "record_version": "1.0.0",
+  "partition": "calibration",
+  "holdout_policy": "SEPARATE_FROM_V7_AND_STAGE9",
+  "retired_reason": "The ambiguous directly-supported wording caused deterministic abstention; these exposed scenarios are regression-only and cannot qualify a released profile.",
+  "sha256_before_retirement": "2341d950847864deb8797ca8d7de19a16ef7b7b9d92e978c5c935a46ebd5e643",
+  "scenarios": [
+    {
+      "scenario_id": "cal-scenario:identity",
+      "source_path": "fixture/identity.txt",
+      "line_number": 1,
+      "source_line": "Application identity is fixture-alpha.",
+      "source_sha256": "021b92921990a7f790b3859c620e5e3a688fa9dbd0026e964bb2bd2ce4cbafb3"
+    },
+    {
+      "scenario_id": "cal-scenario:architecture",
+      "source_path": "fixture/architecture.txt",
+      "line_number": 7,
+      "source_line": "The fixture has a broker and a validator.",
+      "source_sha256": "b628a753a8cc55854505f8526ad4ac85903dd4e750630e8c0ec8c1e317d495df"
+    },
+    {
+      "scenario_id": "cal-scenario:authorization",
+      "source_path": "fixture/authorization.txt",
+      "line_number": 3,
+      "source_line": "Writes require an explicit capsule.",
+      "source_sha256": "eaa0d9bad604a9982376c64d2ae967a72e2f9f7a7169dab78ed9250b5f71147f"
+    },
+    {
+      "scenario_id": "cal-scenario:integration",
+      "source_path": "fixture/integration.txt",
+      "line_number": 11,
+      "source_line": "External network access is disabled.",
+      "source_sha256": "5b323b4ebb025e61e29aae7106f0afe1c889a487dba3339677688dd08da9a050"
+    },
+    {
+      "scenario_id": "cal-scenario:operations",
+      "source_path": "fixture/operations.txt",
+      "line_number": 5,
+      "source_line": "The documented verification command is verify-fixture.",
+      "source_sha256": "331f0b3d78aa1dca477002844f387099fc35c8534a4a4ea4f9d681b4bc7501a9"
+    }
+  ]
+}

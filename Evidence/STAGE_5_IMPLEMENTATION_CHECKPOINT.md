@@ -13,6 +13,9 @@ Authority: `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1, Milestones 5–
 - Strict signed capture/App Intelligence contracts, read-only capability denial, unchanged source-seal validation, evidence-bound facts, freshness, per-fact Nilhan/Architect disposition, and drift-safe continuation.
 - Strict new-build objectives and blueprints, requirement/criterion graph checks, reviewed content-addressed templates, sanitized isolated Git genesis, idempotent retry, partial-intent quarantine, collision denial, source/base seals, and first-action trace.
 - Profile-wide Docker and Docker Compose wrappers plus an independent LAOS startup controller now start Docker Desktop on demand, verify engine readiness, leave it running, and fail closed without manual operator startup or unrestricted host fallback. Verification is recorded in `Evidence/DOCKER_AUTOSTART_VERIFICATION.json`.
+- Commit `82512cb` adds the purpose-separated, one-shot Docker protected signer and its lifecycle controls for the explicitly bounded single-operator Windows/Docker support row. It does not claim hostile-administrator or HSM/KMS protection.
+- The calibration recovery preserves both failed v1 attempts, retires their exposed scenarios, and preregisters a fresh v1.1 evidence/safety set. No recovered profile is released until the real run qualifies.
+- The real-capture runner seals a disposable v7 reconstruction, exposes only classified broker-selected lines to the pinned local model, separates Architect dispositions from Nilhan approval, and issues no redeemed authority.
 
 ## Stage 5 security-remediation candidate
 
@@ -36,9 +39,9 @@ the committed candidate in a separate clean reconstruction.
 
 ## Verified limitations and open gates
 
-1. `ProtectedTestSigner` remains explicitly test-only and in-process. It is not production signing custody. Stage 5 cannot close until Nilhan selects and reviews a protected signer architecture.
-2. All seven executor profiles remain offline, unreleased fixtures. No Stage 5 profile-calibration claim is made.
-3. Capture/new-build round trips currently use trusted fixtures. No new real weaker-investigator capture claim is made.
+1. `ProtectedTestSigner` remains explicitly test-only. The protected Docker signer is implemented, but Stage 5 cannot close until its clean-reconstruction lifecycle evidence and the other completion gates pass.
+2. All seven checked-in baseline profiles remain offline, unreleased fixtures. The investigation profile is released only by an exact passing calibration receipt and active binding.
+3. The real v7 workflow is implemented but no real-capture success claim is made before committed-source candidate generation.
 4. Integrated mature evidence custody, protected-check closure, independent technical review, and quorum remain Stage 6 work as assigned by the ten-stage plan.
 5. LAOS v8 remains incomplete and unreleased.
 6. The security-remediation candidate is not approved until Nilhan reviews the

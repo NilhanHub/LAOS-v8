@@ -17,6 +17,7 @@ from laos_v8.prompting import (
     ProfilePolicy,
     PromptCompiler,
     PromptSpec,
+    ReleasedProfileBinding,
     UncertaintyItem,
 )
 
@@ -101,7 +102,7 @@ def calibration(profile_digest: str) -> CalibrationRecord:
     return CalibrationRecord(
         calibration_id="calibration:one",
         profile_digest=profile_digest,
-        provider="provider:test",
+        provider="ollama",
         model_snapshot="model-2026-07-13-snapshot-17",
         tool_versions=("read_file@1",),
         settings_digest=DIGEST,
@@ -115,6 +116,20 @@ def calibration(profile_digest: str) -> CalibrationRecord:
         evidence_quality_rate=1.0,
         broker_evidence_digest=DIGEST,
         qualifying_security_spine=True,
+    )
+
+
+def binding(released: ExecutorProfile, record: CalibrationRecord) -> ReleasedProfileBinding:
+    return ReleasedProfileBinding(
+        profile_id=released.profile_id,
+        profile_digest=released.digest,
+        model_tag=record.model_snapshot,
+        model_blob_sha256="b" * 64,
+        settings_digest=record.settings_digest,
+        calibration_id=record.calibration_id,
+        calibration_receipt_sha256=DIGEST,
+        environment_digest=record.environment_digest,
+        released_at="2026-07-13T00:00:00Z",
     )
 
 
@@ -207,7 +222,11 @@ def test_released_profile_requires_pinned_calibration_evidence() -> None:
     with pytest.raises(ValidationError) as missing:
         compiler.require_release_calibration(released, ())
     assert missing.value.code == "PROFILE_CALIBRATION_REQUIRED"
-    compiler.require_release_calibration(released, (calibration(released.digest),))
+    record = calibration(released.digest)
+    with pytest.raises(ValidationError) as unbound:
+        compiler.require_release_calibration(released, (record,))
+    assert unbound.value.code == "PROFILE_BINDING_REQUIRED"
+    compiler.require_release_calibration(released, (record,), (binding(released, record),))
     with pytest.raises(PydanticValidationError):
         CalibrationRecord(**{**calibration(released.digest).model_dump(), "model_snapshot": "latest"})
     with pytest.raises(PydanticValidationError):

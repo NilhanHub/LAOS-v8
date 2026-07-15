@@ -8,7 +8,9 @@ import shutil
 import subprocess
 import urllib.request
 from dataclasses import dataclass
+from typing import Literal
 
+from .canonical import canonical_json
 from .errors import ResourceLimitError, SecurityError
 
 OLLAMA_ORIGIN = "http://127.0.0.1:11434"
@@ -18,6 +20,34 @@ OLLAMA_ORIGIN = "http://127.0.0.1:11434"
 class OllamaModelPin:
     tag: str
     blob_sha256: str
+
+
+@dataclass(frozen=True, slots=True)
+class OllamaGenerationSettings:
+    """The complete request policy bound into calibration and capture evidence."""
+
+    temperature: int = 0
+    seed: int = 80401
+    num_predict: int = 1024
+    keep_alive: Literal["0"] = "0"
+    model_tools: Literal[False] = False
+    external_network: Literal["deny"] = "deny"
+    fresh_session: Literal[True] = True
+
+    def as_dict(self) -> dict[str, object]:
+        return {
+            "temperature": self.temperature,
+            "seed": self.seed,
+            "num_predict": self.num_predict,
+            "keep_alive": self.keep_alive,
+            "model_tools": self.model_tools,
+            "external_network": self.external_network,
+            "fresh_session": self.fresh_session,
+        }
+
+    @property
+    def digest(self) -> str:
+        return f"sha256:{hashlib.sha256(canonical_json(self.as_dict())).hexdigest()}"
 
 
 class PinnedOllamaAdapter:
@@ -30,11 +60,13 @@ class PinnedOllamaAdapter:
         executable: str | None = None,
         timeout_seconds: int = 120,
         output_bytes: int = 65_536,
+        settings: OllamaGenerationSettings | None = None,
     ) -> None:
         self.pin = pin
         self.executable = executable or shutil.which("ollama") or ""
         self.timeout_seconds = timeout_seconds
         self.output_bytes = output_bytes
+        self.settings = settings or OllamaGenerationSettings()
 
     def verify_pin(self) -> None:
         if not self.executable:
@@ -60,8 +92,12 @@ class PinnedOllamaAdapter:
                 "prompt": prompt,
                 "stream": False,
                 "format": "json",
-                "keep_alive": "0",
-                "options": {"temperature": 0, "seed": 80401, "num_predict": 1024},
+                "keep_alive": self.settings.keep_alive,
+                "options": {
+                    "temperature": self.settings.temperature,
+                    "seed": self.settings.seed,
+                    "num_predict": self.settings.num_predict,
+                },
             }
         ).encode("utf-8")
         request = urllib.request.Request(  # noqa: S310 - origin is a fixed loopback constant
