@@ -820,7 +820,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -848,7 +848,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -876,7 +876,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -904,7 +904,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -932,7 +932,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -960,7 +960,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -988,7 +988,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -1016,7 +1016,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3113,7 +3113,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3143,7 +3143,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3173,7 +3173,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3203,7 +3203,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3233,7 +3233,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3263,7 +3263,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3293,7 +3293,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3323,7 +3323,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3353,7 +3353,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3383,7 +3383,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3413,7 +3413,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3443,7 +3443,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3473,7 +3473,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3503,7 +3503,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3533,7 +3533,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3563,7 +3563,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3593,7 +3593,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3623,7 +3623,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3653,7 +3653,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3683,7 +3683,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3713,7 +3713,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3743,7 +3743,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3773,7 +3773,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3803,7 +3803,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3833,7 +3833,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3863,7 +3863,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3893,7 +3893,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -3923,7 +3923,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -3961,7 +3961,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -3999,7 +3999,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -4037,7 +4037,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -4075,7 +4075,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -4113,7 +4113,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -4151,7 +4151,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -4189,7 +4189,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -4227,7 +4227,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [
@@ -5837,7 +5837,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_FAIL_CLOSED_LOCAL_PROFILE_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -5867,7 +5867,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "OPEN_CROSS_SUBSYSTEM_OR_LATER_INTEGRATION_REAL_SECRETS_DENIED",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -5952,7 +5952,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -6035,7 +6035,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "stage-6-implementation-owner",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "stage_6_evidence": [
@@ -6112,7 +6112,7 @@
       "scope_classification": "MUST_V8_0",
       "scope_status": "PROVISIONAL_UNTIL_ALPHA_FREEZE",
       "owner": "Codex",
-      "independent_reviewer": "Nilhan (protected review pending)",
+      "independent_reviewer": "Nilhan",
       "evidence_status": "IMPLEMENTED_AWAITING_NILHAN_PROTECTED_REVIEW",
       "release_blocking": true,
       "evidence": [

@@ -99,7 +99,7 @@ def run(clone: Path, label: str, argv: tuple[str, ...], environment: dict[str, s
         stderr_bytes=len(completed.stderr),
     )
     if receipt.status != "PASS":
-        safe_tail = completed.stderr.decode("utf-8", "replace")[-2000:]
+        safe_tail = (completed.stdout + b"\n" + completed.stderr).decode("utf-8", "replace")[-4000:]
         raise RuntimeError(f"candidate command failed: {label}: {safe_tail}")
     return receipt
 
@@ -240,6 +240,7 @@ def main() -> int:
         source_commit = git(clone, "rev-parse", "HEAD")
         source_tree = git(clone, "rev-parse", "HEAD^{tree}")
         environment = os.environ.copy()
+        environment.pop("VIRTUAL_ENV", None)
         environment["LAOS_V7_ARCHIVE"] = str(archive)
         policy = command_policy(run_id, source_commit)
         if tuple(policy) != EXPECTED_LABELS:

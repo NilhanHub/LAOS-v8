@@ -93,7 +93,7 @@ def reconcile_requirements() -> list[dict[str, Any]]:
         evidence = CATEGORY_EVIDENCE[item["category"]]
         item["status"] = status
         item["evidence_status"] = status
-        item["independent_reviewer"] = "Nilhan (protected review pending)"
+        item["independent_reviewer"] = "Nilhan"
         item["stage_6_evidence"] = evidence
         coverage.append(
             {

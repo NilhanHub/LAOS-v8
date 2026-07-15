@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0.0",
+  "stage": 6,
+  "status": "FAIL",
+  "source_commit": "b811c0f99702f3d6174595bcef517dfbb6dc4384",
+  "failed_gate": "verify_stage3",
+  "failure_code": "STAGE3_REQUIREMENT_OWNERSHIP_MISSING",
+  "cause": "Stage 6 reconciliation replaced the stable Nilhan reviewer identity with a status-bearing display string on shared requirements.",
+  "remediation": "Keep independent_reviewer exactly Nilhan and record protected-review progress in separate status fields.",
+  "does_not_change_stage5_evidence": true,
+  "does_not_approve_stage6": true,
+  "v8_release_claimed": false
+}

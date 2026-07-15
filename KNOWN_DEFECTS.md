@@ -1062,3 +1062,23 @@ outside the clone. The recorded command remains sanitized and portable without
 weakening Stage 3's current-evidence boundary. The failed attempt is retained at
 `Evidence/STAGE_6_CANDIDATE_ATTEMPT_1_FAILED.json`.
 
+## REG-065 — Stage 6 reconciliation altered a shared Stage 3 reviewer field
+
+- Severity: **P2**
+- Classification: `CONFIRMED_V8_STAGE6_LEDGER_RECONCILIATION`
+- Affected revision: `b811c0f99702f3d6174595bcef517dfbb6dc4384`
+- Status: `REMEDIATION_IMPLEMENTED_AWAITING_CLEAN_RECONSTRUCTION`
+
+**Original reproduction:** The second clean candidate passed Stage 3 evidence
+generation but failed its independent verifier with `Stage 3 requirement
+ownership missing`. The Stage 6 reconciliation had changed the shared
+`independent_reviewer` value from the stable identity `Nilhan` to a status-bearing
+display string.
+
+**Correction:** Reviewer identity remains exactly `Nilhan`; protected-review
+progress stays in the separate `evidence_status` and Stage 6 coverage fields.
+The candidate builder now includes sanitized stdout as well as stderr when a
+gate fails, so a verifier's primary structured diagnostic cannot be hidden.
+The failed attempt is retained at
+`Evidence/STAGE_6_CANDIDATE_ATTEMPT_2_FAILED.json`.
+
