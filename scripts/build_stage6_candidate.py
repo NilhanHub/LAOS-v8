@@ -247,9 +247,7 @@ def main() -> int:
     started = datetime.now(UTC)
     with tempfile.TemporaryDirectory(prefix="laos-stage6-candidate-") as temporary:
         clone = Path(temporary) / "source"
-        subprocess.run(  # noqa: S603 - resolved Git and exact source repository
-            [executable("git"), "clone", "--no-local", "--quiet", str(ROOT), str(clone)], check=True, timeout=120
-        )
+        git(ROOT, "clone", "--no-local", "--quiet", str(ROOT), str(clone))
         git(clone, "checkout", "--detach", "--quiet", args.expected_commit)
         source_commit = git(clone, "rev-parse", "HEAD")
         source_tree = git(clone, "rev-parse", "HEAD^{tree}")
