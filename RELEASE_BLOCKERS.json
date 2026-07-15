@@ -4,10 +4,11 @@
   "canonicality": "Bootstrap view; protected transactional state becomes canonical when implemented.",
   "count": 25,
   "stage_5_completion_candidate": {
-    "status": "PASS_AWAITING_NILHAN_REVIEW",
+    "status": "STAGE_5_COMPLETE_NILHAN_APPROVED",
     "run_id": "run:ea3248f8ede94973ae669ded5fa3c30f",
     "cleared_release_blockers": [],
-    "note": "Stage 5 product-gate evidence passed, but no release blocker is closed by a pre-release local candidate. Stage 6 protected authentication, evidence custody, sandbox enforcement and later release/evaluation gates remain binding."
+    "review_evidence": "Evidence/STAGE_5_REVIEW.json",
+    "note": "Nilhan approved Stage 5 complete, but no release blocker is closed by that stage decision. Stage 6 protected authentication, evidence custody, sandbox enforcement and later release/evaluation gates remain binding."
   },
   "blockers": [
     {
@@ -69,7 +70,7 @@
       "evidence_digests": [],
       "independent_verifier": "Nilhan",
       "stage_3_note": "Local Security Spine controls are exercised, but this blocker remains open pending independent review and later integrated release gates.",
-      "stage_5_security_note": "Protected-envelope v2 authenticates authority and time context, trust keys are issuer-bound, pack context must agree, and the local protected signer candidate passed. This blocker remains OPEN pending Nilhan review and integrated release gates.",
+      "stage_5_security_note": "Protected-envelope v2 authenticates authority and time context, trust keys are issuer-bound, pack context must agree, and the local protected signer candidate passed. This blocker remains OPEN after Nilhan Stage 5 approval; integrated release gates remain.",
       "stage_5_security_evidence": [
         "schemas/golden/protected-envelope-v2.json",
         "tests/stage3/test_capsule_and_signing.py",

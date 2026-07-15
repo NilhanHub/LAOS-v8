@@ -681,7 +681,7 @@ Separate immutable release, static harness, runtime state, evidence, and artifac
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_SCAN`
 - Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Change issuer, audience, issue time, or expiry while
 retaining the signature; the vulnerable verifier accepted the altered context.
@@ -697,7 +697,7 @@ the complete authority/time statement. See
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_SCAN`
 - Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Register a key for one issuer, sign an envelope that
 claims another issuer, and verify the pack through the trust registry.
@@ -712,7 +712,7 @@ deny cross-issuer use with `TRUST_ISSUER_MISMATCH`; see
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_SCAN`
 - Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Supply `.GIT/config` and `.gitattributes` in a
 template so `git add` invokes a malicious clean filter on Windows.
@@ -729,7 +729,7 @@ Git runs without system/global configuration or hooks. See
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_SCAN`
 - Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Sign a capture whose fact timestamp is far in the
 future; freshness arithmetic treated it as current.
@@ -745,7 +745,7 @@ invalid ordering, stale facts, or completion after envelope issuance. See
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_SCAN`
 - Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Leave a PASS at the evidence path, then fail Docker
 startup before the old generator writes replacement evidence.
@@ -761,7 +761,7 @@ requires the expected run ID and source revision. See
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_SCAN`
 - Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Replace repository evidence fields with fabricated
 PASS values that were not tied to a current execution or source revision.
@@ -777,7 +777,7 @@ receipt. See `tests/stage5/test_evidence_integrity.py`.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_SCAN`
 - Affected revision: `5f9babd281a4080653986f237bb3af89dcccf4b5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Duplicate one passing coverage row while omitting a
 different required criterion; the vulnerable row-count check still passed.
@@ -792,7 +792,7 @@ Revision 1.1 plan hash. See `tests/stage5/test_evidence_integrity.py`.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Supply an ordinary review JSON file that names
 Nilhan and matches the candidate identifiers; the verifier produced approval.
@@ -808,7 +808,7 @@ authentication remains Stage 6 work.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Replace every command argument array with invented
 values while retaining PASS-shaped rows; candidate verification accepted them.
@@ -823,7 +823,7 @@ builder-asserted bootstrap evidence, not an authenticated execution attestation.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Modify working-tree code, run the standalone
 generator, and observe evidence attributed to unchanged HEAD and tree IDs.
@@ -837,7 +837,7 @@ worktree and an evidence path outside the repository before collectors run.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Hand-author PASS-shaped Docker, state, signing, and
 operator rows without running collectors; full current verification accepted it.
@@ -852,7 +852,7 @@ current PASS.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Point the candidate tag at an unrelated commit while
 using independently matching receipt fields; the structural checks accepted it.
@@ -867,7 +867,7 @@ Approval still requires the unimplemented protected Nilhan authentication.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Choose `s` as the output name so substring filtering
 also removed a dirty `src/file.py` status row.
@@ -881,7 +881,7 @@ and exempts only one exact normalized output path.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Select a package path as receipt output; the final
 atomic JSON write replaced the artifact after its digest was recorded.
@@ -895,7 +895,7 @@ untracked Stage 5 Evidence JSON path. Tracked and colliding paths are denied.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Present otherwise valid current evidence completed
 in the distant past; no maximum age prevented PASS.
@@ -909,7 +909,7 @@ verification and is regenerated immediately before the full verifier runs.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Supply absent package files and fabricated package
 hashes; the verifier explicitly skipped both rows.
@@ -924,7 +924,7 @@ release artifact custody remains open for Stage 8.
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_REMEDIATION_DIFF_SCAN`
 - Affected revision: `2e213deb096382151206c035a5f1143687002fcc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Sign facts, completion, and envelope issuance that
 all predate request issuance; the continuation path accepted them.
@@ -939,7 +939,7 @@ allowed by policy; 301 seconds remains denied.
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_CALIBRATION_RECOVERY`
 - Affected revision: `70eda7662bbb1be853be4ab058c58a6a38fc7bfc`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** Both v1.1 formal attempts returned JSON that failed
 the strict `CalibrationProposal` validator because the adapter requested only
@@ -958,7 +958,7 @@ the fresh formal run passed 5/5 without a retry. See
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_CAPTURE_INTEGRATION`
 - Affected revision: `f276b6f0922570e832ebe6fd315dc86f0f683787`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** The real capture reached protected signing, then the
 event-anchor signer denied the established
@@ -976,7 +976,7 @@ archive digests. See `Evidence/STAGE_5_REAL_CAPTURE_PROVENANCE.json` and
 - Severity: **P3**
 - Classification: `CONFIRMED_V8_STAGE5_EVIDENCE_WORKFLOW`
 - Affected revision: `d295e6a44d9a9aa5d048857c6b255d2d4a9b74d5`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** The formal capture passed, but full pytest failed in
 the temporary reconstruction because the integration test searched the clone's
@@ -995,7 +995,7 @@ candidate passed full pytest and Docker integration without skips. See
 - Severity: **P2**
 - Classification: `CONFIRMED_V8_STAGE5_EVIDENCE_WORKFLOW`
 - Affected revision: `0e5a02637e73a1dca05d30259a420dbecbac8b96`
-- Status: `REMEDIATION_VERIFIED_AWAITING_NILHAN_REVIEW`
+- Status: `REMEDIATION_VERIFIED_NILHAN_APPROVED_STAGE5_COMPLETE`
 
 **Original reproduction:** The clean candidate rebuilt the same signer source,
 which produced a new Docker image ID. The formal capture verifier then compared

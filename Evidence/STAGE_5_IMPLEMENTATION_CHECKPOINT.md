@@ -1,6 +1,6 @@
 # LAOS v8 Stage 5 implementation checkpoint
 
-Status: **COMPLETION CANDIDATE PASSED — awaiting Nilhan review**
+Status: **APPROVED BY NILHAN — STAGE 5 COMPLETE**
 
 Authority: `LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md` Revision 1.1, Milestones 5–8.
 
@@ -41,12 +41,12 @@ the committed candidate in a separate clean reconstruction.
 ## Verified limitations and open gates
 
 1. Corrected candidate run `run:ea3248f8ede94973ae669ded5fa3c30f` passed all 20 automated gates from clean source commit `7497d149281e9e6924bf79cc22c2c89ea51f8dfe`; its receipt remains `PASS_AWAITING_NILHAN_REVIEW`. Earlier failed and pre-reconciliation receipts remain preserved as nonqualifying history.
-2. The three Stage 5 product-gate records now have passing evidence but remain binding until Nilhan explicitly approves the completion candidate. No approval is inferred from model output, Codex implementation, or ordinary self-authored JSON.
+2. Nilhan explicitly approved the completion candidate on 2026-07-15. The three Stage 5 product gates are closed by that decision; the immutable candidate receipt remains unchanged as historical evidence.
 3. `ProtectedTestSigner` remains test-only. The supported protected-signer row is the local single-operator Windows/Docker profile and trusts Nilhan and the host/Docker administrator; it does not claim hostile-admin, HSM/KMS, or multi-operator isolation.
 4. Integrated protected reviewer authentication, mature evidence custody, protected checks, sandbox enforcement, and quorum remain Stage 6 work as assigned by the ten-stage plan.
 5. All release blockers remain open for their assigned later stages. LAOS v8 remains incomplete and unreleased.
 
-This checkpoint stops at a reviewable Stage 5 candidate rather than converting automated evidence into Nilhan approval or an LAOS v8 release claim.
+Stage 5 is complete. This does not approve Stage 6 or later work, a complete LAOS v8 runtime, any LAOS v8 release, or closure of any release blocker.
 
 The first post-reconciliation clean run exposed and preserved a signer-status
 path-alias defect: a live image rebuild changed the current image ID and was

@@ -1,0 +1,27 @@
+{
+  "record_version": "1.0.0",
+  "stage": 5,
+  "status": "APPROVED_COMPLETE",
+  "reviewer": "Nilhan",
+  "reviewer_role": "SOLE_HUMAN_REVIEWER_INDEPENDENT_FROM_CODEX_IMPLEMENTER",
+  "reviewed_candidate_run_id": "run:ea3248f8ede94973ae669ded5fa3c30f",
+  "reviewed_candidate_source_commit": "7497d149281e9e6924bf79cc22c2c89ea51f8dfe",
+  "reviewed_candidate_evidence_commit": "b7e094a1b1657950a1abd55b39a5134eb49ef2f8",
+  "reviewed_candidate_tag": "stage5-completion-candidate",
+  "candidate_receipt_sha256": "8b95c0501b047f6b3ba47a00382162b897f8506f9b45ae27d5655c951f38119f",
+  "decision_recorded_at_utc": "2026-07-15T07:49:19Z",
+  "approval_statement": "ok then, stage 5 is approved as complete!",
+  "scope": "STAGE_5_COMPLETION_ONLY",
+  "cleared_stage_5_gates": [
+    "PROTECTED_SIGNING_CUSTODY",
+    "RELEASED_PROFILE_REAL_CALIBRATION",
+    "REAL_WEAKER_INVESTIGATOR_CAPTURE_ROUND_TRIP"
+  ],
+  "does_not_approve": [
+    "STAGE_6_OR_LATER_WORK",
+    "FULL_LAOS_V8_RUNTIME",
+    "LAOS_V8_RELEASE",
+    "CLOSURE_OF_RB_001_THROUGH_RB_025"
+  ],
+  "assurance": "BOOTSTRAP_HUMAN_REVIEW_PROVENANCE_STAGE6_PROTECTED_AUTHENTICATION_OPEN"
+}

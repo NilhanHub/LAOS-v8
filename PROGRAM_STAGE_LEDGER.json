@@ -66,13 +66,13 @@
       "depends_on": [
         4
       ],
-      "status": "IN_PROGRESS_COMPLETION_CANDIDATE_AWAITING_NILHAN_REVIEW",
+      "status": "COMPLETED",
       "scope_classification": "MUST_V8_0_EXECUTION_ENVELOPE",
       "owner": "Codex",
       "independent_reviewer": "Nilhan",
-      "entry_gate": "Stage 4 exit gate passed; core contracts implemented; corrected completion candidate passed automated gates and awaits Nilhan review",
+      "entry_gate": "Stage 4 exit gate passed; core contracts implemented; corrected completion candidate passed and Nilhan approved Stage 5 complete",
       "exit_gate_reference": "LAOS_v8_TEN_STAGE_IMPLEMENTATION_PLAN.md",
-      "evidence_policy": "LOCAL_PROTECTED_SIGNER_AND_RUN_BOUND_RECEIPTS_AWAITING_NILHAN_REVIEW",
+      "evidence_policy": "LOCAL_PROTECTED_SIGNER_RUN_BOUND_RECEIPTS_AND_NILHAN_BOOTSTRAP_REVIEW_STAGE6_PROTECTED_AUTHENTICATION_OPEN",
       "rollback": "Return to the previous immutable Git tag and evidence snapshot; never rewrite historical evidence."
     },
     {

@@ -383,6 +383,21 @@ def test_stage5_signer_continuity_ignores_rebuild_image_id_but_rejects_key_drift
     assert module.protected_signer_identity(rebuilt) != module.protected_signer_identity(capture)
 
 
+def test_stage5_complete_verifier_rejects_closed_release_blocker(monkeypatch: pytest.MonkeyPatch) -> None:
+    module = _script("verify_stage5_complete.py")
+    original_load = module.load
+
+    def load(relative: str):
+        payload = copy.deepcopy(original_load(relative))
+        if relative == "RELEASE_BLOCKERS.json":
+            payload["blockers"][0]["status"] = "CLOSED"
+        return payload
+
+    monkeypatch.setattr(module, "load", load)
+    with pytest.raises(AssertionError, match="release blocker was closed early"):
+        module.verify()
+
+
 def _git(root: Path, *args: str) -> None:
     executable = shutil.which("git")
     assert executable is not None

@@ -2,7 +2,7 @@
   "matrix_version": "1.4.0",
   "source": "LAOS v7.0 immutable archive",
   "stage_5_security_remediation": {
-    "status": "IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+    "status": "IMPLEMENTED_NILHAN_APPROVED_STAGE5_COMPLETE",
     "serialized_envelope_policy": "V1_UNSUPPORTED_FAIL_CLOSED_V2_REQUIRED",
     "bootstrap_evidence_receipt_policy": "V1_0_UNSUPPORTED_V1_1_BUILDER_ASSERTED_NOT_AUTHENTICATED",
     "review_record_policy": "ORDINARY_JSON_CANNOT_APPROVE_PROTECTED_NILHAN_AUTHENTICATION_REQUIRED",
@@ -10,11 +10,12 @@
     "release_claim": "NONE"
   },
   "stage_5_completion_candidate": {
-    "status": "PASS_AWAITING_NILHAN_REVIEW",
+    "status": "STAGE_5_COMPLETE_NILHAN_APPROVED",
     "run_id": "run:ea3248f8ede94973ae669ded5fa3c30f",
     "calibration_contract": "1.2.0",
     "released_investigation_profile": "1.0.4",
     "sealed_v7_capture": "PASS_NO_SOURCE_CHANGE_NO_REPOSITORY_CODE_EXECUTION_FIRST_CAPSULE_UNREDEEMED",
+    "review_evidence": "Evidence/STAGE_5_REVIEW.json",
     "release_claim": "NONE"
   },
   "policy": {
@@ -33,7 +34,7 @@
       "v8_target": "v8 versioned typed model",
       "owner_stage": 5,
       "status": "OPEN",
-      "stage_5_security_status": "TEMPLATE_PATH_AND_GIT_GENESIS_HARDENING_IMPLEMENTED_AWAITING_NILHAN_REVIEW"
+      "stage_5_security_status": "TEMPLATE_PATH_AND_GIT_GENESIS_HARDENING_IMPLEMENTED_NILHAN_APPROVED_STAGE5_COMPLETE"
     },
     {
       "feature": "capture_app_intelligence",
@@ -41,7 +42,7 @@
       "v8_target": "strict validated capture aggregate",
       "owner_stage": 5,
       "status": "OPEN",
-      "stage_5_security_status": "REAL_SEALED_V7_CAPTURE_AND_REQUEST_BOUND_CHRONOLOGY_PASS_AWAITING_NILHAN_REVIEW"
+      "stage_5_security_status": "REAL_SEALED_V7_CAPTURE_AND_REQUEST_BOUND_CHRONOLOGY_PASS_NILHAN_APPROVED_STAGE5_COMPLETE"
     },
     {
       "feature": "continuation_fingerprint",
@@ -85,7 +86,7 @@
       "v8_target": "RFC 8785 canonical protected-envelope v2 with issuer and audience binding",
       "owner_stage": 5,
       "status": "OPEN",
-      "stage_5_security_status": "V2_AND_LOCAL_DOCKER_PROTECTED_SIGNER_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW_HSM_KMS_FUTURE_ROW_OPEN"
+      "stage_5_security_status": "V2_AND_LOCAL_DOCKER_PROTECTED_SIGNER_CANDIDATE_PASS_NILHAN_APPROVED_STAGE5_COMPLETE_HSM_KMS_FUTURE_ROW_OPEN"
     }
   ]
 }

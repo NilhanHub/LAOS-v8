@@ -3,7 +3,7 @@
   "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
   "count": 50,
   "stage_5_completion_candidate": {
-    "status": "PASS_AWAITING_NILHAN_REVIEW",
+    "status": "STAGE_5_COMPLETE_NILHAN_APPROVED",
     "run_id": "run:ea3248f8ede94973ae669ded5fa3c30f",
     "evidence": [
       "Evidence/STAGE_5_COMPLETION_CANDIDATE.json",
@@ -12,7 +12,8 @@
       "Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json"
     ],
     "controlled_at_candidate": ["TM-002", "TM-006", "TM-020", "TM-021", "TM-022", "TM-042"],
-    "residual_boundary": "Threat rows remain OPEN until their owner-stage review and later protected evidence, sandbox, release, and evaluation controls close them."
+    "review_evidence": "Evidence/STAGE_5_REVIEW.json",
+    "residual_boundary": "Threat rows remain OPEN until their owner-stage review and later protected evidence, sandbox, release, and evaluation controls close them. Stage 5 completion does not close threat rows owned by later stages."
   },
   "threats": [
     {
@@ -38,7 +39,7 @@
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
       ],
-      "stage_5_completion_status": "BROKER_CLASSIFIED_PROMPT_INJECTION_AND_PROHIBITED_ACTION_SCENARIOS_PASS_AWAITING_NILHAN_REVIEW",
+      "stage_5_completion_status": "BROKER_CLASSIFIED_PROMPT_INJECTION_AND_PROHIBITED_ACTION_SCENARIOS_PASS_NILHAN_APPROVED_STAGE5_COMPLETE",
       "stage_5_completion_evidence": [
         "Evidence/STAGE_5_CALIBRATION_RECEIPT.json",
         "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json"
@@ -95,7 +96,7 @@
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
       ],
-      "stage_5_completion_status": "EXACT_MODEL_BLOB_PROFILE_SETTINGS_AND_CALIBRATION_BINDING_PASS_AWAITING_NILHAN_REVIEW",
+      "stage_5_completion_status": "EXACT_MODEL_BLOB_PROFILE_SETTINGS_AND_CALIBRATION_BINDING_PASS_NILHAN_APPROVED_STAGE5_COMPLETE",
       "stage_5_completion_evidence": [
         "Evidence/STAGE_5_PROFILE_BINDING.json",
         "profiles/ACTIVE_EXECUTOR_PROFILES.json"
@@ -362,7 +363,7 @@
       "mandatory_test": "Missing criterion denial",
       "status": "OPEN",
       "stage_3_status": "OPEN_LATER_STAGE",
-      "stage_5_security_status": "EXACT_STAGE5_CRITERION_MAP_IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+      "stage_5_security_status": "EXACT_STAGE5_CRITERION_MAP_IMPLEMENTED_NILHAN_APPROVED_STAGE5_COMPLETE",
       "stage_5_security_evidence": [
         "scripts/verify_stage5_checkpoint.py",
         "tests/stage5/test_evidence_integrity.py"
@@ -577,7 +578,7 @@
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
       ],
-      "stage_5_security_status": "WINDOWS_ALIAS_AND_GIT_CONFIG_HARDENING_IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+      "stage_5_security_status": "WINDOWS_ALIAS_AND_GIT_CONFIG_HARDENING_IMPLEMENTED_NILHAN_APPROVED_STAGE5_COMPLETE",
       "stage_5_security_evidence": [
         "src/laos_v8/new_build.py",
         "tests/stage5/test_core_workflows.py"
@@ -616,7 +617,7 @@
         "tests/stage3",
         "Evidence/STAGE_3_LOCAL_SECURITY_PROFILE.json"
       ],
-      "stage_5_security_status": "PROTECTED_ENVELOPE_V2_AND_ISSUER_BINDING_IMPLEMENTED_AWAITING_NILHAN_REVIEW",
+      "stage_5_security_status": "PROTECTED_ENVELOPE_V2_AND_ISSUER_BINDING_IMPLEMENTED_NILHAN_APPROVED_STAGE5_COMPLETE",
       "stage_5_security_evidence": [
         "schemas/golden/protected-envelope-v2.json",
         "tests/stage3/test_capsule_and_signing.py",

@@ -2,7 +2,7 @@
   "record_version": "1.0.0",
   "authority": "LAOS_v8_EXECUTION_AND_RELEASE_PLAN.md Revision 1.1 Milestones 5 through 8",
   "authority_sha256": "d8f1955b4c7c8a649cc425c9c2d3463ea25db2ead96229813d4bbb542c262729",
-  "assurance": "STAGE_5_COMPLETION_CANDIDATE_PASS_AWAITING_NILHAN_REVIEW",
+  "assurance": "STAGE_5_COMPLETE_NILHAN_APPROVED",
   "coverage": [
     {
       "id": "S5-01",
@@ -37,7 +37,7 @@
       "milestone": 5,
       "requirement": "Private key held by a reviewed production-capable protected signer outside the compiler process",
       "evidence": "src/laos_v8/protected_signer.py; signer/Dockerfile; Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json; Evidence/STAGE_5_COMPLETION_CANDIDATE.json",
-      "status": "PASS_AWAITING_NILHAN_REVIEW"
+      "status": "PASS_NILHAN_APPROVED"
     },
     {
       "id": "S5-06",
@@ -79,7 +79,7 @@
       "milestone": 7,
       "requirement": "Every released profile has qualifying real calibration evidence with exact provider/model/tool/settings/environment provenance",
       "evidence": "Evidence/STAGE_5_CALIBRATION_RECEIPT.json; Evidence/STAGE_5_CALIBRATION_V1_2_PROVENANCE.json; Evidence/STAGE_5_PROFILE_BINDING.json; profiles/ACTIVE_EXECUTOR_PROFILES.json",
-      "status": "PASS_AWAITING_NILHAN_REVIEW"
+      "status": "PASS_NILHAN_APPROVED"
     },
     {
       "id": "S5-12",
@@ -100,7 +100,7 @@
       "milestone": 8,
       "requirement": "Real weaker-investigator capture through the qualifying read-only enforcement and evidence path",
       "evidence": "Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json; Evidence/STAGE_5_REAL_CAPTURE_PROVENANCE.json; Evidence/STAGE_5_COMPLETION_CANDIDATE.json",
-      "status": "PASS_AWAITING_NILHAN_REVIEW"
+      "status": "PASS_NILHAN_APPROVED"
     }
   ]
 }
