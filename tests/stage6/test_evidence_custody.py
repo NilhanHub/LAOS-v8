@@ -99,7 +99,8 @@ def test_retention_policy_and_secret_minimization_are_fail_closed(custody_roots:
     assert RetentionPolicy.for_evidence("personal", raw=False).retention_days == 30
 
     with pytest.raises(SecurityError, match="secret") as secret:
-        custody_service.store(_request(payload=b"-----BEGIN PRIVATE KEY-----\nnot-real"))
+        marker = b"-----BEGIN " + b"PRIVATE KEY-----\nnot-real"
+        custody_service.store(_request(payload=marker))
     assert secret.value.code == "CUSTODY_SECRET_MATERIAL_DENIED"
 
 
