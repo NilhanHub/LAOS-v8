@@ -1,5 +1,10 @@
 # LAOS v8 rebuild repository
 
+<!-- portfolio-flagship -->
+<p align="center"><img src="docs/social-preview.png" alt="LAOS v8 social preview" width="100%"></p>
+
+> **Portfolio review path:** Start with the capabilities and architecture below, then reproduce the documented verification commands. See [SECURITY.md](SECURITY.md), [CONTRIBUTING.md](CONTRIBUTING.md), and [RIGHTS.md](RIGHTS.md) for the project's operating and reuse boundaries.
+
 > [!TIP]
 > For a recruiter- and engineer-friendly architecture tour, see [ENGINEERING_OVERVIEW.md](ENGINEERING_OVERVIEW.md).
 

@@ -1,0 +1,10 @@
+# Evidence-custody field names and synthetic signer/test receipts; no deployable credentials.
+7497d149281e9e6924bf79cc22c2c89ea51f8dfe:Evidence/STAGE_5_REAL_CAPTURE_SIGNER_STATUS.json:generic-api-key:7
+7497d149281e9e6924bf79cc22c2c89ea51f8dfe:Evidence/STAGE_5_REAL_CAPTURE_SIGNER_STATUS.json:generic-api-key:19
+7497d149281e9e6924bf79cc22c2c89ea51f8dfe:Evidence/STAGE_5_REAL_CAPTURE_SIGNER_STATUS.json:generic-api-key:25
+3e5f5d2e5a71f473b3f8e0463b1c0d5888c74290:Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json:generic-api-key:7
+3e5f5d2e5a71f473b3f8e0463b1c0d5888c74290:Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json:generic-api-key:19
+3e5f5d2e5a71f473b3f8e0463b1c0d5888c74290:Evidence/STAGE_5_PROTECTED_SIGNER_STATUS.json:generic-api-key:25
+3e5f5d2e5a71f473b3f8e0463b1c0d5888c74290:Evidence/STAGE_5_REAL_CAPTURE_RECEIPT.json:generic-api-key:6
+e8400d9e1fce5d2850022c01f107ecfcd73ec6a8:src/laos_v8/evidence_custody.py:generic-api-key:26
+6d9dda8d2acb57dfedeca87ff135cca776ba8ab0:Evidence/STAGE_4_ALPHA_RUNTIME/state-export.json:generic-api-key:74
